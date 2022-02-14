@@ -1,0 +1,215 @@
+/* .container_header {
+  display: flex;
+  flex-direction: column;
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+  background-image: -webkit-linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+} */
+
+/* .container__right {
+  width: 20%;
+} */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  /* width: 100%; */
+  font-size: 1vw;
+  /* border: 1px solid red; */
+}
+header {
+  width: 100%;
+  height: 8vh;
+  min-height: 8vh;
+  font-size: 1vw;
+}
+.header_container--left {
+  height: 100%;
+  width: 10%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+body > div > header > div.header_container > div.header_container--left > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.header_container--left img {
+  /* height: 80%; */
+  height: 100%;
+}
+.header_container {
+  display: flex;
+  background-color: #f5f6fa;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+.header_container--right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  width: fit-content;
+  /* min-width: 280px; */
+}
+
+/* CSS */
+.button-3 {
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  background-color: black;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 0.4em;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 20px;
+  /* padding: 0.1em 0.4em; */
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin: 0.2rem 0.4em;
+  width: 10em;
+  height: 3em;
+}
+.button-3:hover {
+  background-color: rgb(10, 146, 180);
+}
+.button-3:focus {
+  box-shadow: rgba(210, 224, 214, 0.4) 0 0 0 3px;
+  outline: none;
+}
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: default;
+}
+.button-3:active {
+  background-color: white;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+}
+.option_setting {
+  position: relative;
+}
+.drop_setting {
+  width: 200px;
+  position: absolute;
+  display: none;
+  margin-left: 100px;
+}
+
+.drop_setting li {
+  list-style-type: none;
+  font-size: 100%;
+  width: 50%;
+  background-color: white;
+}
+.drop_setting ul {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  flex-direction: column;
+  width: 150px;
+  height: 100%;
+  justify-content: space-around;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+.option_setting:hover > .drop_setting {
+  display: block;
+}
+/* .w3-container {
+  background-color: rgb(10, 146, 180);
+  width: 100%;
+  height: 200px;
+  margin: auto;
+} */
+
+.drop_setting li {
+  list-style-type: none;
+  font-size: 100%;
+  width: 50%;
+  background-color: white;
+}
+.drop_setting ul {
+  background-color: white;
+  flex-direction: column;
+  width: 150px;
+  height: 100%;
+  justify-content: space-around;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.button_profile:hover {
+  background-color: white;
+}
+
+#newemail {
+  text-align: left;
+  border-radius: 10px;
+  width: 600px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+.text-pop-up-top {
+  text-align: center;
+  margin: auto;
+}
+.button_profile:hover {
+  background-color: white;
+}
+
+/* body {
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+  background-image: -webkit-linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+} */
+#email_value {
+  margin-right: 30px;
+}
+#username_value {
+  margin-right: 82px;
+}
+#password_value {
+  margin-right: 40px;
+}

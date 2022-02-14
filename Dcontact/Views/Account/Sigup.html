@@ -1,0 +1,53 @@
+﻿
+<head>
+    <link rel="stylesheet" type="text/css" href="/CSS/Form.css">
+    
+</head>
+<body>
+    <script type="text/javascript" src="/Scripts/Validation.js"></script>
+
+    <div class="container">
+        <div class="header">
+            <h2>Create Your Account</h2>
+        </div>
+        <form id="form" class="form" action="Login.html" onsubmit="return checkInputs()">
+            <div class="form-control">
+                <input type="text" id="username"
+                       placeholder="Username"
+                       onfocus="this.placeholder=''"
+                       onblur="this.placeholder='Username'" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <input type="text" id="email"
+                       placeholder="Email"
+                       onfocus="this.placeholder=''"
+                       onblur="this.placeholder='Email'" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <input type="password" id="password"
+                       placeholder="Password"
+                       onfocus="this.placeholder=''"
+                       onblur="this.placeholder='Password'" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <input type="password" id="password2"
+                       placeholder="Confirm password"
+                       onfocus="this.placeholder=''"
+                       onblur="this.placeholder='Confirmpassword'" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>

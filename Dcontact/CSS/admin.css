@@ -1,0 +1,269 @@
+/* HEADER CSS */
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+  background-image: -webkit-linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgb(163, 255, 250),
+    rgb(255, 160, 153)
+  );
+}
+/* CONTAINER */
+.admin-container {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  height: 683px;
+  overflow: hidden;
+}
+
+/* SIDE BAR */
+.side-bar {
+  border: 1px none black;
+  max-width: 300px;
+  height: 670px;
+  margin-top: 10px;
+  float: left;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  background-color: #f5f6fa;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+.side-bar .item .btn-side-bar {
+  width: 190px;
+  height: 55px;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 30px;
+}
+
+.side-bar .item-censorship .btn-censorship {
+  width: 161px;
+  height: 36px;
+  margin-top: 3px;
+  border: none;
+  font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-left: 15px;
+  border-radius: 30px;
+}
+.side-bar .item .icon-sidebar {
+  font-size: 36px;
+  margin-left: 10px;
+  color: #008080;
+}
+.side-bar .list-choice {
+  border-spacing: 15px;
+}
+
+.side-bar .item td {
+  padding-top: 38px;
+}
+
+.side-bar .item-censorship {
+  width: 160px;
+}
+
+.side-bar #btn-upi:hover,
+.side-bar #btn-statistical:hover,
+.side-bar #btn-censorship:hover {
+  opacity: 0.8;
+  background-color: #008080;
+}
+
+.side-bar #btn-lock:hover {
+  opacity: 0.8;
+  background-color: #ffc7d2;
+}
+
+.side-bar #btn-report:hover {
+  opacity: 0.8;
+  background-color: #ffc7d2;
+}
+
+/* MAIN-ANALYSIS */
+
+.main table.analysis {
+  border-spacing: 60px;
+  margin-right: 50px;
+}
+
+.main .analysis .analysis-row {
+  padding: 30px;
+}
+
+.main .analysis-item {
+  justify-content: center;
+  align-items: center;
+  border: 1px none black;
+  width: 400px;
+  height: 240px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #f5f6fa;
+}
+.main .analysis-item span {
+  text-align: center;
+  font-size: 16px;
+  float: right;
+  margin-top: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+.main .analysis-item .number {
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.main .analysis .analysis-item .icon-analysis {
+  font-size: 88px;
+  margin-left: 5%;
+  color: #008080;
+  float: left;
+}
+
+/*Container Table*/
+
+.admin-container2 {
+  display: flex;
+}
+
+.admin-container2 {
+  height: 100%;
+  overflow: auto;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+  margin-top: 12px;
+}
+.admin-container2 table {
+  text-align: left;
+  position: relative;
+  width: 80%;
+  margin-left: 10%;
+}
+.admin-container2 th,
+.admin-container2 td {
+  padding: 0.25rem;
+  background: white;
+  box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px,
+    rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+}
+.admin-container2 .caption {
+  text-align: center;
+  font-weight: 600;
+  background: #008080;
+  color: white;
+  padding: 20px;
+  letter-spacing: 4px;
+}
+
+.admin-container2 thead {
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  width: calc(100% / 2);
+  text-align: center;
+  padding: 10px;
+}
+
+.main-lock th {
+  background: white;
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  width: calc(100% / 4);
+  text-align: center;
+}
+
+.main-report th {
+  background: white;
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  width: calc(100% / 6);
+  text-align: center;
+}
+
+.main-report .btn-report {
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  background: white;
+  margin-left: 37px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.main-report .btn-report:hover {
+  opacity: 0.7;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.main-lock .btn-lock {
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  background: white;
+  margin-left: 80px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #404040;
+  color: red;
+}
+
+.main-lock .btn-lock:hover {
+  background-color: red;
+  color: black;
+  opacity: 0.6;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.main-lock,
+.main-upi,
+.main-report,
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  /* display: none; */
+}
+.main-upi {
+  display: none;
+}
+.main-lock {
+  display: none;
+}
+.main-report {
+  display: none;
+}
+
+.menu-drop {
+  position: relative;
+}
+
+.menu-drop:hover > .item-censorship {
+  display: block;
+}
+.item-censorship {
+  position: absolute;
+  display: none;
+  float: left;
+}
