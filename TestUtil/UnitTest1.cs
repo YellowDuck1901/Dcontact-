@@ -9,8 +9,8 @@ namespace TestUtil
         public void TestConnectDB()
         {
             Util.DAO a = new Util.DAO();
-            Assert.AreEqual(true, a.status);
-
+            Assert.AreEqual(true, a.DB_Login("admin","admin"));
+            
         }
 
         //[TestMethod]
@@ -21,6 +21,21 @@ namespace TestUtil
         public void TestMD5(string md5, string index)
         {
             Assert.AreEqual(md5, Util.MD5.CreateMD5(index));
+        }
+
+        [TestMethod]
+        /* public void TestSignup()
+         {
+             Util.DAO a = new Util.DAO();
+             Assert.AreEqual(true, a.DB_SignUp(Util.MD5.CreateMD5("oijiuh"), "Tasdas11", "tuyen@gmail.com", "thanhtuyenne"));
+         } */
+        [DataTestMethod]
+        [DataRow("CE1503278","thuanca@gmail.com")]
+        [DataRow("01", "01account@gmail.com")]
+        public void TestUpdateProfile(string id, string email)
+        {
+            Util.DAO a = new Util.DAO();
+            Assert.AreEqual(true, a.DB_UpdateProfile(id, email));
         }
     }
 }
