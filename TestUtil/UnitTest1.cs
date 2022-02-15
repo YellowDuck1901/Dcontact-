@@ -32,5 +32,14 @@ namespace TestUtil
             Util.DAO a = new Util.DAO();
             Assert.AreEqual(true, a.DB_UpdateProfile(id, email));
         }
+
+        [DataTestMethod]
+        [DataRow("admin", "admin")]
+        [DataRow("thanhtuyen", "123")]
+        public void TestLogin(string username, string password)
+        {
+            Util.DAO a = new Util.DAO();
+            Assert.AreEqual(true, a.DB_Login(username, password));
+        }
     }
 }

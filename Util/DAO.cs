@@ -52,19 +52,18 @@ namespace Util
 
         public bool DB_Login(String username, String password)
         {
-            //SqlDataReader dataReader;
-            //DAO dao = new DAO();
-            String sql = @"select * from dbo.Login where userName = '" + username + "' and password = '" + password + "'";
-            dataReader = this.DB_ExcuteQuery(sql);
-           if(dataReader.Read())
+            try
             {
-                Console.WriteLine($"Username {dataReader.GetValue(0)}");
-                Console.WriteLine($"Password {dataReader.GetValue(1)}");
+                string sql = $"exec Pro_Login @Username = '{username}', @Password = '{password}'";
+                Console.WriteLine(sql); 
+                this.DB_ExcuteQuery(sql);
+                this.cnn.Close();
                 return true;
+            } catch (Exception ex)
+            {
+                Console.WriteLine("63: " + ex.Message);
             }
-
             this.cnn.Close();
-            dataReader.Close();
             return false;
         }
 
@@ -112,9 +111,8 @@ namespace Util
             try
             {
                 String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
-                dataReader = this.DB_ExcuteQuery(sql);
+                this.DB_ExcuteQuery(sql);
                 this.cnn.Close();
-                dataReader.Close();
                 return true;
             } catch(Exception ex)
             {
@@ -124,7 +122,6 @@ namespace Util
             return false;
         }
         
-
     }
 
 
