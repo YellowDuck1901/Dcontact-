@@ -26,7 +26,7 @@ namespace TestUtil
         [TestMethod]
         [DataTestMethod]
         [DataRow("CE1503278", "thuanca@gmail.com")]
-        [DataRow("01", "01account@gmail.com")]
+        [DataRow("02", "01account@gmail.com")]
         public void TestUpdateProfile(string id, string email)
         {
             Util.DAO a = new Util.DAO();

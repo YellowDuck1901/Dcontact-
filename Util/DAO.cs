@@ -45,7 +45,7 @@ namespace Util
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error 44: " + ex);
+                throw new Exception();
             }
             return null;
         }
@@ -55,7 +55,6 @@ namespace Util
             try
             {
                 string sql = $"exec Pro_Login @Username = '{username}', @Password = '{password}'";
-                Console.WriteLine(sql); 
                 this.DB_ExcuteQuery(sql);
                 this.cnn.Close();
                 return true;
