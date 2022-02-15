@@ -85,7 +85,44 @@ namespace Util
             dataReader.Close();
             return false;
         }
+        
+        public bool DB_SignUp(String Id, String Username, String Email, String Password)
+        {
+            try
+            {
+            String sql = $"exec Pro_SignUp @ID = '{Id}', @Username = '{Username}', @Email = '{Email}', @Password = '{Password}'";
+            dataReader = this.DB_ExcuteQuery(sql);
+          
+                this.cnn.Close();
+                dataReader.Close();
+                return true;
+            
+            } catch (Exception ex)
+            {
+                Console.WriteLine("102: "+ex.Message);
+            }
+            this.cnn.Close();
+            dataReader.Close();
+            return false;
 
+        }
+
+        public bool DB_UpdateProfile(String id, String email)
+        {
+            try
+            {
+                String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
+                dataReader = this.DB_ExcuteQuery(sql);
+                this.cnn.Close();
+                dataReader.Close();
+                return true;
+            } catch(Exception ex)
+            {
+                Console.WriteLine("120: " + ex.Message);
+            }
+            this.cnn.Close();
+            return false;
+        }
         
 
     }
