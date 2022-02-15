@@ -50,5 +50,43 @@ namespace Util
             return null;
         }
 
+        public bool DB_Login(String username, String password)
+        {
+            //SqlDataReader dataReader;
+            //DAO dao = new DAO();
+            String sql = @"select * from dbo.Login where userName = '" + username + "' and password = '" + password + "'";
+            dataReader = this.DB_ExcuteQuery(sql);
+           if(dataReader.Read())
+            {
+                Console.WriteLine($"Username {dataReader.GetValue(0)}");
+                Console.WriteLine($"Password {dataReader.GetValue(1)}");
+                return true;
+            }
+
+            this.cnn.Close();
+            dataReader.Close();
+            return false;
+        }
+
+        public bool DB_OrderDCard(String id)
+        {
+            String sql = @"select * from dbo.Order_list where ID_user = '"+id+"'";
+            dataReader = this.DB_ExcuteQuery(sql);
+            if(dataReader.Read())
+            {
+                Console.WriteLine($"IDUser {dataReader.GetValue(0)}");
+                Console.WriteLine($"NumberCard {dataReader.GetValue(1)}");
+                Console.WriteLine($"ShippingAddress {dataReader.GetValue(2)}");
+                Console.WriteLine($"ExportPrice {dataReader.GetValue(3)}");
+                Console.WriteLine($"TradingCode {dataReader.GetValue(4)}");
+                return true;
+            }
+            this.cnn.Close();
+            dataReader.Close();
+            return false;
+        }
+
+        
+
     }
 }

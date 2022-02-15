@@ -9,8 +9,8 @@ namespace TestUtil
         public void TestMethod1()
         {
             Util.DAO a = new Util.DAO();
-            Assert.AreEqual(true, a.status);
-
+            Assert.AreEqual(true, a.DB_Login("admin","admin"));
+            
         }
     }
 }
