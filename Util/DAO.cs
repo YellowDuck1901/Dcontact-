@@ -28,7 +28,7 @@ namespace Util
             catch (Exception ex)
             {
                 Console.WriteLine("connect fail!");
-                Console.WriteLine("Error message: " + ex);
+                Console.WriteLine("Error message: \n" + ex.StackTrace);
                 status = false;
             }
 
@@ -89,4 +89,6 @@ namespace Util
         
 
     }
+
+
 }

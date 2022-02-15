@@ -6,11 +6,17 @@ namespace TestUtil
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestConnectDB()
         {
             Util.DAO a = new Util.DAO();
             Assert.AreEqual(true, a.DB_Login("admin","admin"));
             
+        }
+
+        [TestMethod]
+        public void TestMD5()
+        {
+            Assert.AreEqual("F6FDFFE48C908DEB0F4C3BD36C032E72", Util.MD5.CreateMD5("adminadmin"));
         }
     }
 }
