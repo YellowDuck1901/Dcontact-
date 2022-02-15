@@ -13,10 +13,14 @@ namespace TestUtil
 
         }
 
-        [TestMethod]
-        public void TestMD5()
+        //[TestMethod]
+        [DataTestMethod]
+        [DataRow("F6FDFFE48C908DEB0F4C3BD36C032E72", "adminadmin")]
+        [DataRow("900150983CD24FB0D6963F7D28E17F72", "abc")]
+        [DataRow("A562CFA07C2B1213B3A5C99B756FC206", "ade")]
+        public void TestMD5(string md5, string index)
         {
-            Assert.AreEqual("F6FDFFE48C908DEB0F4C3BD36C032E72", Util.MD5.CreateMD5("adminadmin"));
+            Assert.AreEqual(md5, Util.MD5.CreateMD5(index));
         }
     }
 }
