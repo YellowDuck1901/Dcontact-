@@ -1,0 +1,16 @@
+﻿ 
+ 
+REDIRECT (Note: Name of Controller not contain Controller phrase. Example: Account (AccountController.cs))
+	+Button redirect
+	<input type="button" value="Some text" onclick="window.location.href = '@Url.Action("actionName", "ControllerName" )';" />
+	
+	+Link redirect
+	@Html.ActionLink("some text", "actionName", "controllerName")
+	
+	+From redirect
+	 @using(Html.BeginForm("actionName", "controllerName")) 
+		{
+          <input type="submit" value="Some text">
+        }
+
+

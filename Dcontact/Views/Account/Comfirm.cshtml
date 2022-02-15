@@ -1,6 +1,8 @@
+@{
 
+}
 <head>
-    <link rel="stylesheet" type="text/css" href="/CSS/Form.css">
+    <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
     <script src="https://kit.fontawesome.com/f94076876e.js" crossorigin="anonymous"></script>
 
 </head>
@@ -10,7 +12,7 @@
         <div class="header">
             <h2>Enter Vertify Code</h2>
         </div>
-        <form id="form" class="form" action="Login.html" onsubmit="return checkInputs()">
+        <form id="form" class="form" action="@Url.Action("CreateNewPassword", "Account" )" onsubmit="return checkInputs()">
 
             <div class="form-control">
                 <input type="text" id="password"
@@ -34,7 +36,7 @@
         </div>
       </div>  -->
 
-    <script type="text/javascript" src="/Scripts/Validation.js"></script>
-    <script type="text/javascript" src="/Scripts/Modal.js"></script>
+    <script type="text/javascript" src="~/MyScript/Validation.js"></script>
+    <script type="text/javascript" src="~/MyScript/Modal.js"></script>
 
 </body>
