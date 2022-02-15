@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/CSS/header.css">
+﻿<link rel="stylesheet" type="text/css" href="/CSS/header.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/CSS/modal.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -35,7 +35,7 @@
                 <div> <span>Email:</span> <span class="confirm__value" id="email_value">khangtdce150175@fpt.edu.vn</span></div><span><a href="#" id="changemail">Change Email</a></span>
             </div>
             <div class="modal__item item__spacebetween">
-                <div> <span>Password: </span><span class="confirm__value" id="password_value">***********</span></div><span><a href="#" >Change PassWord</a></span>
+                <div> <span>Password: </span><span class="confirm__value" id="password_value">***********</span></div><span><a href="#">Change PassWord</a></span>
 
             </div>
             <div class="modal_foo center_site">
@@ -52,7 +52,7 @@
         <div class="modal__contener">
             <b> We have send a code with 6 numbers to your email</b>
             <div class="modal__item item_spacearound">
-                <span>Code: </span> <span><input type="text" id="code"><span class="error"></span>
+                <span>Code: </span> <span><input type="text" id="code"></span><span class="error"></span>
             </div>
             <div class="modal_foo center_site">
                 <button type="button" id='btn-code'>Confirm</button>
@@ -67,7 +67,7 @@
         </div>
         <div class="modal__contener">
             <div class="modal__item item_spacearound">
-                <span>New Email: </span> <span><input type="text" id="change_newemail"><span class="error"></span>
+                <span>New Email: </span> <span><input type="text" id="change_newemail"></span><span class="error"></span>
             </div>
             <div class="modal_foo center_site">
                 <button type="button" id='btn-email'>Confirm</button>
@@ -83,7 +83,7 @@
         <div class="modal__contener">
             <b> We have send a code with 6 numbers to your email</b>
             <div class="modal__item item_spacearound">
-                <span>Code: </span> <span><input type="text" id="codeConfirm"><span class="error"></span>
+                <span>Code: </span> <span><input type="text" id="codeConfirm"></span><span class="error"></span>
             </div>
             <div class="modal_foo center_site">
                 <button type="button" id='btn-confirmCode'>Confirm</button>
@@ -91,4 +91,5 @@
         </div>
     </div>
 </div>
+@RenderBody()
 <script src='/Scripts/check.js'></script>

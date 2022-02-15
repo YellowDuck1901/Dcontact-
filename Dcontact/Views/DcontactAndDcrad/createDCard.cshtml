@@ -1,0 +1,321 @@
+
+@{
+    ViewBag.Title = "createDCard";
+    Layout = "~/Views/Shared/Header.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit DContact</title>
+    <link rel="stylesheet" href="/CSS/create_DCard.css" />
+    <link rel="stylesheet" href="/CSS/switch.css" />
+    <script src="https://kit.fontawesome.com/a0a7c0f0d8.js"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+</head>
+@*@ no tinh la code c# *@
+<style>
+@*    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');*@
+        import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');
+</style>
+<div class="header">HEADER</div>
+<div class="card-body">
+    <div class="card" id="cardBg">
+        <div class="leftResult cmnResult"></div>
+        <div class="rightResult cmnResult"></div>
+        <div class="centerResult cmnResult"></div>
+        <div class="bottomResult cmnResult"></div>
+
+        <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
+        <div class="qrcode"></div>
+    </div>
+    <div class="edit-card">
+        <span class="input-link">
+            <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
+            <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
+        </span> </br>
+        <div class="toggle-area">
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleBg" />
+                    <span class="slider round"></span>
+                </label>
+                <p>Edit Background</p>
+            </div>
+
+            <span class="upload">
+                <input type="file" name="uploadFile" id="uploadFile"> Upload
+            </span>
+
+            <span class="choose-color">
+                Background Color <input type="color" id="chooseColor">
+            </span>
+
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleAvt" />
+                    <span class="slider round"></span>
+                </label>
+                <p>Avatar</p>
+            </div>
+
+            <span class="uploadAvt">
+                <input type="file" name="uploadFile" id="uploadAvt" accept="image/*">
+                <!-- <div id="upload-input" style="width:350px; height: 400px;"></div> -->
+                <!-- <button class="btn-upload upload-result">Upload Image</button> -->
+            </span>
+
+            <div class="choosePosition">
+                <table border="0" width="300px">
+                    Position
+                    <tr>
+                        <td>
+                            <input type="radio" id="left" name="position" value="left">
+                            <label for="left">Left</label><br>
+                        </td>
+                        <td>
+                            <input type="radio" id="center" name="position" value="center">
+                            <label for="left">Center</label><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" id="right" name="position" value="right">
+                            <label for="left">Right</label><br>
+                        </td>
+                        <td>
+                            <input type="radio" id="bottom" name="position" value="bottom">
+                            <label for="left">Bottom</label><br>
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" value="Set Position" id="avtBtn">
+            </div>
+
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleQR" />
+                    <span class="slider round"></span>
+                </label>
+                <p>QR Code</p>
+            </div>
+
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleText" />
+                    <span class="slider round"></span>
+                </label>
+                <p>Text</p>
+            </div>
+
+            <span class="input-text">
+                <input required type="text" placeholder="Enter text" id="textDesc" />
+            </span> </br>
+            <span class="textColor">
+                Text Color <input type="color" id="chooseTextColor">
+            </span>
+            <div class="choosePositionText">
+                <table border="0" width="300px">
+                    Position
+                    <tr>
+                        <td>
+                            <input type="radio" id="leftText" name="position" value="leftText">
+                            <label for="leftText">Left</label><br>
+                        </td>
+                        <td>
+                            <input type="radio" id="centerText" name="position" value="centerText">
+                            <label for="centerText">Center</label><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" id="rightText" name="position" value="rightText">
+                            <label for="rightText">Right</label><br>
+                        </td>
+                        <td>
+                            <input type="radio" id="bottomText" name="position" value="bottomText">
+                            <label for="bottomText">Bottom</label><br>
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" id="btnRadio" value="Set Position" />
+
+            </div>
+        </div>
+        <button class="btn-order">NEXT</button>
+
+    </div>
+    <!-- Modal For Background -->
+    <div class="modal" id="modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <i class="fas fa-crop-alt"></i>Crop & Upload Image
+            </div>
+            <div class="modal-body">
+                <div class="imageShow" id="imageShow"></div>
+            </div>
+
+            <div class="btn-common">
+                <input type="button" value="Cancel" class="btn-cancel">
+                <input type="button" value="Apply" class="btn-upload">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Avatar -->
+    <div class="modalAvt" id="modalAvt">
+        <div class="modal-container">
+            <div class="modal-header">
+                <i class="fas fa-crop-alt"></i>Crop & Upload Image
+            </div>
+            <div class="modal-body">
+                <div class="avtShow" id="avtShow"></div>
+            </div>
+            <div class="btn-common">
+                <input type="button" value="Cancel" class="btn-cancelAvt">
+                <input type="button" value="Apply" class="btn-uploadAvt">
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script>
+        //JS Avatar
+        const avtInp = document.getElementById("uploadAvt");
+        const avtShow = document.getElementById('avtShow');
+        // const avtShow = document.getElementById("modalAvt");
+        avtInp.onchange = even => {
+            $('#modalAvt').css('display', 'flex');
+            const [file] = avtInp.files
+            if (file) {
+                avtShow.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
+            }
+        }
+
+        //JS Background
+        const imgInp = document.getElementById("uploadFile");
+        const imgShow = document.getElementById('imageShow');
+        // const modalShow = document.getElementById("modal");
+        imgInp.onchange = even => {
+            $('#modal').css('display', 'flex');
+            const [file] = imgInp.files
+            if (file) {
+                imgShow.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
+            }
+        }
+
+        $(document).ready(function () {
+            //Background button
+            $('.btn-cancel').on('click', function () {
+                $('#modal').hide();
+            })
+            // Avatar Button
+            $('.btn-cancelAvt').on('click', function () {
+                $('#modalAvt').hide();
+            })
+
+            //   set position text
+            $('#btnRadio').on('click', function () {
+                //textcolor
+                $('#chooseTextColor').on('change', function () {
+                    $('.cmnResult').css('color', $(this).val());
+                });
+                $(".cmnResult").empty();
+                var rdoChecked = $('input[type="radio"]:checked');
+                var rs = $('#textDesc').val();
+                if (rdoChecked.val() == "leftText") { //leftPosition
+                    $('.leftResult').html(rs);
+                } else if (rdoChecked.val() == "rightText") { //rightPosition
+                    $('.rightResult').html(rs);
+                } else if (rdoChecked.val() == "centerText") { //center
+                    $('.centerResult').html(rs);
+                } else { //bottom
+                    $('.bottomResult').html(rs);
+                }
+            });
+
+            //   toggleBackground
+            $("#toggleBg").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                    $('.upload').show();
+                    $('.choose-color').show();
+                }
+                else {
+                    $(this).attr('value', 'false');
+                    $('.upload').hide();
+                    $('.choose-color').hide();
+
+                }
+            });
+
+            // toogleAvt
+            $("#toggleAvt").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                    $('.uploadAvt').css('display', 'block');
+                    $('.choosePosition').show();
+                }
+                else {
+                    $(this).attr('value', 'false');
+                    $('.uploadAvt').hide();
+                    $('.choosePosition').hide();
+
+                }
+            });
+            // bgcolor
+            $('#chooseColor').on('change', function () {
+                $('.card').css('background-color', $(this).val());
+            });
+
+            //bg-img
+            $('#btn-upload-bg').on('click', function () {
+                $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
+            })
+
+            //qrcode
+            $("#toggleQR").on('change', function () {
+                if ($('#linkContact').val() != '') {
+                    $('.error-icon').hide();
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
+                        var data = $('#linkContact').val();
+                        var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
+                        $('.qrcode').html(img);
+                        data = $('#linkContact').val('');
+                    }
+                    else {
+                        $(this).attr('value', 'false');
+                        $('.img-qr').hide();
+                    }
+                } else {
+                    $(this).prop('checked', false);
+                    $('.error-icon').show();
+                }
+            });
+
+            //text
+            $("#toggleText").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                    $('.input-text').show();
+                    $('.choosePositionText').show();
+                    $('.textColor').show();
+                }
+                else {
+                    $(this).attr('value', 'false');
+                    $('.input-text').hide();
+                    $('.choosePositionText').hide();
+                    $('.textColor').hide();
+                }
+            });
+
+        });
+
+
+    </script>
+</html>

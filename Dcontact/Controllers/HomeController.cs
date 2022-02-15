@@ -8,11 +8,10 @@ namespace Dcontact.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        // GET: Home
+        public ActionResult Home()
         {
             return View();
         }
-
-       
     }
 }

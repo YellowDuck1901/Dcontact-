@@ -6,33 +6,26 @@ using System.Web.Mvc;
 
 namespace Dcontact.Controllers
 {
-    public class AccountController : Controller
+    public class DcontactAndDcradController : Controller
     {
-        // GET: Account
-        public ActionResult Comfirm()
+        // GET: DcontactAndDcrad
+        public ActionResult dashboard()
+        {
+            return View();
+        }
+        public ActionResult createDCard()
         {
             return View();
         }
 
-        public ActionResult CreateNewPassword()
+        public ActionResult editDContact()
         {
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult oder_dcard()
         {
             return View();
         }
-
-        public ActionResult RecoverPassword()
-        {
-            return View();
-        }
-
-        public ActionResult Sigup()
-        {
-            return View();
-        }
-
     }
 }
