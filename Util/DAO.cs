@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-
+using Bean;
 
 namespace Util
 {
     public class DAO
     {
-        string stringConnection = @"Data Source = localhost;    Initial Catalog = Dcontact; User ID = sa; Password=123456";
+        string stringConnection = @"Data Source = localhost;    Initial Catalog = DContact; User ID = sa; Password=123456 ; integrated security = True; Encrypt=False";
         public SqlConnection cnn;
         SqlCommand command;
         SqlDataReader dataReader;
@@ -120,8 +120,33 @@ namespace Util
             this.cnn.Close();
             return false;
         }
-        
-    }
+        public Bean.User DB_getUser(string id,string username)
+        {
+            User user = null;
+            String sql = $"execute Pro_getUser @ID = '{id}'";
+            try
+            {
+                dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    user = new User();
+                    user.id = (string)dataReader.GetValue(0);
 
+                    user.username = username;
+                    user.email = (string)dataReader.GetValue(1);
+                    user.isban = (bool)dataReader.GetValue(2);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("142:" + ex.Message);
+            }
+            this.cnn.Close();
+            dataReader.Close();
+            return user;
+        }
+    }
+    
 
 }
