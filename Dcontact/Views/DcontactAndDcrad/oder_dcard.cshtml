@@ -1,0 +1,169 @@
+@{
+    ViewBag.Title = "oder_dcard";
+    Layout = "~/Views/Shared/Header.cshtml";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Order Dcard</title>
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" href="~/CSS/oder_dcard.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="~/MyScript/oder_dcard.js"></script>
+    <!-- <link rel="stylesheet" href="CSS/modal.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/CSS/header.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fo  nt-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="/CSS/modal.css"> -->
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left content -->
+        <div class="container__half">
+            <div class="container__left">
+                <div class="physic_card">
+                    <div class="card__container">
+                    </div>
+                </div>
+                <div class="content_pay">
+                    <h2>Total: <span>6</span>$</h2>
+                </div>
+            </div>
+        </div>
+        <!-- Right content -->
+        <div class="container__half">
+            <div class="payment__container">
+                <div class="detail__payments">
+                    <div class="detail__payments__header">
+                        <h1>Payments</h1>
+                    </div>
+                    <div class="payment__form">
+                        <div class="detail__payments__content">
+                            <!-- <form method="post"> -->
+                            <div class="detail__address">
+                                <h2>Address</h2>
+                                <div class="adderss__input">
+                                    <input type="text" id="address" name="address" requires>
+                                    <!-- [o] change size -->
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="detail__number">
+                                <h2>Number Item</h2>
+                                <div class="number--item">
+                                    <div class="stepperButton">
+                                        <button class="stepper__button--m" id="minus" type="button">-</button>
+                                        <div class="stepper__input">
+                                            <input type="number" value="1" placeholder="1" id="amount" min="1" name="amount">
+                                        </div>
+                                        <button class="stepper__button--p" id="plus" type="button">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail__payment">
+                                <h2>Payment</h2>
+                                <div class="creditCard__accepted">
+                                    <h3>Accepted payments</h3>
+                                    <div class="card--mini" id="visa">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path fill="#8bb7f0" d="M4,32.5c-1.379,0-2.5-1.122-2.5-2.5V10c0-1.378,1.121-2.5,2.5-2.5h32c1.379,0,2.5,1.122,2.5,2.5v20 c0,1.378-1.121,2.5-2.5,2.5H4z" /><path fill="#4e7ab5" d="M36,8c1.103,0,2,0.897,2,2v20c0,1.103-0.897,2-2,2H4c-1.103,0-2-0.897-2-2V10c0-1.103,0.897-2,2-2 H36 M36,7H4c-1.657,0-3,1.343-3,3v20c0,1.657,1.343,3,3,3h32c1.657,0,3-1.343,3-3V10C39,8.343,37.657,7,36,7L36,7z" /><path fill="#fff" d="M12.1 15.001L9.699 22.12c0 0-.597-2.911-.657-3.29-1.367-3.101-3.397-3.028-3.397-3.028L8.022 25v-.002h2.89l3.996-9.997H12.1zM14.389 25L17.014 25 18.601 15.001 15.943 15.001zM32.967 15.001h-2.762L25.898 25h2.608l.538-1.428h3.288L32.611 25H35L32.967 15.001zM29.771 21.662l1.429-3.779.748 3.779H29.771zM22.325 17.915c0-.551.455-.961 1.761-.961.848 0 1.82.613 1.82.613l.426-2.099c0 0-1.242-.468-2.46-.468-2.76 0-4.184 1.313-4.184 2.974 0 3.005 3.638 2.593 3.638 4.137 0 .265-.211.876-1.726.876-1.52 0-2.523-.554-2.523-.554l-.453 2.014c0 0 .972.551 2.85.551 1.883 0 4.494-1.4 4.494-3.411C25.968 19.17 22.325 18.995 22.325 17.915z" /><g><path fill="#ffeea3" d="M9.362,20.442l-0.864-4.353c0,0-0.4-0.935-1.438-0.935s-4.06,0-4.06,0S8.157,16.71,9.362,20.442z" /></g></svg>
+                                    </div>
+                                    <div class="card--mini" id="mastercard">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z" /><path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z" /><path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z" /></svg>
+                                    </div>
+                                </div>
+                                <div class="payment__data__container">
+                                    <div class="payment__data--item">
+                                        <div class="payment__label">
+                                            Card Number
+                                        </div>
+                                        <div class="payment__input">
+                                            <input id="cardNumber" type="number" placeholder="#### #### #### ####" pattern="[0-9]*" inputmode="numeric" name="cardNumber">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="payment__data--item">
+                                        <div class="payment__label">
+                                            Exp(mm/yyyy)
+                                        </div>
+                                        <div class="expDate">
+                                            <div class="expiration__detail" id="expDate">
+                                                <div class="exMonth">
+                                                    <select name="exMonth" id="exMonth">
+                                                    </select>
+                                                </div>
+                                                /
+                                                <div class="exYear">
+                                                    <select name="exYear" id="exYear" value="Exp Year">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="payment__data--item">
+                                        <div class="payment__label">
+                                            CVV
+                                        </div>
+                                        <div class="cvv">
+                                            <input type="number" placeholder="CVV" inputmode="numeric" name="CVV" id="cvv">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="confirm__payment">
+                                <button class="button-39" role="button" id="confirm" type="submit">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </form> -->
+    </div>
+    <div class="modal js-modal" id="modal__confirm">
+        <div class="modal-container">
+            <div class="modal__header">
+                <h2>Oder Confirm</h2> <i class="fa fa-close"></i>
+            </div>
+            <div class="modal__contener">
+                <div class="modal__item item__spacebetween">
+                    <span>Address: </span> <span class="confirm__value" id="address_value">Vinh long</span>
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Number item:</span> <span class="confirm__value" id="amount_value">20</span>
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Credit number: </span><span class="confirm__value" id="credit_value">4112121212121212</span>
+
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Total: </span>
+                    <strong id="total">120$</strong>
+                </div>
+            </div>
+            <div class="modal_foo right__site">
+                <button type="button" id="buy">Buy</button>
+                <button type="button" id='close' style="margin-left: 0.5rem;">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".modal").on('click', '.fa-close, button#close', function () {
+            $('.modal').removeClass('open');
+        });
+        $("header").load("header.html");
+    });
+</script>
+
+<script type="text/javascript" src="~/MyScript/oder_dcard.js"></script>
+
+</html>
+

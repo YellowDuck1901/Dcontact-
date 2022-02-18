@@ -1,0 +1,175 @@
+.container_home {
+    display: flex;
+    flex-direction: column;
+    background-image: -moz-linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+    background-image: -webkit-linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+    background-image: linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+}
+
+.header_container--left img {
+    width: 70px;
+    height: 50px;
+}
+
+.header_container {
+    display: flex;
+    background-color: #f5f6fa;
+    justify-content: space-between;
+    height: 5rem;
+}
+
+.header_container--right {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    width: 12%;
+    margin-right: 50px;
+}
+
+.button-3 {
+    appearance: none;
+    background-color: black;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 10px 40px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-left: 11px;
+}
+
+    .button-3:focus:not(:focus-visible):not(.focus-visible) {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .button-3:hover {
+        background-color: rgb(10, 146, 180);
+    }
+
+    .button-3:focus {
+        box-shadow: rgba(210, 224, 214, 0.4) 0 0 0 3px;
+        outline: none;
+    }
+
+    .button-3:disabled {
+        background-color: #94d3a2;
+        border-color: rgba(27, 31, 35, .1);
+        color: rgba(255, 255, 255, .8);
+        cursor: default;
+    }
+
+    .button-3:active {
+        background-color: white;
+        box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+    }
+
+.menu {
+    text-align: left;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+    .menu span {
+        text-transform: uppercase;
+        display: block;
+    }
+
+.text1 {
+    position: relative;
+    left: 600px;
+    font-size: 100px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+    animation: text 3s 1;
+    text-align: center;
+    font-size: 40px;
+    color: -moz-linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+    color: -webkit-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
+    color: linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+    margin-right: 300px;
+}
+
+@keyframes text {
+    5% {
+        color: rgb(15, 5, 5);
+        margin-bottom: -40px;
+    }
+
+    30% {
+        letter-spacing: 20px;
+        margin-bottom: -40px;
+    }
+
+    85% {
+        letter-spacing: 8px;
+        margin-bottom: 30px;
+        animation: text 3s 1;
+        text-align: center;
+        font-size: 40px;
+        color: -moz-linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+        color: -webkit-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
+        color: linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
+    }
+}
+
+@keyframes text {
+    5% {
+        color: rgb(15, 5, 5);
+        margin-bottom: -40px;
+    }
+
+    30% {
+        letter-spacing: 20px;
+        margin-bottom: -40px;
+    }
+
+    85% {
+        letter-spacing: 8px;
+        margin-bottom: -40px;
+    }
+}
+
+body {
+    background-image: -moz-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
+    background-image: -webkit-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
+    background-image: linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
+    padding: 0;
+    margin: 0;
+}
+
+.img-home {
+    /* border: SOLID BLACK 1px; */
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+    width: 330px;
+    height: 400px;
+}
+
+    .img-home img {
+        border-radius: 10px;
+        width: 290px;
+        height: 500px;
+        object-fit: cover;
+        box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+    }

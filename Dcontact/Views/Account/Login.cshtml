@@ -1,0 +1,82 @@
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
+    <link rel="stylesheet" type="text/css" href="~/CSS/Modal.css">
+
+    <script src="https://kit.fontawesome.com/f94076876e.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>Login Your Account</h2>
+        </div>
+        <form id="form" class="form" action="@Url.Action("Home", "Home" )" onsubmit="return checkInputs()">
+            <div class="form-control">
+
+                <input type="text" id="username"
+                       placeholder="Username"
+                       onfocus="this.placeholder=''"
+                       onblur="this.placeholder='Username'" />
+                <small>Error message</small>
+            </div>
+
+            <div class="form-control">
+                <input type="password" id="password"
+                       placeholder="Password"
+                       onfocus="this.placeholder=''"
+                       onblur="this.placeholder='Password'" />
+               
+                <small>Error message</small>
+            </div>
+
+            <button id="open" type="submit">Login</button>
+        </form>
+        <div class="SignUp">
+            <span class="txt1">
+                Don't have an account?
+            </span>
+            @*<a class="txt2" href="Sigup.html">
+        Sign Up
+        </a>*@
+
+            <a class="txt2">
+                @Html.ActionLink("Sign Up", "Sigup", "Account")
+            </a>
+
+        </div>
+
+        <div class="Recover">
+            <span class="txt1">
+                Forgot Your Password?
+            </span>
+
+
+            @* <a class="txt2" href="RecoverPassword.html">
+            Recover Password
+        </a>*@
+
+            <a class="txt2">
+                @Html.ActionLink("Recover Password", "RecoverPassword", "Account")
+            </a>
+
+        </div>
+    </div>
+
+  <!-- Modal Popup Khi login sai -->
+     <!-- <div class="modal-container" id="modal_container">
+        <div class="modal">
+          <i class="fas fa-exclamation fa-2x"></i>
+          <p>Incorrect login details. Please retry</p>
+          <button id="close" class="button">
+            Ok
+          </button>
+        </div>
+      </div>  -->
+
+    <script type="text/javascript" src="~/MyScript/Validation.js"></script>
+    <script type="text/javascript" src="~/MyScript/Modal.js"></script>
+
+    
+</body>

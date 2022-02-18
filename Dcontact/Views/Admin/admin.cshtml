@@ -1,0 +1,445 @@
+@{
+    ViewBag.Title = "admin";
+    Layout = "~/Views/Shared/Header.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/CSS/admin.css">
+    <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>ADMIN</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header></header>
+    <!-- Container/Body -->
+    <div class="admin-container">
+        <div class="side-bar">
+            <table class="list-choice">
+                <tr class="item">
+                    <td><i class="fa fa-user icon-sidebar"></i></td>
+                    <td><button class="btn-side-bar" id="btn-upi">UPI</button></td>
+                </tr>
+                <tr class="item">
+                    <td><i class="fa fa-bar-chart icon-sidebar"></i></td>
+                    <td><button class="btn-side-bar" id="btn-statistical">STATISTICAL</button></td>
+                </tr>
+                <tr class="item">
+                    <td><i class="fa fa-user-times icon-sidebar"></i></td>
+                    <td class="menu-drop">
+                        <button class="btn-side-bar" id="btn-censorship">CENSORSHIP</button>
+                        <div class="item-censorship">
+                            <button class="btn-censorship" id="btn-lock">
+                                Lock Account
+                            </button>
+                            <button class="btn-censorship" id="btn-report">
+                                Report
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+        <div class="admin-container2">
+            <div class="main">
+                <table class="analysis">
+                    <tr class="analysis-row">
+                        <td class="analysis-item">
+                            <i class="fa fa-globe icon-analysis"></i>
+                            <span>
+                                <p class="number">3250</p>
+                                <p class="title">Total access website</p>
+                            </span>
+                        </td>
+                        <td class="analysis-item">
+                            <i class="fa fa-eye icon-analysis"></i>
+                            <span>
+                                <p class="number">3250</p>
+                                <p class="title">Total view of DCard</p>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="analysis-row">
+                        <td class="analysis-item">
+                            <i class="fa fa-users icon-analysis"></i>
+                            <span>
+                                <p class="number">3250</p>
+                                <p class="title">Total user of website</p>
+                            </span>
+                        </td>
+                        <td class="analysis-item">
+                            <i class="fas fa-mouse icon-analysis"></i>
+                            <span>
+                                <p class="number">3250</p>
+                                <p class="title">Total clicks of system</p>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="main-upi">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td colspan="2" class="caption">USER'S PERSONAL INFORMATION</td>
+                        </tr>
+                        <tr class="red">
+                            <th>USERNAME</th>
+                            <th>EMAIL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-lock">
+                <table border="1">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <td colspan="4" class="caption">LOCK THE OFFERING ACCOUNT</td>
+                        </tr>
+                        <tr class="red">
+                            <th>ID</th>
+                            <th>USERNAME</th>
+                            <th>EMAIL</th>
+                            <th><i class="fa fa-lock" style="font-size:48px;color:red"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
+                                dicta, fugiat ipsam iusto?
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                <button class="btn-lock">BLOCK</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-report">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td colspan="6" class="caption">REPORT</td>
+                        </tr>
+                        <tr class="red">
+                            <th>ID</th>
+                            <th>USERNAME</th>
+                            <th>REASON</th>
+                            <th>DESCRIPTION</th>
+                            <th><i class="fa fa-check" style="font-size:48px;color:greenyellow"></i></th>
+                            <th><i class="fa fa-remove" style="font-size:48px;color:red"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
+                            </td>
+                            <td>Quis.</td>
+                            <td>Quis.</td>
+                            <td>
+                                Quis Age Job Color Quis.
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                            </td>
+                            <td>
+                                <button class="btn-report" style="background-color: red;">DECLINE</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='~/MyScript/check.js'></script>
+</html>
