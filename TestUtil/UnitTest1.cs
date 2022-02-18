@@ -47,7 +47,14 @@ namespace TestUtil
         public void TestgetUser(string id, string username)
         {
             Util.DAO a = new Util.DAO();
-            Assert.IsNotNull( a.DB_getUser(id, username));
+            Assert.IsNotNull(a.DB_getUser(id, username));
+        }
+
+        [DataTestMethod]
+        [DataRow("Thuancvce150378@fpt.edu.vn", "Test send mail c#", "123 alo alo")]
+        public void TestSendMail(string to, string title, string content)
+        {
+            Assert.AreEqual(true, Util.Mail.send(to, title, content));
         }
     }
 }

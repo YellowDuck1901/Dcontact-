@@ -10,7 +10,7 @@ namespace Util
 {
     public class DAO
     {
-        string stringConnection = @"Data Source = localhost;    Initial Catalog = DContact; User ID = sa; Password=123456 ; integrated security = True; Encrypt=False";
+        string stringConnection = @"Data Source = localhost;    Initial Catalog = Dcontact; User ID = sa; Password=123456 ; integrated security = True; Encrypt=False";
         public SqlConnection cnn;
         SqlCommand command;
         SqlDataReader dataReader;
@@ -27,9 +27,8 @@ namespace Util
             }
             catch (Exception ex)
             {
-                Console.WriteLine("connect fail!");
-                Console.WriteLine("Error message: \n" + ex.StackTrace);
                 status = false;
+                throw new Exception($"Util.DAO 30: connect fail!\n{ex.StackTrace}");
             }
 
         }
@@ -58,9 +57,11 @@ namespace Util
                 this.DB_ExcuteQuery(sql);
                 this.cnn.Close();
                 return true;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("63: " + ex.Message);
+                throw new Exception($"Util.DAO 63: \n{ex.StackTrace}");
+
             }
             this.cnn.Close();
             return false;
@@ -68,9 +69,9 @@ namespace Util
 
         public bool DB_OrderDCard(String id)
         {
-            String sql = @"select * from dbo.Order_list where ID_user = '"+id+"'";
+            String sql = @"select * from dbo.Order_list where ID_user = '" + id + "'";
             dataReader = this.DB_ExcuteQuery(sql);
-            if(dataReader.Read())
+            if (dataReader.Read())
             {
                 Console.WriteLine($"IDUser {dataReader.GetValue(0)}");
                 Console.WriteLine($"NumberCard {dataReader.GetValue(1)}");
@@ -83,21 +84,22 @@ namespace Util
             dataReader.Close();
             return false;
         }
-        
+
         public bool DB_SignUp(String Id, String Username, String Email, String Password)
         {
             try
             {
-            String sql = $"exec Pro_SignUp @ID = '{Id}', @Username = '{Username}', @Email = '{Email}', @Password = '{Password}'";
-            dataReader = this.DB_ExcuteQuery(sql);
-          
+                String sql = $"exec Pro_SignUp @ID = '{Id}', @Username = '{Username}', @Email = '{Email}', @Password = '{Password}'";
+                dataReader = this.DB_ExcuteQuery(sql);
+
                 this.cnn.Close();
                 dataReader.Close();
                 return true;
-            
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("102: "+ex.Message);
+                Console.WriteLine("102: " + ex.Message);
             }
             this.cnn.Close();
             dataReader.Close();
@@ -113,14 +115,15 @@ namespace Util
                 this.DB_ExcuteQuery(sql);
                 this.cnn.Close();
                 return true;
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("120: " + ex.Message);
             }
             this.cnn.Close();
             return false;
         }
-        public Bean.User DB_getUser(string id,string username)
+        public Bean.User DB_getUser(string id, string username)
         {
             User user = null;
             String sql = $"execute Pro_getUser @ID = '{id}'";
@@ -147,6 +150,6 @@ namespace Util
             return user;
         }
     }
-    
+
 
 }
