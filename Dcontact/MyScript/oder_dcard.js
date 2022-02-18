@@ -129,7 +129,7 @@ function checkExpDate() {
     };
     return true;
 }
-$(document).ready(function() {
+$(document).ready(function () {
     let pwdCredential = new PasswordCredential({
         id: "example-username", // Username/ID
         name: "John Doe", // Display name
@@ -140,7 +140,7 @@ $(document).ready(function() {
     var currentYear = currentdate.getFullYear();
     currentYear--;
     //address check
-    $('#address').on('blur', function() {
+    $('#address').on('blur', function () {
         checkAddress();
     });
     //Exp Month
@@ -155,7 +155,7 @@ $(document).ready(function() {
     }
     var val = 1;
     //Steppen input
-    $(".stepperButton").on("click", "#minus, #plus", function() {
+    $(".stepperButton").on("click", "#minus, #plus", function () {
         switch ($(this).attr("id")) {
             case "plus":
                 stepper.add();
@@ -167,13 +167,13 @@ $(document).ready(function() {
         stepperUpdate();
     });
     //total price
-    $('#amount').on('keyup blur', function() {
+    $('#amount').on('keyup blur', function () {
         var val = $('#amount').val();
         stepper.setValue(val > 0 ? val : 1);
         stepperUpdate();
     });
     //credit card check
-    $("#cardNumber").on("keyup", function() {
+    $("#cardNumber").on("keyup", function () {
         $('#cardNumber').next().children().remove();
         value = $(this).val();
         if (credit.visa.regex.test(value)) {
@@ -186,13 +186,13 @@ $(document).ready(function() {
             $('.accept').removeClass('accept');
             $('#cardNumber').append(credit.Error.wrong);
         }
-    }).on('focusout', function() {
+    }).on('focusout', function () {
         checkCardNumber();
     });
-    $('#cvv').focusout(function() {
+    $('#cvv').focusout(function () {
         checkCVV();
     });
-    $('#confirm').on('click', function(e) {
+    $('#confirm').on('click', function (e) {
         e.preventDefault();
         var address = checkAddress();
         var credit = checkCardNumber();
@@ -205,7 +205,7 @@ $(document).ready(function() {
         err = $("i[ctitle='error']");
         if (err.length) {
             $("i[ctitle='error']").addClass("shake-horizontal");
-            setTimeout(function() {
+            setTimeout(function () {
                 $("i[ctitle='error']").removeClass("shake-horizontal");
             }, 800)
             return;
@@ -219,7 +219,7 @@ $(document).ready(function() {
         $('#credit_value').text(credit.value);
         $('#total').text(parseInt(stepper.value) * 6);
     }
-    $('#buy').on('click', function() {
+    $('#buy').on('click', function () {
         $.ajax({
             origin: '*',
             type: "get",
@@ -230,11 +230,15 @@ $(document).ready(function() {
                 address: address.value,
                 cardNumber: credit.value
             },
-            success: function(msg) {
-                $('.modal__contener').html('<h2>Successfull</h2>');
-                $('.modal_foo').html('<button type="button" id="close">Close</button>');
+            beforeSend: function () {
+                $('.modal__contener').html('<center><div class="spinner"></div></center>');
+                $('.modal_foo').html("");
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            success: function (msg) {
+                $('.modal__contener').html('<h2>Successfull</h2>');
+                $('.modal_foo').html('<a href="dashboard"><button id="close">CLOSE</button ></a >');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus);
             }
         });

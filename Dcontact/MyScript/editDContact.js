@@ -94,7 +94,7 @@ var newColor;
 
     // ADD NEW LINK
 
-    $('.btnAdd').on('click', function() {
+    $('#addNewUrl').on('click', function() {
        $('.social-list').append(' <li> <div class="button" role="button" style="background-color: #273c75; height: 26.88px" id="'+uuidv4()+'" > <i class=""></i> <div class="card--item__text"> <label></label> </div> </div> </li>');
        });
 
