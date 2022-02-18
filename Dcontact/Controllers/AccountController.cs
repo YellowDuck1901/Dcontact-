@@ -34,5 +34,23 @@ namespace Dcontact.Controllers
             return View();
         }
 
+
+        public ActionResult SigupForm(Class1 model)
+        {
+            String mess = "";
+            if (ModelState.IsValid)
+            {
+                mess = model.username;
+
+            }
+            else
+            {
+                mess = "failed";
+            }
+
+            return RedirectToAction("Index", "Test", model);
+
+        }
+
     }
 }

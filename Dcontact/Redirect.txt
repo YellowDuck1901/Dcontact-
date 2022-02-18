@@ -6,7 +6,11 @@ REDIRECT (Note: Name of Controller not contain Controller phrase. Example: Accou
 	
 	+Link redirect
 	@Html.ActionLink("some text", "actionName", "controllerName")
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 415527a96ae2fc6f08d027664096fb8d8dc09a0c
 	+From redirect
 	 @using(Html.BeginForm("actionName", "controllerName")) 
 		{

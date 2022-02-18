@@ -10,9 +10,9 @@
         <div class="header">
             <h2>Create Your Account</h2>
         </div>
-        <form id="form" class="form" action="@Url.Action("Login", "Account" )" onsubmit="return checkInputs()">
+        <form id="form" class="form" action="@Url.Action("SigupForm", "Account" )" onsubmit="return checkInputs()">
             <div class="form-control">
-                <input type="text" id="username"
+                <input type="text" name="username" id="username"
                        placeholder="Username"
                        onfocus="this.placeholder=''"
                        onblur="this.placeholder='Username'" />
@@ -21,7 +21,7 @@
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <input type="text" id="email"
+                <input type="text" name="email" id="email"
                        placeholder="Email"
                        onfocus="this.placeholder=''"
                        onblur="this.placeholder='Email'" />
@@ -30,7 +30,7 @@
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <input type="password" id="password"
+                <input type="password" name="password" id="password"
                        placeholder="Password"
                        onfocus="this.placeholder=''"
                        onblur="this.placeholder='Password'" />
@@ -39,7 +39,7 @@
                 <small>Error message</small>
             </div>
             <div class="form-control">
-                <input type="password" id="password2"
+                <input type="password" name="password2" id="password2"
                        placeholder="Confirm password"
                        onfocus="this.placeholder=''"
                        onblur="this.placeholder='Confirmpassword'" />
