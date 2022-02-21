@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bean">
+      <HintPath>..\..\Util\Util\bin\Debug\net6.0\Bean.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -101,6 +104,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Util\Util\bin\Debug\net6.0\Util.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -159,10 +166,15 @@
     <Content Include="CSS\modal.css" />
     <Content Include="CSS\oder_dcard.css" />
     <Content Include="CSS\switch.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="MyScript\check.js" />
+    <Content Include="MyScript\dashboard.js" />
+    <Content Include="MyScript\editDContact.js" />
+    <Content Include="MyScript\Modal.js" />
+    <Content Include="MyScript\oder_dcard.js" />
+    <Content Include="MyScript\Validation.js" />
     <Content Include="resource\logo\Asset 4Dcontact_single.svg" />
     <Content Include="resource\logo\logo_full.svg" />
     <Content Include="resource\logo\logo_single.svg" />
@@ -220,6 +232,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

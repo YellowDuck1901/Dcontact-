@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Util;
 
 namespace Dcontact.Controllers
 {
@@ -11,6 +12,7 @@ namespace Dcontact.Controllers
         // GET: Account
         public ActionResult Comfirm()
         {
+
             return View();
         }
 
@@ -21,6 +23,7 @@ namespace Dcontact.Controllers
 
         public ActionResult Login()
         {
+
             return View();
         }
 
@@ -40,8 +43,12 @@ namespace Dcontact.Controllers
             String mess = "";
             if (ModelState.IsValid)
             {
-                mess = model.username;
-
+                var username = model.username;
+                var password = model.password;
+                Util.DAO a = new DAO();
+                if (a.DB_Login(username, password))
+                    mess = "OK";
+                else mess = "login fail";
             }
             else
             {
