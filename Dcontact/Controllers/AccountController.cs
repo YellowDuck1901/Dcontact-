@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Util;
 
 namespace Dcontact.Controllers
 {
@@ -34,21 +35,37 @@ namespace Dcontact.Controllers
             return View();
         }
 
-
-        public ActionResult SigupForm(Class1 model)
+        public ActionResult SiginForm()
         {
             String mess = "";
-            if (ModelState.IsValid)
+            string username = Request.QueryString["username"];
+            string password = Request.QueryString["password"];
+            //mess = username + "@" + password;
+            try
             {
-                mess = model.username;
-
+                Util.DAO d = new Util.DAO();
+                if (d.DB_Login(username, password))
+                {
+                    mess = "login success!";
+                    mess = "login success!";
+                }
+                else
+                    mess = "login not success!";
             }
-            else
+            catch (Exception ex)
             {
-                mess = "failed";
+                mess = ex.Message;
             }
 
-            return RedirectToAction("Index", "Test", model);
+            //if (ModelState.IsValid)
+            //{
+
+            //}
+            //else
+            //{
+            //}
+
+            return Content(mess);
 
         }
 

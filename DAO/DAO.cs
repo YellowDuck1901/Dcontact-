@@ -54,17 +54,17 @@ namespace Util
             try
             {
                 string sql = $"exec Pro_Login @Username = '{username}', @Password = '{password}'";
+                Console.WriteLine(sql);
                 this.DB_ExcuteQuery(sql);
                 this.cnn.Close();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new Exception($"Util.DAO 63: \n{ex.StackTrace}");
+                this.cnn.Close();
+                throw new Exception($"Util.DAO DB_Login 63: \n{ex.Message}");
 
             }
-            this.cnn.Close();
-            return false;
         }
 
         public bool DB_OrderDCard(String id)

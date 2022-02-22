@@ -12,10 +12,11 @@
         <div class="header">
             <h2>Login Your Account</h2>
         </div>
-        <form id="form" class="form" action="@Url.Action("Home", "Home" )" onsubmit="return checkInputs()">
+        <form id="form" class="form" action="@Url.Action("SiginForm", "Account" )" onsubmit="return checkInputs()">
             <div class="form-control">
 
                 <input type="text" id="username"
+                       name="username"
                        placeholder="Username"
                        onfocus="this.placeholder=''"
                        onblur="this.placeholder='Username'" />
@@ -24,10 +25,11 @@
 
             <div class="form-control">
                 <input type="password" id="password"
+                       name="password"
                        placeholder="Password"
                        onfocus="this.placeholder=''"
                        onblur="this.placeholder='Password'" />
-               
+
                 <small>Error message</small>
             </div>
 
@@ -38,8 +40,8 @@
                 Don't have an account?
             </span>
             @*<a class="txt2" href="Sigup.html">
-        Sign Up
-        </a>*@
+                Sign Up
+                </a>*@
 
             <a class="txt2">
                 @Html.ActionLink("Sign Up", "Sigup", "Account")
@@ -54,8 +56,8 @@
 
 
             @* <a class="txt2" href="RecoverPassword.html">
-            Recover Password
-        </a>*@
+                    Recover Password
+                </a>*@
 
             <a class="txt2">
                 @Html.ActionLink("Recover Password", "RecoverPassword", "Account")
@@ -64,19 +66,19 @@
         </div>
     </div>
 
-  <!-- Modal Popup Khi login sai -->
-     <!-- <div class="modal-container" id="modal_container">
-        <div class="modal">
-          <i class="fas fa-exclamation fa-2x"></i>
-          <p>Incorrect login details. Please retry</p>
-          <button id="close" class="button">
-            Ok
-          </button>
-        </div>
-      </div>  -->
+    <!-- Modal Popup Khi login sai -->
+    <!-- <div class="modal-container" id="modal_container">
+       <div class="modal">
+         <i class="fas fa-exclamation fa-2x"></i>
+         <p>Incorrect login details. Please retry</p>
+         <button id="close" class="button">
+           Ok
+         </button>
+       </div>
+     </div>  -->
 
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
     <script type="text/javascript" src="~/MyScript/Modal.js"></script>
 
-    
+
 </body>
