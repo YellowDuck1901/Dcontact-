@@ -25,6 +25,32 @@ namespace Dcontact.Controllers
             return View();
         }
 
+         public ActionResult LoginForm()
+        {
+            String mess = "";
+            string username = Request.QueryString["username"];  //get value tag input with name is "username"
+            string password = Request.QueryString["password"];
+            //mess = username + "@" + password;
+            try
+            {
+                Util.DAO d = new Util.DAO();                    
+                if (d.DB_Login(username, password))
+                {
+                    d.cnn.Open();
+                    Bean.User user = d.DB_getUser(MD5.CreateMD5(username), username);   //khoi tao object user voi data từ db
+                    Session.Add("user", user);                                          // ("key","object")
+                    return RedirectToAction("dashboard", "DcontactAndDcrad");           
+                }
+                else
+                    mess = "login not success!";
+            }
+            catch (Exception ex)
+            {
+                mess = ex.Message;
+            }
+            return Content(mess);
+        }
+
         public ActionResult RecoverPassword()
         {
             return View();
@@ -35,39 +61,47 @@ namespace Dcontact.Controllers
             return View();
         }
 
-        public ActionResult SiginForm()
+        public ActionResult SigupForm()
         {
             String mess = "";
             string username = Request.QueryString["username"];
             string password = Request.QueryString["password"];
+            string email = Request.QueryString["email"];
+
             //mess = username + "@" + password;
             try
             {
                 Util.DAO d = new Util.DAO();
-                if (d.DB_Login(username, password))
+
+                if (d.DB_SignUp(MD5.CreateMD5(username),username,email,password))
                 {
-                    mess = "login success!";
-                    mess = "login success!";
+                    return RedirectToAction("editDContact", "DcontactAndDcrad");
                 }
                 else
-                    mess = "login not success!";
+                {
+                    Console.WriteLine("sigup falled");
+                }
+                    
             }
             catch (Exception ex)
             {
                 mess = ex.Message;
             }
-
-            //if (ModelState.IsValid)
-            //{
-
-            //}
-            //else
-            //{
-            //}
-
             return Content(mess);
-
         }
+
+
+
+
+        //if (ModelState.IsValid)
+        //{
+
+        //}
+        //else
+        //{
+        //}
+
+
 
     }
 }

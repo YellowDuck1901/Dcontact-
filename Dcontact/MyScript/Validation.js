@@ -18,6 +18,7 @@ function checkInputs() {
 	const email = document.getElementById('email');
 	const password = document.getElementById('password');
 	const password2 = document.getElementById('password2');
+	const vertifyCode = document.getElementById('vetifyCode');
 
 	const passwordValue = password.value.trim();
 
@@ -25,7 +26,26 @@ function checkInputs() {
 	var checkEmail;
 	var checkPassword;
 	var checkPassword2;
+	var checkVertifyCode;
 
+	if (vertifyCode !== null) {
+		var CodeLengthReg = new RegExp("^[ A-Za-z0-9:;,?!+-/*@]{6,}$");
+		const vertifyCode = document.getElementById('vertifyCode');
+		const vertifyCodeValue = vertifyCode.value.trim();
+
+		if (vertifyCodeValue === '') {
+			setErrorFor(vertifyCode, 'Vertify code can\'t be blank');
+			send = false;
+
+		} else if (!vertifyCode.match(CodeLengthReg)
+		{
+			setErrorFor(vertifyCode, 'Vertify code must be 6 numbers');
+			send = false;
+		}
+		else {
+			checkVertifyCode = true;
+		}
+    }
 	// trim to remove the whitespaces
 	if (username !== null) {
 		const usernameValue = username.value.trim();
@@ -94,7 +114,8 @@ function checkInputs() {
 		if(checkUserName) setSuccessFor(username);
 		if(checkEmail) setSuccessFor(email);
 		if(checkPassword) setSuccessFor(password);
-		if(checkPassword2) setSuccessFor(password2);
+		if (checkPassword2) setSuccessFor(password2);
+		if (checkVertifyCode) setSuccessFor(vertifyCode);
 		return false;
 	}
 }
@@ -129,19 +150,6 @@ function checkGmail() {
 
 	} else {
 		setSuccessFor(email);
-	}
-}
-
-function checkVertifyCode() {
-	const vertifyCode = document.getElementById('vertifyCode');
-	const vertifyCodeValue = vertifyCode.value.trim();
-
-	if (vertifyCodeValue === '') {
-		setErrorFor(vertifyCode, 'Vertify code can\'t be blank');
-		return false;
-
-	} else {
-		return true;
 	}
 }
 

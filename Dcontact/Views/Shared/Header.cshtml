@@ -23,19 +23,27 @@
     </div>
 </div>
 <div class="modal js-modal " id="account">
+
     <div class="modal-container">
         <div class="modal__header">
             <h2>Your Account</h2> <i class="fa fa-close"></i>
         </div>
+
+        @{
+            var user = (Bean.User)Session["user"];
+        }
+
+
+
         <div class="modal__contener">
             <div class="modal__item item__spacebetween">
-                <div> <span>Username: </span> <span class="confirm__value" id="username_value">Khang</span></div><span></span>
+                <div> <span>Username: </span> <span class="confirm__value" id="username_value">@user.username</span></div><span></span>
             </div>
             <div class="modal__item item__spacebetween">
-                <div> <span>Email:</span> <span class="confirm__value" id="email_value">khangtdce150175@fpt.edu.vn</span></div><span><a href="#" id="changemail">Change Email</a></span>
+                <div> <span>Email:</span> <span class="confirm__value" id="email_value">@user.email</span></div><span><a href="#" id="changemail">Change Email</a></span>
             </div>
             <div class="modal__item item__spacebetween">
-                <div> <span>Password: </span><span class="confirm__value" id="password_value">***********</span></div><span><a href="#">Change PassWord</a></span>
+                <div> <span>Password: </span><span class="confirm__value" id="password_value">*********</span></div><span><a href="#">Change PassWord</a></span>
 
             </div>
             <div class="modal_foo center_site">
@@ -75,22 +83,29 @@
         </div>
     </div>
 </div>
-<div class="modal js-modal" id="sendCode_confirm">
-    <div class="modal-container">
-        <div class="modal__header">
-            <h2>Confirm Code</h2> <i class="fa fa-close"></i>
-        </div>
-        <div class="modal__contener">
-            <b> We have send a code with 6 numbers to your email</b>
-            <div class="modal__item item_spacearound">
-                <span>Code: </span> <span><input type="text" id="codeConfirm"></span><span class="error"></span>
+<form id="form" class="form" @*action="@Url.Action("LoginForm", "Account" )"*@ onsubmit="return checkInputs()">
+    <div class="modal js-modal" id="sendCode_confirm">
+        <div class="modal-container">
+            <div class="modal__header">
+                <h2>Confirm Code</h2> <i class="fa fa-close"></i>
             </div>
-            <div class="modal_foo center_site">
-                <button type="button" id='btn-confirmCode'>Confirm</button>
+            <div class="modal__contener">
+                <b> We have send a code with 6 numbers to your email</b>
+                <div class="modal__item item_spacearound">
+                    <span>Code: </span> <span><input type="text" id="codeConfirm"></span><span class="error">
+                        <small>Error message</small>
+                    </span>
+                </div>
+                <div class="modal_foo center_site">
+                    <button  type="submit">Confirm</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+
+
+<script src="~/MyScript/Validation.js"</script>
 <script src='~/MyScript/check.js'></script>
 
 @RenderBody()

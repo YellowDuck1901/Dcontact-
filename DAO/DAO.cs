@@ -138,6 +138,7 @@ namespace Util
                     user.username = username;
                     user.email = (string)dataReader.GetValue(1);
                     user.isban = (bool)dataReader.GetValue(2);
+
                 }
 
             }
