@@ -10,15 +10,17 @@ namespace Bean
     {
         public string id { get; set; }
         public string email { get; set; }
-        public  bool  isban { get; set; }
-        public string  username { get; set; }
+        public bool isban { get; set; }
+        public string username { get; set; }
+        public Dcontact dcontact { get; set; }
 
-        public User(string id, string email, bool isban, string username)
+        public User(string id, string email, bool isban, string username, Dcontact dcontact)
         {
             this.id = id;
-            email = email;
+            this.email = email;
             this.isban = isban;
             this.username = username;
+            this.dcontact = dcontact;
         }
 
         public User()

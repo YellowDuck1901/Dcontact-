@@ -34,7 +34,7 @@ namespace TestUtil
         }
 
         [DataTestMethod]
-        [DataRow("admin", "admin")]
+        [DataRow("cathuan113", "cvt30112001")]
         [DataRow("thanhtuyen", "123")]
         public void TestLogin(string username, string password)
         {
@@ -56,5 +56,13 @@ namespace TestUtil
         {
             Assert.AreEqual(true, Util.Mail.send(to, title, content));
         }
+
+        //[DataTestMethod]
+        //[DataRow("cathuan113", "cathuan113@gmail.com", "cvt30112001")]
+        //public void TestSignUP(string username, string email, string password)
+        //{
+        //    Util.DAO dAO = new Util.DAO();
+        //    Assert.AreEqual(true, dAO.DB_SignUp(Util.MD5.CreateMD5(username), username, email, Util.MD5.CreateMD5(password)));
+        //}
     }
 }

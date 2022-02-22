@@ -10,12 +10,14 @@ namespace Bean
     {
         public string numerView;
         public string avt;
-        List<Row> rows;
+        public string background;
+        public List<Row> rows;
 
-        public Dcontact(string numerView, string avt, List<Row> rows)
+        public Dcontact(string numerView, string avt, string background, List<Row> rows)
         {
             this.numerView = numerView;
             this.avt = avt;
+            this.background = background;
             this.rows = rows;
         }
 

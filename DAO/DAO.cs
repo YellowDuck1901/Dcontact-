@@ -32,9 +32,16 @@ namespace Util
             }
 
         }
-
+        void Close()
+        {
+            this.cnn.Close();
+            this.dataReader.Close();
+        }
         public SqlDataReader DB_ExcuteQuery(string sql)
         {
+
+
+
             command = new SqlCommand(sql, this.cnn);
             try
             {
@@ -44,7 +51,7 @@ namespace Util
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
             return null;
         }
@@ -53,17 +60,17 @@ namespace Util
         {
             try
             {
-                string sql = $"exec Pro_Login @Username = '{username}', @Password = '{password}'";
+                string sql = $"exec Pro_Login @Username = '{username}', @Password = '{Util.MD5.CreateMD5(password)}'";
                 this.DB_ExcuteQuery(sql);
-                this.cnn.Close();
+
                 return true;
             }
             catch (Exception ex)
             {
-                throw new Exception($"Util.DAO 63: \n{ex.StackTrace}");
+                throw;
 
             }
-            this.cnn.Close();
+
             return false;
         }
 
@@ -80,29 +87,26 @@ namespace Util
                 Console.WriteLine($"TradingCode {dataReader.GetValue(4)}");
                 return true;
             }
-            this.cnn.Close();
+
             dataReader.Close();
             return false;
         }
 
-        public bool DB_SignUp(String Id, String Username, String Email, String Password)
+        public bool DB_SignUp(String Username, String Email, String Password)
         {
             try
             {
-                String sql = $"exec Pro_SignUp @ID = '{Id}', @Username = '{Username}', @Email = '{Email}', @Password = '{Password}'";
-                dataReader = this.DB_ExcuteQuery(sql);
+                String sql = $"exec Pro_SignUp @ID = '{Util.MD5.CreateMD5(Username)}', @Username = '{Username}', @Email = '{Email}', @Password = '{Util.MD5.CreateMD5(Password)}'";
+                this.DB_ExcuteQuery(sql);
 
-                this.cnn.Close();
-                dataReader.Close();
                 return true;
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine("102: " + ex.Message);
             }
-            this.cnn.Close();
-            dataReader.Close();
+
             return false;
 
         }
@@ -113,19 +117,20 @@ namespace Util
             {
                 String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
                 this.DB_ExcuteQuery(sql);
-                this.cnn.Close();
+
                 return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("120: " + ex.Message);
             }
-            this.cnn.Close();
+
             return false;
         }
-        public Bean.User DB_getUser(string id, string username)
+        public Bean.User DB_getUser(string username)
         {
             User user = null;
+            string id = Util.MD5.CreateMD5(username);
             String sql = $"execute Pro_getUser @ID = '{id}'";
             try
             {
@@ -134,10 +139,10 @@ namespace Util
                 {
                     user = new User();
                     user.id = (string)dataReader.GetValue(0);
-
                     user.username = username;
                     user.email = (string)dataReader.GetValue(1);
                     user.isban = (bool)dataReader.GetValue(2);
+                    user.dcontact = this.DB_GetDcontact(id);
                 }
 
             }
@@ -145,9 +150,41 @@ namespace Util
             {
                 Console.WriteLine("142:" + ex.Message);
             }
-            this.cnn.Close();
+
             dataReader.Close();
             return user;
+        }
+        public Dcontact DB_GetDcontact(string id)
+        {
+            Dcontact dcontact = null;
+            List<Row> rows = new List<Row>();
+            string sql = $"exec Pro_getDContact @ID = {id}";
+            dataReader = DB_ExcuteQuery(sql);
+            if (dataReader.Read())
+            {
+                dcontact = new Dcontact();
+                dcontact.numerView = (string)dataReader.GetValue(0);
+                dcontact.avt = (string)dataReader.GetValue(1);
+                dcontact.background = (string)dataReader.GetValue(2);
+
+                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth  from dbo.[Row] as r  where id = {id}";
+                dataReader = DB_ExcuteQuery(sqlr);
+                List<Row> r = new List<Row>();
+                while (dataReader.Read())
+                {
+                    Row a = new Row();
+                    a.text = (string)dataReader.GetValue(0);
+                    a.font = (string)dataReader.GetValue(1);
+                    a.link = (string)dataReader.GetValue(2);
+                    a.bullet = (string)dataReader.GetValue(3);
+                    a.click = (string)dataReader.GetValue(4);
+                    a.code = (string)dataReader.GetValue(5);
+                    a.birth = (string)dataReader.GetValue(6);
+                    r.Add(a);
+                }
+                dcontact.rows = r;
+            }
+            return dcontact;
         }
     }
 
