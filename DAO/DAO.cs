@@ -65,13 +65,12 @@ namespace Util
 
                 return true;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw;
+                throw new Exception(ex.Message);
 
             }
 
-            return false;
         }
 
         public bool DB_OrderDCard(String id)
@@ -104,7 +103,8 @@ namespace Util
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("102: " + ex.Message);
+                throw new Exception(ex.Message);
+
             }
 
             return false;
@@ -120,12 +120,11 @@ namespace Util
 
                 return true;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                Console.WriteLine("120: " + ex.Message);
-            }
+                throw new Exception(ex.Message);
 
-            return false;
+            }
         }
         public Bean.User DB_getUser(string username)
         {
@@ -144,14 +143,12 @@ namespace Util
                     user.isban = (bool)dataReader.GetValue(2);
                     user.dcontact = this.DB_GetDcontact(id);
                 }
-
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                Console.WriteLine("142:" + ex.Message);
-            }
+                throw new Exception(ex.Message);
 
-            dataReader.Close();
+            }
             return user;
         }
         public Dcontact DB_GetDcontact(string id)
