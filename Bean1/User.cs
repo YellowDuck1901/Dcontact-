@@ -9,8 +9,6 @@ namespace Bean
     public class User
     {
         public string username { get; set; } 
-
-        public string password { get; set; }
         public string id { get; set; }
         public string email { get; set; }
         public  bool  isban { get; set; }
@@ -20,7 +18,7 @@ namespace Bean
         {
         }
 
-        public User( string id, string email, bool isban, string username, string password)
+        public User( string id, string email, bool isban, string username)
         {
             this.id = id;
             this.email = email;

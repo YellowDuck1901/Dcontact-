@@ -200,7 +200,7 @@ $(document).ready(function () {
         var expDate = checkExpDate();
         if (address && credit && cvv && expDate) {
             modalConfirm(e);
-            $('.modal').addClass('open');
+            $('.modal').addClass('open');  
         }
         err = $("i[ctitle='error']");
         if (err.length) {

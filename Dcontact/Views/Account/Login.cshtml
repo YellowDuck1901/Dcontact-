@@ -1,18 +1,18 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
-    <link rel="stylesheet" type="text/css" href="~/CSS/Modal.css">
+   @* <link rel="stylesheet" type="text/css" href="~/CSS/Modal.css">*@
 
     <script src="https://kit.fontawesome.com/f94076876e.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
-
     <div class="container">
         <div class="header">
             <h2>Login Your Account</h2>
         </div>
-        <form id="form" class="form" action="@Url.Action("LoginForm", "Account" )" onsubmit="return checkInputs()">
+        <div id="form" class="form">
             <div class="form-control">
                 <input type="text" id="username"
                        name="username"
@@ -32,8 +32,14 @@
                 <small>Error message</small>
             </div>
 
-            <button id="open" type="submit">Login</button>
-        </form>
+            <button id="sub" type="button">Login</button>
+        </div>
+
+
+
+
+
+
         <div class="SignUp">
             <span class="txt1">
                 Don't have an account?
@@ -65,19 +71,23 @@
         </div>
     </div>
 
-    <!-- Modal Popup Khi login sai -->
-    <!-- <div class="modal-container" id="modal_container">
-       <div class="modal">
-         <i class="fas fa-exclamation fa-2x"></i>
-         <p>Incorrect login details. Please retry</p>
-         <button id="close" class="button">
-           Ok
-         </button>
-       </div>
-     </div>  -->
+    @* Modal Popup Khi login sai *@
+    <div class="modal-container" id="modal_container">
+        <div class="modal">
+            <i class="fas fa-exclamation fa-2x"></i>
+            <p>Incorrect login details. Please retry</p>
+            <button id="close" class="button">
+                Ok
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-container" id="modal_container">
+       
+    </div>
 
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
-    <script type="text/javascript" src="~/MyScript/Modal.js"></script>
+    @*<script type="text/javascript" src="~/MyScript/Modal.js"></script>*@
 
 
 </body>
