@@ -46,7 +46,7 @@ namespace Util
             command = new SqlCommand(sql, this.cnn);
             try
             {
-                dataReader = command.ExecuteReader();
+                dataReader = command.ExecuteReader();  //thuc hien cau lenh reader
                 command.Dispose();
                 return dataReader;
             }
@@ -62,8 +62,8 @@ namespace Util
             try
             {
                 string sql = $"exec Pro_Login @Username = '{username}', @Password = '{Util.MD5.CreateMD5(password)}'";
-                this.DB_ExcuteQuery(sql);
-
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader.Close();
                 return true;
             }
             catch (SqlException ex)
@@ -77,7 +77,7 @@ namespace Util
         public bool DB_OrderDCard(String id)
         {
             String sql = @"select * from dbo.Order_list where ID_user = '" + id + "'";
-            dataReader = this.DB_ExcuteQuery(sql);
+            this.dataReader = this.DB_ExcuteQuery(sql);
             if (dataReader.Read())
             {
                 Console.WriteLine($"IDUser {dataReader.GetValue(0)}");
@@ -88,7 +88,7 @@ namespace Util
                 return true;
             }
 
-            dataReader.Close();
+            this.dataReader.Close();
             return false;
         }
 
@@ -97,8 +97,8 @@ namespace Util
             try
             {
                 String sql = $"exec Pro_SignUp @ID = '{Util.MD5.CreateMD5(Username)}', @Username = '{Username}', @Email = '{Email}', @Password = '{Util.MD5.CreateMD5(Password)}'";
-                this.DB_ExcuteQuery(sql);
-
+                dataReader = this.DB_ExcuteQuery(sql);
+                dataReader.Close();
                 return true;
 
             }
@@ -117,8 +117,8 @@ namespace Util
             try
             {
                 String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
-                this.DB_ExcuteQuery(sql);
-
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader.Close();
                 return true;
             }
             catch (SqlException ex)
@@ -134,7 +134,7 @@ namespace Util
             String sql = $"execute Pro_getUser @ID = '{id}'";
             try
             {
-                dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader = this.DB_ExcuteQuery(sql);
                 if (dataReader.Read())
                 {
                     user = new User();
@@ -142,8 +142,10 @@ namespace Util
                     user.username = username;
                     user.email = (string)dataReader.GetValue(1);
                     user.isban = (bool)dataReader.GetValue(2);
+                    this.dataReader.Close();
                     user.dcontact = this.DB_GetDcontact(id);
                 }
+                //this.dataReader.Close();
             }
             catch (SqlException ex)
             {
@@ -157,18 +159,18 @@ namespace Util
             Dcontact dcontact = null;
             List<Row> rows = new List<Row>();
             string sql = $"exec Pro_getDContact @ID = '{id}'";
-            dataReader = DB_ExcuteQuery(sql);
-            if (dataReader.Read())
+            this.dataReader = DB_ExcuteQuery(sql);
+            if (this.dataReader.Read())
             {
                 dcontact = new Dcontact();
                 dcontact.numerView = (string)dataReader.GetValue(0).ToString();
                 dcontact.avt = (string)dataReader.GetValue(1);
                 dcontact.background = (string)dataReader.GetValue(2);
 
-                dataReader.Close();
+                this.dataReader.Close();
 
                 string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth  from dbo.[Row] as r  where id_contact = '{id}'";
-                dataReader = DB_ExcuteQuery(sqlr);
+                this.dataReader = DB_ExcuteQuery(sqlr);
                 List<Row> r = new List<Row>();
 
                 while (dataReader.Read())
@@ -184,6 +186,7 @@ namespace Util
                     r.Add(a);
                 }
                 dcontact.rows = r;
+                this.dataReader.Close();
             }
             return dcontact;
         }
