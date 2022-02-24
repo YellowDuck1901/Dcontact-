@@ -146,6 +146,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DcontactAndDcradController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
