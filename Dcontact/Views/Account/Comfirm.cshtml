@@ -3,40 +3,38 @@
 }
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
+    <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/f94076876e.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
+    <script type="text/javascript" src="~/MyScript/Validation.js"></script>
 
     <div class="container">
         <div class="header">
             <h2>Enter Vertify Code</h2>
         </div>
-        <form id="form" class="form" action="@Url.Action("CreateNewPassword", "Account" )" onsubmit="return checkInputs()">
-
+        <form id="comfirmForm" class="form" action="@Url.Action("CreateNewPassword", "Account" )">
             <div class="form-control">
-                <input type="text" id="password"
-                       placeholder="Vertify Code"
+                <input type="text" id="username" name="username"
+                       placeholder="Username"
                        onfocus="this.placeholder=''"
-                       onblur="this.placeholder='Vertify Code'"/>
-               
+                       onblur="this.placeholder=''" />
                 <small>Error message</small>
             </div>
-            <button id="open">Submit</button>
+            <button id="open" type="submit">Submit</button>
         </form>
     </div>
-      <!-- Modal comfirm code sai -->
-       <!-- <div class="modal-container" id="modal_container">
-        <div class="modal">
-          <i class="fas fa-exclamation fa-2x"></i>
-          <p>The code is wrong. Please retry</p>
-          <button id="close" class="button">
-            Ok
-          </button>
-        </div>
-      </div>  -->
 
-    <script type="text/javascript" src="~/MyScript/Validation.js"></script>
-    <script type="text/javascript" src="~/MyScript/Modal.js"></script>
+    <div class="modal-container" id="modal_container">
+        <div class="modal">
+            <i class="fas fa-exclamation fa-2x"></i>
+            <p>Incorrect login details. Please retry</p>
+            <button id="close" class="button">
+                Ok
+            </button>
+        </div>
+    </div>
 
 </body>

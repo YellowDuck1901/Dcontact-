@@ -1,7 +1,10 @@
 ﻿
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
-    
+    <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
@@ -10,7 +13,7 @@
         <div class="header">
             <h2>Create Your Account</h2>
         </div>
-        <form id="form" class="form" action="@Url.Action("SigupForm", "Account" )" onsubmit="return checkInputs()">
+        <form id="form" class="form" action="@Url.Action("SigupForm", "Account" )">
             <div class="form-control">
                 <input type="text" name="username" id="username"
                        placeholder="Username"
@@ -47,9 +50,18 @@
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
-            <button type="submit">Submit</button>
-            @*<input class="button" type="submit" value="Submit" onclick= />*@
-
+            <button id="open" type="submit">Submit</button>
         </form>
+
+        <div class="modal-container" id="modal_container">
+            <div class="modal">
+                <i class="fas fa-exclamation fa-2x"></i>
+                <p>Incorrect login details. Please retry</p>
+                <button id="close" class="button">
+                    Ok
+                </button>
+            </div>
+        </div>
+
     </div>
 </body>

@@ -1,45 +1,39 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
-   @* <link rel="stylesheet" type="text/css" href="~/CSS/Modal.css">*@
+    <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://kit.fontawesome.com/f94076876e.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
+    <script type="text/javascript" src="~/MyScript/Validation.js"></script>
+
     <div class="container">
         <div class="header">
             <h2>Login Your Account</h2>
         </div>
-        <div id="form" class="form">
+        <form id="form" class="form" action="@Url.Action("LoginForm", "Account" )">
             <div class="form-control">
-                <input type="text" id="username"
-                       name="username"
+                <input type="text" id="username" name="username"
                        placeholder="Username"
                        onfocus="this.placeholder=''"
-                       onblur="this.placeholder='Username'" />
+                       onblur="this.placeholder='username'" />
                 <small>Error message</small>
             </div>
 
             <div class="form-control">
-                <input type="password" id="password"
-                       name="password"
+                <input type="password" id="password" name="password"
                        placeholder="Password"
                        onfocus="this.placeholder=''"
-                       onblur="this.placeholder='Password'" />
+                       onblur="this.placeholder='password'" />
 
                 <small>Error message</small>
             </div>
 
-            <button id="sub" type="button">Login</button>
-        </div>
-
-
-
-
-
-
+            <button id="open" type="submit">Login</button>
+        </form>
         <div class="SignUp">
             <span class="txt1">
                 Don't have an account?
@@ -71,7 +65,6 @@
         </div>
     </div>
 
-    @* Modal Popup Khi login sai *@
     <div class="modal-container" id="modal_container">
         <div class="modal">
             <i class="fas fa-exclamation fa-2x"></i>
@@ -82,12 +75,6 @@
         </div>
     </div>
 
-    <div class="modal-container" id="modal_container">
-       
-    </div>
-
-    <script type="text/javascript" src="~/MyScript/Validation.js"></script>
-    @*<script type="text/javascript" src="~/MyScript/Modal.js"></script>*@
 
 
 </body>

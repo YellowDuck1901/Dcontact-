@@ -27,7 +27,7 @@ namespace Dcontact.Controllers
 
          public ActionResult LoginForm()
         {
-            String mess = "Hoa binh the gioi";
+            String mess = "";
             string username = Request.QueryString["username"];  //get value tag input with name is "username"
             string password = Request.QueryString["password"];
             //mess = username + "@" + password;
@@ -39,9 +39,8 @@ namespace Dcontact.Controllers
                     d.cnn.Open();
                     Bean.User user = d.DB_getUser(MD5.CreateMD5(username), username);   //khoi tao object user voi data từ db
                     Session.Add("user", user);                                          // ("key","object")
-                    mess = "login thanh cong";
-/*                    return RedirectToAction("dashboard", "DcontactAndDcrad"); */
-                    Response.Redirect("/DcontactAndDcrad/dashboard");
+                    mess = "login success";
+                    return RedirectToAction("dashboard", "DcontactAndDcrad");
                 }
                 else
                     mess = "login not success!";

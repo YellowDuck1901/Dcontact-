@@ -9,7 +9,6 @@ body {
 }
 
 .modal {
-    display:none;
   position: fixed;
   top: 0;
   right: 0;
@@ -29,6 +28,7 @@ body {
 }
 
 .modal-container {
+    display:none;
   position: relative;
   background-color: white;
   width: 30rem;
