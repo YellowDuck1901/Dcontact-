@@ -74,7 +74,6 @@ namespace Dcontact.Controllers
                 Util.DAO d = new Util.DAO();
                 if (d.DB_SignUp(username, email, password))
                 {
-                    d.cnn.Open();
                     Bean.User user = d.DB_getUser(username);   //khoi tao object user voi data từ db
                     Session.Add("user", user);                                          // ("key","object")
                     return RedirectToAction("editDContact", "DcontactAndDcrad");
