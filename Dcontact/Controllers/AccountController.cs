@@ -36,8 +36,7 @@ namespace Dcontact.Controllers
                 Util.DAO d = new Util.DAO();                    
                 if (d.DB_Login(username, password))
                 {
-                    d.cnn.Open();
-                    Bean.User user = d.DB_getUser(MD5.CreateMD5(username), username);   //khoi tao object user voi data từ db
+                    Bean.User user = d.DB_getUser(username);   //khoi tao object user voi data từ db
                     Session.Add("user", user);                                          // ("key","object")
                     mess = "login success";
                     return RedirectToAction("dashboard", "DcontactAndDcrad");
@@ -73,10 +72,10 @@ namespace Dcontact.Controllers
             try
             {
                 Util.DAO d = new Util.DAO();
-                if (d.DB_SignUp(MD5.CreateMD5(username),username,email,password))
+                if (d.DB_SignUp(username, email, password))
                 {
                     d.cnn.Open();
-                    Bean.User user = d.DB_getUser(MD5.CreateMD5(username), username);   //khoi tao object user voi data từ db
+                    Bean.User user = d.DB_getUser(username);   //khoi tao object user voi data từ db
                     Session.Add("user", user);                                          // ("key","object")
                     return RedirectToAction("editDContact", "DcontactAndDcrad");
                 }

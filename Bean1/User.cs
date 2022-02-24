@@ -8,21 +8,23 @@ namespace Bean
 {
     public class User
     {
-        public string username { get; set; } 
         public string id { get; set; }
         public string email { get; set; }
-        public  bool  isban { get; set; }
+        public bool isban { get; set; }
+        public string username { get; set; }
+        public Dcontact dcontact { get; set; }
 
-        public User()
-        {
-        }
-
-        public User( string id, string email, bool isban, string username)
+        public User(string id, string email, bool isban, string username, Dcontact dcontact)
         {
             this.id = id;
             this.email = email;
-            this.username = username;
             this.isban = isban;
+            this.username = username;
+            this.dcontact = dcontact;
+        }
+
+        public User()
+        {
         }
     }
 }
