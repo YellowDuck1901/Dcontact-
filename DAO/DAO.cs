@@ -12,8 +12,8 @@ namespace Util
     {
         string stringConnection = @"Data Source = localhost;    Initial Catalog = Dcontact; User ID = sa; Password=123456 ; integrated security = True; Encrypt=False";
         public SqlConnection cnn;
-        SqlCommand command;
         SqlDataReader dataReader;
+        SqlCommand command;
         public bool status;
         public DAO()
         {
@@ -40,6 +40,7 @@ namespace Util
         public SqlDataReader DB_ExcuteQuery(string sql)
         {
 
+            SqlDataReader dataReader;
 
 
             command = new SqlCommand(sql, this.cnn);
@@ -155,18 +156,21 @@ namespace Util
         {
             Dcontact dcontact = null;
             List<Row> rows = new List<Row>();
-            string sql = $"exec Pro_getDContact @ID = {id}";
+            string sql = $"exec Pro_getDContact @ID = '{id}'";
             dataReader = DB_ExcuteQuery(sql);
             if (dataReader.Read())
             {
                 dcontact = new Dcontact();
-                dcontact.numerView = (string)dataReader.GetValue(0);
+                dcontact.numerView = (string)dataReader.GetValue(0).ToString();
                 dcontact.avt = (string)dataReader.GetValue(1);
                 dcontact.background = (string)dataReader.GetValue(2);
 
-                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth  from dbo.[Row] as r  where id = {id}";
+                dataReader.Close();
+
+                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth  from dbo.[Row] as r  where id_contact = '{id}'";
                 dataReader = DB_ExcuteQuery(sqlr);
                 List<Row> r = new List<Row>();
+
                 while (dataReader.Read())
                 {
                     Row a = new Row();
@@ -174,9 +178,9 @@ namespace Util
                     a.font = (string)dataReader.GetValue(1);
                     a.link = (string)dataReader.GetValue(2);
                     a.bullet = (string)dataReader.GetValue(3);
-                    a.click = (string)dataReader.GetValue(4);
-                    a.code = (string)dataReader.GetValue(5);
-                    a.birth = (string)dataReader.GetValue(6);
+                    a.click = (string)dataReader.GetValue(4).ToString();
+                    a.code = (string)dataReader.GetValue(5).ToString();
+                    a.birth = (string)dataReader.GetValue(6).ToString();
                     r.Add(a);
                 }
                 dcontact.rows = r;
