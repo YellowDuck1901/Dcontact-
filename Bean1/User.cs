@@ -13,7 +13,6 @@ namespace Bean
         public string email { get; set; }
         public  bool  isban { get; set; }
 
-        
         public User()
         {
         }
