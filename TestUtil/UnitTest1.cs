@@ -57,6 +57,31 @@ namespace TestUtil
             Assert.IsNotNull(a.DB_getUser(username));
         }
 
+        [DataTestMethod]
+        [DataRow("ce150409")]
+        public void TestDContact(string id)
+        {
+            Util.DAO a = new Util.DAO();
+
+            Bean.Dcontact d = new Bean.Dcontact();
+            d = a.DB_GetDcontact(id);
+            System.Console.WriteLine("dcontact: " + d.background);
+            System.Console.WriteLine("dcontact: " + d.numerView);
+            System.Console.WriteLine("dcontact: " + d.avt);
+            foreach(Bean.Row r in d.rows)
+            {
+                System.Console.WriteLine("row: "+r.text);
+                System.Console.WriteLine("row: " + r.font);
+                System.Console.WriteLine("row: "+r.link);
+                System.Console.WriteLine("row: "+r.bullet);
+                System.Console.WriteLine("row: "+r.click);
+                System.Console.WriteLine("row: "+r.code);
+                System.Console.WriteLine("row: "+r.birth);
+            }
+            Assert.IsNotNull(d);
+
+        }
+
         //[DataTestMethod]
         //[DataRow("Thuancvce150378@fpt.edu.vn", "Test send mail c#", "123 alo alo")]
         //public void TestSendMail(string to, string title, string content)
