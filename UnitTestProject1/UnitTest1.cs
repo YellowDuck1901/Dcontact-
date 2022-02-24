@@ -22,5 +22,14 @@ namespace UnitTestProject1
         }
 
 
+        [DataTestMethod]
+        [DataRow("mykt", "123123")]
+        public void TestLogin(string username, string password)
+        {
+            Util.DAO a = new Util.DAO();
+            Assert.AreEqual(true, a.DB_Login(username, password));
+        }
+
+
     }
 }

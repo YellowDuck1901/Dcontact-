@@ -37,7 +37,7 @@ function checkInputs() {
 			setErrorFor(vertifyCode, 'Vertify code can\'t be blank');
 			send = false;
 
-		} else if (!vertifyCode.match(CodeLengthReg)
+		} else if (!vertifyCode.match(CodeLengthReg))
 		{
 			setErrorFor(vertifyCode, 'Vertify code must be 6 numbers');
 			send = false;
@@ -157,10 +157,10 @@ const open = document.getElementById('open');
 const close = document.getElementById('close');
 const modal = document.getElementById('modal_container');
 
-open.addEventListener('click', () => {
+open.addEventListener('click', (e) => {
   modal.classList.add('show');
 });
 
-close.addEventListener('click', () => {
+close.addEventListener('click', (e) => {
   modal.classList.remove('show');
 });

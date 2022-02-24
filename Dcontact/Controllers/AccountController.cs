@@ -75,6 +75,9 @@ namespace Dcontact.Controllers
 
                 if (d.DB_SignUp(MD5.CreateMD5(username),username,email,password))
                 {
+                    d.cnn.Open();
+                    Bean.User user = d.DB_getUser(MD5.CreateMD5(username), username);   //khoi tao object user voi data từ db
+                    Session.Add("user", user);                                          // ("key","object")
                     return RedirectToAction("editDContact", "DcontactAndDcrad");
                 }
                 else
@@ -90,6 +93,7 @@ namespace Dcontact.Controllers
             return Content(mess);
         }
 
+        
 
 
 

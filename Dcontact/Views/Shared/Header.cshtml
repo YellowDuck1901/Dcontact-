@@ -9,14 +9,16 @@
     </div>
     <div class="header_container--right">
         <a href="#">
-            <div class="header_button"><button class="button-3" role="button">Order</button></div>
+            <div class="header_button">
+                <button class="button-3" role="button">Order</button>
+            </div>
         </a>
         <div class="option_setting">
             <button class="button-3" id="setting_button" role="button">Setting</button>
             <div class="drop_setting">
                 <ul>
-                    <li><a class="button_profile" onclick="ShowModal()" id="btn-profile"> Profile</a></li>
-                    <li><a href="home.html" class="button_logout">LogOut</a></li>
+                    <li><a class="button_profile" id="btn-profile">Profile</a></li>
+                    <li><a class="button_logout">@Html.ActionLink("Log out", "Logout", "Shared")</a></li>
                 </ul>
             </div>
         </div>
@@ -32,7 +34,6 @@
         @{
             var user = (Bean.User)Session["user"];
         }
-
 
 
         <div class="modal__contener">

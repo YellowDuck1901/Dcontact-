@@ -13,9 +13,65 @@ namespace Dcontact
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "Home",
+                url: "home",
+                defaults: new { controller = "Home", action = "Home" }
+            );
 
-         
+            routes.MapRoute(
+                name: "Admin",
+                url: "admin",
+                defaults: new { controller = "Admin", action = "admin"}
+            );
 
+            routes.MapRoute(
+                name: "Confirm",
+                url: "confirm",
+                defaults: new { controller = "Account", action = "Comfirm" }
+            );
+
+            routes.MapRoute(
+                name: "Create New Password",
+                url: "createnewpass",
+                defaults: new { controller = "Account", action = "CreateNewPassword" }
+            );
+
+            routes.MapRoute(
+                name: "Log in",
+                url: "login",
+                defaults: new { controller = "Account", action = "Login" }
+            );
+            routes.MapRoute(
+                name: "Recover Password",
+                url: "recoverpass",
+                defaults: new { controller = "Account", action = "RecoverPassword" }
+            );
+            routes.MapRoute(
+                name: "Sign up",
+                url: "signup",
+                defaults: new { controller = "Account", action = "Sigup" }
+            );
+            routes.MapRoute(
+                name: "Dashboard",
+                url: "dashboard",
+                defaults: new { controller = "DcontactAndDcrad", action = "dashboard" }
+            );
+            routes.MapRoute(
+                name: "Create D-Card",
+                url: "createdcard",
+                defaults: new { controller = "DcontactAndDcrad", action = "createDCard" }
+            );
+            routes.MapRoute(
+                name: "Edit D-Contact",
+                url: "editdcontact",
+                defaults: new { controller = "DcontactAndDcrad", action = "editDContact" }
+            );
+            routes.MapRoute(
+                name: "Order D-Card",
+                url: "orderdcard",
+                defaults: new { controller = "DcontactAndDcrad", action = "oder_dcard" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
