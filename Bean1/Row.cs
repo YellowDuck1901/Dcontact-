@@ -12,16 +12,18 @@ namespace Bean
         public string font;
         public string link;
         public string bullet;
+        public string color;
         public string click;
         public string code;
         public string birth;
 
-        public Row(string text, string font, string link, string bullet, string click, string code, string birth)
+        public Row(string text, string font, string link, string bullet, string color, string click, string code, string birth)
         {
             this.text = text;
             this.font = font;
             this.link = link;
             this.bullet = bullet;
+            this.color = color;
             this.click = click;
             this.code = code;
             this.birth = birth;
