@@ -217,42 +217,35 @@
                     </div>
                     <div class="card__contener--body">
                         <ul>
-                            <li>
+                            @{
+                                Bean.Dcontact dcontact = ViewBag.dcontact;
+                            }
+
+                            @foreach (Bean.Row row in dcontact.rows)
+                            {
+                                
+                                <li>
+                                    <a  href="@row.link">
+                                        <div class="button" role="button" style="background-color: #273c75">
+                                            <i class="fa @row.bullet"></i>
+                                            <!-- Label -->
+                                            <div class="card--item__text">
+                                                <label>@row.text</label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                            <!--<li>
                                 <div class="button" role="button" style="background-color: #273c75">
-                                    <i class="fa fa-facebook-square"></i>
+                                    <i class="fa fa-facebook-square"></i>-->
                                     <!-- Label -->
-                                    <div class="card--item__text">
+                                    <!--<div class="card--item__text">
                                         <label>Facebook</label>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="button" role="button" style="background-color: #e1b12c">
-                                    <i class="fa fa-instagram"></i>
-                                    <!-- Label -->
-                                    <div class="card--item__text">
-                                        <label>Instagram</label>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="button" role="button" style="background-color: #c23616">
-                                    <i class="fa fa-youtube-play"></i>
-                                    <!-- Label -->
-                                    <div class="card--item__text">
-                                        <label>YouTube</label>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="button" role="button" style="background-color: #40739e">
-                                    <i class="fa fa-phone"></i>
-                                    <!-- Label -->
-                                    <div class="card--item__text">
-                                        <label>Phone</label>
-                                    </div>
-                                </div>
-                            </li>
+                            </li>-->
+
                         </ul>
                     </div>
                     <div class="card__contener--footer">
