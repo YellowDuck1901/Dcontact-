@@ -1,7 +1,8 @@
 
 <head>
+
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
-    <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
+    <link rel="stylesheet" type="text/css" href="~/CSS/modalAccount.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://kit.fontawesome.com/f94076876e.js" crossorigin="anonymous"></script>
@@ -9,6 +10,8 @@
 </head>
 <body>
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
+
+
 
     <div class="container">
         <div class="header">
@@ -38,43 +41,47 @@
             <span class="txt1">
                 Don't have an account?
             </span>
-            @*<a class="txt2" href="Sigup.html">
-                Sign Up
-                </a>*@
-
             <a class="txt2">
                 @Html.ActionLink("Sign Up", "Sigup", "Account")
             </a>
-
         </div>
-
         <div class="Recover">
             <span class="txt1">
                 Forgot Your Password?
             </span>
-
-
-            @* <a class="txt2" href="RecoverPassword.html">
-                    Recover Password
-                </a>*@
-
             <a class="txt2">
                 @Html.ActionLink("Recover Password", "RecoverPassword", "Account")
             </a>
-
         </div>
     </div>
 
-    <div class="modal-container" id="modal_container">
-        <div class="modal">
-            <i class="fas fa-exclamation fa-2x"></i>
-            <p>Incorrect login details. Please retry</p>
-            <button id="close" class="button">
-                Ok
-            </button>
+    @{
+        string msg = ViewBag.msg;
+        string open = "";
+
+        if (msg != null)
+        {
+            open = "open";
+        }
+    }
+    <div class="modal js-modal @open">
+        <div class="modal-container">
+            <div class="modal__header">
+                <i class="fas fa-exclamation fa-2x"></i> <i class="fa fa-close"></i>
+            </div>
+            <div class="modal__contener">
+                    <p>@msg</p>
+            </div>
         </div>
     </div>
 
-
-
+    <script>
+        $(document).ready(function () {
+            $(".modal").on('click', '.fa-close, button#close', function () {
+                $('.modal').removeClass('open');
+            });
+            $("header").load("header.html");
+        });
+    </script>
+    
 </body>

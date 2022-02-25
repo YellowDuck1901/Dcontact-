@@ -3,27 +3,37 @@
 <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<div class="header_container">
-    <div class="header_container--left">
-        <div href="#"><img src="~/resource/logo/logo_full.svg" alt="logo"></div>
-    </div>
-    <div class="header_container--right">
-        <a href="#">
-            <div class="header_button">
-                <button class="button-3" role="button">Order</button>
+
+<div class="container_header">                                                                                                  
+    <header>
+        <div class="header_container">
+            <div class="header_container--left">
+                <a href="#"><img src="/resource/logo/logo_single.svg" alt="logo"></a>
             </div>
-        </a>
-        <div class="option_setting">
-            <button class="button-3" id="setting_button" role="button">Setting</button>
-            <div class="drop_setting">
-                <ul>
-                    <li><a class="button_profile" id="btn-profile">Profile</a></li>
-                    <li><a class="button_logout">@Html.ActionLink("Log out", "Logout", "Shared")</a></li>
-                </ul>
+            <div class="header_container--right">
+                <a href="#"> <div class="header_button"><button class="button-3" role="button">Order</button></div></a>
+                <div class="option_setting">
+                    <button class="button-3" id="setting_button" role="button">Setting</button>
+                    <div class="drop_setting">
+                        <ul>
+
+                         @*   <li><a class="button_profile" id="btn-profile">Profile</a></li>
+                            <li><a class="button_logout">@Html.ActionLink("Logout", "Logout", "Shared")</a></li>*@
+
+                            <li class="drop_setting--item"><a class="button_profile" onclick="ShowModal()" id="btn-profile"> Profile</a></li>
+                            <li class="drop_setting--item"><a href="@Url.Action("Logout", "Shared" )" class="button_logout">LogOut</a></li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </header>
 </div>
+
+
 <div class="modal js-modal " id="account">
 
     <div class="modal-container">
@@ -98,7 +108,7 @@
                     </span>
                 </div>
                 <div class="modal_foo center_site">
-                    <button  type="submit">Confirm</button>
+                    <button type="submit">Confirm</button>
                 </div>
             </div>
         </div>

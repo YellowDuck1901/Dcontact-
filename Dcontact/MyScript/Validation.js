@@ -49,11 +49,16 @@ function checkInputs() {
 
 	// trim to remove the whitespaces
 	if (username !== null) {
+		var regularExpression = "^[A-Za-z][A-Za-z0-9_]{7,29}$";
+
 		const usernameValue = username.value.trim();
 		if (usernameValue === '') {
 			setErrorFor(username, 'Username can\'t be blank');
 			send = false;
-		} else {
+		} else if (!usernameValue.match(regularExpression)){
+			setErrorFor(username, 'Username contains at 6 to 20 characters');
+			send = false;
+		}else {
 			checkUserName = true;
 		}
 	}
@@ -74,7 +79,7 @@ function checkInputs() {
 	}
 	if (password !== null) {
 		var passwordRegex = new RegExp("^[ A-Za-z0-9:;,?!+-/*@]*$");
-		var passwordLengthReg = new RegExp("^[ A-Za-z0-9:;,?!+-/*@]{6,}$");
+		var passwordLengthReg = new RegExp("^[ A-Za-z0-9:;,?!+-/*@]{6,20}$");
 
 		if (passwordValue === '') {
 			setErrorFor(password, 'Password can\'t be blank');
@@ -84,7 +89,7 @@ function checkInputs() {
 			setErrorFor(password, 'Password must contain character in alphabets');
 			send = false;
 		} else if (!passwordValue.match(passwordLengthReg)) {
-			setErrorFor(password, 'Password contains at least 6 characters');
+			setErrorFor(password, 'Password contains at 6 to 20 characters');
 			send = false;
 		} else {
 			checkPassword = true;
@@ -104,7 +109,7 @@ function checkInputs() {
 			setErrorFor(password2, 'Password must contain character in alphabets');
 			send = false;
 		} else if (!password2Value.match(passwordLengthReg)) {
-			setErrorFor(password2, 'Password contains at least 6 characters');
+			setErrorFor(password2, 'Password contains at 6 to 12 characters');
 			send = false;
 		} else if (passwordValue !== password2Value) {
 			setErrorFor(password2, 'Passwords does not match');

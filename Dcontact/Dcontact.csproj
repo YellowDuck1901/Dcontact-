@@ -172,6 +172,7 @@
     <Content Include="CSS\home.css" />
     <Content Include="CSS\modal.css" />
     <Content Include="CSS\oder_dcard.css" />
+    <Content Include="CSS\modalAccount.css" />
     <Content Include="CSS\switch.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

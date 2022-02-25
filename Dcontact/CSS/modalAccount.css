@@ -1,4 +1,6 @@
-﻿﻿@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+﻿body {
+}
+﻿@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap");
 
 html,
@@ -30,14 +32,14 @@ body {
 .modal-container {
     position: relative;
     background-color: white;
-    width: 50rem;
+    width: 22rem;
     height: auto;
     /* height: 25rem; */
     animation: ModalFadeIn ease 0.5s;
-    margin: 0px 10px;
-    border-radius: 1em;
+    margin: 0px 5px;
+    border-radius: 0.25em;
     overflow: auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .modal__header {
@@ -51,7 +53,7 @@ body {
     padding: 0 20px;
     border-bottom: 1px solid #f0f0f0;
     position: sticky;
-    top: 0;
+    top: 2px;
 }
 
 .modal__contener {
@@ -134,4 +136,10 @@ body {
 
 .error {
     color: #e84118;
+}
+
+.p{
+   font-size:1vw;
+   align-content: center;
+   
 }

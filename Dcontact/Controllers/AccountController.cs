@@ -17,11 +17,13 @@ namespace Dcontact.Controllers
 
         public ActionResult CreateNewPassword()
         {
+
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult Login(String msg)
         {
+            ViewBag.msg = msg;  
             return View();
         }
 
@@ -38,26 +40,27 @@ namespace Dcontact.Controllers
                 {
                     Bean.User user = d.DB_getUser(username);   //khoi tao object user voi data từ db
                     Session.Add("user", user);                                          // ("key","object")
-                    mess = "login success";
                     return RedirectToAction("dashboard", "DcontactAndDcrad");
                 }
-                else
-                    mess = "login not success!";
+              
             }
             catch (Exception ex)
             {
-                mess = ex.Message;
+             mess = ex.Message; 
             }
-            return Content(mess);
+            return RedirectToAction("Login", "Account",new { msg = mess});   
         }
+
+      
 
         public ActionResult RecoverPassword()
         {
             return View();
         }
 
-        public ActionResult Sigup()
+        public ActionResult Sigup(String msg)
         {
+            ViewBag.msg = msg;
             return View();
         }
 
@@ -88,7 +91,7 @@ namespace Dcontact.Controllers
             {
                 mess = ex.Message;
             }
-            return Content(mess);
+            return RedirectToAction("Sigup", "Account", new { msg = mess });
         }
 
         
