@@ -20,4 +20,16 @@
     <ProjectReference Include="..\DAO\Util.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Bean">
+      <HintPath>..\ref\Bean.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlClient">
+      <HintPath>..\ref\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Util">
+      <HintPath>..\ref\Util.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

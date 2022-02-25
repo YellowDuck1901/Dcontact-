@@ -68,17 +68,25 @@ namespace TestUtil
             System.Console.WriteLine("dcontact: " + d.background);
             System.Console.WriteLine("dcontact: " + d.numerView);
             System.Console.WriteLine("dcontact: " + d.avt);
-            foreach(Bean.Row r in d.rows)
+            foreach (Bean.Row r in d.rows)
             {
-                System.Console.WriteLine("row: "+r.text);
+                System.Console.WriteLine("row: " + r.text);
                 System.Console.WriteLine("row: " + r.font);
-                System.Console.WriteLine("row: "+r.link);
-                System.Console.WriteLine("row: "+r.bullet);
-                System.Console.WriteLine("row: "+r.click);
-                System.Console.WriteLine("row: "+r.code);
-                System.Console.WriteLine("row: "+r.birth);
+                System.Console.WriteLine("row: " + r.link);
+                System.Console.WriteLine("row: " + r.bullet);
+                System.Console.WriteLine("row: " + r.click);
+                System.Console.WriteLine("row: " + r.code);
+                System.Console.WriteLine("row: " + r.birth);
             }
             Assert.IsNotNull(d);
+
+        }
+        [TestMethod]
+        public void TestGetUUID()
+        {
+            string uuid = Util.UUID.getUUID();
+            System.Console.WriteLine(uuid);
+            Assert.IsNotNull(uuid);
 
         }
 
