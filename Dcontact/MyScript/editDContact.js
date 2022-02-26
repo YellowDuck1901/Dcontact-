@@ -180,7 +180,7 @@ var resize = $('#upload-template').croppie({   //load edit crop anh
         type: 'square' //square
     },
     boundary: {
-        width: 370,
+        width: 290,
         height: 580,
     }
 });
