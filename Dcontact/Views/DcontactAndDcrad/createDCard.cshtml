@@ -30,6 +30,7 @@
         <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
         <div class="qrcode"></div>
     </div>
+
     <div class="edit-card">
         <span class="input-link">
             <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
@@ -45,7 +46,8 @@
             </div>
 
             <span class="upload">
-                <input type="file" name="uploadFile" id="uploadFile"> Upload
+                <input type="file" name="uploadFile" id="image-background">
+                <button class="btn btn-success btn-block btn-upload-background">Upload Image</button>
             </span>
 
             <span class="choose-color">
@@ -61,7 +63,7 @@
             </div>
 
             <span class="uploadAvt">
-                <input type="file" name="uploadFile" id="uploadAvt" accept="image/*">
+                <input type="file" name="uploadFile" id="uploadAvt">
                 <!-- <div id="upload-input" style="width:350px; height: 400px;"></div> -->
                 <!-- <button class="btn-upload upload-result">Upload Image</button> -->
             </span>
@@ -144,46 +146,50 @@
             </div>
         </div>
 
-        <input type="button" class="btn-order"  value="NEXT" onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';" />
+        <input type="button" class="btn-order" value="NEXT" onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';" />
 
     </div>
+
+   @* upload background*@
+    <div id="upload-background"></div>
+
     <!-- Modal For Background -->
-    <div class="modal" id="modal">
-        <div class="modal-container">
-            <div class="modal-header">
-                <i class="fas fa-crop-alt"></i>Crop & Upload Image
-            </div>
-            <div class="modal-body">
-                <div class="imageShow" id="imageShow"></div>
-            </div>
+    @* <div class="modal" id="modal">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <i class="fas fa-crop-alt"></i>Crop & Upload Image
+                </div>
+                <div class="modal-body">
+                    <div class="imageShow" id="imageShow"></div>
+                </div>
 
-            <div class="btn-common">
-                <input type="button" value="Cancel" class="btn-cancel">
-                <input type="button" value="Apply" class="btn-upload">
+                <div class="btn-common">
+                    <input type="button" value="Cancel" class="btn-cancel">
+                    <input type="button" value="Apply" class="btn-upload">
+                </div>
             </div>
-        </div>
-    </div>
+        </div>*@
 
     <!-- Modal for Avatar -->
-    <div class="modalAvt" id="modalAvt">
-        <div class="modal-container">
-            <div class="modal-header">
-                <i class="fas fa-crop-alt"></i>Crop & Upload Image
+    @* <div class="modalAvt" id="modalAvt">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <i class="fas fa-crop-alt"></i>Crop & Upload Image
+                </div>
+                <div class="modal-body">
+                    <div class="avtShow" id="avtShow"></div>
+                </div>
+                <div class="btn-common">
+                    <input type="button" value="Cancel" class="btn-cancelAvt">
+                    <input type="button" value="Apply" class="btn-uploadAvt">
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="avtShow" id="avtShow"></div>
-            </div>
-            <div class="btn-common">
-                <input type="button" value="Cancel" class="btn-cancelAvt">
-                <input type="button" value="Apply" class="btn-uploadAvt">
-            </div>
-        </div>
-    </div>
+        </div>*@
     </body>
 
     <script>
         //JS Avatar
-        const avtInp = document.getElementById("uploadAvt");
+        @*const avtInp = document.getElementById("uploadAvt");
         const avtShow = document.getElementById('avtShow');
         // const avtShow = document.getElementById("modalAvt");
         avtInp.onchange = even => {
@@ -192,19 +198,19 @@
             if (file) {
                 avtShow.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
             }
-        }
+        }*@
 
         //JS Background
-        const imgInp = document.getElementById("uploadFile");
-        const imgShow = document.getElementById('imageShow');
+       @* const imgInp = document.getElementById("uploadFile");
+        const imgShow = document.getElementById('imageShow');*@
         // const modalShow = document.getElementById("modal");
-        imgInp.onchange = even => {
+      @*  imgInp.onchange = even => {
             $('#modal').css('display', 'flex');
             const [file] = imgInp.files
             if (file) {
                 imgShow.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
             }
-        }
+        }*@
 
         $(document).ready(function () {
             //Background button
@@ -316,4 +322,6 @@
 
 
     </script>
+    <script src="~/MyScript/create_dcard.js"></script>
+
 </html>

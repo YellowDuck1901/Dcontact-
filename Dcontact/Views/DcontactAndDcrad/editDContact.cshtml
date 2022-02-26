@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Edit DContact</title>
-    <link rel="stylesheet" href="~/CSS/editDc.css"/>
-    <link rel="stylesheet" href="~/CSS/switch.css"/>
+    <link rel="stylesheet" href="~/CSS/editDc.css" />
+    <link rel="stylesheet" href="~/CSS/switch.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -23,7 +23,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap"
           rel="stylesheet" />
 
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css'>
+
 </head>
+
 
 <body>
     <div class="container scrollbar-hidden">
@@ -34,12 +37,21 @@
             <aside class="container__left">
                 <div class="container__template">
                     <div class="template__container scrollbar-hidden">
+                        <fieldset>
+                            <legend>Avatar</legend>
+                            <div class="file-input">
+                                <!-- <input type="file" id="file" class="file"> -->
+                                <input type="file" id="image-avatar">
+                                <label for="" class="file__label">Select file</label>
+                            </div>
+                        </fieldset>
                         <div class="template__header">
                             <h3 class=" tracking-in-expand">Template</h3>
                         </div>
                         <div class="template__detail">
                             <ul>
                                 <li>
+                                    <input type="file" id="image-template">
                                     <button class="btn-addTemp">Add New Template</button>
                                 </li>
                             </ul>
@@ -52,10 +64,9 @@
             <!-- Right sidebar -->
             <nav class="container__center">
                 <div class="contener">
-                    <div class="card__contener">
+                    <div class="card__contener" id="preview-crop-image">  @* background image*@
                         <div class="card__contener--header">
-                            <img src="https://scontent-sin6-2.xx.fbcdn.net/v/t1.6435-9/123137252_1351000158565230_7321193544219366257_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=WC_jN_PUVwsAX9BOWIp&_nc_ht=scontent-sin6-2.xx&oh=00_AT9ir3tQaPi1Ttrx7TyFVCtR9iWAj6HwH4Fz9KYc3AV8DA&oe=620C8276"
-                                 alt="avatar" />
+                            <img id="avatar-result" alt="avatar" />
                         </div>
                         <div class="card__contener--body scrollbar-hidden">
                             <ul class="social-list" id="list">
@@ -117,15 +128,8 @@
                 </div>
             </nav>
 
-            <nav class="container__right scrollbar-hidden">
+            <nav class="container__right scrollbar-hidden container__right--url">
                 <div class="right__field scrollbar-hidden">
-                    <fieldset>
-                        <legend>Avatar</legend>
-                        <div class="file-input">
-                            <!-- <input type="file" id="file" class="file"> -->
-                            <label for="" class="file__label">Select file</label>
-                        </div>
-                    </fieldset>
                     <div class="url-area" target=" ">
                         <div class="title__input">
                             <input type="text" name="Tilte" id="titleUrl" />
@@ -232,22 +236,42 @@
                     </div>
                     <div class="btn-main">
                         <input type="button" value="Add New Link" id="addNewUrl" class="btnAdd">
-                        <input type="button" class="btnAdd" id="saveEdit" value="Save" onclick="window.location.href = '@Url.Action("dashboard", "DcontactAndDcrad" )';" />
+                        <input type="button" value="Save" id="saveEdit" class="btnAdd">
                     </div>
                 </div>
 
             </nav>
+            <!-- nav for crop avtar -->
+            <nav class="container__right scrollbar-hidden container__right--avatar">
+                <div class="right__field scrollbar-hidden">
+                    <h3>Crop Avatar</h3>
+
+                    <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
+                    <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
+                </div>
+            </nav>
+
+            <!-- nav for crop template -->
+            <nav class="container__right scrollbar-hidden container__right--template">
+                <div class="right__field scrollbar-hidden">
+                    <h3>Crop Template</h3>
+
+                    <div id="upload-template"></div>
+                    <button class="btn btn-success btn-block btn-upload-template">Upload Image</button>
+                    
+                </div>
+            </nav>
         </main>
     </div>
     <!-- MODAL FOR AVATAR -->
-    <div class="modalAvt" id="modalAvt">
+    <!-- <div class="modalAvt" id="modalAvt">
         <div class="modal-container">
             <div class="modal-header">
                 <i class="fas fa-crop-alt"></i>Crop & Upload Image
             </div>
             <div class="modal-body">
-                <input type="file" name="fileAvt" id="fileAvt" accept="image/*">
-                <label for="fileAvt" class="fileAvt__label"><i class="fa fa-image"></i> Choose a photo</label>
+              <input type="file" name="fileAvt" id="fileAvt" accept="image/*">
+              <label for="fileAvt" class="fileAvt__label"><i class="fa fa-image"></i> Choose a photo</label>
                 <div class="avtShow" id="avtShow"></div>
             </div>
             <div class="btn-common">
@@ -255,13 +279,13 @@
                 <input type="button" value="Apply" class="btn-uploadAvt">
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
+    <script src="~/MyScript/editDContact.js"></script>
+
+
 </body>
-<script src="~/MyScript/editDContact.js"></script>
-<script>
-    $(document).ready(function () {
-        $('header').load('header.html');
-    });
-</script>
+
 </html>
 
