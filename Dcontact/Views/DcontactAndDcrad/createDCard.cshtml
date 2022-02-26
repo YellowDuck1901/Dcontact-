@@ -22,15 +22,24 @@
         import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');
 </style>
 <div class="card-body">
-    <div class="card" id="cardBg">
-        <div class="leftResult cmnResult"></div>
-        <div class="rightResult cmnResult"></div>
-        <div class="centerResult cmnResult"></div>
-        <div class="bottomResult cmnResult"></div>
-        <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
-        <div class="qrcode"></div>
-    </div>
+    <div class="crop-area">
+        <div class="card" id="cardBg">
+            <div class="leftResult cmnResult"></div>
+            <div class="rightResult cmnResult"></div>
+            <div class="centerResult cmnResult"></div>
+            <div class="bottomResult cmnResult"></div>
+            <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
+            <div class="qrcode"></div>
+        </div>
+        <div class="cropBackground">
+            <span class="cropHeader">
+                <h3>CROP BACKGROUND</h3>
+                <button class="btn btn-success btn-block btn-upload-background">Upload</button>
+            </span>
+            <div id="upload-background"></div>
+        </div>
 
+    </div>
     <div class="edit-card">
         <span class="input-link">
             <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
@@ -47,7 +56,7 @@
 
             <span class="upload">
                 <input type="file" name="uploadFile" id="image-background">
-                <button class="btn btn-success btn-block btn-upload-background">Upload Image</button>
+                @*<button class="btn btn-success btn-block btn-upload-background">Upload</button>*@
             </span>
 
             <span class="choose-color">
@@ -150,8 +159,8 @@
 
     </div>
 
-   @* upload background*@
-    <div id="upload-background"></div>
+    @* upload background*@
+    @*<div id="upload-background"></div>*@
 
     <!-- Modal For Background -->
     @* <div class="modal" id="modal">
@@ -246,13 +255,16 @@
             $("#toggleBg").on('change', function () {
                 if ($(this).is(':checked')) {
                     $(this).attr('value', 'true');
-                    $('.upload').show();
+                    $('.upload').css('display','flex');
                     $('.choose-color').show();
+                    $('.cropBackground').show();
                 }
                 else {
                     $(this).attr('value', 'false');
                     $('.upload').hide();
                     $('.choose-color').hide();
+                    $('.cropBackground').hide();
+
 
                 }
             });
