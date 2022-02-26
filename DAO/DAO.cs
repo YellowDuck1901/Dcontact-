@@ -169,7 +169,7 @@ namespace Util
 
                 this.dataReader.Close();
 
-                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth  from dbo.[Row] as r  where id_contact = '{id}'";
+                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
                 this.dataReader = DB_ExcuteQuery(sqlr);
                 List<Row> r = new List<Row>();
 
@@ -183,6 +183,7 @@ namespace Util
                     a.click = (string)dataReader.GetValue(4).ToString();
                     a.code = (string)dataReader.GetValue(5).ToString();
                     a.birth = (string)dataReader.GetValue(6).ToString();
+                    a.color = (string)dataReader.GetValue(7).ToString();
                     r.Add(a);
                 }
                 dcontact.rows = r;

@@ -171,7 +171,7 @@ $(document).ready(function () {
 
 
 //upload template
-var resize = $('#upload-template').croppie({
+var resize = $('#upload-template').croppie({   //load edit crop anh
     enableExif: true,
     enableOrientation: true,
     viewport: { // Default { width: 100, height: 100, type: 'square' } 
@@ -185,7 +185,7 @@ var resize = $('#upload-template').croppie({
     }
 });
 
-$('#image-template').on('change', function () {
+$('#image-template').on('change', function () {  //chon file
     var reader = new FileReader();
     reader.onload = function (e) {
         resize.croppie('bind', {
@@ -197,12 +197,12 @@ $('#image-template').on('change', function () {
     reader.readAsDataURL(this.files[0]);
 });
 
-$('.btn-upload-template').on('click', function (ev) {
+$('.btn-upload-template').on('click', function (ev) {  //button upload image
     resize.croppie('result', {
         type: 'canvas',
         size: 'viewport'
     }).then(function (img) {
-        $('.card__contener').css('background-image', "url('" + img + "')");
+        $('.card__contener').css('background-image', "url('" + img + "')");   //cho load anh
     });
 });
 ///////////////
