@@ -113,5 +113,11 @@ namespace TestUtil
             Util.DAO dao = new Util.DAO();
             Assert.AreEqual(true, dao.DB_ChangePass(email, newPass));
         }
+        [TestMethod]
+        public void TestRandom6D()
+        {
+            System.Console.WriteLine(Util.RandomCode.Random_6D());
+            Assert.AreNotSame(Util.RandomCode.Random_6D(), Util.RandomCode.Random_6D());
+        }
     }
 }
