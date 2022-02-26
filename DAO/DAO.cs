@@ -191,6 +191,21 @@ namespace Util
             }
             return dcontact;
         }
+
+        public bool DB_ChangePass(string email, string newPass)
+        {
+            try
+            {
+                string sql = $"execute PRO_ChangePassword @email='{email}', @password ='{MD5.CreateMD5(newPass)}' ";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return true;
+        }
     }
 
 

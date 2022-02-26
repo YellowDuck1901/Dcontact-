@@ -87,7 +87,6 @@ namespace TestUtil
             string uuid = Util.UUID.getUUID();
             System.Console.WriteLine(uuid);
             Assert.IsNotNull(uuid);
-
         }
 
         //[DataTestMethod]
@@ -104,5 +103,15 @@ namespace TestUtil
         //    Util.DAO dAO = new Util.DAO();
         //    Assert.AreEqual(true, dAO.DB_SignUp(Util.MD5.CreateMD5(username), username, email, Util.MD5.CreateMD5(password)));
         //}
+
+        [DataTestMethod]
+        [DataRow("cathuan113@gmail.com", "123123")]
+        [DataRow("cathuan114@gmail.com", "123123")]
+        [DataRow("ca234@gmail.com", "123123")]
+        public void TestChangePass(string email, string newPass)
+        {
+            Util.DAO dao = new Util.DAO();
+            Assert.AreEqual(true, dao.DB_ChangePass(email, newPass));
+        }
     }
 }
