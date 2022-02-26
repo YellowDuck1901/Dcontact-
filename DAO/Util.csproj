@@ -52,6 +52,7 @@
     <Compile Include="Mail.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomCode.cs" />
     <Compile Include="UUID.cs" />
   </ItemGroup>
   <ItemGroup>
