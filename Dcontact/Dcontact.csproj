@@ -179,6 +179,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="MyScript\check.js" />
+    <Content Include="MyScript\create_dcard.js" />
     <Content Include="MyScript\dashboard.js" />
     <Content Include="MyScript\editDContact.js" />
     <Content Include="MyScript\Modal.js" />
