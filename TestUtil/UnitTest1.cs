@@ -105,8 +105,8 @@ namespace TestUtil
         //}
 
         [DataTestMethod]
-        [DataRow("cathuan113@gmail.com", "123123")]
-        [DataRow("cathuan114@gmail.com", "123123")]
+        [DataRow("cathuan113@gmail.com", "123456")]
+        [DataRow("cathuan114@gmail.com", "123234")]
         [DataRow("ca234@gmail.com", "123123")]
         public void TestChangePass(string email, string newPass)
         {
