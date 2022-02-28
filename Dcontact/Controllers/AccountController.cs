@@ -56,7 +56,7 @@ namespace Dcontact.Controllers
                         }
                         else
                         {
-                            mess= "Wrong Verification Code"
+                        mess = "Wrong Verification Code";
                         }
                     }
                     else
