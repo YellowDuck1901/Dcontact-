@@ -15,6 +15,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    margin: 0;
 }
 
 .container {
@@ -232,7 +233,7 @@ input[type="file"] {
     margin: 10px;
     padding: 12px;
     max-height: 531px;
-    background-repeat: no-repeat;
+    background-repeat: round;
 }
 
 .card__contener--header {
