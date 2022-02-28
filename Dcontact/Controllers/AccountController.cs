@@ -133,10 +133,10 @@ namespace Dcontact.Controllers
             try
             {
                 Util.DAO d = new Util.DAO();
-               /* if ()
+                if (d.)
                 {
-                  check email co trong db hay ko
-                }*/
+                    check email co trong db hay ko
+                }
                 var vertifyCode = RandomCode.Random_6D();
                 //truong hop back nhap lai email
                 Session.Add("email", email);            //session luu tru email
