@@ -73,11 +73,22 @@ namespace Dcontact
                 defaults: new { controller = "DcontactAndDcrad", action = "oder_dcard" }
             );
             routes.MapRoute(
+                name: "Link Dcontact",
+                url: "{username}",
+                defaults: new { controller = "LinkContact", action = "LinkContact", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Error",
+                url: "error",
+                defaults: new { controller = "Shared", action = "Error" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }
             );
-
         }
     }
 }

@@ -24,7 +24,12 @@ namespace Dcontact.Controllers
             Session.Abandon();
             Session.RemoveAll();
             Session.Clear();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Home", "Home");
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }
