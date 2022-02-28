@@ -133,18 +133,22 @@ namespace Dcontact.Controllers
             try
             {
                 Util.DAO d = new Util.DAO();
-                if (d.)
+                if (d.DB_checkExistedEmail(email))
                 {
-                    check email co trong db hay ko
+                    var vertifyCode = RandomCode.Random_6D();
+                    //truong hop back nhap lai email
+                    Session.Add("email", email);            //session luu tru email
+                    Session.Add("" + email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
+                    Session.Add("AvaiableChangePassword", false);   //nhap lai email thi set false
+                                                                    //set time out cho code 
+                    Mail.send(email, "Code to Change Password", vertifyCode);
+                    return RedirectToAction("Comfirm", "Account");
                 }
-                var vertifyCode = RandomCode.Random_6D();
-                //truong hop back nhap lai email
-                Session.Add("email", email);            //session luu tru email
-                Session.Add(""+email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
-                Session.Add("AvaiableChangePassword", false);   //nhap lai email thi set false
-                //set time out cho code 
-                Mail.send(email, "Code to Change Password", vertifyCode);
-                return RedirectToAction("Comfirm", "Account");
+                else
+                {
+                    mess = "Account with this email has not be register";
+                }
+               
             }
             catch (Exception ex)
             {

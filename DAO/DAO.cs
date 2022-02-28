@@ -192,6 +192,21 @@ namespace Util
             return dcontact;
         }
 
+        public bool DB_checkExistedEmail(string email)
+        {
+            try
+            {
+                String sql = $"exec Pro_existedEmail @email = '{email}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+        }
         public bool DB_ChangePass(string email, string newPass)
         {
             try
