@@ -43,10 +43,23 @@ namespace Dcontact.Controllers
         {
             String mess = "";
             string password = Request.QueryString["password"];
-           
+            Bean.User user = (Bean.User)Session["user"];  
+
                 try
                 {
-                    if ((bool)Session["AvaiableChangePassword"])
+                if (user != null)
+                {
+                    Util.DAO d = new Util.DAO();
+                    if (d.DB_ChangePass(user.email, password))
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                    /*else
+                    {
+                        mess = "Wrong Verification Code";
+                    }*/
+                }
+                else if ((bool)Session["AvaiableChangePassword"])
                     {
                         Util.DAO d = new Util.DAO();
                         if (d.DB_ChangePass((string)Session["email"], password))
@@ -58,11 +71,11 @@ namespace Dcontact.Controllers
                         {
                         mess = "Wrong Verification Code";
                         }
-                    }
-                    else
+                    }else
                         {
                             mess = "Your Verification Code Has Expired";
                         }
+               
 
                 }
                 catch (Exception ex)
@@ -119,6 +132,11 @@ namespace Dcontact.Controllers
             //mess = username + "@" + password;
             try
             {
+                Util.DAO d = new Util.DAO();
+               /* if ()
+                {
+                  check email co trong db hay ko
+                }*/
                 var vertifyCode = RandomCode.Random_6D();
                 //truong hop back nhap lai email
                 Session.Add("email", email);            //session luu tru email

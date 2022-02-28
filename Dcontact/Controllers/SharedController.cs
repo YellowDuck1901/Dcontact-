@@ -31,5 +31,11 @@ namespace Dcontact.Controllers
         {
             return View();
         }
+
+      /*  [HttpPost]
+        public IActionResult Update(TestViewModel model)
+        {
+            return RedirectToAction("Index", new { name = model.Name, desc = model.desc });
+        }*/
     }
 }
