@@ -16,15 +16,8 @@
                     <button class="button-3" id="setting_button" role="button">Setting</button>
                     <div class="drop_setting">
                         <ul>
-
-                         @*   <li><a class="button_profile" id="btn-profile">Profile</a></li>
-                            <li><a class="button_logout">@Html.ActionLink("Logout", "Logout", "Shared")</a></li>*@
-
                             <li class="drop_setting--item"><a class="button_profile" onclick="ShowModal()" id="btn-profile"> Profile</a></li>
                             <li class="drop_setting--item"><a href="@Url.Action("Logout", "Shared" )" class="button_logout">LogOut</a></li>
-
-
-
                         </ul>
                     </div>
                 </div>
@@ -35,17 +28,13 @@
 
 
 <div class="modal js-modal " id="account">
-
     <div class="modal-container">
         <div class="modal__header">
             <h2>Your Account</h2> <i class="fa fa-close"></i>
         </div>
-
         @{
             var user = (Bean.User)Session["user"];
         }
-
-
         <div class="modal__contener">
             <div class="modal__item item__spacebetween">
                 <div> <span>Username: </span> <span class="confirm__value" id="username_value">@user.username</span></div><span></span>
