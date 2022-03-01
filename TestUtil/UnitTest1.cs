@@ -89,12 +89,18 @@ namespace TestUtil
             Assert.IsNotNull(uuid);
         }
 
-        //[DataTestMethod]
-        //[DataRow("Thuancvce150378@fpt.edu.vn", "Test send mail c#", "123 alo alo")]
-        //public void TestSendMail(string to, string title, string content)
-        //{
-        //    Assert.AreEqual(true, Util.Mail.send(to, title, content));
-        //}
+        [DataTestMethod]
+        [DataRow("Thuancvce150378@fpt.edu.vn", "Test send mail c#(thread)", "123 alo alo")]
+        public void TestSendMailThread(string to, string title, string content)
+        {
+            Assert.AreEqual(true, Util.Mail.send(to, title, content));
+        }
+        [DataTestMethod]
+        [DataRow("Thuancvce150378@fpt.edu.vn", "Test send mail c#", "123 alo alo")]
+        public void TestSendMail(string to, string title, string content)
+        {
+            Assert.AreEqual(true, Util.Mail.send(to, title, content));
+        }
 
         //[DataTestMethod]
         //[DataRow("cathuan113", "cathuan113@gmail.com", "cvt30112001")]
