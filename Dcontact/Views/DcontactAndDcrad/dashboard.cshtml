@@ -221,21 +221,20 @@
                                     Bean.Dcontact dcontact = ViewBag.dcontact;
                                 }
 
-                                @foreach (Bean.Row row in dcontact.rows)
+                                @*@foreach (Bean.Row row in dcontact.rows)
                                 {
-
                                     <li>
                                         <a href="@row.link">
                                             <div class="button" role="button" style="background-color: #273c75">
                                                 <i class="fa @row.bullet"></i>
-                                                <!-- Label -->
+                                                 Label 
                                                 <div class="card--item__text">
                                                     <label>@row.text</label>
                                                 </div>
                                             </div>
                                         </a>
                                     </li>
-                                }
+                                }*@
                                 <!--<li>
                                     <div class="button" role="button" style="background-color: #273c75">
                                         <i class="fa fa-facebook-square"></i>-->
@@ -262,7 +261,5 @@
     <script src='~/MyScript/dashboard.js'></script>
     <script src='~/MyScript/check.js'></script>
 </body>
-
-
 </html>
 

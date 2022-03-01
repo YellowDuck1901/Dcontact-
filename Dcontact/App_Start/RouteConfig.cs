@@ -64,24 +64,24 @@ namespace Dcontact
             );
             routes.MapRoute(
                 name: "Edit D-Contact",
-                url: "editdcontact",
+                url: "edit",
                 defaults: new { controller = "DcontactAndDcrad", action = "editDContact" }
             );
             routes.MapRoute(
                 name: "Order D-Card",
-                url: "orderdcard",
+                url: "order",
                 defaults: new { controller = "DcontactAndDcrad", action = "oder_dcard" }
-            );
-            routes.MapRoute(
-                name: "Link Dcontact",
-                url: "{username}",
-                defaults: new { controller = "LinkContact", action = "LinkContact", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Error",
                 url: "error",
                 defaults: new { controller = "Shared", action = "Error" }
+            );
+            routes.MapRoute(
+                name: "Link Dcontact",
+                url: "{username}",
+                defaults: new { controller = "LinkContact", action = "LinkContact", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
