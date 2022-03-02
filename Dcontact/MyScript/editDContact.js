@@ -7,6 +7,54 @@ function uuidv4() {
     });
 };
 $(document).ready(function () {
+
+
+    //crop avatar
+    var resize_avatar = $('#upload-avatar').croppie({
+        enableExif: true,
+        enableOrientation: true,
+        viewport: { // Default { width: 100, height: 100, type: 'square' } 
+            width: 100,
+            height: 100,
+            type: 'circle'
+        },
+        boundary: {
+            width: 300,
+            height: 300,
+        }
+    });
+
+    $('#image-avatar').on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            resize_avatar.croppie('bind', {
+                url: e.target.result
+            }).then(function () {
+                console.log('jQuery bind complete');
+            });
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+
+    $('.btn-upload-avatar').on('click', function (ev) {
+        resize_avatar.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (img) {
+            document.getElementById('avatar-result').src = "" + img;
+        });
+    });
+    ////////////////////
+    // DELETE ROW
+    $('.social-list').on('click', '.report', function () {
+        var parentRow = $(this).parent().attr('id');
+        // alert(parentRow)
+        $('.social-list #' + parentRow).remove();
+    })
+
+
+
     $('.cmnRadio').change(function () {
         var radioValue = $('.cmnRadio:checked').val();
         if (radioValue == 'font') {
@@ -96,8 +144,8 @@ $(document).ready(function () {
 
     // ADD NEW LINK
 
-    $('.btnAdd').on('click', function () {
-        $('.social-list').append(' <li> <div class="button" role="button" style="background-color: #273c75; height: 26.88px" id="' + uuidv4() + '" > <i class=""></i> <div class="card--item__text"> <label></label> </div> </div> </li>');
+    $('#addNewUrl').on('click', function () {
+        $('.social-list').append('<li id="' + uuidv4() + '"><span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span><div class="button" role="button" style="background-color: #273c75; height: 26.88px" id="' + uuidv4() + '" > <i class=""></i> <div class="card--item__text"> <label></label> </div> </div> </li>');
     });
 
     //set color
@@ -139,10 +187,10 @@ $(document).ready(function () {
 
     })
     // TEMPLATE
-/*    $('.template__detail').on('click', '.img-temp', function () {
-        var src = $(this).attr('src');
-        $('.card__contener').css('background-image', "url('" + src + "')");
-    })*/
+    /*    $('.template__detail').on('click', '.img-temp', function () {
+            var src = $(this).attr('src');
+            $('.card__contener').css('background-image', "url('" + src + "')");
+        })*/
 
     for (i = 1; i <= 10; i++) {
         var image = "https://source.unsplash.com/random/329x531?sig=" + i + "";
@@ -206,41 +254,3 @@ $('.btn-upload-template').on('click', function (ev) {  //button upload image
     });
 });
 ///////////////
-
-//crop avatar
-var resize_avatar = $('#upload-avatar').croppie({
-    enableExif: true,
-    enableOrientation: true,
-    viewport: { // Default { width: 100, height: 100, type: 'square' } 
-        width: 100,
-        height: 100,
-        type: 'circle'
-    },
-    boundary: {
-        width: 300,
-        height: 300,
-    }
-});
-
-$('#image-avatar').on('change', function () {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        resize_avatar.croppie('bind', {
-            url: e.target.result
-        }).then(function () {
-            console.log('jQuery bind complete');
-        });
-    }
-    reader.readAsDataURL(this.files[0]);
-});
-
-
-$('.btn-upload-avatar').on('click', function (ev) {
-    resize_avatar.croppie('result', {
-        type: 'canvas',
-        size: 'viewport'
-    }).then(function (img) {
-        document.getElementById('avatar-result').src = ""+img;
-    });
-});
-////////////////////

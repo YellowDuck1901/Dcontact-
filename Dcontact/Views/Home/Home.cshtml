@@ -1,8 +1,7 @@
-﻿
-@*@{
-    ViewBag.Title = "Home";
-    Layout = "~/Views/Shared/Header.cshtml";
-}*@
+﻿@*@{
+        ViewBag.Title = "Home";
+        Layout = "~/Views/Shared/Header.cshtml";
+    }*@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +25,7 @@
                 <div class="header_button">
                     <input type="button" class="button-3" value="Sign Up" onclick="window.location.href = '@Url.Action("Sigup", "Account" )';" />
                 </div>
-                    <input type="button" class="button-3" value="Log In" onclick="window.location.href = '@Url.Action("Login", "Account" )';" />
+                <input type="button" class="button-3" value="Log In" onclick="window.location.href = '@Url.Action("Login", "Account" )';" />
             </div>
         </div>
     </header>

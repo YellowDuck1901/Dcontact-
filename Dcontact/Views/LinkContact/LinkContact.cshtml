@@ -6,19 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DContact</title>
     <link rel="stylesheet" href="~/CSS/LinkContact.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <nav class="container__right">
+    <nav class="container__right scrollbar-hidden">
         <div class="contener">
             <div class="card__contener">
                 <div class="card__contener--header">
                     @*<img src="@ViewBag.Dcontact.avt" alt="avatar" />*@
-                    <img src="https://focusasiatravel.vn/wp-content/uploads/2021/04/trantuanviet-bavi-hanoi-1617326198.jpg" alt="avatar" />
+                    <img src="~/resource/logo/logo_full.svg" alt="avatar" />
                 </div>
-                <center id="username_user" style="font-family: cursive; margin: 15px">&#64username</center>
+                <center style="font-family: cursive; margin: 0.75rem;">&#64Username</center>
                 <div class="card__contener--body scrollbar-hidden">
                     <ul>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #273c75">
@@ -30,6 +35,7 @@
                             </div>
                         </li>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #e1b12c">
@@ -41,6 +47,7 @@
                             </div>
                         </li>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #c23616">
@@ -52,6 +59,7 @@
                             </div>
                         </li>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #40739e">
@@ -67,13 +75,50 @@
                 <div class="card__contener--footer">
                     <div class="logo--mini">
                         <a class="logo--mini" href="home">
-                        <img src="~/resource/logo/logo_full.svg" alt="logo"  />
+                            <img src="~/resource/logo/logo_full.svg" alt="logo" />
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
+    <div class="modalReport">
+        <div class="modalContainer">
+            <div class="modalHeader">
+                <h3>REPORT</h3>
+                <i class="fa fa-close"></i>
+            </div>
+            <div class="bodySendMail">
+                <div class="modalBody">
+                    <span>Email</span><input type="email" name="Email" id="mailReport"><br>
+                </div>
+                <button class="btn-sendCode" type="submit">SEND CODE</button>
+            </div>
+
+            <div class="bodyVerify">
+                <div class="modalBody">
+                    <span>Code</span><input type="number" name="Code" id="codeVerify"><br>
+                </div>
+                <button class="btn-verifyCode" type="submit">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.report').on('click', function () {
+                $('.modalReport').addClass('open');
+            })
+            $('.modalReport').on('click', '.fa-close', function () {
+                $('.modalReport').removeClass('open');
+            })
+
+            $('.btn-sendCode').on('click', function () {
+                $('.bodySendMail').hide();
+                $('.bodyVerify').show();
+            })
+        });
+    </script>
+
 </body>
 </html>
 

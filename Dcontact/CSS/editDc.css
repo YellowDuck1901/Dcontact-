@@ -13,7 +13,7 @@ body {
     background-image: -webkit-linear-gradient( 90deg, rgb(205, 199, 255), rgb(184, 234, 255) );
     background-image: linear-gradient( 90deg, rgb(205, 199, 255), rgb(184, 234, 255) );
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: round;
     background-size: contain;
 }
 
@@ -232,7 +232,8 @@ input[type="file"] {
     margin: 10px;
     padding: 12px;
     max-height: 531px;
-    background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: round;
 }
 
 .card__contener--header {
@@ -292,9 +293,7 @@ input[type="file"] {
 }
 
 .button:hover {
-    filter: invert(1);
     cursor: pointer;
-    user-select: none;
 }
 
 .button i {
@@ -697,8 +696,8 @@ i.fas.fa-exclamation-circle {
     background: #fff;
 }
 
-.col-md-4{
-    display:block;
+.col-md-4 {
+    display: block;
 }
 
 .btn-upload-template,
@@ -713,6 +712,7 @@ i.fas.fa-exclamation-circle {
     cursor: pointer;
     transition: .4s;
     height: 35px;
+    background-repeat
 }
 
     .btn-upload-template:hover,
@@ -728,4 +728,34 @@ i.fas.fa-exclamation-circle {
     border-bottom-color: #e67e22;
     font-size: 2rem;
     font-weight: 400;
+}
+
+.social-list li {
+    position: relative;
+}
+
+.report {
+    position: absolute;
+    right: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-upload-template,
+.btn-upload-avatar {
+    float: right;
+    margin: 0.75rem;
+    padding: 0.55rem;
+    background-image: linear-gradient(to right, #e67e22, #e74c3c);
+    border: none;
+    color: #fff;
+    border-radius: 0.35rem;
+    cursor: pointer;
+}
+
+.right__field h3 {
+    font-family: cursive;
+    font-size: 1.45rem;
+    margin: 0;
+    border-bottom: 2px solid var(--primary-color);
 }
