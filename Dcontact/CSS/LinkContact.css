@@ -1,8 +1,8 @@
-﻿body,
+﻿﻿body,
 html {
     padding: 0;
     margin: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
 
@@ -39,7 +39,7 @@ body {
     padding: 0;
     margin: 0;
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
     /* background-color: #273c75; */
     color: #f5f6fa;
     border-radius: 0 5em 5em 0;
@@ -168,8 +168,8 @@ body {
 .contener {
     display: flex;
     border: 0px !important;
-    height: 80vh;
-    width: 47.5%;
+    height: 100vh;
+    width: 40vw;
     justify-content: center;
     align-items: center;
 }
@@ -177,28 +177,29 @@ body {
 .card__contener {
     position: relative;
     background-color: #f5f6fa;
-    width: 100%;
-    height: 100%;
-    border-radius: 5em;
+    width: 25vw;
+    height: 90vh;
+    border-radius: 2.5rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     overflow: hidden;
-    /* margin: 10px; */
+    padding: 0.85em;
 }
 
 .card__contener--header {
     margin: 11px 8px 11px 8px;
     display: flex;
     justify-content: center;
+    height: 15vh;
 }
 
     .card__contener--header img {
-        width: 15%;
+        width: 25%;
         border-radius: 50%;
     }
 
 .card__contener--body {
     width: 100%;
-    height: 80%;
+    height: 50%;
     /* full height - header height - Card header */
     overflow: auto;
     position: relative;
@@ -240,9 +241,7 @@ body {
 }
 
 .button:hover {
-    filter: invert(1);
     cursor: pointer;
-    user-select: none;
 }
 
 .button i {
@@ -275,32 +274,131 @@ body {
     width: auto;
     display: flex;
     justify-content: center;
-    cursor: pointer;
-}
-
-#username_user {
-    margin: 15px;
 }
 
 /* @media only screen and (max-width: 800px) {
-  .container__left {
+    .container__left {
+      display: none;
+    }
+    .contener {
+      display: flex;
+      border: 0px !important;
+      width: 90%;
+      min-width: 450px;
+    }
+    .button i {
+      font-size: 10vw;
+    }
+    .card--item__text {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      font-size: 5vw;
+    }
+  } */
+
+.card__contener--body > ul li {
+    position: relative;
+}
+
+.report {
+    position: absolute;
+    right: 15px;
+    color: red;
+    z-index: 1000;
     display: none;
-  }
-  .contener {
+    cursor: pointer;
+    transition-duration: 2s;
+}
+
+.card__contener--body > ul li:hover .report {
+    display: block;
+}
+
+/* MODAL */
+.modalReport {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
-    border: 0px !important;
-    width: 90%;
-    min-width: 450px;
-  }
-  .button i {
-    font-size: 10vw;
-  }
-  .card--item__text {
-    width: 100%;
-    height: 100%;
     align-items: center;
-    display: flex;
     justify-content: center;
-    font-size: 5vw;
-  }
-} */
+    font-family: cursive;
+    display: none;
+}
+
+.modalContainer {
+    background-color: #fff;
+    width: 45vw;
+    height: 40vh;
+    position: relative;
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.75em;
+    color: #fff;
+    background-image: linear-gradient(to right, #0984e3, #a29bfe);
+    margin-bottom: 0.75rem;
+}
+
+    .modalHeader h3 {
+        letter-spacing: 0.55rem;
+    }
+
+    .modalHeader i {
+        cursor: pointer;
+    }
+
+.modalBody {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin: 2rem;
+}
+
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.55rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 1px solid #a29bfe;
+}
+
+.modalBody span {
+    margin-right: 0.5rem;
+    color: #0984e3;
+}
+
+.btn-sendCode,
+.btn-verifyCode {
+    float: right;
+    margin-right: 1rem;
+    padding: 0.55rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #74b9ff, #a29bfe);
+    color: #fff;
+    transition: 0.5s;
+}
+
+    .btn-sendCode:hover {
+        opacity: 0.9;
+    }
+
+.open {
+    display: flex;
+}
+
+.bodyVerify {
+    display: none;
+}

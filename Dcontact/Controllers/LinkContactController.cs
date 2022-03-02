@@ -13,22 +13,41 @@ namespace Dcontact.Controllers
         {
             return View();
         }
+        //public ActionResult LinkContact(string username)
+        //{
+        //    String mess = "";
+        //    try
+        //    {
+        //        Util.DAO d = new Util.DAO();
+        //        Bean.Dcontact dcontact = d.DB_GetDcontact(Util.MD5.CreateMD5(username));   //khoi tao object user voi data từ db
+        //        ViewBag.link = dcontact;
+        //        //return RedirectToAction("LinkContact", "LinkContact");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        mess = ex.Message;
+        //    }
+        //    //return RedirectToAction("LinkContact", "LinkContact", new { msg = mess });
+        //    return View();
+        //}
+
         public ActionResult LinkContact(string username)
         {
-            String mess = "";
-            try
-            {
-                Util.DAO d = new Util.DAO();
-                Bean.Dcontact dcontact = d.DB_GetDcontact(Util.MD5.CreateMD5(username));   //khoi tao object user voi data từ db
-                ViewBag.link = dcontact;
-                //return RedirectToAction("LinkContact", "LinkContact");
-            }
-            catch (Exception ex)
-            {
-                mess = ex.Message;
-            }
-            //return RedirectToAction("LinkContact", "LinkContact", new { msg = mess });
+            ViewBag.name = username;
+            //try
+            //{
+            //    Util.DAO d = new Util.DAO();
+            //    string id = Util.MD5.CreateMD5(username);
+            //    Bean.Dcontact dcontact = d.DB_GetDcontact(id);
+            //    ViewBag.link = dcontact;
+            //    ViewBag.name = username;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
             return View();
         }
+
     }
 }
