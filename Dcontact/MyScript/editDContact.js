@@ -54,7 +54,6 @@ $(document).ready(function () {
     })
 
 
-
     $('.cmnRadio').change(function () {
         var radioValue = $('.cmnRadio:checked').val();
         if (radioValue == 'font') {
