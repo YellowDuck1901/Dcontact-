@@ -1,6 +1,5 @@
-@{
+﻿
 
-}
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
     <link rel="stylesheet" type="text/css" href="~/CSS/modalAccount.css">
@@ -11,36 +10,37 @@
 </head>
 <body>
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
-    @{ 
-        string type = ViewBag.typeChange;
-        string action = "";
-        if (type == "email")
-        {
-            action = "ComfirmFormEmail";
-        }
-        else
-        {
-            action = "ComfirmForm";
-        }
 
-    }
+
     <div class="container">
         <div class="header">
-        
-            <h2>Verification code has been sent to email @ViewBag.typeChange</h2>
+            <h2>Your New Email</h2>
         </div>
-        <form id="comfirmForm" class="form" action="@Url.Action(action, "Account")">
+        <form id="recoverPasswordForm" class="form" action="@Url.Action("ChangeEmailForm", "Account" )">
+
             <div class="form-control">
-                <input type="text" id="vertifyCode" name="vertifyCode"
-                       placeholder="vertify Code"
+                <input type="text" name="email" id="email"
+                       placeholder="Email"
                        onfocus="this.placeholder=''"
-                       onblur="this.placeholder=''" />
+                       onblur="this.placeholder='Email'" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
+
             <button id="open" type="submit">Submit</button>
         </form>
-    </div>
 
+        <div class="modal-container" id="modal_container">
+            <div class="modal">
+                <i class="fas fa-exclamation fa-2x"></i>
+                <p>Incorrect login details. Please retry</p>
+                <button id="close" class="button">
+                    Ok
+                </button>
+            </div>
+        </div>
+    </div>
     @{
         string msg = ViewBag.msg;
         string open = "";
@@ -69,5 +69,4 @@
             $("header").load("header.html");
         });
     </script>
-
 </body>

@@ -64,13 +64,15 @@
             <!-- Right sidebar -->
             <nav class="container__center">
                 <div class="contener">
-                    <div class="card__contener" id="preview-crop-image">  @* background image*@
+                    <div class="card__contener" id="preview-crop-image">
+                        @* background image*@
                         <div class="card__contener--header">
-                            <img id="avatar-result" alt="avatar" src="~/resource/logo/logo_single.svg"/>
+                            <img id="avatar-result" alt="avatar" src="~/resource/logo/logo_single.svg" />
                         </div>
                         <div class="card__contener--body scrollbar-hidden">
                             <ul class="social-list" id="list">
-                                <li>
+                                <li id="fbsList">
+                                    <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
                                     <div class="button"
                                          role="button"
                                          style="background-color: #273c75"
@@ -81,7 +83,9 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                <li id="insList">
+                                    <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
+
                                     <div class="button"
                                          role="button"
                                          style="background-color: #e1b12c"
@@ -93,7 +97,9 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                <li id="ytbList">
+                                    <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
+
                                     <div class="button"
                                          role="button"
                                          style="background-color: #c23616"
@@ -105,7 +111,9 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                <li id="phoneList">
+                    <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
+
                                     <div class="button"
                                          role="button"
                                          style="background-color: #40739e"
@@ -258,7 +266,7 @@
                     <button class="btn btn-success btn-block btn-upload-template">Upload Image</button>
 
                     <div id="upload-template"></div>
-                    
+
                 </div>
             </nav>
         </main>

@@ -184,6 +184,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="MyScript\LinkContact.js" />
     <Content Include="MyScript\check.js" />
     <Content Include="MyScript\create_dcard.js" />
     <Content Include="MyScript\dashboard.js" />
@@ -207,6 +208,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Account\ChangeEmail.cshtml" />
     <None Include="Views\DcontactAndDcrad\createDCard.cshtml" />
     <None Include="Views\Admin\admin.cshtml" />
     <None Include="Views\Account\Comfirm.cshtml" />

@@ -4,21 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DContact</title>
+    <title>@ViewBag.name | DContact</title>
     <link rel="stylesheet" href="~/CSS/LinkContact.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <nav class="container__right">
+    <nav class="container__right scrollbar-hidden">
         <div class="contener">
             <div class="card__contener">
                 <div class="card__contener--header">
-                    @*<img src="@ViewBag.Dcontact.avt" alt="avatar" />*@
-                    <img src="https://focusasiatravel.vn/wp-content/uploads/2021/04/trantuanviet-bavi-hanoi-1617326198.jpg" alt="avatar" />
+                    <img src="resource/logo/logo_full.svg" alt="avatar" />
                 </div>
-                <center id="username_user" style="font-family: cursive; margin: 15px">&#64username</center>
-                <div class="card__contener--body">
+                <center style="font-family: cursive; margin: 0.75rem;">&#64;@ViewBag.name</center>
+                <div class="card__contener--body scrollbar-hidden">
                     <ul>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #273c75">
@@ -30,6 +34,8 @@
                             </div>
                         </li>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+
                             <div class="button"
                                  role="button"
                                  style="background-color: #e1b12c">
@@ -41,6 +47,7 @@
                             </div>
                         </li>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #c23616">
@@ -52,6 +59,7 @@
                             </div>
                         </li>
                         <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                             <div class="button"
                                  role="button"
                                  style="background-color: #40739e">
@@ -66,14 +74,56 @@
                 </div>
                 <div class="card__contener--footer">
                     <div class="logo--mini">
-                        <a class="logo--mini" href="home">
-                        <img src="~/resource/logo/logo_full.svg" alt="logo"  />
-                        </a>
+                        <img src="resource/logo/logo_full.svg" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </nav>
+    <!-- MODAL REPORT -->
+    <div class="modalReport">
+        <div class="modalContainer">
+            <div class="modalHeader">
+                <h3>REPORT</h3>
+                <i class="fa fa-close"></i>
+            </div>
+            <div class="bodySendMail">
+                <div class="modalBody">
+                    <span>Email</span><input type="text" name="Email" id="mailReport"><i class="fa fa-exclamation-circle errorMail"></i><br>
+                </div>
+                <button class="btn-sendCode" type="submit">SEND CODE</button>
+            </div>
+
+            <div class="bodyVerify">
+                <div class="modalBody">
+                    <span>Code</span><input type="text" name="Code" id="codeVerify"><i class="fa fa-exclamation-circle errorCode"></i><br>
+                </div>
+                <div class="countdown"></div>
+                <div class="footer-button">
+                    <button class="btn-resendCode" type="submit">RESEND</button>
+                    <button class="btn-verifyCode" type="submit">SUBMIT</button>
+
+                </div>
+            </div>
+
+            <div class="reportDesc">
+                <div class="modalBody">
+                    <div class="descBody">
+                        <div class="modalItem"><span class="descTitle">Username </span><span class="descContenet">tuyenmoc</span></div>
+                        <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet">Facebook</span></div>
+                        <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet">fb.com/tuyen.danh.5249</span></div>
+                        <div class="modalItem modalDesc">
+                            <span class="descTitle">Description </span><textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
+                            <span class="errorReport">Please enter message to report <i class="fa fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-sendReport" type="submit">REPORT</button>
+
+            </div>
+        </div>
+    </div>
+<script src="~/MyScript/LinkContact.js">
+    </script>
 </body>
 </html>
-
