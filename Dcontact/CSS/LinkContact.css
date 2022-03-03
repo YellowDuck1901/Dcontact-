@@ -2,7 +2,7 @@
 html {
     padding: 0;
     margin: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -234,8 +234,9 @@ body {
 .modalContainer {
     background-color: #fff;
     width: 45vw;
-    height: 40vh;
+    height: fit-content;
     position: relative;
+    padding-bottom: 1rem;
 }
 
 .modalHeader {
@@ -279,6 +280,15 @@ input[type="text"] {
     right: 2.5rem;
 }
 
+.errorReport {
+    color: red !important;
+    position: absolute;
+    right: 1.5rem;
+    bottom: 15px;
+    font-size: 0.8rem;
+    display: none;
+}
+
 body > div > div > div.bodySendMail > div > i,
 body > div > div > div.bodyVerify > div > i {
     display: none;
@@ -290,7 +300,9 @@ body > div > div > div.bodyVerify > div > i {
 }
 
 .btn-sendCode,
-.btn-verifyCode {
+.btn-verifyCode,
+.btn-sendReport,
+.btn-resendCode {
     float: right;
     margin-right: 1rem;
     padding: 0.55rem;
@@ -312,4 +324,48 @@ body > div > div > div.bodyVerify > div > i {
 
 .bodyVerify {
     display: none;
+}
+
+.reportDesc {
+    display: none;
+}
+
+.modalDesc {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.modalItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+    .modalItem:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+    }
+
+.descBody {
+    width: 100%;
+}
+
+#txtDesc {
+    resize: none;
+    outline: none;
+    margin-top: 0.25rem;
+    font-family: cursive;
+    padding: 0.25rem;
+}
+
+.footer-button {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.countdown {
+    position: absolute;
+    bottom: 3.5rem;
+    right: 2rem;
 }

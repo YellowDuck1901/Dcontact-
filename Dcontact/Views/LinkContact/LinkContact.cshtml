@@ -80,7 +80,7 @@
             </div>
         </div>
     </nav>
-
+    <!-- MODAL REPORT -->
     <div class="modalReport">
         <div class="modalContainer">
             <div class="modalHeader">
@@ -89,32 +89,41 @@
             </div>
             <div class="bodySendMail">
                 <div class="modalBody">
-                    <span>Email</span><input type="email" name="Email" id="mailReport"><br>
+                    <span>Email</span><input type="text" name="Email" id="mailReport"><i class="fa fa-exclamation-circle errorMail"></i><br>
                 </div>
                 <button class="btn-sendCode" type="submit">SEND CODE</button>
             </div>
 
             <div class="bodyVerify">
                 <div class="modalBody">
-                    <span>Code</span><input type="number" name="Code" id="codeVerify"><br>
+                    <span>Code</span><input type="text" name="Code" id="codeVerify"><i class="fa fa-exclamation-circle errorCode"></i><br>
                 </div>
-                <button class="btn-verifyCode" type="submit">SUBMIT</button>
+                <div class="countdown"></div>
+                <div class="footer-button">
+                    <button class="btn-resendCode" type="submit">RESEND</button>
+                    <button class="btn-verifyCode" type="submit">SUBMIT</button>
+
+                </div>
+            </div>
+
+            <div class="reportDesc">
+                <div class="modalBody">
+                    <div class="descBody">
+                        <div class="modalItem"><span class="descTitle">Username </span><span class="descContenet">tuyenmoc</span></div>
+                        <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet">Facebook</span></div>
+                        <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet">fb.com/tuyen.danh.5249</span></div>
+                        <div class="modalItem modalDesc">
+                            <span class="descTitle">Description </span><textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
+                            <span class="errorReport">Please enter message to report <i class="fa fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-sendReport" type="submit">REPORT</button>
+
             </div>
         </div>
     </div>
+<script src="~/MyScript/LinkContact.js">
+    </script>
 </body>
-<script>
-    $(document).ready(function () {
-        $('.report').on('click', function () {
-            $('.modalReport').addClass('open');
-        })
-        $('.modalReport').on('click', '.fa-close', function () {
-            $('.modalReport').removeClass('open');
-        })
-
-        $('.btn-sendCode').on('click', function () {
-            $('.bodySendMail').hide();
-            $('.bodyVerify').show();
-        })
-    });</script>
 </html>

@@ -14,6 +14,26 @@ $(document).ready(function () {
             $('.bodySendMail').hide();
             $('.bodyVerify').show();
             $('.errorMail').hide();
+            // TIMER COUNTDOWN
+            var timer2 = "5:01";
+            var interval = setInterval(function () {
+                var timer = timer2.split(':');
+                //by parsing integer, I avoid all extra string processing
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+                --seconds;
+                minutes = (seconds < 0) ? --minutes : minutes;
+                if (minutes < 0) clearInterval(interval);
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                //minutes = (minutes < 10) ?  minutes : minutes;
+                $('.countdown').html(minutes + ':' + seconds);
+                timer2 = minutes + ':' + seconds;
+                // if(timer2 != "0:00") {
+                //   $('.btn-resendCode').attr('disabled','true');
+                // } 
+            }, 1000);
+
         } else {
             $('.errorMail').show();
         }
@@ -24,10 +44,27 @@ $(document).ready(function () {
         var codeInput = $('#codeVerify').val();
         if (regexCode.test(codeInput)) {
             $('.errorCode').hide();
-            alert('successful')
+            $(".bodyVerify").hide();
+            $('.reportDesc').show();
+
         } else {
             $('.errorCode').show();
         }
-    })
+    });
+    $('.btn-sendReport').on('click', function () {
+        var txtDesc = $('#txtDesc').val();
+        if (txtDesc == "") {
+            $('.errorReport').show();
+        } else {
+            $('.errorReport').hide();
+            alert('successful report')
+
+        }
+    });
+
+    $('.btn-resendCode').on('click', function () {
+        alert('successful')
+    });
+
 
 });
