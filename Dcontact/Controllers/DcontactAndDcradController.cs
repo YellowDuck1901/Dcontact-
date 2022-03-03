@@ -28,10 +28,7 @@ namespace Dcontact.Controllers
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
             Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
-            ViewBag.numerView = dcontact.numerView;
-            ViewBag.avt = dcontact.avt;
-            ViewBag.background = dcontact.background;
-            ViewBag.rows = dcontact.rows;
+            ViewBag.dcontact = dcontact;
             return View();
         }
 

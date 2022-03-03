@@ -38,32 +38,23 @@
                     <div class="statistical__contener">
                         <div class="statistical__summary">
                             <div class="statistical__summary--item">Views: <span>@dcontact.numerView</span></div>
-                            <div class="statistical__summary--item">Click: <span>3000</span></div>
+                         
+                            <div class="statistical__summary--item">Click: <span>chuatinhtong</span></div>
                         </div>
                         <div class="divider"></div>
                         <div class="statistical__detail">
                             <ul>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>800000</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
+                                @{
+                                    foreach (Bean.Row row in dcontact.rows)
+                                    {
+                                        <li>
+                                            <div class="detail--item">
+                                                <span name="title">@row.text</span> <span>@row.click</span>
+                                            </div>
+                                        </li>
+                                    }
 
+                                }
                             </ul>
                         </div>
 
@@ -76,25 +67,37 @@
             <!-- Right sidebar -->
             <nav class="container__right">
                 <div class="contener">
-                    <div class="card__contener"  style="background-image: url(https://source.unsplash.com/user/c_v_r);>
+                    <div class="card__contener"  >
                         <div class="card__contener--header">
-                            <img src="https://source.unsplash.com/user/c_v_r"
+                            <img src="@dcontact.avt"
                                  alt="avatar">
                         </div>
                         <div class="card__contener--body">
                             <ul>
 
-
-
+                                @{
+                                    foreach (Bean.Row row in dcontact.rows)
+                                    {
+                                                                <li>
+                                                                    <div class="button" role="button" style="background-color: #@row.color" href="@row.link">
+                                                                        <i class="@row.bullet"></i>
+                                                                       
+                                                                        <div class="card--item__text">
+                                                                            <label>@row.text</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                        }
+                                    }
                                 <!--<li>
-                                    <div class="button" role="button" style="background-color: #273c75">
-                                        <i class="fa fa-facebook-square"></i>-->
+        <div class="button" role="button" style="background-color: #273c75">
+            <i class="fa fa-facebook-square"></i>
                                 <!-- Label -->
                                 <!--<div class="card--item__text">
-                                            <label>Facebook</label>
-                                        </div>
-                                    </div>
-                                </li>-->
+                <label>Facebook</label>
+            </div>
+        </div>
+    </li>-->
 
                             </ul>
                         </div>
@@ -111,8 +114,10 @@
     </div>
     <script src='~/MyScript/dashboard.js'></script>
     <script src='~/MyScript/check.js'></script>
+    <script>
+            $('.card__contener').css('background-image', "url('@dcontact.background')");   //cho load anh
+/**/
+    </script>
 </body>
-
-
 </html>
 

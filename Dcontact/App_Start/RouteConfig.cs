@@ -53,6 +53,11 @@ namespace Dcontact
                 defaults: new { controller = "Account", action = "Sigup" }
             );
             routes.MapRoute(
+              name: "Change Email",
+              url: "changeemail",
+              defaults: new { controller = "Account", action = "changeEmail" }
+          );
+            routes.MapRoute(
                 name: "Dashboard",
                 url: "dashboard",
                 defaults: new { controller = "DcontactAndDcrad", action = "dashboard" }
@@ -64,20 +69,31 @@ namespace Dcontact
             );
             routes.MapRoute(
                 name: "Edit D-Contact",
-                url: "editdcontact",
+                url: "edit",
                 defaults: new { controller = "DcontactAndDcrad", action = "editDContact" }
             );
             routes.MapRoute(
                 name: "Order D-Card",
-                url: "orderdcard",
+                url: "order",
                 defaults: new { controller = "DcontactAndDcrad", action = "oder_dcard" }
             );
+
+            routes.MapRoute(
+                name: "Error",
+                url: "error",
+                defaults: new { controller = "Shared", action = "Error" }
+            );
+            routes.MapRoute(
+                name: "Link Dcontact",
+                url: "{username}",
+                defaults: new { controller = "LinkContact", action = "LinkContact"}
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }
             );
-
         }
     }
 }

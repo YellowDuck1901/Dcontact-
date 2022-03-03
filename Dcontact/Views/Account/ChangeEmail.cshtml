@@ -1,3 +1,4 @@
+﻿
 
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
@@ -13,9 +14,9 @@
 
     <div class="container">
         <div class="header">
-            <h2>Recover Password Your Account</h2>
+            <h2>Your New Email</h2>
         </div>
-        <form id="recoverPasswordForm" class="form" action="@Url.Action("RecoverPasswordForm", "Account" )">
+        <form id="recoverPasswordForm" class="form" action="@Url.Action("ChangeEmailForm", "Account" )">
 
             <div class="form-control">
                 <input type="text" name="email" id="email"
@@ -49,16 +50,16 @@
             open = "open";
         }
     }
-<div class="modal js-modal @open">
-    <div class="modal-container">
-        <div class="modal__header">
-            <i class="fas fa-exclamation fa-2x"></i> <i class="fa fa-close"></i>
-        </div>
-        <div class="modal__contener">
-            <p>@msg</p>
+    <div class="modal js-modal @open">
+        <div class="modal-container">
+            <div class="modal__header">
+                <i class="fas fa-exclamation fa-2x"></i> <i class="fa fa-close"></i>
+            </div>
+            <div class="modal__contener">
+                <p>@msg</p>
+            </div>
         </div>
     </div>
-</div>
 
     <script>
         $(document).ready(function () {

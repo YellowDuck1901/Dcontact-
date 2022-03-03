@@ -116,7 +116,7 @@ namespace Util
         {
             try
             {
-                String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
+                String sql = $"exec Pro_ChangeEmail @ID = '{id}', @Email = '{email}'";
                 this.dataReader = this.DB_ExcuteQuery(sql);
                 this.dataReader.Close();
                 return true;
@@ -190,6 +190,36 @@ namespace Util
                 this.dataReader.Close();
             }
             return dcontact;
+        }
+
+        public bool DB_checkExistedEmail(string email)
+        {
+            try
+            {
+                String sql = $"exec Pro_existedEmail @email = '{email}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+        }
+        public bool DB_ChangePass(string email, string newPass)
+        {
+            try
+            {
+                string sql = $"execute PRO_ChangePassword @email='{email}', @password ='{MD5.CreateMD5(newPass)}' ";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return true;
         }
     }
 

@@ -54,6 +54,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SqlClient">
+      <HintPath>..\ref\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -146,6 +149,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DcontactAndDcradController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkContactController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,9 +171,11 @@
     <Content Include="CSS\create_DCard.css" />
     <Content Include="CSS\dashboard.css" />
     <Content Include="CSS\editDc.css" />
+    <Content Include="CSS\error.css" />
     <Content Include="CSS\Form.css" />
     <Content Include="CSS\header.css" />
     <Content Include="CSS\home.css" />
+    <Content Include="CSS\LinkContact.css" />
     <Content Include="CSS\modal.css" />
     <Content Include="CSS\oder_dcard.css" />
     <Content Include="CSS\modalAccount.css" />
@@ -178,6 +184,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="MyScript\LinkContact.js" />
     <Content Include="MyScript\check.js" />
     <Content Include="MyScript\create_dcard.js" />
     <Content Include="MyScript\dashboard.js" />
@@ -201,6 +208,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Account\ChangeEmail.cshtml" />
     <None Include="Views\DcontactAndDcrad\createDCard.cshtml" />
     <None Include="Views\Admin\admin.cshtml" />
     <None Include="Views\Account\Comfirm.cshtml" />
@@ -225,6 +233,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\LinkContact\LinkContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

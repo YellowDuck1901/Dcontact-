@@ -1,7 +1,5 @@
-@{
-    ViewBag.Title = "editDContact";
-    Layout = "~/Views/Shared/Header.cshtml";
-}
+@{ ViewBag.Title = "editDContact";
+    Layout = "~/Views/Shared/Header.cshtml"; }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +39,7 @@
                             <legend>Avatar</legend>
                             <div class="file-input">
                                 <!-- <input type="file" id="file" class="file"> -->
-                                <input type="file" id="image-avatar">  @*an bang bang css , kich hoat bang click file__label*@
+                                <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
                                 <label for="" class="file__label">Select file</label>
                             </div>
                         </fieldset>
@@ -51,7 +49,7 @@
                         <div class="template__detail">
                             <ul>
                                 <li>
-                                    <input type="file" id="image-template">
+                                    <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
                                     <button class="btn-addTemp">Add New Template</button>
                                 </li>
                             </ul>
@@ -62,38 +60,76 @@
             </aside>
             <!-- Todo []-->
             <!-- Right sidebar -->
-
             @{
                 Bean.Dcontact dcontact = ViewBag.dcontact;
-
-
             }
             <nav class="container__center">
+
                 <div class="contener">
-                    <div class="card__contener" id="preview-crop-image" style="background: color url('@ViewBag.background')>
-              
+                    <div class="card__contener" id="preview-crop-image" style="background-image: url(@dcontact.background);">
+
                         <div class="card__contener--header">
-                            <img id="avatar-result" alt="avatar" src=@ViewBag.avt />
+                            <img id="avatar-result" alt="avatar" src="@dcontact.avt" />
                         </div>
                         <div class="card__contener--body scrollbar-hidden">
                             <ul class="social-list" id="list">
-                                @{
-                                    foreach( Bean.Row row in dcontact.rows)
-                                    { 
-                                        <li>
+                                @{ foreach (Bean.Row row in dcontact.rows)
+                                    {
+                                        <li id="@row.text">
+                                            <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
                                             <div class="button"
-                                             role="button"
-                                             style="background-color: @row.color"
-                                             id="fbs"
-                                                 href="@row.link">
-                                            <i class="@row.bullet"></i>
-                                            <div class="card--item__text">
-                                                <label>@row.text</label>
-                                            </div>                                              
-                                        </div>
-                                    </li>
-                                    }
-                                }
+                                                 role="button"
+                                                 style="background-color: #@row.color"
+                                                 id="fbs">
+                                                <i class="@row.bullet"></i>
+                                                <div class="card--item__text">
+                                                    <label style="font-family: "@row.font";" >@row.text</label>
+                                                </div>
+                                            </div>
+                                        </li>
+ } }
+                                <!--<li id="insList">
+                        <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
+
+                        <div class="button"
+                             role="button"
+                             style="background-color: #e1b12c"
+                             id="instagrams">
+                            <i class="fa fa-instagram"></i>-->
+                                <!-- Label -->
+                                <!--<div class="card--item__text">
+                                    <label>Instagram</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="ytbList">
+                            <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
+
+                            <div class="button"
+                                 role="button"
+                                 style="background-color: #c23616"
+                                 id="ytbs">
+                                <i class="fa fa-youtube-play"></i>-->
+                                <!-- Label -->
+                                <!--<div class="card--item__text">
+                                    <label>YouTube</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="phoneList">
+                            <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
+
+                            <div class="button"
+                                 role="button"
+                                 style="background-color: #40739e"
+                                 id="phones">
+                                <i class="fa fa-phone"></i>-->
+                                <!-- Label -->
+                                <!--<div class="card--item__text">
+                                    <label>Phone</label>
+                                </div>
+                            </div>
+                        </li>-->
                             </ul>
                         </div>
                         <div class="card__contener--footer">
@@ -265,4 +301,3 @@
 </body>
 
 </html>
-
