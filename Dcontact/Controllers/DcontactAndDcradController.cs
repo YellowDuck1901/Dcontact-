@@ -11,7 +11,12 @@ namespace Dcontact.Controllers
         // GET: DcontactAndDcrad
         public ActionResult dashboard()
         {
-            return View();
+
+            Util.DAO d = new Util.DAO();
+            var user = (Bean.User)Session["user"];
+            Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);          
+            ViewBag.dcontact = dcontact;
+           return View();
         }
         public ActionResult createDCard()
         {
@@ -20,6 +25,13 @@ namespace Dcontact.Controllers
 
         public ActionResult editDContact()
         {
+            Util.DAO d = new Util.DAO();
+            var user = (Bean.User)Session["user"];
+            Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
+            ViewBag.numerView = dcontact.numerView;
+            ViewBag.avt = dcontact.avt;
+            ViewBag.background = dcontact.background;
+            ViewBag.rows = dcontact.rows;
             return View();
         }
 

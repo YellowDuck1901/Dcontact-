@@ -14,12 +14,12 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void testGetU()
-        {
-            Util.DAO d = new Util.DAO();
-            Bean.User user = d.DB_getUser(MD5.CreateMD5("xoko01"), "xoko01");  //khoi tao object user voi data từ db
-            Assert.AreEqual("taocuimia@gmail.com", user.email); 
-        }
+        //public void testGetU()
+        //{
+        //    Util.DAO d = new Util.DAO();
+        //    Bean.User user = d.DB_getUser(MD5.CreateMD5("xoko01"), "xoko01");  //khoi tao object user voi data từ db
+        //    Assert.AreEqual("taocuimia@gmail.com", user.email); 
+        //}
 
 
         [DataTestMethod]

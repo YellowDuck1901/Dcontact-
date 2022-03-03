@@ -22,6 +22,9 @@
 </head>
 
 <body>
+    @{
+        Bean.Dcontact dcontact = ViewBag.dcontact;
+    }
     <div class="container">
         <header>
         </header>
@@ -34,7 +37,7 @@
                     </div>
                     <div class="statistical__contener">
                         <div class="statistical__summary">
-                            <div class="statistical__summary--item">Views: <span>300</span></div>
+                            <div class="statistical__summary--item">Views: <span>@dcontact.numerView</span></div>
                             <div class="statistical__summary--item">Click: <span>3000</span></div>
                         </div>
                         <div class="divider"></div>
@@ -60,146 +63,7 @@
                                         Phone: <span>80</span>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        <span name="title">Facebook:</span> <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Instagram: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        YouTube: <span>80</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="detail--item">
-                                        Phone: <span>80</span>
-                                    </div>
-                                </li>
+
                             </ul>
                         </div>
 
@@ -207,35 +71,21 @@
                 </div>
                 <!-- <div class="arrow" style="color: black; font-size:30px;"><i class="fa fa-arrow-circle-right"></i></div> -->
             </aside>
+
+
             <!-- Right sidebar -->
             <nav class="container__right">
                 <div class="contener">
-                    <div class="card__contener">
+                    <div class="card__contener"  style="background-image: url(https://source.unsplash.com/user/c_v_r);>
                         <div class="card__contener--header">
-                            <img src="https://scontent-sin6-2.xx.fbcdn.net/v/t1.6435-9/123137252_1351000158565230_7321193544219366257_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=WC_jN_PUVwsAX9BOWIp&_nc_ht=scontent-sin6-2.xx&oh=00_AT9ir3tQaPi1Ttrx7TyFVCtR9iWAj6HwH4Fz9KYc3AV8DA&oe=620C8276"
+                            <img src="https://source.unsplash.com/user/c_v_r"
                                  alt="avatar">
                         </div>
                         <div class="card__contener--body">
                             <ul>
-                                @{
-                                    Bean.Dcontact dcontact = ViewBag.dcontact;
-                                }
 
-                                @foreach (Bean.Row row in dcontact.rows)
-                                {
 
-                                    <li>
-                                        <a href="@row.link">
-                                            <div class="button" role="button" style="background-color: #273c75">
-                                                <i class="fa @row.bullet"></i>
-                                                <!-- Label -->
-                                                <div class="card--item__text">
-                                                    <label>@row.text</label>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                }
+
                                 <!--<li>
                                     <div class="button" role="button" style="background-color: #273c75">
                                         <i class="fa fa-facebook-square"></i>-->
