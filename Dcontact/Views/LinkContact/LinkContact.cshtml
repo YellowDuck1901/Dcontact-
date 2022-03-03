@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DContact</title>
-    <link rel="stylesheet" href="~/CSS/LinkContact.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>@ViewBag.name | DContact</title>
+    <link rel="stylesheet" href="~/CSS/LinkContact.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
 
 </head>
@@ -18,7 +18,7 @@
                 <div class="card__contener--header">
                     <img src="resource/logo/logo_full.svg" alt="avatar" />
                 </div>
-                <center style="font-family: cursive; margin: 0.75rem;">&#64Username</center>
+                <center style="font-family: cursive; margin: 0.75rem;">&#64;@ViewBag.name</center>
                 <div class="card__contener--body scrollbar-hidden">
                     <ul>
                         <li>
@@ -89,21 +89,32 @@
             </div>
             <div class="bodySendMail">
                 <div class="modalBody">
-                    <span>Email</span><input type="text" name="MailReport" id="mailReport"><i class="fa fa-exclamation-circle errorMail"></i><br>
+                    <span>Email</span><input type="email" name="Email" id="mailReport"><br>
                 </div>
                 <button class="btn-sendCode" type="submit">SEND CODE</button>
             </div>
 
             <div class="bodyVerify">
                 <div class="modalBody">
-                    <span>Code</span><input type="text" name="Code" id="codeVerify"><i class="fa fa-exclamation-circle errorCode"></i><br>
+                    <span>Code</span><input type="number" name="Code" id="codeVerify"><br>
                 </div>
                 <button class="btn-verifyCode" type="submit">SUBMIT</button>
             </div>
         </div>
     </div>
-
-    <script type="text/javascript" src="~/MyScript/LinkContact.js"></script>
 </body>
-</html>
+<script>
+    $(document).ready(function () {
+        $('.report').on('click', function () {
+            $('.modalReport').addClass('open');
+        })
+        $('.modalReport').on('click', '.fa-close', function () {
+            $('.modalReport').removeClass('open');
+        })
 
+        $('.btn-sendCode').on('click', function () {
+            $('.bodySendMail').hide();
+            $('.bodyVerify').show();
+        })
+    });</script>
+</html>
