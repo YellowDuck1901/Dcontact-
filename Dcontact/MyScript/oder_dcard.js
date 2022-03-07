@@ -27,7 +27,6 @@ function stepperUpdate() {
     if (stepper.value >= 1) {
         $("#amount").val(stepper.value);
     } else stepper.value = 1;
-    totalPrice();
 }
 $(".stepperButton").on("click", "#minus, #plus", function () {
     switch ($(this).attr("id")) {
@@ -234,24 +233,27 @@ $(document).ready(function () {
     $('#buy').on('click', function () {
         $.ajax({
             origin: '*',
-            type: "get",
-            url: "https://webhook.site/bfab47bc-b4b6-46bb-bbb5-809f3a81e351",
+            type: "post",
+            url: "DcontactAndDcrad/oder_dcardForm",
             data: {
                 cardBackGround: 'data',
-                number: stepper.value,
                 address: address.value,
-                cardNumber: credit.value
+                phone: phone.value,
+                amount: stepper.value,
+                cardNumber: credit.value,
+                cvv: credit.cvv.value,
+                exp: credit.ExpDate.value
             },
             beforeSend: function () {
                 $('body > div.modal.js-modal.open > div > div.modal__contener').html('<center><div class="spinner"></div></center>');
                 $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html("");
             },
             success: function (msg) {
-                $('body > div.modal.js-modal.open > div > div.modal__contener').html('<h2>Successfull</h2>');
+                $('body > div.modal.js-modal.open > div > div.modal__contener').html('<h2>' + msg + '</h2>');
                 $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html('<button type="button" id="close">Close</button>');
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus);
+                $('body').html(jqXHR.responseText);
             }
         });
     });
