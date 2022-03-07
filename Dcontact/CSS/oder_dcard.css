@@ -6,6 +6,7 @@ html {
     width: 100%;
     font-size: 1vw;
     overflow: hidden;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -19,103 +20,134 @@ body {
     background-size: cover;
 }
 
-input,
-select,
-textarea,
-.payment__label {
-    font-size: 1vw;
-}
-
 .container {
     display: flex;
-    height: calc(100% - 18px);
-    /* height: 100%; */
-    margin-top: 15px;
+    height: 100%;
     /* padding: 8px; */
 }
 
 .container__half {
     flex: 1;
-    height: calc(100% - 5rem - 10px);
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
     /* position: relative; */
 }
-
-.payment__container {
-    font-family: "Inter", sans-serif;
-    height: 100%;
+/* card */
+.card_review {
+    border-radius: 2rem;
+    padding: 2rem;
     width: 100%;
-}
-
-.physic_card {
-    align-items: center;
+    height: 90%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
-    width: 100%;
-    height: 250px;
-    padding: 5px;
+    align-items: center;
 }
 
-.card__container {
-    box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 4px, rgba(255, 255, 255, 0.3) 0px 7px 13px -3px, rgba(255, 255, 255, 0.2) 0px -3px 0px inset;
-    background-image: url("https://media.istockphoto.com/photos/sympathy-card-with-calla-lily-flowers-picture-id1303050518?b=1&k=20&m=1303050518&s=170667a&w=0&h=w-9N1C7zX6WCAEPEZkCh2MkmmAjDh8-dam3iDZ_UMBo=");
-    width: 500px;
-    height: 250px;
-    border-radius: 4%;
-}
-
-.detail__payments {
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+    .card_review img {
+        width: 40rem;
+        height: 20rem;
+        background-image: url("https://media.istockphoto.com/photos/sympathy-card-with-calla-lily-flowers-picture-id1303050518?b=1&k=20&m=1303050518&s=170667a&w=0&h=w-9N1C7zX6WCAEPEZkCh2MkmmAjDh8-dam3iDZ_UMBo=");
+        border-radius: 0.5em;
+    }
+/* ----------------- */
+/* form */
+.payment_form {
+    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    height: 100%;
-    background-color: #ffffff;
+    width: 95%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    overflow: auto;
 }
 
-.detail__payments__header {
+.form_header,
+.form_footer {
+    height: 17%;
     display: flex;
     align-items: center;
-    background: #192a56;
-    border-radius: 19px 0 0 19px;
-    color: #f5f6fa;
     justify-content: center;
-    margin: 11px 0px 11px 8px;
-    height: 10%;
+    text-align: justify;
 }
 
-.detail__address,
-.detail__number {
-    width: 100%;
-    height: 15%;
+.form_container {
+    flex-grow: 1;
+    margin: 0 3rem 0 3rem;
 }
 
-.detail__payment {
-    height: 40%;
-    padding: 10px 0px 10px 10px;
+.form_header > div {
+    height: 95%;
+    background: rgb(46, 46, 82);
+    width: 90%;
+    border-radius: 0.25rem;
+    font-size: 2rem;
+    text-align: center;
+    color: white;
 }
 
-.adderss__input {
+.form__item--single {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form__item--group {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
     position: relative;
     display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-    .adderss__input input {
-        /* width: calc(100% - 15px); */
-        width: 100%;
-        border-radius: 3px;
-        height: 2em;
-        /* padding: 3px 15px 3px 15px; */
-        border: 0px;
-        box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+.item--group {
+    display: flex;
+    flex-direction: row;
+}
+
+    .item--group .item:not(:last-child) {
+        margin-right: 0.25em;
     }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.form__item--group .item {
+    position: relative;
 }
+
+    .form__item--group .item span {
+        position: absolute;
+        right: 0;
+    }
+/*form__item--group*/
+
+/*form__item--single*/
+.form__item--single > label {
+    font-size: 1.5rem;
+    font-weight: 630;
+}
+
+.item > input[type="text"],
+expdate {
+    border: 0;
+    height: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 0.25em;
+}
+
+.form__item--groub .item input[type="text"] {
+    border: 0;
+    height: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 0.25em;
+}
+
+/* stepper */
 
 /* Firefox */
 input[type="number"] {
@@ -128,24 +160,10 @@ input[type="number"] {
         margin: 0;
     }
 
-.detail__payments__content {
-    width: 80%;
-    height: 100%;
-    /* padding: 0.5em 0.5em 0.5em; */
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    overflow: auto;
-}
-
-.number--item {
-    width: 80px;
-    margin-left: 8px;
-    /* with button stepper */
-}
-
 .stepperButton {
     display: flex;
-    width: 5rem;
+    /* width of stepper here */
+    width: 7rem;
     height: 2rem;
     position: relative;
 }
@@ -153,6 +171,17 @@ input[type="number"] {
 .stepper__button--p,
 .stepper__button--m {
     width: 40%;
+    font-size: 1vw;
+}
+
+#creditNumber,
+#amount,
+#address,
+#cvv,
+#expMonth,
+#expYear,
+#phone,
+select {
     font-size: 1vw;
 }
 
@@ -179,189 +208,99 @@ input#amount {
 .stepperButton {
     border: 1px solid;
 }
-
-.creditCard__accepted {
-    display: flex;
+/* _____________ */
+/* payment__panel */
+.form__item--group > * label {
+    color: rgb(131, 131, 131);
+    font-weight: 670;
+    font-size: 0.75rem;
+    padding: 0.25rem;
 }
 
-.card--mini svg {
+.credit__accept {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.accept__item {
+    width: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+
+    .accept__item svg {
+        width: 1.5rem;
+        filter: grayscale(100%);
+    }
+/* _____________ */
+/* expdate */
+expdate {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1px 2px;
+}
+
+    expdate select {
+        flex-grow: 1;
+        font-size: 1rem;
+        text-align: center;
+        border: 0;
+        width: 1.5rem;
+    }
+/* _____________ */
+/* card credit */
+.card--mini {
     margin: 8px 11px;
     height: 30px;
     filter: grayscale(100%);
 }
 
-.payment__form {
-    width: 100%;
-    height: calc(90% - 22px);
-    display: flex;
-    justify-content: center;
-    overflow: auto;
-}
-
-.accept svg {
+.accept {
     filter: grayscale(0%) !important;
 }
+/* ______ */
+/* error */
 
-.payment__data__container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 25%;
-}
-
-.creditCard__accepted {
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.payment__input {
+.item > span {
+    position: absolute;
     height: 100%;
+    right: 0;
 }
 
-    .payment__input input {
-        height: 100%;
-        width: 100%;
-        /* width: calc(100% - 15px); */
-        text-align: center;
-        border-radius: 3px;
-        /* padding: 3px 6px 3px 6px; */
-        border: 0px;
-        box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
-        /* position: relative; */
+    .item > span > i {
+        top: calc(50% + 0.25rem);
+        right: calc(100% + 0.25em);
     }
 
-.payment__data--item {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 0.5em;
-    /* position: relative; */
-    /* overflow: hidden; */
+.error {
+    color: #e84118;
+    position: absolute;
 }
 
-    .payment__data--item:not(:last-child) {
-        flex-basis: 40%;
+.spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 6px solid;
+    border-color: #dbdcef;
+    border-right-color: #ffa147;
+    animation: spinner-d3wgkg 1s infinite linear;
+}
+/* animation */
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
     }
-
-    .payment__data--item:last-child {
-        flex-grow: 1;
-    }
-
-.expDate {
-    /* width: calc(100% - 15px); */
-    /* width: 100%; */
-    height: 100%;
-    flex-flow: row nowrap;
-    display: flex;
-    position: relative;
-    /* padding: 3px 6px 3px 6px; */
 }
 
-.expiration__detail {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    /* width: calc(100% - 15px); */
-    text-align: center;
-    justify-content: space-around;
-    align-items: center;
-    border: 0px;
-    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
-    border-radius: 3px;
-    font-family: Arial;
-    /* position: relative; */
-}
-
-    .expiration__detail select {
-        height: 100%;
-        /* text-align: center; */
-        border: 0px;
-        outline: none;
-    }
-
-.payment__label {
-    /* margin-top: 3px; */
-    /* margin-bottom: 2px; */
-    /* font-size: 15px; */
-    font-family: "Inter", sans-serif;
-    color: #7f8fa6;
-    font-weight: 600;
-}
-
-.cvv {
-    /* position: relative; */
-    display: inline-block;
-    height: 100%;
-}
-
-    .cvv input {
-        border-radius: 3px;
-        height: 100%;
-        width: 100%;
-        /* width: calc(100% - 15px); */
-        box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
-        border: 0px;
-        /* padding: 3px 6px 3px 6px; */
-        border-radius: 3px;
-    }
-
-.confirm__payment {
-    float: right;
-    padding: 20px;
-}
-
-/* CSS */
-.button-39 {
-    background-color: #192a56;
-    border: 1px solid rgb(209, 213, 219);
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    color: white;
-    font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 1.25rem;
-    padding: 0.75rem 1rem;
-    text-align: center;
-    text-decoration: none #d1d5db solid;
-    text-decoration-thickness: auto;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
-
-    .button-39:hover {
-        background-color: #2f3640;
-    }
-
-    .button-39:focus {
-        outline: 2px solid transparent;
-        outline-offset: 2px;
-    }
-
-    .button-39:focus-visible {
-        box-shadow: none;
-    }
-
-.warning {
-    color: #fbc531;
-}
-
-.modal_foo {
-    margin: 2rem 3rem;
-}
-
-/* _+_________________ */
 .shake-horizontal {
     -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
     animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
-
 /* ----------------------------------------------
- * Generated by Animista on 2022-1-25 13:51:47
+ * Generated by Animista on 2022-3-6 23:34:14
  * Licensed under FreeBSD License.
  * See http://animista.net/license for more info. 
  * w: http://animista.net, t: @cssanimista
@@ -426,57 +365,42 @@ input#amount {
     }
 }
 
-span {
-    position: relative;
-    height: 100%;
+/* ___________ */
+
+/* ___________ */
+/* Button */
+/* CSS */
+.button-39 {
+    background-color: #192a56;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: white;
+    font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    text-decoration: none #d1d5db solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-.error {
-    color: #e84118;
-    position: absolute;
-    top: calc(50% - 15px);
-    left: -15px;
-    /* right: 15px; */
-    /* transform: translate(-150%, calc(-100% - 2px)); */
-    margin-bottom: 2px;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 6px solid;
-    border-color: #dbdcef;
-    border-right-color: #ffa147;
-    animation: spinner-d3wgkg 1s infinite linear;
-}
-
-@keyframes spinner-d3wgkg {
-    to {
-        transform: rotate(1turn);
+    .button-39:hover {
+        background-color: #2f3640;
     }
-}
 
-  80% {
-    -webkit-transform: translateX(8px);
-    transform: translateX(8px);
-  }
-  90% {
-    -webkit-transform: translateX(-8px);
-    transform: translateX(-8px);
-  }
-}
-span {
-  position: relative;
-  width: 0px;
-  height: 100%;
-}
-.error {
-  color: #e84118;
-  position: absolute;
-  top: calc(50% - 15px);
-  left: -15px;
-  /* right: 15px; */
-  /* transform: translate(-150%, calc(-100% - 2px)); */
-  margin-bottom: 2px;
-}
+    .button-39:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+
+    .button-39:focus-visible {
+        box-shadow: none;
+    }
+/* ___________ */
