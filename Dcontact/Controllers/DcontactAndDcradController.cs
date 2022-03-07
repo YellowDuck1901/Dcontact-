@@ -41,6 +41,9 @@ namespace Dcontact.Controllers
                 string credit = Request.Form["cardNumber"];
                 string cvv = Request.Form["cvv"];
                 string exp = Request.Form["exp"];
+                Util.DAO d = new Util.DAO();
+                float price = int.Parse(amount) * 6;
+                d.DB_AddOrder(user.id, address, phone, amount, credit, cvv, exp, price.ToString(), data);
                 mess = "success";
             }
             catch (Exception e)
