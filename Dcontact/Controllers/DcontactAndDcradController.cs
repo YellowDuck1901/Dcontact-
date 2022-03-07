@@ -33,6 +33,7 @@ namespace Dcontact.Controllers
             string mess = "message";
             try
             {
+                Bean.User user = (Bean.User)Session["user"];
                 string data = Request.Form["cardBackGround"];
                 string address = Request.Form["address"];
                 string phone = Request.Form["phone"];
