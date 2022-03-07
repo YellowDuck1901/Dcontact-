@@ -125,5 +125,13 @@ namespace TestUtil
             System.Console.WriteLine(Util.RandomCode.Random_6D());
             Assert.AreNotSame(Util.RandomCode.Random_6D(), Util.RandomCode.Random_6D());
         }
+
+        [TestMethod]
+        public void TestAddOrder()
+        {
+            Util.DAO dao = new Util.DAO();
+            Assert.AreEqual(true, dao.DB_AddOrder("26E5DA5A1C242BC81DD1DA5CCFFD1F4F", "Vinh Long", "0774835264", "2", "4123123123123123", "123", "2023-1-1", "12", "none data"));
+        }
+
     }
 }
