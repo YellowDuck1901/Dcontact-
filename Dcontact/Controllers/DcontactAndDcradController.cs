@@ -36,5 +36,30 @@ namespace Dcontact.Controllers
         {
             return View();
         }
+
+        public ActionResult oder_dcardForm()
+        {
+            string mess = "message";
+            try
+            {
+                Bean.User user = (Bean.User)Session["user"];
+                string data = Request.Form["cardBackGround"];
+                string address = Request.Form["address"];
+                string phone = Request.Form["phone"];
+                string amount = Request.Form["amount"];
+                string credit = Request.Form["cardNumber"];
+                string cvv = Request.Form["cvv"];
+                string exp = Request.Form["exp"];
+                Util.DAO d = new Util.DAO();
+                float price = int.Parse(amount) * 6;
+                d.DB_AddOrder(user.id, address, phone, amount, credit, cvv, exp, price.ToString(), data);
+                mess = "success";
+            }
+            catch (Exception e)
+            {
+                mess = e.Message;
+            }
+            return Content(mess);
+        }
     }
 }
