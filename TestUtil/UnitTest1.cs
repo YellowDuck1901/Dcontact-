@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 /*https://docs.microsoft.com/en-us/visualstudio/test/getting-started-with-unit-testing?view=vs-2022&tabs=dotnet%2Cmstest*/
 namespace TestUtil
 {
@@ -17,7 +18,7 @@ namespace TestUtil
         [DataTestMethod]
         [DataRow("F6FDFFE48C908DEB0F4C3BD36C032E72", "adminadmin")]
         [DataRow("900150983CD24FB0D6963F7D28E17F72", "abc")]
-        [DataRow("A562CFA07C2B1213B3A5C99B756FC206", "ade")]
+        [DataRow("A562CFA07C2B1213B3A5C99B756FC206", "thanhtuyen")]
         public void TestMD5(string md5, string index)
         {
             Assert.AreEqual(md5, Util.MD5.CreateMD5(index));
@@ -124,6 +125,34 @@ namespace TestUtil
         {
             System.Console.WriteLine(Util.RandomCode.Random_6D());
             Assert.AreNotSame(Util.RandomCode.Random_6D(), Util.RandomCode.Random_6D());
+        }
+
+        [DataTestMethod]
+        [DataRow("R01", "F424ACB07F0888010EAB05B5E260171C")]
+        [DataRow("R01", "123123")]
+        public void TestDelRow(string idRow, string idContact)
+        {
+            Util.DAO dao = new Util.DAO();
+            Assert.AreEqual(true,dao.DB_DelRow(idRow, idContact));
+        }
+
+        [DataTestMethod]
+        [DataRow("R02", "F424ACB07F0888010EAB05B5E260171C", "Shopee", "Cursive", "666", "shopee.vn", "fa fa-shopping-cart", "1234", "1998-01-01", "10")]
+
+        public void TestUpdateRow(string idRow, string idContact, string text, string font, string rowColor,
+            string link, string bullet, string code, string birth, string click)
+        {
+            Util.DAO dao = new Util.DAO();
+            Assert.AreEqual(true, dao.DB_UpdateRow(idRow, idContact, text, font, rowColor, link, bullet, code, birth, click));
+        }
+
+        [DataTestMethod]
+        [DataRow("R07", "E41BE255D114E8E51705DD5178238427", "Zalo", "consolas", "8abc", "zalo.vn", "fa fa-zalo", "2345", "1998-01-01", "0")]
+        public void TestAddRow(string idRow, string idContact, string text, string font, string rowColor,
+            string link, string bullet, string code, string birth, string click)
+        {
+            Util.DAO dao = new Util.DAO();
+            Assert.AreEqual(true, dao.DB_AddRow(idRow, idContact, text, font, rowColor, link, bullet, code, birth, click));
         }
     }
 }

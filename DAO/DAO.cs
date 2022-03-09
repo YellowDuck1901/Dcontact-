@@ -206,6 +206,57 @@ namespace Util
             }
             return true;
         }
+
+        public bool DB_DelRow(string idRow, string idDcontact)
+        {
+            try
+            {
+                string sql = $"execute Pro_deleteRow @idRow='{idRow}', @idContact='{idDcontact}' ";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_UpdateRow(string idRow, string idContact, string text, string font, string rowColor,
+            string link, string bullet, string code, string birth, string click)
+        {
+            try
+            {
+                string sql = $"execute Pro_UpdateRow @idRow='{idRow}', @idContact='{idContact}'," +
+                    $"@text='{text}',@font='{font}', @rowColor='{rowColor}', @link = '{link}', @bullet = '{bullet}'," +
+                    $"@code = {code}, @birth = '{birth}', @click = {click}";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_AddRow(string idRow, string idContact, string text, string font, string rowColor,
+            string link, string bullet, string code, string birth, string click)
+        {
+            try
+            {
+                string sql = $"exec Pro_AddRow @idRow = '{idRow}', @idContact = '{idContact}', @text = '{text}', @font = '{font}'," +
+                            $"@rowColor = '{rowColor}', @link = '{link}', @bullet = '{bullet}', @code = {code}, " +
+                            $"@birth = '{birth}', @click = {click}";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return true;
+        }
     }
 
 
