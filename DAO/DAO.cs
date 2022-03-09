@@ -91,6 +91,21 @@ namespace Util
             this.dataReader.Close();
             return false;
         }
+        public bool DB_checkExistedEmail(string email)
+        {
+            try
+            {
+                String sql = $"exec Pro_existedEmail @email = '{email}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+        }
 
         public bool DB_SignUp(String Username, String Email, String Password)
         {
@@ -252,6 +267,15 @@ namespace Util
                 this.dataReader.Close();
             }
             catch (SqlException ex)
+        public bool DB_AddOrder(string id_user, string address, string phone, string number, string credit, string cvv, string expdate, string price, string data)
+        {
+            string sql = $"EXECUTE dbo.PRO_AddOrder @ID_User='{id_user}',  @address ='{address}',  @phone='{phone}',  @number='{number}',  @credit='{credit}',  @cvv='{cvv}',  @expdate='{expdate}', @price='{price}',  @data='{data}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
             {
                 throw;
             }

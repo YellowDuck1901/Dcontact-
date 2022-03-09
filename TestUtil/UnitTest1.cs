@@ -154,5 +154,12 @@ namespace TestUtil
             Util.DAO dao = new Util.DAO();
             Assert.AreEqual(true, dao.DB_AddRow(idRow, idContact, text, font, rowColor, link, bullet, code, birth, click));
         }
+        [TestMethod]
+        public void TestAddOrder()
+        {
+            Util.DAO dao = new Util.DAO();
+            Assert.AreEqual(true, dao.DB_AddOrder("26E5DA5A1C242BC81DD1DA5CCFFD1F4F", "Vinh Long", "0774835264", "2", "4123123123123123", "123", "2023-1-1", "12", "none data"));
+        }
+
     }
 }
