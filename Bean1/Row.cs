@@ -8,6 +8,7 @@ namespace Bean
 {
     public class Row
     {
+        public string ID;
         public string text;
         public string font;
         public string link;
@@ -17,8 +18,9 @@ namespace Bean
         public string code;
         public string birth;
 
-        public Row(string text, string font, string link, string bullet, string color, string click, string code, string birth)
+        public Row(string id ,string text, string font, string link, string bullet, string color, string click, string code, string birth)
         {
+            this.ID = id;
             this.text = text;
             this.font = font;
             this.link = link;

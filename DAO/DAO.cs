@@ -184,21 +184,22 @@ namespace Util
 
                 this.dataReader.Close();
 
-                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
+                string sqlr = $"select r.ID, r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
                 this.dataReader = DB_ExcuteQuery(sqlr);
                 List<Row> r = new List<Row>();
 
                 while (dataReader.Read())
                 {
                     Row a = new Row();
-                    a.text = (string)dataReader.GetValue(0);
-                    a.font = (string)dataReader.GetValue(1);
-                    a.link = (string)dataReader.GetValue(2);
-                    a.bullet = (string)dataReader.GetValue(3);
-                    a.click = (string)dataReader.GetValue(4).ToString();
-                    a.code = (string)dataReader.GetValue(5).ToString();
-                    a.birth = (string)dataReader.GetValue(6).ToString();
-                    a.color = (string)dataReader.GetValue(7).ToString();
+                    a.ID = (string)dataReader.GetValue(0);
+                    a.text = (string)dataReader.GetValue(1);
+                    a.font = (string)dataReader.GetValue(2);
+                    a.link = (string)dataReader.GetValue(3);
+                    a.bullet = (string)dataReader.GetValue(4);
+                    a.click = (string)dataReader.GetValue(5);
+                    a.code = (string)dataReader.GetValue(6);
+                    a.birth = (string)dataReader.GetValue(7);
+                    a.color = (string)dataReader.GetValue(8);
                     r.Add(a);
                 }
                 dcontact.rows = r;
