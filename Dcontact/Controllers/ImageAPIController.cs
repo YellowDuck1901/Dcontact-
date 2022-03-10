@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
@@ -10,96 +10,87 @@ namespace Dcontact.Controllers
 {
     public class ImageAPIController : ApiController
     {
+        //[Route("api/ImageAPI/UploadFiles")]
+        //[HttpPost]
+        //public async Task<HttpResponseMessage> UploadFiles()
+        //{
+
+        //    if (!Request.Content.IsMimeMultipartContent())
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+        //    }
+        //    string root = HttpContext.Current.Server.MapPath("~/Uploads");
+        //    if (!Directory.Exists(root))
+        //    {
+        //        Directory.CreateDirectory(root);
+        //    }
+        //    var provider = new MultipartFormDataStreamProvider(root);
+        //    try
+        //    {
+        //        // Read the form data.
+        //        await Request.Content.ReadAsMultipartAsync(provider);
+
+        //        // This illustrates how to get the file names.
+        //        string success = "null";
+        //        foreach (MultipartFileData file in provider.FileData)
+        //        {
+        //            success = "1";
+        //            Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+        //            success = file.Headers.ContentDisposition.FileName;
+        //            Trace.WriteLine("Server file path: " + file.LocalFileName);
+        //        }
+        //        return Request.CreateResponse(HttpStatusCode.OK, success);
+        //    }
+        //    catch (System.Exception e)
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+        //    }
+        //    //Send OK Response to Client.
+        //}
+
+
+        [Route("api/ImageAPI/UploadFiles")]
         [HttpPost]
-        [Route("api/ImageAPI/SaveFile")]
-        public HttpResponseMessage SaveFile()
+        public HttpResponseMessage UploadFiles()
         {
+            //Create the Directory.
             string path = HttpContext.Current.Server.MapPath("~/Uploads/");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            //Create HTTP Response.
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
 
-            //Check if Request contains File.
-            //if (HttpContext.Current.Request.Files.Count == 0)
-            //{
-            //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            //}
-            try
-            {
-                HttpResponseMessage result = null;
-                var httpRequest = HttpContext.Current.Request;
-                if (httpRequest.Files.Count > 0)
-                {
-                    var docfiles = new List<string>();
-                    foreach (string file in httpRequest.Files)
-                    {
-                        var postedFile = httpRequest.Files[file];
-                        if (postedFile.ContentLength == 0)
-                        {
-                            continue;
-                        }
-                        postedFile.SaveAs(path);
-                        docfiles.Add(path);
-                    }
-                    result = Request.CreateResponse(HttpStatusCode.Created, docfiles);
-                }
-                else
-                {
-                    result = Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
-                return result;
+            //Fetch the File.
+            HttpPostedFile postedFile = HttpContext.Current.Request.Files[0];
 
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-                throw;
-            }
+            //Fetch the File Name.
+            string fileName = Path.GetFileName("avt_check.png");
 
-            //Read the File data from Request.Form collection.
-            //HttpPostedFile postedFile = HttpContext.Current.Request.Files[0];
-            //string fileName = Path.GetFileName(postedFile.FileName);
-            //postedFile.SaveAs(path + fileName + ".jpg");
-            //return Request.CreateResponse(HttpStatusCode.OK, response);
+            //Save the File.
+            postedFile.SaveAs(path + fileName);
+
+            //Send OK Response to Client.
+            return Request.CreateResponse(HttpStatusCode.OK, fileName);
         }
+
 
         //[HttpPost]
         //[Route("api/ImageAPI/GetFiles")]
         //public HttpResponseMessage GetFiles()
         //{
-        //    FilesEntities entities = new FilesEntities();
-        //    var files = from file in entities.tblFiles
-        //                select new { id = file.id, Name = file.Name };
-        //    return Request.CreateResponse(HttpStatusCode.OK, files);
-        //}
+        //    string path = HttpContext.Current.Server.MapPath("~/Uploads/");
 
-        //[HttpGet]
-        //[Route("api/ImageAPI/GetFile")]
-        //public HttpResponseMessage GetFile(int fileId)
-        //{
-        //    //Create HTTP Response.
-        //    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+        //    //Fetch the Image Files.
+        //    List<string> images = new List<string>();
 
-        //    //Fetch the File data from Database.
-        //    FilesEntities entities = new FilesEntities();
-        //    tblFile file = entities.tblFiles.ToList().Find(p => p.id == fileId);
+        //    //Extract only the File Names to save data.
+        //    foreach (string file in Directory.GetFiles(path))
+        //    {
+        //        images.Add(Path.GetFileName(file));
+        //    }
 
-        //    //Set the Response Content.
-        //    response.Content = new ByteArrayContent(file.Data);
-
-        //    //Set the Response Content Length.
-        //    response.Content.Headers.ContentLength = file.Data.LongLength;
-
-        //    //Set the Content Disposition Header Value and FileName.
-        //    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-        //    response.Content.Headers.ContentDisposition.FileName = file.Name;
-
-        //    //Set the File Content Type.
-        //    response.Content.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
-        //    return response;
+        //    return Request.CreateResponse(HttpStatusCode.OK, images);
         //}
     }
+  
 }
