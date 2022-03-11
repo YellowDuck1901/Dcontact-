@@ -153,9 +153,9 @@ namespace Util
                 if (dataReader.Read())
                 {
                     user = new User();
-                    user.id = (string)dataReader.GetValue(0);
+                    user.id = dataReader.GetValue(0);
                     user.username = username;
-                    user.email = (string)dataReader.GetValue(1);
+                    user.email = dataReader.GetValue(1);
                     user.isban = (bool)dataReader.GetValue(2);
                     this.dataReader.Close();
                     user.dcontact = this.DB_GetDcontact(id);
@@ -178,9 +178,9 @@ namespace Util
             if (this.dataReader.Read())
             {
                 dcontact = new Dcontact();
-                dcontact.numerView = (string)dataReader.GetValue(0).ToString();
-                dcontact.avt = (string)dataReader.GetValue(1);
-                dcontact.background = (string)dataReader.GetValue(2);
+                dcontact.numerView = dataReader.GetValue(0).ToString();
+                dcontact.avt = dataReader.GetValue(1).ToString();
+                dcontact.background = dataReader.GetValue(2).ToString();
 
                 this.dataReader.Close();
 
@@ -191,15 +191,15 @@ namespace Util
                 while (dataReader.Read())
                 {
                     Row a = new Row();
-                    a.ID = (string)dataReader.GetValue(0);
-                    a.text = (string)dataReader.GetValue(1);
-                    a.font = (string)dataReader.GetValue(2);
-                    a.link = (string)dataReader.GetValue(3);
-                    a.bullet = (string)dataReader.GetValue(4);
-                    a.click = (string)dataReader.GetValue(5);
-                    a.code = (string)dataReader.GetValue(6);
-                    a.birth = (string)dataReader.GetValue(7);
-                    a.color = (string)dataReader.GetValue(8);
+                    a.ID = dataReader.GetValue(0).ToString();
+                    a.text = dataReader.GetValue(1).ToString();
+                    a.font = dataReader.GetValue(2).ToString();
+                    a.link = dataReader.GetValue(3).ToString();
+                    a.bullet = dataReader.GetValue(4).ToString();
+                    a.click = dataReader.GetValue(5).ToString();
+                    a.code = dataReader.GetValue(6).ToString();
+                    a.birth = dataReader.GetValue(7).ToString();
+                    a.color = dataReader.GetValue(8).ToString();
                     r.Add(a);
                 }
                 dcontact.rows = r;
