@@ -18,7 +18,7 @@ namespace Bean
         public string code;
         public string birth;
 
-        public Row(string id ,string text, string font, string link, string bullet, string color, string click, string code, string birth)
+        public Row(string id, string text, string font, string link, string bullet, string color, string click, string code, string birth)
         {
             this.ID = id;
             this.text = text;
