@@ -74,23 +74,7 @@ namespace Util
 
         }
 
-        public bool DB_OrderDCard(String id)
-        {
-            String sql = @"select * from dbo.Order_list where ID_user = '" + id + "'";
-            this.dataReader = this.DB_ExcuteQuery(sql);
-            if (dataReader.Read())
-            {
-                Console.WriteLine($"IDUser {dataReader.GetValue(0)}");
-                Console.WriteLine($"NumberCard {dataReader.GetValue(1)}");
-                Console.WriteLine($"ShippingAddress {dataReader.GetValue(2)}");
-                Console.WriteLine($"ExportPrice {dataReader.GetValue(3)}");
-                Console.WriteLine($"TradingCode {dataReader.GetValue(4)}");
-                return true;
-            }
 
-            this.dataReader.Close();
-            return false;
-        }
         public bool DB_checkExistedEmail(string email)
         {
             try
