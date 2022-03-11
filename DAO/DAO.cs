@@ -153,9 +153,9 @@ namespace Util
                 if (dataReader.Read())
                 {
                     user = new User();
-                    user.id = dataReader.GetValue(0);
+                    user.id = dataReader.GetValue(0).ToString();
                     user.username = username;
-                    user.email = dataReader.GetValue(1);
+                    user.email = dataReader.GetValue(1).ToString();
                     user.isban = (bool)dataReader.GetValue(2);
                     this.dataReader.Close();
                     user.dcontact = this.DB_GetDcontact(id);
