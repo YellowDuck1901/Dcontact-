@@ -9,5 +9,6 @@ namespace Dcontact
         {
             filters.Add(new HandleErrorAttribute());
         }
+
     }
 }

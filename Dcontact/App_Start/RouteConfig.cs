@@ -83,11 +83,11 @@ namespace Dcontact
                 url: "error",
                 defaults: new { controller = "Shared", action = "Error" }
             );
-            routes.MapRoute(
-                name: "Link Dcontact",
-                url: "{username}",
-                defaults: new { controller = "LinkContact", action = "LinkContact"}
-            );
+            //routes.MapRoute(
+            //    name: "Link Dcontact",
+            //    url: "{username}",
+            //    defaults: new { controller = "LinkContact", action = "LinkContact"}
+            //);
 
             routes.MapRoute(
                 name: "Default",

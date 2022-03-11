@@ -7,6 +7,7 @@ using Util;
 
 namespace Dcontact.Controllers
 {
+    [HandleError]
     public class AccountController : Controller
     {
         // GET: Account
@@ -14,7 +15,6 @@ namespace Dcontact.Controllers
         {
             if (typeChange == "email")
             {
-
                 var vertifyCode = RandomCode.Random_6D();
                 Bean.User user = (Bean.User)Session["user"];
                 Mail.send(user.email, "Code to Change Password", vertifyCode);
@@ -149,9 +149,20 @@ namespace Dcontact.Controllers
                 Util.DAO d = new Util.DAO();
                 if (d.DB_Login(username, password))
                 {
-                    Bean.User user = d.DB_getUser(username);   //khoi tao object user voi data từ db
-                    Session.Add("user", user);                                          // ("key","object")
-                    return RedirectToAction("dashboard", "DcontactAndDcrad");
+                    if (d.DB_IsAdmin(username))
+                    {
+                        //getAdmin
+                        Bean.User admin = d.DB_getAdmin(username);
+                        Session.Add("user", admin);
+                        return RedirectToAction("admin", "Admin");
+                    }
+                    else
+                    {
+                        //getuser
+                        Bean.User user = d.DB_getUser(username);   //khoi tao object user voi data từ db
+                        Session.Add("user", user);                                          // ("key","object")
+                        return RedirectToAction("dashboard", "DcontactAndDcrad");
+                    }
                 }
 
             }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Dcontact.Controllers
 {
+    [HandleError]
     public class DcontactAndDcradController : Controller
     {
         // GET: DcontactAndDcrad
@@ -27,8 +28,16 @@ namespace Dcontact.Controllers
         {
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("Home", "Home");
+            }
+            else
+            {
             Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
             ViewBag.dcontact = dcontact;
+
+            }
             return View();
         }
 

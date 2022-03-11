@@ -235,7 +235,50 @@ namespace Util
             }
             return true;
         }
+
+        public bool DB_IsAdmin(String username)
+        {
+            bool b = false;
+            try
+            {
+                string sql = $"select isAdmin from dbo.Account where username = '{username}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    b = (bool)dataReader.GetBoolean(0);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return b;
+        }
+
+        public Bean.User DB_getAdmin(string username)
+        {
+            User admin = null;
+            string id = Util.MD5.CreateMD5(username);
+            string sql = $"select u.ID, u.Email, u.isBan, a.username ,a.isAdmin from [User] as u, [Account] as a where u.ID = a.ID and u.ID = '{id}'";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    admin = new User();
+                    admin.id = (string)dataReader.GetValue(0);
+                    admin.email = (string)dataReader.GetValue(1);
+                    admin.username = (string)dataReader.GetValue(3);
+                    admin.isAdmin = (bool)dataReader.GetBoolean(4);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return admin;
+        }
     }
-
-
 }
