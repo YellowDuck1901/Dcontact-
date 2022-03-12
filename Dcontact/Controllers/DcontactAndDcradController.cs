@@ -14,9 +14,9 @@ namespace Dcontact.Controllers
 
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
-            Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);
+            Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);          
             ViewBag.dcontact = dcontact;
-            return View();
+           return View();
         }
         public ActionResult createDCard()
         {
@@ -27,7 +27,7 @@ namespace Dcontact.Controllers
         {
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
-            Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);
+            Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
             ViewBag.dcontact = dcontact;
             return View();
         }
