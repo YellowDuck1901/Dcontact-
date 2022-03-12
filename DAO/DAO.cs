@@ -50,7 +50,7 @@ namespace Util
                 command.Dispose();
                 return dataReader;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -66,9 +66,9 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
 
@@ -84,9 +84,9 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
         }
@@ -101,9 +101,9 @@ namespace Util
                 return true;
 
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
 
@@ -120,9 +120,9 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
         }
@@ -140,15 +140,15 @@ namespace Util
                     user.id = dataReader.GetValue(0).ToString();
                     user.username = username;
                     user.email = dataReader.GetValue(1).ToString();
-                    user.isban = (bool)dataReader.GetValue(2);
+                    user.isban = dataReader.GetBoolean(2);
                     this.dataReader.Close();
-                    user.dcontact = this.DB_GetDcontact(id);
+                    user.dcontact = this.DB_GetDcontact(user.id);
                 }
                 //this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
             return user;
@@ -200,7 +200,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -215,7 +215,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -233,7 +233,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -251,7 +251,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
