@@ -109,7 +109,7 @@ $(document).ready(function () {
                 'wrong': $('<i class="fa fa-exclamation-circle error"  ctitle="error" title="Your card had been Exprice, please try again!"></i>')
             },
             check() {
-                return compare(this.value, new Date()) ? '' : this.Error.wrong;
+                return compare(new Date(this.value), new Date()) ? '' : this.Error.wrong;
             }
         },
         cvv: {
@@ -177,7 +177,8 @@ $(document).ready(function () {
     function checkExpDate() {
         removeError(credit.ExpDate.dom)
         var exp = $('#exYear').val() + '-' + $('#exMonth').val() + '-' + '1';
-        credit.ExpDate.value = new Date(exp);
+        //credit.ExpDate.value = new Date(exp);
+        credit.ExpDate.value = exp;
         var result = credit.ExpDate.check();
         if (result) {
             addError(credit.ExpDate.dom, result)
