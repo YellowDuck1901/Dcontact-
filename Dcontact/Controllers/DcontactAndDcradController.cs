@@ -12,12 +12,18 @@ namespace Dcontact.Controllers
         // GET: DcontactAndDcrad
         public ActionResult dashboard()
         {
-
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
-            Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);          
-            ViewBag.dcontact = dcontact;
-           return View();
+            if ((user.isAdmin) || user == null)
+            {
+                return RedirectToAction("Home", "Home");
+            }
+            else
+            {
+                Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);
+                ViewBag.dcontact = dcontact;
+                return View();
+            }
         }
         public ActionResult createDCard()
         {
@@ -28,27 +34,34 @@ namespace Dcontact.Controllers
         {
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
-            if (user == null)
+            if (user == null || user.isAdmin)
             {
                 return RedirectToAction("Home", "Home");
             }
             else
             {
-            Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
-            ViewBag.dcontact = dcontact;
-
+                Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
+                ViewBag.dcontact = dcontact;
+                return View();
             }
-            return View();
         }
 
         public ActionResult oder_dcard()
         {
-            return View();
+            var user = (Bean.User)Session["user"];
+            if ((user.isAdmin) || user == null)
+            {
+                return RedirectToAction("Home", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult oder_dcardForm()
         {
-            string mess = "message";
+            string mess = "message: ";
             try
             {
                 Bean.User user = (Bean.User)Session["user"];
@@ -59,6 +72,7 @@ namespace Dcontact.Controllers
                 string credit = Request.Form["cardNumber"];
                 string cvv = Request.Form["cvv"];
                 string exp = Request.Form["exp"];
+                mess = exp;
                 Util.DAO d = new Util.DAO();
                 float price = int.Parse(amount) * 6;
                 d.DB_AddOrder(user.id, address, phone, amount, credit, cvv, exp, price.ToString(), data);
@@ -66,7 +80,7 @@ namespace Dcontact.Controllers
             }
             catch (Exception e)
             {
-                mess = e.Message;
+                mess += e.Message;
             }
             return Content(mess);
         }
