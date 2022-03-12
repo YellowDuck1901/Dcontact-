@@ -160,6 +160,8 @@ $(document).ready(function () {
         var title = $('#titleUrl').val();
         var id = "#" + $(this).attr('target') + "";
         $(id).children('.card--item__text').children('label').text(title);
+    }).on('focusout', function () {
+        updateRow(idRow);
     });
     
     $('.card__contener--body').on('click', '.button', function () {
@@ -291,12 +293,7 @@ $(document).ready(function () {
     //update title row
     $('body > div.container > main > nav.container__right > div.right__field > div.url-area').on('keyup', function () {
 
-        var title = $('#titleUrl').val();
-        var id = "#" + $(this).attr('target') + "";
-     
-    }).on('focusout', function () {
-        updateRow(idRow);
-    });
+    })
 
     //update bullet row
     $('.iconSocial').on('click', function () {

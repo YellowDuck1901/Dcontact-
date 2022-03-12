@@ -71,7 +71,7 @@ namespace Dcontact.Controllers
                 Bean.Row r = new Bean.Row();
                  Util.DAO d = new Util.DAO();
                 d.DB_AddRow(r.ID, user.id,r.text,r.font,r.color,"link",r.bullet,"1111","1-2-1232","111");
-                string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button'style='background-color: {r.color}'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
+                string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button' id='{@Util.UUID.getUUID()}' style='background-color: {r.color}'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
                 return Content(row);
 
             }

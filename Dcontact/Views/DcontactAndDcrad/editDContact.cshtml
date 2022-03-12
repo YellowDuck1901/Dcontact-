@@ -62,7 +62,6 @@
             <!-- Right sidebar -->
             @{
                 Bean.Dcontact dcontact = ViewBag.dcontact;
-                int count = 1;
             }
             <nav class="container__center">
 
@@ -80,7 +79,7 @@
                                             <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
                                             <div class="button"
                                                  role="button"
-                                                  id="@count"
+                                                  id="@Util.UUID.getUUID()"
                                                  style="background-color: @row.color">
                                                 <i class="@row.bullet"></i>
                                                 <div class="card--item__text">
@@ -88,7 +87,6 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        count++;
                                     }
                                 }
                                 
