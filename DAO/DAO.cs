@@ -191,15 +191,15 @@ namespace Util
                 while (dataReader.Read())
                 {
                     Row a = new Row();
-                    a.ID = (string)dataReader.GetValue(0);
-                    a.text = (string)dataReader.GetValue(1);
-                    a.font = (string)dataReader.GetValue(2);
-                    a.link = (string)dataReader.GetValue(3);
-                    a.bullet = (string)dataReader.GetValue(4);
-                    a.click = (string)dataReader.GetValue(5);
-                    a.code = (string)dataReader.GetValue(6);
-                    a.birth = (string)dataReader.GetValue(7);
-                    a.color = (string)dataReader.GetValue(8);
+                    a.ID = (string)dataReader.GetValue(0).ToString();
+                    a.text = (string)dataReader.GetValue(1).ToString();
+                    a.font = (string)dataReader.GetValue(2).ToString();
+                    a.link = (string)dataReader.GetValue(3).ToString();
+                    a.bullet = (string)dataReader.GetValue(4).ToString();
+                    a.click = (string)dataReader.GetValue(5).ToString();
+                    a.code = (string)dataReader.GetValue(6).ToString();
+                    a.birth = (string)dataReader.GetValue(7).ToString();
+                    a.color = (string)dataReader.GetValue(8).ToString();
                     r.Add(a);
                 }
                 dcontact.rows = r;
