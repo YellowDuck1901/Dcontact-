@@ -62,6 +62,7 @@
             <!-- Right sidebar -->
             @{
                 Bean.Dcontact dcontact = ViewBag.dcontact;
+                int count = 1;
             }
             <nav class="container__center">
 
@@ -75,20 +76,23 @@
                             <ul class="social-list" id="list">
                                 @{ foreach (Bean.Row row in dcontact.rows)
                                     {
-                                        <li id="@row.text">
+                                        <li id="@row.ID">
                                             <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
                                             <div class="button"
                                                  role="button"
-                                                 style="background-color: #@row.color"
-                                                 id="fbs">
+                                                  id="@count"
+                                                 style="background-color: @row.color">
                                                 <i class="@row.bullet"></i>
                                                 <div class="card--item__text">
-                                                    <label style="font-family: " @row.font ";">@row.text</label>
+                                                    <label style="font-family: @row.font;">@row.text</label>
                                                 </div>
                                             </div>
                                         </li>
-                                    } 
-                                 }
+                                        count++;
+                                    }
+                                }
+                                
+                              
                             </ul>
                         </div>
                         <div class="card__contener--footer">
@@ -255,7 +259,7 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
     <script src="~/MyScript/editDContact.js"></script>
-
+    
 
 </body>
 

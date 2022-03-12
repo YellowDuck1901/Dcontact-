@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Bean
 {
     public class Row
@@ -30,10 +29,20 @@ namespace Bean
             this.code = code;
             this.birth = birth;
         }
-
+        
         public Row()
         {
+            this.ID = Util.UUID.getUUID();
+            this.text = "Text";
+            this.font = "Cursive";
+            this.link = "";
+            this.bullet = "fa fa-cube";
+            this.color = "#273c75";
+            this.click = "";
+            this.code = "";
+            this.birth = "";
         }
+
     }
 
 
