@@ -39,7 +39,7 @@ namespace Dcontact.Controllers
 
         public ActionResult oder_dcardForm()
         {
-            string mess = "message";
+            string mess = "message: ";
             try
             {
                 Bean.User user = (Bean.User)Session["user"];
@@ -50,6 +50,7 @@ namespace Dcontact.Controllers
                 string credit = Request.Form["cardNumber"];
                 string cvv = Request.Form["cvv"];
                 string exp = Request.Form["exp"];
+                mess = exp;
                 Util.DAO d = new Util.DAO();
                 float price = int.Parse(amount) * 6;
                 d.DB_AddOrder(user.id, address, phone, amount, credit, cvv, exp, price.ToString(), data);
@@ -57,7 +58,7 @@ namespace Dcontact.Controllers
             }
             catch (Exception e)
             {
-                mess = e.Message;
+                mess += e.Message;
             }
             return Content(mess);
         }
