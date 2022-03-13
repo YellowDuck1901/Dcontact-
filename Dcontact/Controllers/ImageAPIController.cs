@@ -10,45 +10,6 @@ namespace Dcontact.Controllers
 {
     public class ImageAPIController : ApiController
     {
-        //[Route("api/ImageAPI/UploadFiles")]
-        //[HttpPost]
-        //public async Task<HttpResponseMessage> UploadFiles()
-        //{
-
-        //    if (!Request.Content.IsMimeMultipartContent())
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-        //    }
-        //    string root = HttpContext.Current.Server.MapPath("~/Uploads");
-        //    if (!Directory.Exists(root))
-        //    {
-        //        Directory.CreateDirectory(root);
-        //    }
-        //    var provider = new MultipartFormDataStreamProvider(root);
-        //    try
-        //    {
-        //        // Read the form data.
-        //        await Request.Content.ReadAsMultipartAsync(provider);
-
-        //        // This illustrates how to get the file names.
-        //        string success = "null";
-        //        foreach (MultipartFileData file in provider.FileData)
-        //        {
-        //            success = "1";
-        //            Trace.WriteLine(file.Headers.ContentDisposition.FileName);
-        //            success = file.Headers.ContentDisposition.FileName;
-        //            Trace.WriteLine("Server file path: " + file.LocalFileName);
-        //        }
-        //        return Request.CreateResponse(HttpStatusCode.OK, success);
-        //    }
-        //    catch (System.Exception e)
-        //    {
-        //        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-        //    }
-        //    //Send OK Response to Client.
-        //}
-
-
         [Route("api/ImageAPI/UploadFiles")]
         [HttpPost]
         public HttpResponseMessage UploadFiles()
@@ -64,13 +25,13 @@ namespace Dcontact.Controllers
             HttpPostedFile postedFile = HttpContext.Current.Request.Files[0];
 
             //Fetch the File Name.
-            string fileName = Path.GetFileName("avt_check.png");
+            string fileName = Util.UUID.getUUID() + Path.GetFileName(".png");
 
             //Save the File.
             postedFile.SaveAs(path + fileName);
 
             //Send OK Response to Client.
-            return Request.CreateResponse(HttpStatusCode.OK, fileName);
+            return Request.CreateResponse(HttpStatusCode.OK, $"/Uploads/{fileName}");
         }
 
 

@@ -11,8 +11,19 @@ namespace Util
     {
         private string from = "Dteam.FPT@gmail.com";
         private string pass = "Dteam123@";
-        static public bool send(string to, string sub, string cont) => new Mail().sendMail(to, sub, cont);
-        public bool sendMail(string to, string supject, string content)
+        static public bool sendThread(string to, string sub, string cont)
+        {
+            Mail mail = new Mail();
+            Thread t = new Thread(
+               x => Mail.send(to, sub, cont)
+                );
+            t.Start();
+            return true;
+        }
+
+        public static bool send(string to, string sub, string cont) => new Mail().sendMail(to, sub, cont);
+
+        bool sendMail(string to, string supject, string content)
         {
             MailMessage message = new MailMessage(this.from, to);
             message.Subject = supject;

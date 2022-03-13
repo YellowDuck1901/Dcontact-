@@ -50,7 +50,7 @@ namespace Util
                 command.Dispose();
                 return dataReader;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -66,30 +66,29 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
 
         }
 
-        public bool DB_OrderDCard(String id)
+
+        public bool DB_checkExistedEmail(string email)
         {
-            String sql = @"select * from dbo.Order_list where ID_user = '" + id + "'";
-            this.dataReader = this.DB_ExcuteQuery(sql);
-            if (dataReader.Read())
+            try
             {
-                Console.WriteLine($"IDUser {dataReader.GetValue(0)}");
-                Console.WriteLine($"NumberCard {dataReader.GetValue(1)}");
-                Console.WriteLine($"ShippingAddress {dataReader.GetValue(2)}");
-                Console.WriteLine($"ExportPrice {dataReader.GetValue(3)}");
-                Console.WriteLine($"TradingCode {dataReader.GetValue(4)}");
+                String sql = $"exec Pro_existedEmail @email = '{email}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                this.dataReader.Close();
                 return true;
             }
+            catch (SqlException)
+            {
+                throw;
 
-            this.dataReader.Close();
-            return false;
+            }
         }
 
         public bool DB_SignUp(String Username, String Email, String Password)
@@ -102,9 +101,9 @@ namespace Util
                 return true;
 
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
 
@@ -116,14 +115,14 @@ namespace Util
         {
             try
             {
-                String sql = $"exec Pro_ChangeEmail @ID = '{id}', @Email = '{email}'";
+                String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
                 this.dataReader = this.DB_ExcuteQuery(sql);
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
         }
@@ -138,18 +137,18 @@ namespace Util
                 if (dataReader.Read())
                 {
                     user = new User();
-                    user.id = (string)dataReader.GetValue(0);
+                    user.id = dataReader.GetValue(0).ToString();
                     user.username = username;
-                    user.email = (string)dataReader.GetValue(1);
-                    user.isban = (bool)dataReader.GetValue(2);
+                    user.email = dataReader.GetValue(1).ToString();
+                    user.isban = dataReader.GetBoolean(2);
                     this.dataReader.Close();
-                    user.dcontact = this.DB_GetDcontact(id);
+                    user.dcontact = this.DB_GetDcontact(user.id);
                 }
                 //this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
             return user;
@@ -163,27 +162,28 @@ namespace Util
             if (this.dataReader.Read())
             {
                 dcontact = new Dcontact();
-                dcontact.numerView = (string)dataReader.GetValue(0).ToString();
-                dcontact.avt = (string)dataReader.GetValue(1);
-                dcontact.background = (string)dataReader.GetValue(2);
+                dcontact.numerView = dataReader.GetValue(0).ToString();
+                dcontact.avt = dataReader.GetValue(1).ToString();
+                dcontact.background = dataReader.GetValue(2).ToString();
 
                 this.dataReader.Close();
 
-                string sqlr = $"select r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
+                string sqlr = $"select r.ID, r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
                 this.dataReader = DB_ExcuteQuery(sqlr);
                 List<Row> r = new List<Row>();
 
                 while (dataReader.Read())
                 {
                     Row a = new Row();
-                    a.text = (string)dataReader.GetValue(0);
-                    a.font = (string)dataReader.GetValue(1);
-                    a.link = (string)dataReader.GetValue(2);
-                    a.bullet = (string)dataReader.GetValue(3);
-                    a.click = (string)dataReader.GetValue(4).ToString();
-                    a.code = (string)dataReader.GetValue(5).ToString();
-                    a.birth = (string)dataReader.GetValue(6).ToString();
-                    a.color = (string)dataReader.GetValue(7).ToString();
+                    a.ID = dataReader.GetValue(0).ToString();
+                    a.text = dataReader.GetValue(1).ToString();
+                    a.font = dataReader.GetValue(2).ToString();
+                    a.link = dataReader.GetValue(3).ToString();
+                    a.bullet = dataReader.GetValue(4).ToString();
+                    a.click = dataReader.GetValue(5).ToString();
+                    a.code = dataReader.GetValue(6).ToString();
+                    a.birth = dataReader.GetValue(7).ToString();
+                    a.color = dataReader.GetValue(8).ToString();
                     r.Add(a);
                 }
                 dcontact.rows = r;
@@ -192,21 +192,6 @@ namespace Util
             return dcontact;
         }
 
-        public bool DB_checkExistedEmail(string email)
-        {
-            try
-            {
-                String sql = $"exec Pro_existedEmail @email = '{email}'";
-                this.dataReader = this.DB_ExcuteQuery(sql);
-                this.dataReader.Close();
-                return true;
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception(ex.Message);
-
-            }
-        }
         public bool DB_ChangePass(string email, string newPass)
         {
             try
@@ -215,13 +200,121 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
             return true;
         }
+
+        public bool DB_DelRow(string idRow, string idDcontact)
+        {
+            try
+            {
+                string sql = $"execute Pro_deleteRow @idRow='{idRow}', @idContact='{idDcontact}' ";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_UpdateRow(string idRow, string idContact, string text, string font, string rowColor,
+            string link, string bullet, string code, string birth, string click)
+        {
+            try
+            {
+                string sql = $"execute Pro_UpdateRow @idRow='{idRow}', @idContact='{idContact}'," +
+                    $"@text='{text}',@font='{font}', @rowColor='{rowColor}', @link = '{link}', @bullet = '{bullet}'," +
+                    $"@code = {code}, @birth = '{birth}', @click = {click}";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_AddRow(string idRow, string idContact, string text, string font, string rowColor,
+            string link, string bullet, string code, string birth, string click)
+        {
+            try
+            {
+                string sql = $"exec Pro_AddRow @idRow = '{idRow}', @idContact = '{idContact}', @text = '{text}', @font = '{font}'," +
+                            $"@rowColor = '{rowColor}', @link = '{link}', @bullet = '{bullet}', @code = {code}, " +
+                            $"@birth = '{birth}', @click = {click}";
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return true;
+        }
+        public bool DB_AddOrder(string id_user, string address, string phone, string number, string credit, string cvv, string expdate, string price, string data)
+        {
+            string sql = $"EXECUTE dbo.PRO_AddOrder @ID_User='{id_user}',  @address ='{address}',  @phone='{phone}',  @number='{number}',  @credit='{credit}',  @cvv='{cvv}',  @expdate='{expdate}', @price='{price}',  @data='{data}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_IsAdmin(String username)
+        {
+            bool b = false;
+            try
+            {
+                string sql = $"select isAdmin from dbo.Account where username = '{username}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    b = (bool)dataReader.GetBoolean(0);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return b;
+        }
+
+        public Bean.User DB_getAdmin(string username)
+        {
+            User admin = null;
+            string id = Util.MD5.CreateMD5(username);
+            string sql = $"select u.ID, u.Email, u.isBan, a.username ,a.isAdmin from [User] as u, [Account] as a where u.ID = a.ID and u.ID = '{id}'";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    admin = new User();
+                    admin.id = (string)dataReader.GetValue(0);
+                    admin.email = (string)dataReader.GetValue(1);
+                    admin.username = (string)dataReader.GetValue(3);
+                    admin.isAdmin = (bool)dataReader.GetBoolean(4);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return admin;
+        }
     }
-
-
 }

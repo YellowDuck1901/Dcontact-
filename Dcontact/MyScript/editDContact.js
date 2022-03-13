@@ -87,14 +87,12 @@ $(document).ready(function () {
                 type: "POST",
                 url: "api/ImageAPI/UploadFiles",
                 data: formData,
-                beforeSend: function () {
-                    alert("" + img);
-                },
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    $('body').html(response);
+                    $('#avatar-result').attr('src', response);
+                    $.post("/DcontactAndDcard/updateImage", { path: response })
                     console.log(response);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -106,11 +104,13 @@ $(document).ready(function () {
     });
     ////////////////////
     // DELETE ROW
-    $('.social-list').on('click', '.report', function () {
+   /* $('.social-list').on('click', '.report', function () {
         var parentRow = $(this).parent().attr('id');
         // alert(parentRow)
         $('.social-list #' + parentRow).remove();
-    })
+    })*/
+
+
     $('.cmnRadio').change(function () {
         var radioValue = $('.cmnRadio:checked').val();
         if (radioValue == 'font') {
@@ -176,51 +176,96 @@ $(document).ready(function () {
     $('#bgColor').on('change', function () {
         // $('.newClass').css('background-color',$(this).val());
         newColor = $(this).val();
+        updateRow(idRow);
     });
     var newClass = 1;
     //    CHANGE BULLET
-    $('.iconSocial').on('click', function () {
-        // $('.bulletResult').text("");
+   /* $('.iconSocial').on('click', function () {
+        
         var idIcon = $(this).attr('id');
         var classIcon = $(this).children('i').attr('class');
         $('.bulletResult').children('i').attr('class', classIcon);
         var idOfBullet = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
         $(idOfBullet).children('i').attr('class', classIcon);
-    });
+
+    });*/
+
     // ADD NEW LINK
-    $('#addNewUrl').on('click', function () {
+
+ /*   $('#addNewUrl').on('click', function () {
         $('.social-list').append('<li id="' + uuidv4() + '"><span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span><div class="button" role="button" style="background-color: #273c75; height: 26.88px" id="' + uuidv4() + '" > <i class=""></i> <div class="card--item__text"> <label></label> </div> </div> </li>');
-    });
+    });*/
+
     //set color
     $('#bgColor').on('change', function () {
         var idOfColor = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
         $(idOfColor).css('background-color', $(this).val());
         //    newColor = $(this).val();
     });
+    //change title
     $('body > div.container > main > nav.container__right > div.right__field > div.url-area').on('keyup', function () {
         var title = $('#titleUrl').val();
         var id = "#" + $(this).attr('target') + "";
         $(id).children('.card--item__text').children('label').text(title);
+    }).on('focusout', function () {
+        updateRow(idRow);
     });
+    
     $('.card__contener--body').on('click', '.button', function () {
         $('.bulletResult').children('i').removeClass();
         // get target & title
         var getID = $(this).attr('id');
         $('div.url-area').attr('target', getID);
         var title = $(this).children('.card--item__text').children('label').text();
-        $('#titleUrl').val(title);
+        $('#titleUrl').val(title);  /*gan gia tri row sangurl-area*/
         // get bullet
         var crntBullet = $(this).children('i').attr('class');
         $('.bulletResult').children('i').addClass(crntBullet);
         // get color
         var backgroundColor = $(this).css('background-color');
         $('#bgColor').val(rgb2hex(backgroundColor));
+        //get li clicked
+        idRow = $(this).parent('li').attr('id');
+      
+       
     });
+
+    function updateRow(id) {
+        var idr = "#" + id;
+        var color = $(idr).children(".button").css("background-color"); color = rgb2hex(color);
+        var bullet = $(idr).children(".button").children('i.fa').attr("class");
+        var font = $(idr).children(".button").children('div.card--item__text').children("label").css("font-family");
+        var text = $(idr).children(".button").children('div.card--item__text').children("label").text();
+
+
+        $.ajax({
+            origin: '*',
+            type: "post",
+            url: "/DcontactAndDcrad/updateRow",
+            data: {
+                id_row: id,
+                color_row: color,
+                bullet_row: bullet,
+                font_row: font,
+                text_row: text
+            },
+            success: function (msg) {
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('body').html(jqXHR.responseText);
+            }
+        });
+    }
+
     // FONT SELECTOR
     $('#fs').on('change', function () {
         var fontVal = $('#fs option:selected').val();
         var idOfFont = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
         $(idOfFont).children('.card--item__text').children('label').css("font-family", fontVal);
+
+        updateRow(idRow)
+
     })
     // TEMPLATE
     /*    $('.template__detail').on('click', '.img-temp', function () {
@@ -246,7 +291,69 @@ $(document).ready(function () {
     $('.file__label').on('click', function () {
         $('#image-avatar').click();
     })
+//AJAX FUCNTION
+
+    //delete row
+    $('.social-list').on('click', '.report', function () {
+        var parentRow = $(this).parent().attr('id');
+        // alert(parentRow)
+        $('.social-list #' + parentRow).remove();
+        $.ajax({
+            origin: '*',
+            type: "post",
+            url: "/DcontactAndDcrad/deleteRow",
+            data: {
+                id : parentRow
+            },
+            success: function (msg) {
+                var parentRow = $(this).parent().attr('id');
+                $('.social-list #' + parentRow).remove();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('body').html(jqXHR.responseText);
+            }
+        });
+    })
+    //add row
+    $('#addNewUrl').on('click', function () {
+        $.ajax({
+            origin: '*',
+            type: "post",
+            url: "/DcontactAndDcrad/addRow",
+            data: {
+            },
+            success: function (msg) {
+
+                $('.social-list').append(msg);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('body').html(jqXHR.responseText);
+            }
+        });
+    });
+
+    //update title row
+    $('body > div.container > main > nav.container__right > div.right__field > div.url-area').on('keyup', function () {
+
+    })
+
+    //update bullet row
+    $('.iconSocial').on('click', function () {
+
+        var idIcon = $(this).attr('id');
+        var classIcon = $(this).children('i').attr('class');
+
+        $('.bulletResult').children('i').attr('class', classIcon);
+
+        var idOfBullet = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
+        $(idOfBullet).children('i').attr('class', classIcon);
+
+        updateRow(idRow);
+
+    });
+
 });
+
 //upload template
 var resize = $('#upload-template').croppie({ //load edit crop anh
     enableExif: true,
@@ -281,3 +388,5 @@ $('.btn-upload-template').on('click', function (ev) { //button upload image
     });
 });
 ///////////////
+
+
