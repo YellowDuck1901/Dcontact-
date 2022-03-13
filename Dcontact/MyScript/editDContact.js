@@ -81,7 +81,7 @@ $(document).ready(function () {
             var contentType = block[0].split(":")[1];
             var realData = block[1].split(",")[1];
             var blob = b64toBlob(realData, contentType);
-            formData.append("image",blob);
+            formData.append("image", blob);
             //formData.append('image', img+"");
             $.ajax({
                 type: "POST",
@@ -92,7 +92,10 @@ $(document).ready(function () {
                 processData: false,
                 success: function (response) {
                     $('#avatar-result').attr('src', response);
-                    $.post("/DcontactAndDcard/updateImage", { path: response })
+                    $.post("/DcontactAndDcrad/updateImage", { path: response }).done(function (data) {
+                        console.log(data + 'avt has been updated');
+
+                    });
                     console.log(response);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -104,11 +107,11 @@ $(document).ready(function () {
     });
     ////////////////////
     // DELETE ROW
-   /* $('.social-list').on('click', '.report', function () {
-        var parentRow = $(this).parent().attr('id');
-        // alert(parentRow)
-        $('.social-list #' + parentRow).remove();
-    })*/
+    /* $('.social-list').on('click', '.report', function () {
+         var parentRow = $(this).parent().attr('id');
+         // alert(parentRow)
+         $('.social-list #' + parentRow).remove();
+     })*/
 
 
     $('.cmnRadio').change(function () {
@@ -180,21 +183,21 @@ $(document).ready(function () {
     });
     var newClass = 1;
     //    CHANGE BULLET
-   /* $('.iconSocial').on('click', function () {
-        
-        var idIcon = $(this).attr('id');
-        var classIcon = $(this).children('i').attr('class');
-        $('.bulletResult').children('i').attr('class', classIcon);
-        var idOfBullet = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
-        $(idOfBullet).children('i').attr('class', classIcon);
-
-    });*/
+    /* $('.iconSocial').on('click', function () {
+         
+         var idIcon = $(this).attr('id');
+         var classIcon = $(this).children('i').attr('class');
+         $('.bulletResult').children('i').attr('class', classIcon);
+         var idOfBullet = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
+         $(idOfBullet).children('i').attr('class', classIcon);
+ 
+     });*/
 
     // ADD NEW LINK
 
- /*   $('#addNewUrl').on('click', function () {
-        $('.social-list').append('<li id="' + uuidv4() + '"><span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span><div class="button" role="button" style="background-color: #273c75; height: 26.88px" id="' + uuidv4() + '" > <i class=""></i> <div class="card--item__text"> <label></label> </div> </div> </li>');
-    });*/
+    /*   $('#addNewUrl').on('click', function () {
+           $('.social-list').append('<li id="' + uuidv4() + '"><span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span><div class="button" role="button" style="background-color: #273c75; height: 26.88px" id="' + uuidv4() + '" > <i class=""></i> <div class="card--item__text"> <label></label> </div> </div> </li>');
+       });*/
 
     //set color
     $('#bgColor').on('change', function () {
@@ -210,7 +213,7 @@ $(document).ready(function () {
     }).on('focusout', function () {
         updateRow(idRow);
     });
-    
+
     $('.card__contener--body').on('click', '.button', function () {
         $('.bulletResult').children('i').removeClass();
         // get target & title
@@ -226,8 +229,8 @@ $(document).ready(function () {
         $('#bgColor').val(rgb2hex(backgroundColor));
         //get li clicked
         idRow = $(this).parent('li').attr('id');
-      
-       
+
+
     });
 
     function updateRow(id) {
@@ -291,7 +294,7 @@ $(document).ready(function () {
     $('.file__label').on('click', function () {
         $('#image-avatar').click();
     })
-//AJAX FUCNTION
+    //AJAX FUCNTION
 
     //delete row
     $('.social-list').on('click', '.report', function () {
@@ -303,7 +306,7 @@ $(document).ready(function () {
             type: "post",
             url: "/DcontactAndDcrad/deleteRow",
             data: {
-                id : parentRow
+                id: parentRow
             },
             success: function (msg) {
                 var parentRow = $(this).parent().attr('id');

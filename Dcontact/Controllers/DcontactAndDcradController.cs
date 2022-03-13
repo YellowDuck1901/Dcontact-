@@ -40,7 +40,7 @@ namespace Dcontact.Controllers
             }
             else
             {
-                Bean.Dcontact dcontact =  d.DB_GetDcontact(user.id);
+                Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);
                 ViewBag.dcontact = dcontact;
                 return View();
             }
@@ -91,8 +91,8 @@ namespace Dcontact.Controllers
             {
                 Bean.User user = (Bean.User)Session["user"];
                 Bean.Row r = new Bean.Row();
-                 Util.DAO d = new Util.DAO();
-                d.DB_AddRow(r.ID, user.id,r.text,r.font,r.color,"link",r.bullet,"1111","1-2-1232","111");
+                Util.DAO d = new Util.DAO();
+                d.DB_AddRow(r.ID, user.id, r.text, r.font, r.color, "link", r.bullet, "1111", "1-2-1232", "111");
                 string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button' id='{@Util.UUID.getUUID()}' style='background-color: {r.color}'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
                 return Content(row);
 
@@ -151,6 +151,8 @@ namespace Dcontact.Controllers
         {
             Bean.User user = (Bean.User)Session["user"];
             user.dcontact.avt = Request.Form["path"];
+            Util.DAO d = new Util.DAO();
+            d.DB_updateAvt(user.id, user.dcontact.avt);
             return new HttpStatusCodeResult(200);
         }
     }

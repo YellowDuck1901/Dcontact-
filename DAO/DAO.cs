@@ -316,5 +316,20 @@ namespace Util
             }
             return admin;
         }
+        public bool DB_updateAvt(string id, string path)
+        {
+            string sql = $"EXECUTE dbo.PRO_updateAvt @ID ='{id}', @path = '{path}' ";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
     }
 }
