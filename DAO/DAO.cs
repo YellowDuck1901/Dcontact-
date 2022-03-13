@@ -271,6 +271,22 @@ namespace Util
             }
             return true;
         }
+        public bool DB_updateAvt(string id, string path)
+        {
+            string sql = $"exec Pro_updateAvt @id = '{id}', @path ='{path}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+
     }
 
 
