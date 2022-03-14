@@ -190,25 +190,28 @@
             background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
             var avatar = $('#avatar-result').attr('src');
 
+
             var block = background.split(";");
             var contentType = block[0].split(":")[1];
             var realData = block[1].split(",")[1];
             var image_bg = b64toBlob(realData, contentType);
 
 
-            var block = avatar.split(";");
-            var contentType = block[0].split(":")[1];
-            var realData = block[1].split(",")[1];
-            var image_avt = b64toBlob(realData, contentType);
+
+            var block_avatar = avatar.split(";");
+            var contentType_avatar = block_avatar[0].split(":")[1];
+            var realData_avatar = block_avatar[1].split(",")[1];
+            var image_avt = b64toBlob(realData_avatar, contentType_avatar);
 
             const bgURL = URL.createObjectURL(image_bg);
 
             const avtURL = URL.createObjectURL(image_avt);
-            URL.
 
-            alert(bgURL);
+            var file = new File([image_bg], "my_image.png", { type: "image/png", lastModified: new Date().getTime() })
 
-            mergeImages([bgURL, avtURL, '/resource/logo/single.svg'])
+            alert(URL.createObjectURL(file));
+
+            mergeImages(['my_image.png', '/resource/logo/logo_single.svg'])
                 .then(b64 => document.querySelector('#merge-image').src = b64);
         })
 
@@ -235,6 +238,7 @@
             var blob = new Blob(byteArrays, { type: contentType });
             return blob;
         }
+
 
 
         // data:image/png;base64,iVBORw0KGgoAA...

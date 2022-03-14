@@ -135,10 +135,12 @@ namespace Dcontact.Controllers
                 string bullet = Request.Form["bullet_row"];
                 string color = Request.Form["color_row"];
                 string font = Request.Form["font_row"];
+                string link = Request.Form["link_row"];
+
                 //link
                 Console.WriteLine(font);
                 Util.DAO d = new Util.DAO();
-                d.DB_UpdateRow(idRow, user.id, text, font, color, "abc.com", bullet, "1234", "2331-2-12", "1000");
+                d.DB_UpdateRow(idRow, user.id, text, font, color, link, bullet, "1234", "2331-2-12", "1000");
                 return Content("");
             }
             catch (Exception e)
