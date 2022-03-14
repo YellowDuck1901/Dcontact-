@@ -1,5 +1,9 @@
 @{ ViewBag.Title = "editDContact";
     Layout = "~/Views/Shared/Header.cshtml"; }
+@{
+    Bean.Dcontact dcontact = ViewBag.dcontact;
+    List<string> template = ViewBag.template;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +56,16 @@
                                     <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
                                     <button class="btn-addTemp">Add New Template</button>
                                 </li>
+                                @{ foreach (string path in template)
+                                    {
+                                        <li>
+                                            <div class="inf-temp">
+                                                <img src="@path" class="img-temp" />
+                                                <p class="name-temp">Template @template.IndexOf(path)</p>
+                                            </div>
+                                        </li>
+                                    }
+                                }
                             </ul>
                         </div>
                     </div>
@@ -60,9 +74,7 @@
             </aside>
             <!-- Todo []-->
             <!-- Right sidebar -->
-            @{
-                Bean.Dcontact dcontact = ViewBag.dcontact;
-            }
+
             <nav class="container__center">
 
                 <div class="contener">
@@ -79,7 +91,7 @@
                                             <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
                                             <div class="button"
                                                  role="button"
-                                                  id="@Util.UUID.getUUID()"
+                                                 id="@Util.UUID.getUUID()"
                                                  style="background-color: @row.color">
                                                 <i class="@row.bullet"></i>
                                                 <div class="card--item__text">
@@ -89,8 +101,8 @@
                                         </li>
                                     }
                                 }
-                                
-                              
+
+
                             </ul>
                         </div>
                         <div class="card__contener--footer">
@@ -257,7 +269,7 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
     <script src="~/MyScript/editDContact.js"></script>
-    
+
 
 </body>
 

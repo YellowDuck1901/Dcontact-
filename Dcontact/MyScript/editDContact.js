@@ -77,6 +77,7 @@ $(document).ready(function () {
         }).then(function (img) {
             document.getElementById('avatar-result').src = "" + img;
             var formData = new FormData();
+
             var block = img.split(";");
             var contentType = block[0].split(":")[1];
             var realData = block[1].split(",")[1];
@@ -92,7 +93,7 @@ $(document).ready(function () {
                 processData: false,
                 success: function (response) {
                     $('#avatar-result').attr('src', response);
-                    $.post("/DcontactAndDcrad/updateImage", { path: response }).done(function (data) {
+                    $.post("/DcontactAndDcrad/updateImage", { piece: 'avatar', path: response }).done(function (data) {
                         console.log(data + 'avt has been updated');
 
                     });
@@ -271,14 +272,18 @@ $(document).ready(function () {
 
     })
     // TEMPLATE
-    /*    $('.template__detail').on('click', '.img-temp', function () {
-            var src = $(this).attr('src');
-            $('.card__contener').css('background-image', "url('" + src + "')");
-        })*/
-    for (i = 1; i <= 10; i++) {
-        var image = "https://source.unsplash.com/random/329x531?sig=" + i + "";
-        $('.template__detail ul').append(' <li> <div class="inf-temp" id="template1"> <img src="' + image + '" alt="" class="img-temp" id="srcImg1" /> <p class="name-temp">Template ' + i + '</p> </div> </li>');
-    }
+    $('.template__detail').on('click', '.img-temp', function () {
+        var src = $(this).attr('src');
+        $('.card__contener').css('background-image', "url('" + src + "')");
+        $.post("/DcontactAndDcrad/updateImage", { piece: 'template', path: src }).done(function (data) {
+            console.log(data + 'card background has been updated');
+        });
+        //[ ] post update template
+    })
+    //for (i = 1; i <= 10; i++) {
+    //    var image = "https://source.unsplash.com/random/329x531?sig=" + i + "";
+    //    $('.template__detail ul').append(' <li> <div class="inf-temp" id="template1"> <img src="' + image + '" alt="" class="img-temp" id="srcImg1" /> <p class="name-temp">Template ' + i + '</p> </div> </li>');
+    //}
     // CROP AVATAR and TEMPLATE DISPLAY
     $('.file__label').on('click', function () {
         $('.container__right--avatar').css('display', 'flex');
@@ -388,6 +393,7 @@ $('.btn-upload-template').on('click', function (ev) { //button upload image
         size: 'viewport'
     }).then(function (img) {
         $('.card__contener').css('background-image', "url('" + img + "')"); //cho load anh
+        //[ ] select template here
     });
 });
 ///////////////

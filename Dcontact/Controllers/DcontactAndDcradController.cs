@@ -42,6 +42,7 @@ namespace Dcontact.Controllers
             {
                 Bean.Dcontact dcontact = d.DB_GetDcontact(user.id);
                 ViewBag.dcontact = dcontact;
+                ViewBag.template = d.DB_loadTemplate(user.id);
                 return View();
             }
         }
@@ -151,8 +152,17 @@ namespace Dcontact.Controllers
         {
             Bean.User user = (Bean.User)Session["user"];
             user.dcontact.avt = Request.Form["path"];
+            string piece = Request.Form["piece"];
             Util.DAO d = new Util.DAO();
-            d.DB_updateAvt(user.id, user.dcontact.avt);
+            switch (piece)
+            {
+                case "avatar":
+                    d.DB_updateAvt(user.id, user.dcontact.avt);
+                    break;
+                case "template":
+
+                    break;
+            }
             return new HttpStatusCodeResult(200);
         }
     }
