@@ -160,6 +160,9 @@ $(document).ready(function () {
         var title = $('#titleUrl').val();
         var id = "#" + $(this).attr('target') + "";
         $(id).children('.card--item__text').children('label').text(title);
+        var url = $('#linkUrl').val();
+        $(id).attr('url', url);
+
     }).on('focusout', function () {
         updateRow(idRow);
     });
@@ -167,10 +170,17 @@ $(document).ready(function () {
     $('.card__contener--body').on('click', '.button', function () {
         $('.bulletResult').children('i').removeClass();
         // get target & title
+        $('#linkUrl').val('');
+
         var getID = $(this).attr('id');
         $('div.url-area').attr('target', getID);
         var title = $(this).children('.card--item__text').children('label').text();
         $('#titleUrl').val(title);  /*gan gia tri row sangurl-area*/
+
+
+        var url = $(this).attr('url');
+        $('#linkUrl').val(url);
+
         // get bullet
         var crntBullet = $(this).children('i').attr('class');
         $('.bulletResult').children('i').addClass(crntBullet);
@@ -301,10 +311,20 @@ $(document).ready(function () {
         var idIcon = $(this).attr('id');
         var classIcon = $(this).children('i').attr('class');
 
-        $('.bulletResult').children('i').attr('class', classIcon);
 
         var idOfBullet = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
-        $(idOfBullet).children('i').attr('class', classIcon);
+        var removeIcon = $(idOfBullet + '> i').attr('class');
+        // reclick to remove bullet
+        if (classIcon == removeIcon) {
+            $(idOfBullet).children('i').attr('class', "");
+
+        } else {
+
+            $('.bulletResult').children('i').attr('class', classIcon);
+
+            $(idOfBullet).children('i').attr('class', classIcon);
+        }
+
 
         updateRow(idRow);
 
