@@ -211,6 +211,7 @@ $(document).ready(function () {
         var title = $('#titleUrl').val();
         var id = "#" + $(this).attr('target') + "";
         $(id).children('.card--item__text').children('label').text(title);
+
         var url = $('#linkUrl').val();
         $(id).attr('url', url);
 
@@ -250,6 +251,7 @@ $(document).ready(function () {
         var bullet = $(idr).children(".button").children('i.fa').attr("class");
         var font = $(idr).children(".button").children('div.card--item__text').children("label").css("font-family");
         var text = $(idr).children(".button").children('div.card--item__text').children("label").text();
+        var link = $(idr).children(".button").attr('url');
 
 
         $.ajax({
@@ -261,7 +263,8 @@ $(document).ready(function () {
                 color_row: color,
                 bullet_row: bullet,
                 font_row: font,
-                text_row: text
+                text_row: text,
+                link_row: link
             },
             success: function (msg) {
 
@@ -350,10 +353,6 @@ $(document).ready(function () {
         });
     });
 
-    //update title row
-    $('body > div.container > main > nav.container__right > div.right__field > div.url-area').on('keyup', function () {
-
-    })
 
     //update bullet row
     $('.iconSocial').on('click', function () {
