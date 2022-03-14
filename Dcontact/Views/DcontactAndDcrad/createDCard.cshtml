@@ -187,12 +187,27 @@
 
         $('#next').on('click', function () {
             var background = $('#cardBg').css('background-image');
+            background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
             var avatar = $('#avatar-result').attr('src');
-            var image_bg = b64toBlob(background, "image/png");
-            var image_avt = b64toBlob(avatar, "image/png");
 
-            alert(image_bg);
-            mergeImages([background, avatar, '/resource/logo/single.svg'])
+            var block = background.split(";");
+            var contentType = block[0].split(":")[1];
+            var realData = block[1].split(",")[1];
+            var image_bg = b64toBlob(realData, contentType);
+
+
+            var block = avatar.split(";");
+            var contentType = block[0].split(":")[1];
+            var realData = block[1].split(",")[1];
+            var image_avt = b64toBlob(realData, contentType);
+
+            const bgURL = URL.createObjectURL(image_bg);
+
+            const avtURL = URL.createObjectURL(image_avt);
+
+            alert(bgURL);
+
+            mergeImages([bgURL, avtURL, '/resource/logo/single.svg'])
                 .then(b64 => document.querySelector('#merge-image').src = b64);
         })
 
