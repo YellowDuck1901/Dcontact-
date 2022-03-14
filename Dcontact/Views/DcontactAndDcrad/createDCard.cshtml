@@ -15,6 +15,7 @@
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css'>
+    <script src="https://unpkg.com/merge-images"></script>
 
 </head>
 @*@ no tinh la code c# *@
@@ -23,10 +24,10 @@
         import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');
 </style>
 <div class="card-body">
-    <div class="crop-area">
-        <div class="card" id="cardBg" style="background-image: ;">
-            <img id="avatar-result" alt="avatar" src="" />
 
+    <div class="crop-area">
+        <div class="card" id="cardBg" style="background-image: ;">       @*upload background*@
+            <img id="avatar-result" alt="avatar" src="" />               @*upload avatar*@
             <div class="leftResult cmnResult"></div>
             <div class="rightResult cmnResult"></div>
             <div class="centerResult cmnResult"></div>
@@ -50,8 +51,11 @@
                 <h3>CROP AVATAR</h3>
             </span>
             <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
-            <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
+            <div id="upload-avatar"></div>--> @* Noi load anh khi chon file anh*@
         </div>
+
+    <img id="merge-image" src="" width="128">
+
 
     </div>
 
@@ -171,11 +175,25 @@
             </div>
         </div>
 
-        <input type="button" class="btn-order" value="NEXT" onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';" />
+        <input type="button" id="next" class="btn-order" value="NEXT" @*onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';"*@ />
 
     </div>
 
+
+
     <script>
+        $('#next').on('click', function () {
+            var background = $('#cardBg').css('background-image');
+            var avatar = $('#avatar-result').attr('src');
+
+
+            alert(avatar);
+            mergeImages([background, avatar, '/resource/logo/single.svg'])
+                .then(b64 => document.querySelector('#merge-image').src = b64);
+        })
+
+
+        // data:image/png;base64,iVBORw0KGgoAA...
 
         $(document).ready(function () {
             //Background button
