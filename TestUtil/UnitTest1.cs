@@ -129,13 +129,13 @@ namespace TestUtil
         }
 
         [DataTestMethod]
-        [DataRow("R02", "F424ACB07F0888010EAB05B5E260171C", "Shopee", "Cursive", "666", "shopee.vn", "fa fa-shopping-cart", "1234", "1998-01-01", "10")]
+        [DataRow("R02", "F424ACB07F0888010EAB05B5E260171C", "Shopee", "Cursive", "666", "shopee.vn", "fa fa-shopping-cart", "1234", "1998-01-01")]
 
         public void TestUpdateRow(string idRow, string idContact, string text, string font, string rowColor,
-            string link, string bullet, string code, string birth, string click)
+            string link, string bullet, string code, string birth)
         {
             Util.DAO dao = new Util.DAO();
-            Assert.AreEqual(true, dao.DB_UpdateRow(idRow, idContact, text, font, rowColor, link, bullet, code, birth, click));
+            Assert.AreEqual(true, dao.DB_UpdateRow(idRow, idContact, text, font, rowColor, link, bullet, code, birth));
         }
 
         [DataTestMethod]
