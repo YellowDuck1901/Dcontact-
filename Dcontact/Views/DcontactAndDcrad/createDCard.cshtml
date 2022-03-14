@@ -14,7 +14,8 @@
     <script src="https://kit.fontawesome.com/a0a7c0f0d8.js"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css'>
+
 </head>
 @*@ no tinh la code c# *@
 <style>
@@ -23,23 +24,39 @@
 </style>
 <div class="card-body">
     <div class="crop-area">
-        <div class="card" id="cardBg">
+        <div class="card" id="cardBg" style="background-image: ;">
+            <img id="avatar-result" alt="avatar" src="" />
+
             <div class="leftResult cmnResult"></div>
             <div class="rightResult cmnResult"></div>
             <div class="centerResult cmnResult"></div>
             <div class="bottomResult cmnResult"></div>
             <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
             <div class="qrcode"></div>
+            @* <div id="upload-background"></div>*@
         </div>
+        @*background crop load*@
         <div class="cropBackground">
             <span class="cropHeader">
                 <h3>CROP BACKGROUND</h3>
-                <button class="btn btn-success btn-block btn-upload-background">Upload</button>
             </span>
-            <div id="upload-background"></div>
+            <button class="btn btn-success btn-block btn-upload-template">Upload Image</button>
+            <div id="upload-template"></div>
+        </div>
+
+        @*avatar crop load*@
+        <div class="cropAvatar">
+            <span class="cropHeader">
+                <h3>CROP AVATAR</h3>
+            </span>
+            <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
+            <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
         </div>
 
     </div>
+
+
+
     <div class="edit-card">
         <span class="input-link">
             <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
@@ -55,8 +72,7 @@
             </div>
 
             <span class="upload">
-                <input type="file" name="uploadFile" id="image-background">
-                @*<button class="btn btn-success btn-block btn-upload-background">Upload</button>*@
+                <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
             </span>
 
             <span class="choose-color">
@@ -70,11 +86,11 @@
                 </label>
                 <p>Avatar</p>
             </div>
-
+            @*file upload avatar*@
             <span class="uploadAvt">
-                <input type="file" name="uploadFile" id="uploadAvt">
-                <!-- <div id="upload-input" style="width:350px; height: 400px;"></div> -->
-                <!-- <button class="btn-upload upload-result">Upload Image</button> -->
+                <div class="file-input">
+                    <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
+                </div>
             </span>
 
             <div class="choosePosition">
@@ -159,67 +175,7 @@
 
     </div>
 
-    @* upload background*@
-    @*<div id="upload-background"></div>*@
-
-    <!-- Modal For Background -->
-    @* <div class="modal" id="modal">
-            <div class="modal-container">
-                <div class="modal-header">
-                    <i class="fas fa-crop-alt"></i>Crop & Upload Image
-                </div>
-                <div class="modal-body">
-                    <div class="imageShow" id="imageShow"></div>
-                </div>
-
-                <div class="btn-common">
-                    <input type="button" value="Cancel" class="btn-cancel">
-                    <input type="button" value="Apply" class="btn-upload">
-                </div>
-            </div>
-        </div>*@
-
-    <!-- Modal for Avatar -->
-    @* <div class="modalAvt" id="modalAvt">
-            <div class="modal-container">
-                <div class="modal-header">
-                    <i class="fas fa-crop-alt"></i>Crop & Upload Image
-                </div>
-                <div class="modal-body">
-                    <div class="avtShow" id="avtShow"></div>
-                </div>
-                <div class="btn-common">
-                    <input type="button" value="Cancel" class="btn-cancelAvt">
-                    <input type="button" value="Apply" class="btn-uploadAvt">
-                </div>
-            </div>
-        </div>*@
-    </body>
-
     <script>
-        //JS Avatar
-        @*const avtInp = document.getElementById("uploadAvt");
-        const avtShow = document.getElementById('avtShow');
-        // const avtShow = document.getElementById("modalAvt");
-        avtInp.onchange = even => {
-            $('#modalAvt').css('display', 'flex');
-            const [file] = avtInp.files
-            if (file) {
-                avtShow.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
-            }
-        }*@
-
-        //JS Background
-       @* const imgInp = document.getElementById("uploadFile");
-        const imgShow = document.getElementById('imageShow');*@
-        // const modalShow = document.getElementById("modal");
-      @*  imgInp.onchange = even => {
-            $('#modal').css('display', 'flex');
-            const [file] = imgInp.files
-            if (file) {
-                imgShow.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
-            }
-        }*@
 
         $(document).ready(function () {
             //Background button
@@ -255,7 +211,7 @@
             $("#toggleBg").on('change', function () {
                 if ($(this).is(':checked')) {
                     $(this).attr('value', 'true');
-                    $('.upload').css('display','flex');
+                    $('.upload').css('display', 'flex');
                     $('.choose-color').show();
                     $('.cropBackground').show();
                 }
@@ -334,6 +290,11 @@
 
 
     </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
     <script src="~/MyScript/create_dcard.js"></script>
+
+    </body>
+
+
 
 </html>
