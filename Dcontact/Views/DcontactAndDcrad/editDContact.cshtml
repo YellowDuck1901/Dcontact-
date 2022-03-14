@@ -91,8 +91,8 @@
                                             <span class="report"><abbr title="Click here to delete this link"><i class="fa fa-trash-o"></i></abbr></span>
                                             <div class="button"
                                                  role="button"
-                                                 id="@Util.UUID.getUUID()"
-                                                 style="background-color: @row.color">
+                                                  id="@Util.UUID.getUUID()"
+                                                 style="background-color: @row.color; height: 26.875px">
                                                 <i class="@row.bullet"></i>
                                                 <div class="card--item__text">
                                                     <label style="font-family: @row.font;">@row.text</label>
@@ -121,7 +121,7 @@
                             <input type="text" name="Tilte" id="titleUrl" />
                             <label for="Title" class="title__label">Title</label>
                         </div>
-                        <div class="url__input">
+                        <div class="url__input" target="">
                             <input type="text" name="Link" id="linkUrl" /> </br>
                             <label for="Link" class="url__label">URL</label>
                         </div>
@@ -148,6 +148,7 @@
                                 <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
                                 <option value="Segoe UI">Segoe UI</option>
                                 <option value="sans-serif">Sans-Serif</option>
+                                <option value="Cursive">Cursive</option>
                             </select>
                             <span class="colorText">
                                 Color BackgroundTag <input type="color" name="ColorBackground" id="bgColor" value="#273c75">
