@@ -188,9 +188,10 @@
         $('#next').on('click', function () {
             var background = $('#cardBg').css('background-image');
             var avatar = $('#avatar-result').attr('src');
+            var image_bg = b64toBlob(background, "image/png");
+            var image_avt = b64toBlob(avatar, "image/png");
 
-
-            alert(avatar);
+            alert(image_bg);
             mergeImages([background, avatar, '/resource/logo/single.svg'])
                 .then(b64 => document.querySelector('#merge-image').src = b64);
         })
