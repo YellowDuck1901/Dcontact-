@@ -5,8 +5,8 @@
         enableExif: true,
         enableOrientation: true,
         viewport: { // Default { width: 100, height: 100, type: 'square' } 
-            width: 100,
-            height: 100,
+            width: 80,
+            height: 80,
             type: 'circle'
         },
         boundary: {

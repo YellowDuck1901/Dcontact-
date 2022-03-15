@@ -29,7 +29,7 @@
         <div class="crop-area">
             <div class="card" id="cardBg" style="background-image: ;">
                 @*upload background*@
-                <img id="avatar-result" alt="avatar" src="" />               @*upload avatar*@
+                <img id="avatar-result" alt="avatar" src="~/resource/logo/avatar_temp.png" />               @*upload avatar*@
                 <div class="leftResult cmnResult"></div>
                 <div class="rightResult cmnResult"></div>
                 <div class="centerResult cmnResult"></div>
@@ -230,7 +230,34 @@
                             return blob;
                         }
 
-
+           @* function MergeImage(string positionAvatar) {
+                if (positionAvatar === "left") {
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 10, y: 10 },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                } else (positionAvatar === "right"){
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 400, y: 10 },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                }else (positionAvatar === "center"){
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 220, y: 110},
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                }else {
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 10, y: 10 },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                }
+            }*@
+                            
                             // data:image/png;base64,iVBORw0KGgoAA...
 
                             $(document).ready(function () {
@@ -261,8 +288,11 @@
                                 console.log(bgURL + '/\\' + avtURL)
 
                                 setTimeout(function () {
-                                    mergeImages([avtURL, bgURL , '/resource/logo/logo_single.svg'])
-                                        .then(b64 => document.querySelector('#merge-image').src = b64);
+                                    mergeImages([
+                                        { src: bgURL },
+                                        { src: avtURL, x: 10, y: 10 },
+                                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
                                 }, 1000);
 
                             });
