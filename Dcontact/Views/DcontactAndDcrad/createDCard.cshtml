@@ -15,7 +15,15 @@
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css'>
-
+    <style>
+        .card{
+            display: flex;
+            align-items: center;
+        }
+        .card__display{
+            height: fit-content;
+        }
+    </style>
 </head>
 @*@ no tinh la code c# *@
 <style>
@@ -25,12 +33,18 @@
 <div class="card-body">
     <div class="crop-area">
         <div class="card" id="cardBg" style="background-image: ;">
-            <img id="avatar-result" alt="avatar" src="" />
+            <div class="card__display">
+                <div class="img__position">
+                    <img id="avatar-result" alt="avatar" src="" />
+                </div>
+                <div class="text__position">
 
-            <div class="leftResult cmnResult"></div>
+                </div>
+            </div>
+            @*<div class="leftResult cmnResult"></div>
             <div class="rightResult cmnResult"></div>
             <div class="centerResult cmnResult"></div>
-            <div class="bottomResult cmnResult"></div>
+            <div class="bottomResult cmnResult"></div>*@
             <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
             <div class="qrcode"></div>
             @* <div id="upload-background"></div>*@
@@ -92,28 +106,22 @@
                     <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
                 </div>
             </span>
-
+            @* Set position for avatar *@
             <div class="choosePosition">
                 <table border="0" width="300px">
                     Position
                     <tr>
                         <td>
-                            <input type="radio" id="left" name="position" value="left">
+                            <input type="radio" id="leftAvt" name="position" value="leftAvt">
                             <label for="left">Left</label><br>
                         </td>
                         <td>
-                            <input type="radio" id="center" name="position" value="center">
-                            <label for="left">Center</label><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" id="right" name="position" value="right">
-                            <label for="left">Right</label><br>
+                            <input type="radio" id="centerAvt" name="position" value="centerAvt">
+                            <label for="leftAvt">Center</label><br>
                         </td>
                         <td>
-                            <input type="radio" id="bottom" name="position" value="bottom">
-                            <label for="left">Bottom</label><br>
+                            <input type="radio" id="rightAvt" name="position" value="rightAvt">
+                            <label for="leftAvt">Right</label><br>
                         </td>
                     </tr>
                 </table>
@@ -207,6 +215,11 @@
                 }
             });
 
+            //set position avatar
+            $('#avtBtn').on('click', function () {
+
+            });
+
             //   toggleBackground
             $("#toggleBg").on('change', function () {
                 if ($(this).is(':checked')) {
@@ -220,8 +233,6 @@
                     $('.upload').hide();
                     $('.choose-color').hide();
                     $('.cropBackground').hide();
-
-
                 }
             });
 
@@ -231,12 +242,13 @@
                     $(this).attr('value', 'true');
                     $('.uploadAvt').css('display', 'block');
                     $('.choosePosition').show();
+                    $('.cropAvatar').show();
                 }
                 else {
                     $(this).attr('value', 'false');
                     $('.uploadAvt').hide();
                     $('.choosePosition').hide();
-
+                    $('.cropAvatar').hide();
                 }
             });
             // bgcolor

@@ -1,3 +1,7 @@
+:root {
+    --primary-color: #ff793f;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -9,6 +13,7 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 .header {
@@ -176,19 +181,22 @@ body,
   position: absolute;
   top: 5px;
   right: 10px;
+
+
 }
 
+.rightResult {
+    float: right;
+    margin-right: 0.75rem;
+}
+/*
 .leftResult {
   position: absolute;
   top: 20px;
   left: 20px;
 }
 
-.rightResult {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
+
 
 .centerResult {
   position: absolute;
@@ -201,7 +209,7 @@ body,
   position: absolute;
   bottom: 40px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%);*/
 }
 /* ------------------- */
 .img-qr {
@@ -262,17 +270,21 @@ body,
   margin: 20px auto;
 }
 
-.cropBackground {
+.cropBackground,
+.cropAvatar{
     background: #fff;
     margin: 1rem;
-    padding: 0.5rem;
     display: none;
+    border-radius: 2rem;
 }
 
 .cropHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: var(--primary-color);
+    color: #fff;
+    margin-bottom: 0.5rem;
 }
 
 #image-background {
@@ -292,4 +304,37 @@ body,
     cursor: pointer;
     width: 5rem;
     border-radius: 6px;
+}
+
+.cropHeader h3 {
+    font-family: cursive;
+    font-size: 1.5rem;
+    letter-spacing: 0.25rem;
+    /*color: var(--primary-color);*/
+    padding: 0.5rem;
+}
+
+
+.cropHeader button:hover {
+ 
+}
+
+.btn-upload-template,
+.btn-upload-avatar {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    color: var(--primary-color);
+    background: #fff;
+    border: 1px solid #cccc;
+    box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+    float: right;
+    cursor: pointer;
+    border-radius: 2rem;
+    transition: .5s;
+}
+
+.btn-upload-template:hover,
+.btn-upload-avatar:hover {
+    background: var(--primary-color);
+    color: #fff;
 }
