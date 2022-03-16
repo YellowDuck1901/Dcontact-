@@ -1,18 +1,22 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Dcontact.Controllers
-{
-    public class LinkContactController : Controller
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Util;
+namespace Dcontact.Controllers { 
+public class LinkContactController : Controller
     {
-        // GET: LinkContact
-        public ActionResult Index()
-        {
-            return View();
-        }
+    
+
+        //}
         //public ActionResult LinkContact(string username)
         //{
         //    String mess = "";
