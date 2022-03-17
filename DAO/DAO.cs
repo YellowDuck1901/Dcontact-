@@ -316,5 +316,51 @@ namespace Util
             }
             return admin;
         }
+        public bool DB_updateAvt(string id, string path)
+        {
+            string sql = $"EXECUTE dbo.PRO_updateAvt @ID ='{id}', @path = '{path}' ";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        } public bool DB_updateTemplate(string id, string path)
+        {
+            string sql = $"EXECUTE dbo.PRO_updateTemplate @ID ='{id}', @path = '{path}' ";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+        public List<string> DB_loadTemplate(string id)
+        {
+            string sql = $"select background from template where ID_User = '{id}'";
+            List<string> paths = new List<string>();
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                while (this.dataReader.Read())
+                {
+                    paths.Add(dataReader.GetValue(0).ToString());
+                }
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paths;
+        }
     }
 }

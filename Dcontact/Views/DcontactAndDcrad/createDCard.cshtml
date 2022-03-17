@@ -11,35 +11,42 @@
     <title>Create DCard</title>
     <link rel="stylesheet" href="~/CSS/create_DCard.css" />
     <link rel="stylesheet" href="~/CSS/switch.css" />
-    <script src="https://kit.fontawesome.com/a0a7c0f0d8.js"
-            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css'>
-    <style>
-        .card{
-            display: flex;
-            align-items: center;
-        }
-        .card__display{
-            height: fit-content;
-        }
-    </style>
 </head>
 @*@ no tinh la code c# *@
 <style>
+    <script src="https://unpkg.com/merge-images"></script>
+    <style>
 @*    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');*@
         import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');
 </style>
 <div class="card-body">
     <div class="crop-area">
-        <div class="card" id="cardBg" style="background-image: ;">
+        <div class="card" id="cardBg">
             <div class="card__display">
-                <div class="img__position">
-                    <img id="avatar-result" alt="avatar" src="" />
+                <div class="card--top">
+                    <div class="card--left cmn-card">
+                        <img id="avatar-result" alt="avatar" src="" />
+                        <div class="left-text cmn-result"></div>
+                    </div>
+                    <div class="card--right cmn-card">
+                        <img alt="avatar" src="" />
+                        <div class="right-text cmn-result"></div>
+                    </div>
                 </div>
-                <div class="text__position">
-
+                <div class="card--center cmn-card">
+                    <div class="center__center">
+                        <img alt="avatar" src="" />
+                        <div class="center-text cmn-result"></div>
+                    </div>
+                   
                 </div>
+                <div class="img__position right-row">
+                    @*<img id="avatar-result" alt="avatar" src="/Uploads/3b20ec9c05144b33bfde7621804188dd.png" />*@
+                </div>
+                
             </div>
             @*<div class="leftResult cmnResult"></div>
             <div class="rightResult cmnResult"></div>
@@ -58,69 +65,73 @@
             <div id="upload-template"></div>
         </div>
 
-        @*avatar crop load*@
-        <div class="cropAvatar">
-            <span class="cropHeader">
-                <h3>CROP AVATAR</h3>
-            </span>
-            <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
-            <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
+            @*avatar crop load*@
+            <div class="cropAvatar">
+                <span class="cropHeader">
+                    <h3>CROP AVATAR</h3>
+                </span>
+                <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
+                <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
+            </div>
+
+            <img id="merge-image" src="" width="128">
+
+
         </div>
 
-    </div>
 
 
-
-    <div class="edit-card">
-        <span class="input-link">
-            <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
-            <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
-        </span> </br>
-        <div class="toggle-area">
-            <div class="toggle-switch">
-                <label class="switch">
-                    <input type="checkbox" value="false" id="toggleBg" />
-                    <span class="slider round"></span>
-                </label>
-                <p>Edit Background</p>
-            </div>
-
-            <span class="upload">
-                <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
-            </span>
-
-            <span class="choose-color">
-                Background Color <input type="color" id="chooseColor">
-            </span>
-
-            <div class="toggle-switch">
-                <label class="switch">
-                    <input type="checkbox" value="false" id="toggleAvt" />
-                    <span class="slider round"></span>
-                </label>
-                <p>Avatar</p>
-            </div>
-            @*file upload avatar*@
-            <span class="uploadAvt">
-                <div class="file-input">
-                    <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
+        <div class="edit-card">
+            <span class="input-link">
+                <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
+                <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
+            </span> </br>
+            <div class="toggle-area">
+                <div class="toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" value="false" id="toggleBg" />
+                        <span class="slider round"></span>
+                    </label>
+                    <p>Edit Background</p>
                 </div>
-            </span>
+
+                <span class="upload">
+                    <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
+                </span>
+
+                <span class="choose-color">
+                    Background Color <input type="color" id="chooseColor">
+                </span>
+
+                <div class="toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" value="false" id="toggleAvt" />
+                        <span class="slider round"></span>
+                    </label>
+                    <p>Avatar</p>
+                </div>
+                @*file upload avatar*@
+                <span class="uploadAvt">
+                    <div class="file-input">
+                        <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
+                    </div>
+                </span>
+          
             @* Set position for avatar *@
             <div class="choosePosition">
                 <table border="0" width="300px">
                     Position
                     <tr>
                         <td>
-                            <input type="radio" id="leftAvt" name="position" value="leftAvt">
+                            <input type="radio" id="leftAvt" name="positionAvt" value="left" checked>
                             <label for="left">Left</label><br>
                         </td>
                         <td>
-                            <input type="radio" id="centerAvt" name="position" value="centerAvt">
+                            <input type="radio" id="centerAvt" name="positionAvt" value="center">
                             <label for="leftAvt">Center</label><br>
                         </td>
                         <td>
-                            <input type="radio" id="rightAvt" name="position" value="rightAvt">
+                            <input type="radio" id="rightAvt" name="positionAvt" value="right">
                             <label for="leftAvt">Right</label><br>
                         </td>
                     </tr>
@@ -128,184 +139,296 @@
                 <input type="button" value="Set Position" id="avtBtn">
             </div>
 
-            <div class="toggle-switch">
-                <label class="switch">
-                    <input type="checkbox" value="false" id="toggleQR" />
-                    <span class="slider round"></span>
-                </label>
-                <p>QR Code</p>
+                <div class="toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" value="false" id="toggleQR" />
+                        <span class="slider round"></span>
+                    </label>
+                    <p>QR Code</p>
+                </div>
+
+                <div class="toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" value="false" id="toggleText" />
+                        <span class="slider round"></span>
+                    </label>
+                    <p>Text</p>
+                </div>
+
+                <span class="input-text">
+                    <input required type="text" placeholder="Enter text" id="textDesc" />
+                </span> </br>
+                <span class="textColor">
+                    Text Color <input type="color" id="chooseTextColor">
+                </span>
+                <div class="choosePositionText">
+                    <table border="0" width="300px">
+                        Position
+                        <tr>
+                            <td>
+                                <input type="radio" id="leftText" name="position" value="left" checked>
+                                <label for="leftText">Left</label><br>
+                            </td>
+                            <td>
+                                <input type="radio" id="centerText" name="position" value="center">
+                                <label for="centerText">Center</label><br>
+                            </td>
+                            <td>
+                                <input type="radio" id="rightText" name="position" value="right">
+                                <label for="rightText">Right</label><br>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="button" id="btnRadio" value="Set Position" />
+
+                </div>
             </div>
 
-            <div class="toggle-switch">
-                <label class="switch">
-                    <input type="checkbox" value="false" id="toggleText" />
-                    <span class="slider round"></span>
-                </label>
-                <p>Text</p>
-            </div>
+            <input type="button" id="next" class="btn-order" value="NEXT" @*onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';"*@ />
 
-            <span class="input-text">
-                <input required type="text" placeholder="Enter text" id="textDesc" />
-            </span> </br>
-            <span class="textColor">
-                Text Color <input type="color" id="chooseTextColor">
-            </span>
-            <div class="choosePositionText">
-                <table border="0" width="300px">
-                    Position
-                    <tr>
-                        <td>
-                            <input type="radio" id="leftText" name="position" value="leftText">
-                            <label for="leftText">Left</label><br>
-                        </td>
-                        <td>
-                            <input type="radio" id="centerText" name="position" value="centerText">
-                            <label for="centerText">Center</label><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" id="rightText" name="position" value="rightText">
-                            <label for="rightText">Right</label><br>
-                        </td>
-                        <td>
-                            <input type="radio" id="bottomText" name="position" value="bottomText">
-                            <label for="bottomText">Bottom</label><br>
-                        </td>
-                    </tr>
-                </table>
-                <input type="button" id="btnRadio" value="Set Position" />
-
-            </div>
         </div>
 
-        <input type="button" class="btn-order" value="NEXT" onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';" />
 
-    </div>
 
-    <script>
+        <script>
 
-        $(document).ready(function () {
-            //Background button
-            $('.btn-cancel').on('click', function () {
-                $('#modal').hide();
-            })
-            // Avatar Button
-            $('.btn-cancelAvt').on('click', function () {
-                $('#modalAvt').hide();
-            })
 
-            //   set position text
-            $('#btnRadio').on('click', function () {
-                //textcolor
-                $('#chooseTextColor').on('change', function () {
-                    $('.cmnResult').css('color', $(this).val());
-                });
-                $(".cmnResult").empty();
-                var rdoChecked = $('input[type="radio"]:checked');
-                var rs = $('#textDesc').val();
-                if (rdoChecked.val() == "leftText") { //leftPosition
-                    $('.leftResult').html(rs);
-                } else if (rdoChecked.val() == "rightText") { //rightPosition
-                    $('.rightResult').html(rs);
-                } else if (rdoChecked.val() == "centerText") { //center
-                    $('.centerResult').html(rs);
-                } else { //bottom
-                    $('.bottomResult').html(rs);
-                }
-            });
+           
+            function textPosition(position, rs) {
+                position = '.' + position + '-text'
+                $(position).text(rs)
+            }
 
-            //set position avatar
-            $('#avtBtn').on('click', function () {
-
-            });
-
-            //   toggleBackground
-            $("#toggleBg").on('change', function () {
-                if ($(this).is(':checked')) {
-                    $(this).attr('value', 'true');
-                    $('.upload').css('display', 'flex');
-                    $('.choose-color').show();
-                    $('.cropBackground').show();
-                }
-                else {
-                    $(this).attr('value', 'false');
-                    $('.upload').hide();
-                    $('.choose-color').hide();
-                    $('.cropBackground').hide();
-                }
-            });
-
-            // toogleAvt
-            $("#toggleAvt").on('change', function () {
-                if ($(this).is(':checked')) {
-                    $(this).attr('value', 'true');
-                    $('.uploadAvt').css('display', 'block');
-                    $('.choosePosition').show();
-                    $('.cropAvatar').show();
-                }
-                else {
-                    $(this).attr('value', 'false');
-                    $('.uploadAvt').hide();
-                    $('.choosePosition').hide();
-                    $('.cropAvatar').hide();
-                }
-            });
-            // bgcolor
-            $('#chooseColor').on('change', function () {
-                $('.card').css('background-color', $(this).val());
-            });
-
-            //bg-img
-            $('#btn-upload-bg').on('click', function () {
-                $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
-            })
-
-            //qrcode
-            $("#toggleQR").on('change', function () {
-                if ($('#linkContact').val() != '') {
-                    $('.error-icon').hide();
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                        var data = $('#linkContact').val();
-                        var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
-                        $('.qrcode').html(img);
-                        data = $('#linkContact').val('');
+            function uploadImage(formData) {
+                    var rep = '';
+                        $.ajax({
+                            type: "POST",
+                            url: "api/ImageAPI/UploadFiles",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            async: false,
+                            success: function (response) {
+                                console.log(response);
+                                rep = response+'';
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                $('body').html('error: ' + jqXHR.responseText);
+                                console.log('error: ' + jqXHR.status);
+                            }
+                        });
+                    return rep;
                     }
-                    else {
-                        $(this).attr('value', 'false');
-                        $('.img-qr').hide();
-                    }
-                } else {
-                    $(this).prop('checked', false);
-                    $('.error-icon').show();
+
+                                    function b64toBlob(b64Data, contentType, sliceSize) {
+                            contentType = contentType || '';
+                            sliceSize = sliceSize || 512;
+
+                            var byteCharacters = atob(b64Data);
+                            var byteArrays = [];
+
+                            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                                var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                                var byteNumbers = new Array(slice.length);
+                                for (var i = 0; i < slice.length; i++) {
+                                    byteNumbers[i] = slice.charCodeAt(i);
+                                }
+
+                                var byteArray = new Uint8Array(byteNumbers);
+
+                                byteArrays.push(byteArray);
+                            }
+
+                            var blob = new Blob(byteArrays, { type: contentType });
+                            return blob;
+                        }
+
+           @* function MergeImage(string positionAvatar) {
+                if (positionAvatar === "left") {
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 10, y: 10 },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                } else (positionAvatar === "right"){
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 400, y: 10 },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                }else (positionAvatar === "center"){
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 220, y: 110},
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                }else {
+                    mergeImages([
+                        { src: bgURL },
+                        { src: avtURL, x: 10, y: 10 },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
                 }
-            });
+            }*@
+                            
+                            // data:image/png;base64,iVBORw0KGgoAA...
 
-            //text
-            $("#toggleText").on('change', function () {
-                if ($(this).is(':checked')) {
-                    $(this).attr('value', 'true');
-                    $('.input-text').show();
-                    $('.choosePositionText').show();
-                    $('.textColor').show();
-                }
-                else {
-                    $(this).attr('value', 'false');
-                    $('.input-text').hide();
-                    $('.choosePositionText').hide();
-                    $('.textColor').hide();
-                }
-            });
+                            $(document).ready(function () {
+                            $('#next').on('click', function () {
+                                var background = $('#cardBg').css('background-image');
+                                background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+                                var avatar = $('#avatar-result').attr('src');
 
-        });
+                                var block = background.split(";");
+                                var contentType = block[0].split(":")[1];
+                                var realData = block[1].split(",")[1];
+                                var image_bg = b64toBlob(realData, contentType);
 
 
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
-    <script src="~/MyScript/create_dcard.js"></script>
+                                var block = avatar.split(";");
+                                var contentType = block[0].split(":")[1];
+                                var realData = block[1].split(",")[1];
+                                var image_avt = b64toBlob(realData, contentType);
 
-    </body>
+                                var fBgData = new FormData();
+                                var favtData = new FormData();
+                                fBgData.append('image', image_bg);
+                                favtData.append('image', image_avt);
+
+                                var bgURL = uploadImage(fBgData);
+
+                                var avtURL = uploadImage(favtData);
+                                console.log(bgURL + '/\\' + avtURL)
+
+                                setTimeout(function () {
+                                    mergeImages([
+                                        { src: bgURL },
+                                        { src: avtURL, x: 10, y: 10 },
+                                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                                }, 1000);
+
+                            });
+                            //Background button
+                            $('.btn-cancel').on('click', function () {
+                                $('#modal').hide();
+                            })
+                            // Avatar Button
+                            $('.btn-cancelAvt').on('click', function () {
+                                $('#modalAvt').hide();
+                            })
+
+                            //   set position text
+                            $('#btnRadio').on('click', function () {
+                                //textcolor
+                                $(".cmn-result").empty();
+                                var rdoChecked = $('input[name="position"]:checked').val();
+                                var rs = $('#textDesc').val();
+                                textPosition(rdoChecked, rs);
+                                $('#chooseTextColor').on('change', function () {
+                                    $('.cmn-result').css('color', $(this).val());
+                                });
+                            });
+
+                            //   toggleBackground
+                            $("#toggleBg").on('change', function () {
+                                if ($(this).is(':checked')) {
+                                    $(this).attr('value', 'true');
+                                    $('.upload').css('display', 'flex');
+                                    $('.choose-color').show();
+                                    $('.cropBackground').show();
+                                }
+                                else {
+                                    $(this).attr('value', 'false');
+                                    $('.upload').hide();
+                                    $('.choose-color').hide();
+                                    $('.cropBackground').hide();
+                                }
+                            });
+
+                            // toogleAvt
+                                $("#toggleAvt").on('change', function () {
+                                if ($(this).is(':checked')) {
+                                    $(this).attr('value', 'true');
+                                    $('.uploadAvt').css('display', 'block');
+                                    $('.choosePosition').show();
+                                    $('.cropAvatar').show();
+                                }
+                                else {
+                                    $(this).attr('value', 'false');
+                                    $('.uploadAvt').hide();
+                                    $('.choosePosition').hide();
+                                    $('.cropAvatar').hide();
+
+                                }
+                                });
+
+                            // bgcolor
+                            $('#chooseColor').on('change', function () {
+                                $('.card').css('background-image', '');
+                                $('.card').css('background-color', $(this).val());
+                                if ($(this).val() == '#ffffff') {
+                                    $('.img-qr').css('mix-blend-mode', 'darken');
+                                    $('.img-qr').css('filter', '');
+                                }
+                                if ($(this).val() == '#000000') {
+                                    $('.img-qr').css('mix-blend-mode', 'lighten');
+                                    $('.img-qr').css('filter', 'invert(1)');
+                                }
+                            });
+
+                            //bg-img
+                                $('#btn-upload-bg').on('click', function () {
+                                $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
+                            })
+
+                            //qrcode
+                            $("#toggleQR").on('change', function () {
+                                if ($('#linkContact').val() != '') {
+                                    $('.error-icon').hide();
+                                    if ($(this).is(':checked')) {
+                                        $(this).attr('value', 'true');
+                                        var data = $('#linkContact').val();
+                                        var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
+                                        $('.qrcode').html(img);
+                                        data = $('#linkContact').val('');
+                                    }
+                                    else {
+                                        $(this).attr('value', 'false');
+                                        $('.img-qr').hide();
+                                    }
+                                } else {
+                                    $(this).prop('checked', false);
+                                    $('.error-icon').show();
+                                }
+                            });
+
+                            //text
+                            $("#toggleText").on('change', function () {
+                                if ($(this).is(':checked')) {
+                                    $(this).attr('value', 'true');
+                                    $('.input-text').show();
+                                    $('.choosePositionText').show();
+                                    $('.textColor').show();
+                                }
+                                else {
+                                    $(this).attr('value', 'false');
+                                    $('.input-text').hide();
+                                    $('.choosePositionText').hide();
+                                    $('.textColor').hide();
+                                }
+                            });
+
+                        });
+
+
+        </script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
+        <script src="~/MyScript/create_dcard.js"></script>
+
+</body>
 
 
 

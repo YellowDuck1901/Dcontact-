@@ -1,5 +1,9 @@
 @{ ViewBag.Title = "editDContact";
     Layout = "~/Views/Shared/Header.cshtml"; }
+@{
+    Bean.Dcontact dcontact = ViewBag.dcontact;
+    List<string> template = ViewBag.template;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +56,16 @@
                                     <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
                                     <button class="btn-addTemp">Add New Template</button>
                                 </li>
+                                @{ foreach (string path in template)
+                                    {
+                                        <li>
+                                            <div class="inf-temp">
+                                                <img src="@path" class="img-temp" />
+                                                <p class="name-temp">Template @template.IndexOf(path)</p>
+                                            </div>
+                                        </li>
+                                    }
+                                }
                             </ul>
                         </div>
                     </div>
@@ -60,9 +74,7 @@
             </aside>
             <!-- Todo []-->
             <!-- Right sidebar -->
-            @{
-                Bean.Dcontact dcontact = ViewBag.dcontact;
-            }
+
             <nav class="container__center">
 
                 <div class="contener">
@@ -80,7 +92,7 @@
                                             <div class="button"
                                                  role="button"
                                                   id="@Util.UUID.getUUID()"
-                                                 style="background-color: @row.color; height: 26.875px">
+                                                 style="background-color: @row.color; height: 26.875px" url="@row.link">
                                                 <i class="@row.bullet"></i>
                                                 <div class="card--item__text">
                                                     <label style="font-family: @row.font;">@row.text</label>
@@ -89,8 +101,8 @@
                                         </li>
                                     }
                                 }
-                                
-                              
+
+
                             </ul>
                         </div>
                         <div class="card__contener--footer">
@@ -109,7 +121,7 @@
                             <input type="text" name="Tilte" id="titleUrl" />
                             <label for="Title" class="title__label">Title</label>
                         </div>
-                        <div class="url__input">
+                        <div class="url__input" target="">
                             <input type="text" name="Link" id="linkUrl" /> </br>
                             <label for="Link" class="url__label">URL</label>
                         </div>
@@ -136,6 +148,7 @@
                                 <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
                                 <option value="Segoe UI">Segoe UI</option>
                                 <option value="sans-serif">Sans-Serif</option>
+                                <option value="Cursive">Cursive</option>
                             </select>
                             <span class="colorText">
                                 Color BackgroundTag <input type="color" name="ColorBackground" id="bgColor" value="#273c75">
@@ -257,7 +270,7 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
     <script src="~/MyScript/editDContact.js"></script>
-    
+
 
 </body>
 

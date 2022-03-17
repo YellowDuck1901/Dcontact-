@@ -1,12 +1,26 @@
-﻿$(document).ready(function () {
+﻿    var imageSrc;
+$(document).ready(function () {
+    function imagePosition(position) {
+        if (imageSrc != null) {
+            $('.cmn-card img').attr('src', '');
+            position = '.' + 'card--' + position + ' img';
+            $(position).attr('src', imageSrc);
+        }
+    }
 
 
+    //position avatar
+    $('#avtBtn').on('click', function () {
+        var rdoChecked = $('input[name="positionAvt"]:checked').val();
+        imagePosition(rdoChecked)
+    })
+    
     var resize_avatar = $('#upload-avatar').croppie({
         enableExif: true,
         enableOrientation: true,
         viewport: { // Default { width: 100, height: 100, type: 'square' } 
-            width: 100,
-            height: 100,
+            width: 80,
+            height: 80,
             type: 'circle'
         },
         boundary: {
@@ -34,6 +48,7 @@
             size: 'viewport'
         }).then(function (img) {
             document.getElementById('avatar-result').src = "" + img;
+            imageSrc = img+"";
         });
     });
 
@@ -69,6 +84,7 @@
             type: 'canvas',
             size: 'viewport'
         }).then(function (img) {
+            $('.card').css('background-color', '');
             $('#cardBg').css('background-image', "url('" + img + "')");   //cho load anh
         });
     });
