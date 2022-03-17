@@ -47,6 +47,7 @@ $(document).ready(function () {
             type: 'canvas',
             size: 'viewport'
         }).then(function (img) {
+            $('.cmn-card img').attr('src', '');
             document.getElementById('avatar-result').src = "" + img;
             imageSrc = img+"";
         });
