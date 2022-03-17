@@ -14,10 +14,11 @@
     <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css'>
+    <script src="https://unpkg.com/merge-images"></script>
+
 </head>
 @*@ no tinh la code c# *@
 <style>
-    <script src="https://unpkg.com/merge-images"></script>
     <style>
 @*    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');*@
         import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300&display=swap');
@@ -32,13 +33,13 @@
                         <div class="left-text cmn-result"></div>
                     </div>
                     <div class="card--right cmn-card">
-                        <img alt="avatar" src="" />
+                        <img id="avatar-result-right" alt="avatar" src="" />
                         <div class="right-text cmn-result"></div>
                     </div>
                 </div>
                 <div class="card--center cmn-card">
                     <div class="center__center">
-                        <img alt="avatar" src="" />
+                        <img id="avatar-result-center" alt="avatar" src="" />
                         <div class="center-text cmn-result"></div>
                     </div>
                    
@@ -193,235 +194,273 @@
         <script>
 
 
-           
+
             function textPosition(position, rs) {
                 position = '.' + position + '-text'
                 $(position).text(rs)
             }
 
             function uploadImage(formData) {
-                    var rep = '';
-                        $.ajax({
-                            type: "POST",
-                            url: "api/ImageAPI/UploadFiles",
-                            data: formData,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            async: false,
-                            success: function (response) {
-                                console.log(response);
-                                rep = response+'';
-                            },
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                $('body').html('error: ' + jqXHR.responseText);
-                                console.log('error: ' + jqXHR.status);
-                            }
-                        });
-                    return rep;
+                var rep = '';
+                $.ajax({
+                    type: "POST",
+                    url: "api/ImageAPI/UploadFiles",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    success: function (response) {
+                        console.log(response);
+                        rep = response + '';
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('body').html('error: ' + jqXHR.responseText);
+                        console.log('error: ' + jqXHR.status);
+                    }
+                });
+                return rep;
+            }
+
+            function b64toBlob(b64Data, contentType, sliceSize) {
+                contentType = contentType || '';
+                sliceSize = sliceSize || 512;
+
+                var byteCharacters = atob(b64Data);
+                var byteArrays = [];
+
+                for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                    var byteNumbers = new Array(slice.length);
+                    for (var i = 0; i < slice.length; i++) {
+                        byteNumbers[i] = slice.charCodeAt(i);
                     }
 
-                                    function b64toBlob(b64Data, contentType, sliceSize) {
-                            contentType = contentType || '';
-                            sliceSize = sliceSize || 512;
+                    var byteArray = new Uint8Array(byteNumbers);
 
-                            var byteCharacters = atob(b64Data);
-                            var byteArrays = [];
+                    byteArrays.push(byteArray);
+                }
 
-                            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                                var slice = byteCharacters.slice(offset, offset + sliceSize);
+                var blob = new Blob(byteArrays, { type: contentType });
+                return blob;
+            }
 
-                                var byteNumbers = new Array(slice.length);
-                                for (var i = 0; i < slice.length; i++) {
-                                    byteNumbers[i] = slice.charCodeAt(i);
-                                }
+            function MergeImage(bgURL, avtURL) {
 
-                                var byteArray = new Uint8Array(byteNumbers);
+                if ($('#rightAvt').is(':checked')) {                //right avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: avtURL, x: 408, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
-                                byteArrays.push(byteArray);
-                            }
-
-                            var blob = new Blob(byteArrays, { type: contentType });
-                            return blob;
-                        }
-
-           @* function MergeImage(string positionAvatar) {
-                if (positionAvatar === "left") {
+                } else if ($('#centerAvt').is(':checked')) {        //center avatar
                     mergeImages([
                         { src: bgURL },
-                        { src: avtURL, x: 10, y: 10 },
+                        { src: avtURL, x: 210, y: 90 },
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
-                } else (positionAvatar === "right"){
+
+                } else {                                            //left avatar
                     mergeImages([
                         { src: bgURL },
-                        { src: avtURL, x: 400, y: 10 },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
-                }else (positionAvatar === "center"){
-                    mergeImages([
-                        { src: bgURL },
-                        { src: avtURL, x: 220, y: 110},
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
-                }else {
-                    mergeImages([
-                        { src: bgURL },
-                        { src: avtURL, x: 10, y: 10 },
+                        { src: avtURL, x: 8, y: 8 },
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
                 }
-            }*@
-                            
-                            // data:image/png;base64,iVBORw0KGgoAA...
+            }
 
-                            $(document).ready(function () {
-                            $('#next').on('click', function () {
-                                var background = $('#cardBg').css('background-image');
-                                background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
-                                var avatar = $('#avatar-result').attr('src');
+            function MergeImageBg(bgURL) {
 
-                                var block = background.split(";");
-                                var contentType = block[0].split(":")[1];
-                                var realData = block[1].split(",")[1];
-                                var image_bg = b64toBlob(realData, contentType);
+                if ($('#rightAvt').is(':checked')) {                //right avatar
+                    mergeImages([
+                        { src: bgURL },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+                } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                    mergeImages([
+                        { src: bgURL },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+                } else {                                            //left avatar
+                    mergeImages([
+                        { src: bgURL },
+                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                }
+            }
+
+            function getAvatar() {
+                var avatar = "";
+
+                if ($('#rightAvt').is(':checked')) {                //right avatar
+                    avatar = $('#avatar-result-right').attr('src');
+
+                } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                    avatar = $('#avatar-result-center').attr('src');
+
+                } else {                                            //left avatar
+                    avatar = $('#avatar-result').attr('src');
+                }
+                return avatar;
+            }
+
+            function getBackground() {
+                return $('#cardBg').css('background-image')
+            }
 
 
-                                var block = avatar.split(";");
-                                var contentType = block[0].split(":")[1];
-                                var realData = block[1].split(",")[1];
-                                var image_avt = b64toBlob(realData, contentType);
+            $(document).ready(function () {
+                $('#next').on('click', function () {
+                    var background = getBackground();
+                    var bgURL = "";
+                    if (background != "none") {
+                        background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+                        var block = background.split(";");
+                        var contentType = block[0].split(":")[1];
+                        var realData = block[1].split(",")[1];
+                        var image_bg = b64toBlob(realData, contentType);
+                        var fBgData = new FormData();
+                        fBgData.append('image', image_bg);
+                        bgURL = uploadImage(fBgData);
+                    }
 
-                                var fBgData = new FormData();
-                                var favtData = new FormData();
-                                fBgData.append('image', image_bg);
-                                favtData.append('image', image_avt);
+                    var avatar = getAvatar();
+                    var avtURL = "";
+                    if (avatar != "") {
+                        alert("avatar")
+                        var block = avatar.split(";");
+                        var contentType = block[0].split(":")[1];
+                        var realData = block[1].split(",")[1];
+                        var image_avt = b64toBlob(realData, contentType);
+                        var favtData = new FormData();
+                        favtData.append('image', image_avt);
+                        var avtURL = uploadImage(favtData);
+                    }
+                  
+                    console.log(bgURL + '/\\' + avtURL)
 
-                                var bgURL = uploadImage(fBgData);
+                    setTimeout(function () {
+                        if (avtURL == "" && bgURL != "") MergeImageBg(bgURL);
+                        else if (bgURL != "" && avtURL != "")
+                        MergeImage(bgURL, avtURL);
+                    }, 1000);
 
-                                var avtURL = uploadImage(favtData);
-                                console.log(bgURL + '/\\' + avtURL)
+                });
+                //Background button
+                $('.btn-cancel').on('click', function () {
+                    $('#modal').hide();
+                })
+                // Avatar Button
+                $('.btn-cancelAvt').on('click', function () {
+                    $('#modalAvt').hide();
+                })
 
-                                setTimeout(function () {
-                                    mergeImages([
-                                        { src: bgURL },
-                                        { src: avtURL, x: 10, y: 10 },
-                                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
-                                }, 1000);
+                //   set position text
+                $('#btnRadio').on('click', function () {
+                    //textcolor
+                    $(".cmn-result").empty();
+                    var rdoChecked = $('input[name="position"]:checked').val();
+                    var rs = $('#textDesc').val();
+                    textPosition(rdoChecked, rs);
+                    $('#chooseTextColor').on('change', function () {
+                        $('.cmn-result').css('color', $(this).val());
+                    });
+                });
 
-                            });
-                            //Background button
-                            $('.btn-cancel').on('click', function () {
-                                $('#modal').hide();
-                            })
-                            // Avatar Button
-                            $('.btn-cancelAvt').on('click', function () {
-                                $('#modalAvt').hide();
-                            })
+                //   toggleBackground
+                $("#toggleBg").on('change', function () {
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
+                        $('.upload').css('display', 'flex');
+                        $('.choose-color').show();
+                        $('.cropBackground').show();
+                    }
+                    else {
+                        $(this).attr('value', 'false');
+                        $('.upload').hide();
+                        $('.choose-color').hide();
+                        $('.cropBackground').hide();
+                    }
+                });
 
-                            //   set position text
-                            $('#btnRadio').on('click', function () {
-                                //textcolor
-                                $(".cmn-result").empty();
-                                var rdoChecked = $('input[name="position"]:checked').val();
-                                var rs = $('#textDesc').val();
-                                textPosition(rdoChecked, rs);
-                                $('#chooseTextColor').on('change', function () {
-                                    $('.cmn-result').css('color', $(this).val());
-                                });
-                            });
+                // toogleAvt
+                $("#toggleAvt").on('change', function () {
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
+                        $('.uploadAvt').css('display', 'block');
+                        $('.choosePosition').show();
+                        $('.cropAvatar').show();
+                    }
+                    else {
+                        $(this).attr('value', 'false');
+                        $('.uploadAvt').hide();
+                        $('.choosePosition').hide();
+                        $('.cropAvatar').hide();
 
-                            //   toggleBackground
-                            $("#toggleBg").on('change', function () {
-                                if ($(this).is(':checked')) {
-                                    $(this).attr('value', 'true');
-                                    $('.upload').css('display', 'flex');
-                                    $('.choose-color').show();
-                                    $('.cropBackground').show();
-                                }
-                                else {
-                                    $(this).attr('value', 'false');
-                                    $('.upload').hide();
-                                    $('.choose-color').hide();
-                                    $('.cropBackground').hide();
-                                }
-                            });
+                    }
+                });
 
-                            // toogleAvt
-                                $("#toggleAvt").on('change', function () {
-                                if ($(this).is(':checked')) {
-                                    $(this).attr('value', 'true');
-                                    $('.uploadAvt').css('display', 'block');
-                                    $('.choosePosition').show();
-                                    $('.cropAvatar').show();
-                                }
-                                else {
-                                    $(this).attr('value', 'false');
-                                    $('.uploadAvt').hide();
-                                    $('.choosePosition').hide();
-                                    $('.cropAvatar').hide();
+                // bgcolor
+                $('#chooseColor').on('change', function () {
+                    $('.card').css('background-image', '');
+                    $('.card').css('background-color', $(this).val());
+                    if ($(this).val() == '#ffffff') {
+                        $('.img-qr').css('mix-blend-mode', 'darken');
+                        $('.img-qr').css('filter', '');
+                    }
+                    if ($(this).val() == '#000000') {
+                        $('.img-qr').css('mix-blend-mode', 'lighten');
+                        $('.img-qr').css('filter', 'invert(1)');
+                    }
+                });
 
-                                }
-                                });
+                //bg-img
+                $('#btn-upload-bg').on('click', function () {
+                    $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
+                })
 
-                            // bgcolor
-                            $('#chooseColor').on('change', function () {
-                                $('.card').css('background-image', '');
-                                $('.card').css('background-color', $(this).val());
-                                if ($(this).val() == '#ffffff') {
-                                    $('.img-qr').css('mix-blend-mode', 'darken');
-                                    $('.img-qr').css('filter', '');
-                                }
-                                if ($(this).val() == '#000000') {
-                                    $('.img-qr').css('mix-blend-mode', 'lighten');
-                                    $('.img-qr').css('filter', 'invert(1)');
-                                }
-                            });
+                //qrcode
+                $("#toggleQR").on('change', function () {
+                    if ($('#linkContact').val() != '') {
+                        $('.error-icon').hide();
+                        if ($(this).is(':checked')) {
+                            $(this).attr('value', 'true');
+                            var data = $('#linkContact').val();
+                            var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
+                            $('.qrcode').html(img);
+                            data = $('#linkContact').val('');
+                        }
+                        else {
+                            $(this).attr('value', 'false');
+                            $('.img-qr').hide();
+                        }
+                    } else {
+                        $(this).prop('checked', false);
+                        $('.error-icon').show();
+                    }
+                });
 
-                            //bg-img
-                                $('#btn-upload-bg').on('click', function () {
-                                $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
-                            })
+                //text
+                $("#toggleText").on('change', function () {
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
+                        $('.input-text').show();
+                        $('.choosePositionText').show();
+                        $('.textColor').show();
+                    }
+                    else {
+                        $(this).attr('value', 'false');
+                        $('.input-text').hide();
+                        $('.choosePositionText').hide();
+                        $('.textColor').hide();
+                    }
+                });
 
-                            //qrcode
-                            $("#toggleQR").on('change', function () {
-                                if ($('#linkContact').val() != '') {
-                                    $('.error-icon').hide();
-                                    if ($(this).is(':checked')) {
-                                        $(this).attr('value', 'true');
-                                        var data = $('#linkContact').val();
-                                        var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
-                                        $('.qrcode').html(img);
-                                        data = $('#linkContact').val('');
-                                    }
-                                    else {
-                                        $(this).attr('value', 'false');
-                                        $('.img-qr').hide();
-                                    }
-                                } else {
-                                    $(this).prop('checked', false);
-                                    $('.error-icon').show();
-                                }
-                            });
-
-                            //text
-                            $("#toggleText").on('change', function () {
-                                if ($(this).is(':checked')) {
-                                    $(this).attr('value', 'true');
-                                    $('.input-text').show();
-                                    $('.choosePositionText').show();
-                                    $('.textColor').show();
-                                }
-                                else {
-                                    $(this).attr('value', 'false');
-                                    $('.input-text').hide();
-                                    $('.choosePositionText').hide();
-                                    $('.textColor').hide();
-                                }
-                            });
-
-                        });
+            });
 
 
         </script>
