@@ -75,7 +75,7 @@
                 <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
             </div>
 
-            <img id="merge-image" src="" width="128">
+            <img id="merge-image" src="" width="128" style="display:none">
 
 
         </div>
@@ -331,7 +331,6 @@
                     var avatar = getAvatar();
                     var avtURL = "";
                     if (avatar != "") {
-                        alert("avatar")
                         var block = avatar.split(";");
                         var contentType = block[0].split(":")[1];
                         var realData = block[1].split(",")[1];
