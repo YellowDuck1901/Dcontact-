@@ -91,10 +91,10 @@ namespace Dcontact.Controllers
             try
             {
                 Bean.User user = (Bean.User)Session["user"];
-                Bean.Row r = new Bean.Row();
-                 Util.DAO d = new Util.DAO();
-                d.DB_AddRow(r.ID, user.id,r.text,r.font,r.color,"link",r.bullet,"1111","1-2-1232","111");
-                string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button' id='{@Util.UUID.getUUID()}' style='background-color: {r.color};height: 26.875px'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
+                Bean.Row r = new Bean.Row(Util.UUID.getUUID());
+                Util.DAO d = new Util.DAO();
+                d.DB_AddRow(r.ID, user.id, r.text, r.font, r.color, r.link, r.bullet, r.code, "9999-1-1", "0");
+                string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button' id='{@Util.UUID.getUUID()}' style='background-color: {r.color};height: 26.875px' url='{r.link}' code = '{r.code}'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
                 return Content(row);
 
             }
@@ -136,33 +136,36 @@ namespace Dcontact.Controllers
                 string bullet = Request.Form["bullet_row"];
                 string color = Request.Form["color_row"];
                 string font = Request.Form["font_row"];
+                string bdday = Request.Form["bdate_row"];
                 string link = Request.Form["link_row"];
+                string code = Request.Form["code_row"];
 
                 //link
                 Console.WriteLine(font);
                 Util.DAO d = new Util.DAO();
-                d.DB_UpdateRow(idRow, user.id, text, font, color, link, bullet, "1234", "2331-2-12", "1000");
+                d.DB_UpdateRow(idRow, user.id, text, font, color, link, bullet, code, bdday, code);
                 return Content("");
             }
             catch (Exception e)
             {
                 mess = e.Message;
             }
-            return Content("");
+            return Content(mess);
         }
+
         public ActionResult updateImage()
         {
             Bean.User user = (Bean.User)Session["user"];
-            user.dcontact.avt = Request.Form["path"];
+            string path = Request.Form["path"];
             string piece = Request.Form["piece"];
             Util.DAO d = new Util.DAO();
             switch (piece)
             {
                 case "avatar":
-                    d.DB_updateAvt(user.id, user.dcontact.avt);
+                    d.DB_updateAvt(user.id, path);
                     break;
                 case "template":
-
+                    d.DB_updateTemplate(user.id, path);
                     break;
             }
             return new HttpStatusCodeResult(200);

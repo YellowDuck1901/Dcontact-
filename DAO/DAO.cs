@@ -329,7 +329,8 @@ namespace Util
                 throw;
             }
             return true;
-        } public bool DB_updateTemplate(string id, string path)
+        }
+        public bool DB_updateTemplate(string id, string path)
         {
             string sql = $"EXECUTE dbo.PRO_updateTemplate @ID ='{id}', @path = '{path}' ";
             try
@@ -361,6 +362,21 @@ namespace Util
                 throw;
             }
             return paths;
+        }
+
+        public string DB_updateCodeRow(string id_row, string code)
+        {
+            string sql = $"update dbo.[row] set code = '{code}' where id = '{id_row}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return sql;
         }
     }
 }
