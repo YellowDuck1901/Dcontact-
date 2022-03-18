@@ -314,127 +314,37 @@
                             <td colspan="6" class="caption">REPORT</td>
                         </tr>
                         <tr class="red">
-                            <th>ID</th>
                             <th>USERNAME</th>
-                            <th>REASON</th>
+                            <th>URL</th>
                             <th>DESCRIPTION</th>
                             <th><i class="fa fa-check" style="font-size:48px;color:greenyellow"></i></th>
                             <th><i class="fa fa-remove" style="font-size:48px;color:red"></i></th>
                         </tr>
                     </thead>
+                    @{
+                        List<Bean.ReportLink> list = ViewBag.reportList;
+                    }
                     <tbody>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi.
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                Quis Age Job Color Quis.
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
-                            </td>
-                            <td>
-                                <button class="btn-report" style="background-color: red;">DECLINE</button>
-                            </td>
-                        </tr>
+                        @{
+                            foreach (Bean.ReportLink report in list)
+                            {
+                                <tr>
+                                    <td>
+                                        @report.username
+                                    </td>
+                                    <td>@report.link</td>
+                                    <td>
+                                        @report.description
+                                    </td>
+                                    <td>
+                                        <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn-report" style="background-color: red;">DECLINE</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
             </div>

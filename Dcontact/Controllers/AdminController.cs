@@ -11,14 +11,24 @@ namespace Dcontact.Controllers
         // GET: Admin
         public ActionResult admin()
         {
+            Util.DAO d = new Util.DAO();
             Bean.User admin = (Bean.User)Session["user"];
-            if (!admin.isAdmin) 
+            if(!(admin == null))
             {
-                return RedirectToAction("dashboard", "DcontactAndDcrad");
+                if (!admin.isAdmin) 
+                {
+                    return RedirectToAction("dashboard", "DcontactAndDcrad");
+                }
+                else
+                {
+                    List<Bean.ReportLink> reportList = d.DB_getReportforAdmin();
+                    ViewBag.reportList = reportList;
+                    return View();
+                }
             }
             else
             {
-                return View();
+                return RedirectToAction("Home", "Home");
             }
         }
     }

@@ -64,7 +64,7 @@ namespace Dcontact
             );
             routes.MapRoute(
                 name: "Create D-Card",
-                url: "createdcard",
+                url: "create",
                 defaults: new { controller = "DcontactAndDcrad", action = "createDCard" }
             );
             routes.MapRoute(

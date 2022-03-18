@@ -316,5 +316,45 @@ namespace Util
             }
             return admin;
         }
+
+        public bool DB_AddReportofGuest(string id_user, string id_row, string description)
+        {
+            string sql = $"insert into dbo.Report values ('{id_user}','{id_row}','{description}',0)";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public List<ReportLink> DB_getReportforAdmin()
+        {
+            List<ReportLink> list = new List<ReportLink>();
+            ReportLink reportLink = null;
+            string sql = $"select a.username,rw.[text],rw.link, r.[description],u.Email,r.[status] from dbo.Report as r JOIN dbo.[User] as u on r.ID_user = u.ID JOIN dbo.[ROW] as rw on r.ID_row = rw.ID JOIN dbo.Account as a on r.ID_user = a.ID";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                while (dataReader.Read())
+                {
+                    reportLink = new ReportLink();
+                    reportLink.username = dataReader.GetValue(0).ToString();
+                    reportLink.link = dataReader.GetValue(2).ToString();
+                    reportLink.description = dataReader.GetValue(3).ToString();
+                    list.Add(reportLink);
+                }
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
     }
 }

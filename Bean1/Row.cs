@@ -30,9 +30,9 @@ namespace Bean
             this.birth = birth;
         }
         
-        public Row()
+        public Row(string id)
         {
-            this.ID = Util.UUID.getUUID();
+            this.ID = id;
             this.text = "Text";
             this.font = "Cursive";
             this.link = "";
@@ -43,6 +43,9 @@ namespace Bean
             this.birth = "";
         }
 
+        public Row()
+        {
+        }
     }
 
 

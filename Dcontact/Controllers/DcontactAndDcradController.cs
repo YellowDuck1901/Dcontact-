@@ -27,7 +27,15 @@ namespace Dcontact.Controllers
         }
         public ActionResult createDCard()
         {
-            return View();
+            var user = (Bean.User)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("Home", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult editDContact()
@@ -49,7 +57,7 @@ namespace Dcontact.Controllers
         public ActionResult oder_dcard()
         {
             var user = (Bean.User)Session["user"];
-            if ((user.isAdmin) || user == null)
+            if (user == null || user.isAdmin)
             {
                 return RedirectToAction("Home", "Home");
             }
@@ -90,7 +98,7 @@ namespace Dcontact.Controllers
             try
             {
                 Bean.User user = (Bean.User)Session["user"];
-                Bean.Row r = new Bean.Row();
+                Bean.Row r = new Bean.Row(Util.UUID.getUUID());
                  Util.DAO d = new Util.DAO();
                 d.DB_AddRow(r.ID, user.id,r.text,r.font,r.color,"link",r.bullet,"1111","1-2-1232","111");
                 string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button' id='{@Util.UUID.getUUID()}' style='background-color: {r.color}'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
