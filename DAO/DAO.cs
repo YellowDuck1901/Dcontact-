@@ -158,37 +158,41 @@ namespace Util
             Dcontact dcontact = null;
             List<Row> rows = new List<Row>();
             string sql = $"exec Pro_getDContact @ID = '{id}'";
-            this.dataReader = DB_ExcuteQuery(sql);
-            if (this.dataReader.Read())
+            try
             {
-                dcontact = new Dcontact();
-                dcontact.numerView = dataReader.GetValue(0).ToString();
-                dcontact.avt = dataReader.GetValue(1).ToString();
-                dcontact.background = dataReader.GetValue(2).ToString();
-
-                this.dataReader.Close();
-
-                string sqlr = $"select r.ID, r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
-                this.dataReader = DB_ExcuteQuery(sqlr);
-                List<Row> r = new List<Row>();
-
-                while (dataReader.Read())
+                this.dataReader = DB_ExcuteQuery(sql);
+                if (this.dataReader.Read())
                 {
-                    Row a = new Row();
-                    a.ID = dataReader.GetValue(0).ToString();
-                    a.text = dataReader.GetValue(1).ToString();
-                    a.font = dataReader.GetValue(2).ToString();
-                    a.link = dataReader.GetValue(3).ToString();
-                    a.bullet = dataReader.GetValue(4).ToString();
-                    a.click = dataReader.GetValue(5).ToString();
-                    a.code = dataReader.GetValue(6).ToString();
-                    a.birth = dataReader.GetValue(7).ToString();
-                    a.color = dataReader.GetValue(8).ToString();
-                    r.Add(a);
+                    dcontact = new Dcontact();
+                    dcontact.numerView = dataReader.GetValue(0).ToString();
+                    dcontact.avt = dataReader.GetValue(1).ToString();
+                    dcontact.background = dataReader.GetValue(2).ToString();
+
+                    this.dataReader.Close();
+
+                    string sqlr = $"select r.ID, r.[text] , r.font , r.link, r.bullet, r.click, r.code, r.birth,r.rowColor  from dbo.[Row] as r  where id_contact = '{id}'";
+                    this.dataReader = DB_ExcuteQuery(sqlr);
+                    List<Row> r = new List<Row>();
+
+                    while (dataReader.Read())
+                    {
+                        Row a = new Row();
+                        a.ID = dataReader.GetValue(0).ToString();
+                        a.text = dataReader.GetValue(1).ToString();
+                        a.font = dataReader.GetValue(2).ToString();
+                        a.link = dataReader.GetValue(3).ToString();
+                        a.bullet = dataReader.GetValue(4).ToString();
+                        a.click = dataReader.GetValue(5).ToString();
+                        a.code = dataReader.GetValue(6).ToString();
+                        a.birth = dataReader.GetValue(7).ToString();
+                        a.color = dataReader.GetValue(8).ToString();
+                        r.Add(a);
+                    }
+                    dcontact.rows = r;
+                    this.dataReader.Close();
                 }
-                dcontact.rows = r;
-                this.dataReader.Close();
             }
+            catch (SqlException) { throw; }
             return dcontact;
         }
 
@@ -319,6 +323,20 @@ namespace Util
         public bool DB_updateAvt(string id, string path)
         {
             string sql = $"EXECUTE dbo.PRO_updateAvt @ID ='{id}', @path = '{path}' ";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+        public bool DB_addTemplate(string id, string id_user, string path)
+        {
+            string sql = $"EXECUTE dbo.PRO_addTemplate @ID ='{id}',@ID_user = '{id_user}', @path = '{path}' ";
             try
             {
                 this.dataReader = DB_ExcuteQuery(sql);

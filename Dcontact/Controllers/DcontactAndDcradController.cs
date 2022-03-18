@@ -164,7 +164,11 @@ namespace Dcontact.Controllers
                 case "avatar":
                     d.DB_updateAvt(user.id, path);
                     break;
-                case "template":
+                case "updateTemplate":
+                    d.DB_updateTemplate(user.id, path);
+                    break;
+                case "addAndUpdateTemplate":
+                    d.DB_addTemplate(Util.UUID.getUUID(), user.id, path);
                     d.DB_updateTemplate(user.id, path);
                     break;
             }
