@@ -194,11 +194,8 @@
     <Content Include="MyScript\oder_dcard.js" />
     <Content Include="MyScript\Validation.js" />
     <Content Include="resource\logo\Asset 4Dcontact_single.svg" />
-    <Content Include="resource\logo\body.png" />
-    <Content Include="resource\logo\eyes.png" />
     <Content Include="resource\logo\logo_full.svg" />
     <Content Include="resource\logo\logo_single.svg" />
-    <Content Include="resource\logo\mouth.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

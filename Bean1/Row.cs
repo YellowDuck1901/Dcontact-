@@ -29,20 +29,23 @@ namespace Bean
             this.code = code;
             this.birth = birth;
         }
-        
-        public Row()
+
+        public Row(string id)
         {
-            this.ID = Util.UUID.getUUID();
+            this.ID = id;
             this.text = "Text";
             this.font = "Cursive";
             this.link = "";
             this.bullet = "fa fa-cube";
             this.color = "#273c75";
-            this.click = "";
-            this.code = "";
+            this.click = "0";
+            this.code = "0";
             this.birth = "";
         }
 
+        public Row()
+        {
+        }
     }
 
 
