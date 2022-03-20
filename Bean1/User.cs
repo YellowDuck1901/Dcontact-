@@ -12,6 +12,8 @@ namespace Bean
         public string email { get; set; }
         public bool isban { get; set; }
         public string username { get; set; }
+
+        public bool isAdmin { get; set; }
         public Dcontact dcontact { get; set; }
 
         public User(string id, string email, bool isban, string username, Dcontact dcontact)
@@ -21,6 +23,14 @@ namespace Bean
             this.isban = isban;
             this.username = username;
             this.dcontact = dcontact;
+        }
+
+        public User(string id, string email, string username, bool isAdmin)
+        {
+            this.id = id;
+            this.email = email;
+            this.username = username;
+            this.isAdmin = isAdmin;
         }
 
         public User()

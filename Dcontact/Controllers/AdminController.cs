@@ -11,7 +11,15 @@ namespace Dcontact.Controllers
         // GET: Admin
         public ActionResult admin()
         {
-            return View();
+            Bean.User admin = (Bean.User)Session["user"];
+            if (!admin.isAdmin) 
+            {
+                return RedirectToAction("dashboard", "DcontactAndDcrad");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

@@ -86,7 +86,7 @@ namespace Dcontact
             routes.MapRoute(
                 name: "Link Dcontact",
                 url: "{username}",
-                defaults: new { controller = "LinkContact", action = "LinkContact"}
+                defaults: new { controller = "LinkContact", action = "LinkContact" }
             );
 
             routes.MapRoute(

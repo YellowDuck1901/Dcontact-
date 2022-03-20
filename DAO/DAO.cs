@@ -50,7 +50,7 @@ namespace Util
                 command.Dispose();
                 return dataReader;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -66,9 +66,9 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
 
@@ -84,9 +84,9 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
         }
@@ -101,9 +101,9 @@ namespace Util
                 return true;
 
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
 
@@ -120,9 +120,9 @@ namespace Util
                 this.dataReader.Close();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
         }
@@ -140,15 +140,15 @@ namespace Util
                     user.id = dataReader.GetValue(0).ToString();
                     user.username = username;
                     user.email = dataReader.GetValue(1).ToString();
-                    user.isban = (bool)dataReader.GetValue(2);
+                    user.isban = dataReader.GetBoolean(2);
                     this.dataReader.Close();
-                    user.dcontact = this.DB_GetDcontact(id);
+                    user.dcontact = this.DB_GetDcontact(user.id);
                 }
                 //this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw new Exception(ex.Message);
+                throw;
 
             }
             return user;
@@ -200,7 +200,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -215,7 +215,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -233,7 +233,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -251,7 +251,7 @@ namespace Util
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -271,7 +271,96 @@ namespace Util
             }
             return true;
         }
+
+        public bool DB_IsAdmin(String username)
+        {
+            bool b = false;
+            try
+            {
+                string sql = $"select isAdmin from dbo.Account where username = '{username}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    b = (bool)dataReader.GetBoolean(0);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return b;
+        }
+
+        public Bean.User DB_getAdmin(string username)
+        {
+            User admin = null;
+            string id = Util.MD5.CreateMD5(username);
+            string sql = $"select u.ID, u.Email, u.isBan, a.username ,a.isAdmin from [User] as u, [Account] as a where u.ID = a.ID and u.ID = '{id}'";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    admin = new User();
+                    admin.id = (string)dataReader.GetValue(0);
+                    admin.email = (string)dataReader.GetValue(1);
+                    admin.username = (string)dataReader.GetValue(3);
+                    admin.isAdmin = (bool)dataReader.GetBoolean(4);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return admin;
+        }
+        public bool DB_updateAvt(string id, string path)
+        {
+            string sql = $"EXECUTE dbo.PRO_updateAvt @ID ='{id}', @path = '{path}' ";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        } public bool DB_updateTemplate(string id, string path)
+        {
+            string sql = $"EXECUTE dbo.PRO_updateTemplate @ID ='{id}', @path = '{path}' ";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+        public List<string> DB_loadTemplate(string id)
+        {
+            string sql = $"select background from template where ID_User = '{id}'";
+            List<string> paths = new List<string>();
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                while (this.dataReader.Read())
+                {
+                    paths.Add(dataReader.GetValue(0).ToString());
+                }
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paths;
+        }
     }
-
-
 }

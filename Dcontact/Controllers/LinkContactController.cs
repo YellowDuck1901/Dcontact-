@@ -37,24 +37,20 @@ public class LinkContactController : Controller
 
         public ActionResult LinkContact(string username)
         {
-            //try
-            //{
-            //    Util.DAO d = new Util.DAO();
-            //    string id = Util.MD5.CreateMD5(username);
-            //    Bean.Dcontact dcontact = d.DB_GetDcontact(id);
-            //    ViewBag.link = dcontact;
-            //    ViewBag.name = username;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception(ex.Message);
-            //}
-            Util.DAO d = new Util.DAO();
-            string id = Util.MD5.CreateMD5(username);
-            Bean.Dcontact dcontact = d.DB_GetDcontact(id);
-            ViewBag.dcontact = dcontact;
+            try
+            {
+                ViewBag.name = username;
+                Util.DAO d = new Util.DAO();
+                string id = Util.MD5.CreateMD5(username);
+                Bean.Dcontact dcontact = d.DB_GetDcontact(id);
+                ViewBag.dcontact = dcontact;
+            }
+            catch (Exception ex)
+            {
+                return HttpNotFound();
+            }
             return View();
-       
+
         }
 
     }
