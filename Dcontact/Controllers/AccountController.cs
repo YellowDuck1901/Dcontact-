@@ -11,7 +11,7 @@ namespace Dcontact.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Comfirm(String msg,String typeChange)
+        public ActionResult Comfirm(String msg, String typeChange)
         {
             if (typeChange == "email")
             {
@@ -51,40 +51,40 @@ namespace Dcontact.Controllers
             }
             return RedirectToAction("Comfirm", "Account", new { msg = mess });
         }
-            public ActionResult ComfirmForm()
+        public ActionResult ComfirmForm()
         {
             String mess = "";
             string vertifyCode = "";
-           
-                vertifyCode = Request.QueryString["vertifyCode"];
-                try
-                {
-                    if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
-                    {
-                        Session.Add("AvaiableChangePassword", true);  //nhap lai email thi phai set value false
 
-                        return RedirectToAction("CreateNewPassword", "Account");
-                    }
-                    else
-                    {
-                        mess = "Your verification code has expired";
-                    }
-                }
-                catch (Exception ex)
+            vertifyCode = Request.QueryString["vertifyCode"];
+            try
+            {
+                if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
                 {
-                    mess = ex.Message;
+                    Session.Add("AvaiableChangePassword", true);  //nhap lai email thi phai set value false
+
+                    return RedirectToAction("CreateNewPassword", "Account");
                 }
-                return RedirectToAction("Comfirm", "Account", new { msg = mess });
+                else
+                {
+                    mess = "Your verification code has expired";
+                }
+            }
+            catch (Exception ex)
+            {
+                mess = ex.Message;
+            }
+            return RedirectToAction("Comfirm", "Account", new { msg = mess });
         }
 
         public ActionResult CreateNewPasswordForm()
         {
             String mess = "";
             string password = Request.QueryString["password"];
-            Bean.User user = (Bean.User)Session["user"];  
+            Bean.User user = (Bean.User)Session["user"];
 
-                try
-                {
+            try
+            {
                 if (user != null)
                 {
                     Util.DAO d = new Util.DAO();
@@ -98,29 +98,30 @@ namespace Dcontact.Controllers
                     }*/
                 }
                 else if ((bool)Session["AvaiableChangePassword"])
-                    {
-                        Util.DAO d = new Util.DAO();
-                        if (d.DB_ChangePass((string)Session["email"], password))
-                        {
-                            Session["AvaiableChangePassword"]=false;  //remove value cho phep doi password
-                            Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
-                            Session.Remove((string)Session["email"]);
-                            return RedirectToAction("Login", "Account");
-                        }
-                        else
-                        {
-                        mess = "Wrong Verification Code";
-                        }
-                    }else
-                        {
-                            mess = "Your Verification Code Has Expired";
-                        }
-               
-                }
-                catch (Exception ex)
                 {
-                    mess = ex.Message;
+                    Util.DAO d = new Util.DAO();
+                    if (d.DB_ChangePass((string)Session["email"], password))
+                    {
+                        Session["AvaiableChangePassword"] = false;  //remove value cho phep doi password
+                        Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
+                        Session.Remove((string)Session["email"]);
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                    {
+                        mess = "Wrong Verification Code";
+                    }
                 }
+                else
+                {
+                    mess = "Your Verification Code Has Expired";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                mess = ex.Message;
+            }
             return RedirectToAction("CreateNewPassword", "Account", new { msg = mess });
 
 
@@ -170,7 +171,7 @@ namespace Dcontact.Controllers
             {
                 mess = ex.Message;
             }
-            return RedirectToAction("Login", "Account", new { msg = mess});
+            return RedirectToAction("Login", "Account", new { msg = mess });
         }
 
 
@@ -198,15 +199,15 @@ namespace Dcontact.Controllers
                 {
                     mess = "Account with this email has not be register";
                 }
-               
+
             }
             catch (Exception ex)
             {
                 mess = ex.Message;
             }
-            return RedirectToAction("RecoverPassword", "Account",new {msg = mess});
+            return RedirectToAction("RecoverPassword", "Account", new { msg = mess });
         }
-    
+
         public ActionResult RecoverPassword(String msg)
         {
             ViewBag.msg = msg;
@@ -240,7 +241,7 @@ namespace Dcontact.Controllers
                 {
                     Console.WriteLine("sigup falled");
                 }
-                    
+
             }
             catch (Exception ex)
             {
@@ -262,6 +263,7 @@ namespace Dcontact.Controllers
                     Util.DAO d = new Util.DAO();
                     if (d.DB_UpdateProfile(user.id, email))
                     {
+                        user.email = email;
                         return RedirectToAction("dashboard", "DcontactAndDcrad");
                     }
                     else
@@ -269,7 +271,7 @@ namespace Dcontact.Controllers
                         mess = "Some thing wrong !";
                     }
                 }
-               
+
                 else
                 {
                     mess = "You must login agian !";
