@@ -524,33 +524,6 @@
                 });
 
             });
-
-            $('#buy').on('click', function () {
-                $.ajax({
-                    origin: '*',
-                    type: "post",
-                    url: "DcontactAndDcrad/oder_dcardForm",
-                    data: {
-                        cardBackGround: 'data'
-                    },
-                    beforeSend: function () {
-                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<center><div class="spinner"></div></center>');
-                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html("");
-                    },
-                    success: function (msg) {
-                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<h2>' + msg + '</h2>');
-                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html('<button type="button" id="close">Close</button>');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('body').html(jqXHR.responseText);
-                    }
-                });
-            });
-
-
-
-
-
         </script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
         <script src="~/MyScript/create_dcard.js"></script>
