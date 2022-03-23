@@ -382,7 +382,7 @@ namespace Util
             return paths;
         }
 
-        public string DB_updateCodeRow(string id_row, string code)
+        public void DB_updateCodeRow(string id_row, string code)
         {
             string sql = $"update dbo.[row] set code = '{code}' where id = '{id_row}'";
             try
@@ -394,7 +394,23 @@ namespace Util
             {
                 throw;
             }
-            return sql;
         }
+        public string DB_GetLink(string id_row)
+        {
+            string url="";
+            string sql = $"execute Pro_GetLink @ID_Row ='{id_row}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+            if (dataReader.Read())
+                {
+                    url = dataReader.GetValue(0).ToString();
+                }
+                this.dataReader.Close();
+            }
+            catch { throw; }
+            return url;
+        }
+
     }
 }

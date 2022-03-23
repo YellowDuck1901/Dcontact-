@@ -186,6 +186,20 @@ $(document).ready(function () {
         }
         return true;
     }
+
+    function deleteFile(path) {
+        const fs = require("fs")
+
+        const pathToFile = path;
+
+        fs.unlink(pathToFile, function (err) {
+            if (err) {
+                throw err
+            } else {
+                console.log("Successfully deleted the file.")
+            }
+        })
+    }
     //check on typing
     $(phone.dom).on('focusout', function (e) {
         checkPhone();
