@@ -6,6 +6,7 @@ html {
     margin: 0;
     height: 100%;
     width: 100%;
+    font-size: 1vw;
 }
 
 body {
@@ -21,6 +22,7 @@ body {
 
 .container {
     height: 100%;
+    height: calc(100% - 54px);
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
@@ -35,11 +37,7 @@ body {
     /* Layout the left sidebar, main content and right sidebar */
     display: flex;
     flex-direction: row;
-    height: calc(100% - 18px);
-    overflow: auto;
-    overflow-x: hidden;
 }
-
 .container__left {
     width: 33.33%;
     height: calc(100% - 18px);

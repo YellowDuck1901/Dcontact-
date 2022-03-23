@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #e67e22;
+    --primary-color: #ed7035;
 }
 
 body,html {
@@ -22,6 +22,10 @@ body,html {
 .header_container--left img {
     width: 70px;
     height: 50px;
+}
+
+.header_button {
+    margin-right: 0.5rem;
 }
 
 .header_container {
