@@ -87,6 +87,11 @@ body {
     font-size: 2rem;
     text-align: center;
     color: white;
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    letter-spacing: 0.55rem;
+    justify-content: center;
 }
 
 .form__item--single {
@@ -138,6 +143,7 @@ expdate {
     height: 2rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 0.25em;
+    outline: none;
 }
 
 .form__item--groub .item input[type="text"] {

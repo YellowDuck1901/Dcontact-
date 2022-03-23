@@ -686,20 +686,6 @@ i.fas.fa-exclamation-circle {
     animation: tracking-in-expand 0.7s cubic-bezier(0.95, 0.05, 0.795, 0.035) both;
 }
 
-/* MODAL */
-.modal-container {
-    background: #fff;
-    width: 50rem;
-}
-
-.modal__header {
-    background: #fff;
-}
-
-.col-md-4 {
-    display: block;
-}
-
 .btn-upload-template,
 .btn-upload-avatar {
     margin: 10px;

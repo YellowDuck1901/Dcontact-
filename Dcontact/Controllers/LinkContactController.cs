@@ -53,5 +53,13 @@ public class LinkContactController : Controller
 
         }
 
+        public ActionResult GetLink()
+        {
+            DAO d = new Util.DAO();
+            string id_row = Request.Form["id"];
+           string url = d.DB_GetLink(id_row);
+            return Content(url, "text/html");
+        }
+
     }
 }

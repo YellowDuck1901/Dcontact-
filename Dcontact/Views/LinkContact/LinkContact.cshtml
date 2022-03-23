@@ -27,15 +27,16 @@
                     <ul>
                         @{ foreach (Bean.Row row in dcontact.rows)
                             {
-                                <li>
+                                <li >
                                     <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                                     <div class="button"
-                                         role="button"
-                                         style="background-color: #@row.color">
+                                         role="button" 
+                                         id="@row.ID"
+                                         style="background-color: @row.color">
                                         <i class="@row.bullet"></i>
                                         <!-- Label -->
                                         <div class="card--item__text">
-                                            <label style="font-family: " @row.font ";">@row.text</label>
+                                            <label style="font-family: '@row.font ;' ">@row.text</label>
                                         </div>
                                     </div>
                                 </li>
@@ -95,6 +96,13 @@
         </div>
     </div>
     <script src="~/MyScript/LinkContact.js">
+    </script>
+    <script>
+        $(".button").on('click', function () {
+            $.post("/LinkContact/GetLink", { id: $(this).attr('id') }).done(function (data) {
+                window.open("http://" + data, '_blank')
+            });
+        })
     </script>
 </body>
 </html>

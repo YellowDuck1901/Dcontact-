@@ -42,82 +42,70 @@
                         <img id="avatar-result-center" alt="avatar" src="" />
                         <div class="center-text cmn-result"></div>
                     </div>
-                   
+
                 </div>
                 <div class="img__position right-row">
                     @*<img id="avatar-result" alt="avatar" src="/Uploads/3b20ec9c05144b33bfde7621804188dd.png" />*@
                 </div>
-                
+
             </div>
             @*<div class="leftResult cmnResult"></div>
-            <div class="rightResult cmnResult"></div>
-            <div class="centerResult cmnResult"></div>
-            <div class="bottomResult cmnResult"></div>*@
+                <div class="rightResult cmnResult"></div>
+                <div class="centerResult cmnResult"></div>
+                <div class="bottomResult cmnResult"></div>*@
             <img src="/resource/logo/logo_full.svg" alt="Logo" class="logo-dcard" />
             <div class="qrcode"></div>
             @* <div id="upload-background"></div>*@
         </div>
-        @*background crop load*@
-        <div class="cropBackground">
+      
+        @*avatar crop load*@
+        <div class="cropAvatar">
             <span class="cropHeader">
-                <h3>CROP BACKGROUND</h3>
+                <h3>CROP AVATAR</h3>
             </span>
-            <button class="btn btn-success btn-block btn-upload-template">Upload Image</button>
-            <div id="upload-template"></div>
+            <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
+            <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
         </div>
 
-            @*avatar crop load*@
-            <div class="cropAvatar">
-                <span class="cropHeader">
-                    <h3>CROP AVATAR</h3>
-                </span>
-                <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
-                <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
+        <img id="merge-image" src="" width="128" style="display:none">
+
+
+    </div>
+
+
+
+    <div class="edit-card">
+        <span class="input-link">
+            <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
+            <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
+        </span> </br>
+        <div class="toggle-area">
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleBg" />
+                    <span class="slider round"></span>
+                </label>
+                <p>Edit Background</p>
             </div>
 
-            <img id="merge-image" src="" width="128" style="display:none">
-
-
-        </div>
-
-
-
-        <div class="edit-card">
-            <span class="input-link">
-                <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
-                <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
-            </span> </br>
-            <div class="toggle-area">
-                <div class="toggle-switch">
-                    <label class="switch">
-                        <input type="checkbox" value="false" id="toggleBg" />
-                        <span class="slider round"></span>
-                    </label>
-                    <p>Edit Background</p>
-                </div>
-
-                <span class="upload">
+            @*<span class="upload">
                     <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
-                </span>
+                </span>*@
 
-                <span class="choose-color">
-                    Background Color <input type="color" id="chooseColor">
-                </span>
-
-                <div class="toggle-switch">
-                    <label class="switch">
-                        <input type="checkbox" value="false" id="toggleAvt" />
-                        <span class="slider round"></span>
-                    </label>
-                    <p>Avatar</p>
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleAvt" />
+                    <span class="slider round"></span>
+                </label>
+                <p>Avatar</p>
+            </div>
+            @*file upload avatar*@
+            <span class="uploadAvt">
+                <div class="file-input">
+                    <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
                 </div>
-                @*file upload avatar*@
-                <span class="uploadAvt">
-                    <div class="file-input">
-                        <input type="file" id="image-avatar" accept="image/png, image/gif, image/jpeg">   @*an bang bang css , kich hoat bang click file__label*@
-                    </div>
-                </span>
-          
+            </span>
+
             @* Set position for avatar *@
             <div class="choosePosition">
                 <table border="0" width="300px">
@@ -140,333 +128,341 @@
                 <input type="button" value="Set Position" id="avtBtn">
             </div>
 
-                <div class="toggle-switch">
-                    <label class="switch">
-                        <input type="checkbox" value="false" id="toggleQR" />
-                        <span class="slider round"></span>
-                    </label>
-                    <p>QR Code</p>
-                </div>
-
-                <div class="toggle-switch">
-                    <label class="switch">
-                        <input type="checkbox" value="false" id="toggleText" />
-                        <span class="slider round"></span>
-                    </label>
-                    <p>Text</p>
-                </div>
-
-                <span class="input-text">
-                    <input required type="text" placeholder="Enter text" id="textDesc" />
-                </span> </br>
-                <span class="textColor">
-                    Text Color <input type="color" id="chooseTextColor">
-                </span>
-                <div class="choosePositionText">
-                    <table border="0" width="300px">
-                        Position
-                        <tr>
-                            <td>
-                                <input type="radio" id="leftText" name="position" value="left" checked>
-                                <label for="leftText">Left</label><br>
-                            </td>
-                            <td>
-                                <input type="radio" id="centerText" name="position" value="center">
-                                <label for="centerText">Center</label><br>
-                            </td>
-                            <td>
-                                <input type="radio" id="rightText" name="position" value="right">
-                                <label for="rightText">Right</label><br>
-                            </td>
-                        </tr>
-                    </table>
-                    <input type="button" id="btnRadio" value="Set Position" />
-
-                </div>
+            <div class="toggle-switch">
+                <label class="switch">
+                    <input type="checkbox" value="false" id="toggleQR" />
+                    <span class="slider round"></span>
+                </label>
+                <p>QR Code</p>
             </div>
-
-            <input type="button" id="next" class="btn-order" value="NEXT" @*onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';"*@ />
 
         </div>
 
+        <input type="button" id="next" class="btn-order" value="NEXT" @*onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';"*@ />
+
+    </div>
+    @* MODAL *@
+    @*<div class="cmn-modal">
+            <div class="cmn-container">
+                <div class="cmn-modal-header">
+                    CROP BACKGROUND
+                </div>
+
+                <div class="cmn-modal-body">
+                    <span class="upload">
+                        <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
+                    </span>
+                </div>
+            </div>
+        </div>*@
+    <div class="modal js-modal" id="modal__crop--bg">
+        <div class="modal-container">
+            <div class="modal__header">
+                <h2>CROP BACKGROUND</h2> <i class="fa fa-close close-crop-modal"></i>
+            </div>
+            <div class="modal__contener-bg">
+                <span class="upload">
+                    <input type="file" id="image-template" accept="image/png, image/gif, image/jpeg">
+                </span>
+                @*background crop load*@
+                <div class="cropBackground">
+                    <span class="cropHeader">
+                        <h3>CROP BACKGROUND</h3>
+                    </span>
+                    <button class="btn btn-success btn-block btn-upload-template">Upload Image</button>
+                    <div id="upload-template"></div>
+                </div>
+            </div>
+            <div class="modal_foo right__site">
+            </div>
+        </div>
+    </div>
+    <script>
 
 
-        <script>
 
+        function textPosition(position, rs) {
+            position = '.' + position + '-text'
+            $(position).text(rs)
+        }
 
+        function uploadImage(formData) {
+            var rep = '';
+            $.ajax({
+                type: "POST",
+                url: "api/ImageAPI/UploadFiles",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (response) {
+                    console.log(response);
+                    rep = response + '';
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('body').html('error: ' + jqXHR.responseText);
+                    console.log('error: ' + jqXHR.status);
+                }
+            });
+            return rep;
+        }
 
-            function textPosition(position, rs) {
-                position = '.' + position + '-text'
-                $(position).text(rs)
-            }
+        function b64toBlob(b64Data, contentType, sliceSize) {
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
 
-            function uploadImage(formData) {
-                var rep = '';
-                $.ajax({
-                    type: "POST",
-                    url: "api/ImageAPI/UploadFiles",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    async: false,
-                    success: function (response) {
-                        console.log(response);
-                        rep = response + '';
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('body').html('error: ' + jqXHR.responseText);
-                        console.log('error: ' + jqXHR.status);
-                    }
-                });
-                return rep;
-            }
+            var byteCharacters = atob(b64Data);
+            var byteArrays = [];
 
-            function b64toBlob(b64Data, contentType, sliceSize) {
-                contentType = contentType || '';
-                sliceSize = sliceSize || 512;
+            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
 
-                var byteCharacters = atob(b64Data);
-                var byteArrays = [];
-
-                for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                    var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-                    var byteNumbers = new Array(slice.length);
-                    for (var i = 0; i < slice.length; i++) {
-                        byteNumbers[i] = slice.charCodeAt(i);
-                    }
-
-                    var byteArray = new Uint8Array(byteNumbers);
-
-                    byteArrays.push(byteArray);
+                var byteNumbers = new Array(slice.length);
+                for (var i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
                 }
 
-                var blob = new Blob(byteArrays, { type: contentType });
-                return blob;
+                var byteArray = new Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
             }
 
-            function MergeImage(bgURL, avtURL) {
+            var blob = new Blob(byteArrays, { type: contentType });
+            return blob;
+        }
 
-                if ($('#rightAvt').is(':checked')) {                //right avatar
+        function MergeImage(bgURL, avtURL) {
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
                     { src: bgURL },
                     { src: avtURL, x: 408, y: 8 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
-                } else if ($('#centerAvt').is(':checked')) {        //center avatar
-                    mergeImages([
-                        { src: bgURL },
-                        { src: avtURL, x: 210, y: 90 },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: avtURL, x: 210, y: 90 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
-                } else {                                            //left avatar
-                    mergeImages([
-                        { src: bgURL },
-                        { src: avtURL, x: 8, y: 8 },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            } else {                                            //left avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: avtURL, x: 8, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            }
+        }
+
+        function MergeImageBg(bgURL) {
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else {                                            //left avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            }
+        }
+
+        function getAvatar() {
+            var avatar = "";
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
+                avatar = $('#avatar-result-right').attr('src');
+
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                avatar = $('#avatar-result-center').attr('src');
+
+            } else {                                            //left avatar
+                avatar = $('#avatar-result').attr('src');
+            }
+            return avatar;
+        }
+
+        function getBackground() {
+            return $('#cardBg').css('background-image')
+        }
+
+
+        $(document).ready(function () {
+            $('#next').on('click', function () {
+                var background = getBackground();
+                var bgURL = "";
+                if (background != "none") {
+                    background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+                    var block = background.split(";");
+                    var contentType = block[0].split(":")[1];
+                    var realData = block[1].split(",")[1];
+                    var image_bg = b64toBlob(realData, contentType);
+                    var fBgData = new FormData();
+                    fBgData.append('image', image_bg);
+                    bgURL = uploadImage(fBgData);
                 }
-            }
 
-            function MergeImageBg(bgURL) {
-
-                if ($('#rightAvt').is(':checked')) {                //right avatar
-                    mergeImages([
-                        { src: bgURL },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
-
-                } else if ($('#centerAvt').is(':checked')) {        //center avatar
-                    mergeImages([
-                        { src: bgURL },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
-
-                } else {                                            //left avatar
-                    mergeImages([
-                        { src: bgURL },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
-                    ]).then(b64 => document.querySelector('#merge-image').src = b64);
+                var avatar = getAvatar();
+                var avtURL = "";
+                if (avatar != "") {
+                    var block = avatar.split(";");
+                    var contentType = block[0].split(":")[1];
+                    var realData = block[1].split(",")[1];
+                    var image_avt = b64toBlob(realData, contentType);
+                    var favtData = new FormData();
+                    favtData.append('image', image_avt);
+                    var avtURL = uploadImage(favtData);
                 }
-            }
 
-            function getAvatar() {
-                var avatar = "";
+                console.log(bgURL + '/\\' + avtURL)
 
-                if ($('#rightAvt').is(':checked')) {                //right avatar
-                    avatar = $('#avatar-result-right').attr('src');
-
-                } else if ($('#centerAvt').is(':checked')) {        //center avatar
-                    avatar = $('#avatar-result-center').attr('src');
-
-                } else {                                            //left avatar
-                    avatar = $('#avatar-result').attr('src');
-                }
-                return avatar;
-            }
-
-            function getBackground() {
-                return $('#cardBg').css('background-image')
-            }
-
-
-            $(document).ready(function () {
-                $('#next').on('click', function () {
-                    var background = getBackground();
-                    var bgURL = "";
-                    if (background != "none") {
-                        background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
-                        var block = background.split(";");
-                        var contentType = block[0].split(":")[1];
-                        var realData = block[1].split(",")[1];
-                        var image_bg = b64toBlob(realData, contentType);
-                        var fBgData = new FormData();
-                        fBgData.append('image', image_bg);
-                        bgURL = uploadImage(fBgData);
-                    }
-
-                    var avatar = getAvatar();
-                    var avtURL = "";
-                    if (avatar != "") {
-                        var block = avatar.split(";");
-                        var contentType = block[0].split(":")[1];
-                        var realData = block[1].split(",")[1];
-                        var image_avt = b64toBlob(realData, contentType);
-                        var favtData = new FormData();
-                        favtData.append('image', image_avt);
-                        var avtURL = uploadImage(favtData);
-                    }
-                  
-                    console.log(bgURL + '/\\' + avtURL)
-
-                    setTimeout(function () {
-                        if (avtURL == "" && bgURL != "") MergeImageBg(bgURL);
-                        else if (bgURL != "" && avtURL != "")
+                setTimeout(function () {
+                    if (avtURL == "" && bgURL != "") MergeImageBg(bgURL);
+                    else if (bgURL != "" && avtURL != "")
                         MergeImage(bgURL, avtURL);
-                    }, 1000);
-
-                });
-                //Background button
-                $('.btn-cancel').on('click', function () {
-                    $('#modal').hide();
-                })
-                // Avatar Button
-                $('.btn-cancelAvt').on('click', function () {
-                    $('#modalAvt').hide();
-                })
-
-                //   set position text
-                $('#btnRadio').on('click', function () {
-                    //textcolor
-                    $(".cmn-result").empty();
-                    var rdoChecked = $('input[name="position"]:checked').val();
-                    var rs = $('#textDesc').val();
-                    textPosition(rdoChecked, rs);
-                    $('#chooseTextColor').on('change', function () {
-                        $('.cmn-result').css('color', $(this).val());
-                    });
-                });
-
-                //   toggleBackground
-                $("#toggleBg").on('change', function () {
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                        $('.upload').css('display', 'flex');
-                        $('.choose-color').show();
-                        $('.cropBackground').show();
-                    }
-                    else {
-                        $(this).attr('value', 'false');
-                        $('.upload').hide();
-                        $('.choose-color').hide();
-                        $('.cropBackground').hide();
-                    }
-                });
-
-                // toogleAvt
-                $("#toggleAvt").on('change', function () {
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                        $('.uploadAvt').css('display', 'block');
-                        $('.choosePosition').show();
-                        $('.cropAvatar').show();
-                    }
-                    else {
-                        $(this).attr('value', 'false');
-                        $('.uploadAvt').hide();
-                        $('.choosePosition').hide();
-                        $('.cropAvatar').hide();
-
-                    }
-                });
-
-                // bgcolor
-                $('#chooseColor').on('change', function () {
-                    $('.card').css('background-image', '');
-                    $('.card').css('background-color', $(this).val());
-                    if ($(this).val() == '#ffffff') {
-                        $('.img-qr').css('mix-blend-mode', 'darken');
-                        $('.img-qr').css('filter', '');
-                    }
-                    if ($(this).val() == '#000000') {
-                        $('.img-qr').css('mix-blend-mode', 'lighten');
-                        $('.img-qr').css('filter', 'invert(1)');
-                    }
-                });
-
-                //bg-img
-                $('#btn-upload-bg').on('click', function () {
-                    $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
-                })
-
-                //qrcode
-                $("#toggleQR").on('change', function () {
-                    if ($('#linkContact').val() != '') {
-                        $('.error-icon').hide();
-                        if ($(this).is(':checked')) {
-                            $(this).attr('value', 'true');
-                            var data = $('#linkContact').val();
-                            var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
-                            $('.qrcode').html(img);
-                            data = $('#linkContact').val('');
-                        }
-                        else {
-                            $(this).attr('value', 'false');
-                            $('.img-qr').hide();
-                        }
-                    } else {
-                        $(this).prop('checked', false);
-                        $('.error-icon').show();
-                    }
-                });
-
-                //text
-                $("#toggleText").on('change', function () {
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                        $('.input-text').show();
-                        $('.choosePositionText').show();
-                        $('.textColor').show();
-                    }
-                    else {
-                        $(this).attr('value', 'false');
-                        $('.input-text').hide();
-                        $('.choosePositionText').hide();
-                        $('.textColor').hide();
-                    }
-                });
+                }, 1000);
 
             });
 
+            //Close crop modal
+            $('.close-crop-modal').on('click', function () {
+                alert('close')
+                $('#toggleBg').attr('value', 'false');
+                $('input:checked + .slider:before').css('transform', 'translateX(0)');
+                $('input:checked + .slider:before').css('-webkit-transform', 'translateX(0)');
+                $('input:checked + .slider:before').css('-ms-transform', 'translateX(0)');
+                $('input:checked + .slider').css('background-color', '');
 
-        </script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
-        <script src="~/MyScript/create_dcard.js"></script>
+            })
+            //Background button
+            $('.btn-cancel').on('click', function () {
+                $('#modal').hide();
+            })
+            // Avatar Button
+            $('.btn-cancelAvt').on('click', function () {
+                $('#modalAvt').hide();
+            })
 
-</body>
+            //   set position text
+            $('#btnRadio').on('click', function () {
+                //textcolor
+                $(".cmn-result").empty();
+                var rdoChecked = $('input[name="position"]:checked').val();
+                var rs = $('#textDesc').val();
+                textPosition(rdoChecked, rs);
+                $('#chooseTextColor').on('change', function () {
+                    $('.cmn-result').css('color', $(this).val());
+                });
+            });
+
+            //   toggleBackground
+            $("#toggleBg").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                    $('#modal__crop--bg').addClass('open');
+                    $('.cropBackground').show();
+                }
+                else {
+                    $(this).attr('value', 'false');
+                    $('.upload').hide();
+                    $('.choose-color').hide();
+                    $('.cropBackground').hide();
+                }
+            });
+
+            // toogleAvt
+            $("#toggleAvt").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                    $('.uploadAvt').css('display', 'block');
+                    $('.choosePosition').show();
+                    $('.cropAvatar').show();
+                }
+                else {
+                    $(this).attr('value', 'false');
+                    $('.uploadAvt').hide();
+                    $('.choosePosition').hide();
+                    $('.cropAvatar').hide();
+
+                }
+            });
+
+            // bgcolor
+            $('#chooseColor').on('change', function () {
+                $('.card').css('background-image', '');
+                $('.card').css('background-color', $(this).val());
+                if ($(this).val() == '#ffffff') {
+                    $('.img-qr').css('mix-blend-mode', 'darken');
+                    $('.img-qr').css('filter', '');
+                }
+                if ($(this).val() == '#000000') {
+                    $('.img-qr').css('mix-blend-mode', 'lighten');
+                    $('.img-qr').css('filter', 'invert(1)');
+                }
+            });
+
+            //bg-img
+            $('#btn-upload-bg').on('click', function () {
+                $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
+            })
+
+            //qrcode
+            $("#toggleQR").on('change', function () {
+                if ($('#linkContact').val() != '') {
+                    $('.error-icon').hide();
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
+                        var data = $('#linkContact').val();
+                        var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
+                        $('.qrcode').html(img);
+                        data = $('#linkContact').val('');
+                    }
+                    else {
+                        $(this).attr('value', 'false');
+                        $('.img-qr').hide();
+                    }
+                } else {
+                    $(this).prop('checked', false);
+                    $('.error-icon').show();
+                }
+            });
+
+            //text
+            $("#toggleText").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                    $('.input-text').show();
+                    $('.choosePositionText').show();
+                    $('.textColor').show();
+                }
+                else {
+                    $(this).attr('value', 'false');
+                    $('.input-text').hide();
+                    $('.choosePositionText').hide();
+                    $('.textColor').hide();
+                }
+            });
+
+        });
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
+    <script src="~/MyScript/create_dcard.js"></script>
+
+    </body>
 
 
 

@@ -143,7 +143,6 @@ body,
   margin-top: 10px;
 }
 
-.upload,
 .choose-color,
 .uploadAvt,
 .choosePosition,
@@ -248,59 +247,40 @@ img[src = ""] {
   transform: translateX(-50%);*/
 }
 /* ------------------- */
-
-/* Modal */
-.modal,
-.modalAvt {
-  background: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
-  display: none;
+/* MODAL */
+.cmn-modal {
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    display: none;
 }
 
-.modal-container {
-  width: 900px;
-  background-color: #fff;
-  height: 500px;
-  position: relative;
+.cmn-container {
+    width: 900px;
+    background-color: #fff;
+    height: 500px;
+    position: relative;
 }
 
-.modal-header {
-  height: 50px;
-  text-align: center;
-  padding-top: 15px;
-  font-size: 30px;
-}
-
-.btn-common {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 15px;
-}
-
-.btn-common input {
-  cursor: pointer;
-  padding: 8px;
-  background-color: #fff;
-  color: #ff793f;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: 0.3s;
+.cmn-modal-header {
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 30px;
 }
 
 .imageShow,
 .avtShow {
-  border: 1px solid #ccc;
-  width: 500px;
-  height: 250px;
-  margin: 20px auto;
+    border: 1px solid #ccc;
+    width: 500px;
+    height: 250px;
+    margin: 20px auto;
 }
 
 .cropBackground,
