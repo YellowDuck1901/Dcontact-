@@ -744,3 +744,9 @@ i.fas.fa-exclamation-circle {
     margin: 0;
     border-bottom: 2px solid var(--primary-color);
 }
+
+.cr-boundary,
+.cr-vp-square {
+    border-radius: 2rem;
+    overflow: hidden;
+}

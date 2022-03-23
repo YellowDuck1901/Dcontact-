@@ -15,21 +15,39 @@ namespace Dcontact
 
             routes.MapRoute(
                 name: "Home",
-                url: "home",
+                url: "Home",
                 defaults: new { controller = "Home", action = "Home" }
             );
 
             routes.MapRoute(
                 name: "Admin",
-                url: "admin",
+                url: "Admin",
                 defaults: new { controller = "Admin", action = "admin"}
             );
 
             routes.MapRoute(
                 name: "Confirm",
-                url: "confirm",
+                url: "Confirm",
                 defaults: new { controller = "Account", action = "Comfirm" }
             );
+
+            routes.MapRoute(
+               name: "ChangeEmail",
+               url: "ChangeEmail",
+               defaults: new { controller = "Account", action = "ChangeEmail" }
+           );
+
+            routes.MapRoute(
+             name: "ComfirmLogged",
+             url: "ComfirmLogged",
+             defaults: new { controller = "Account", action = "ComfirmLogged" }
+         );
+
+            routes.MapRoute(
+             name: "ComfirmNewEmail",
+             url: "ComfirmNewEmail",
+             defaults: new { controller = "Account", action = "ComfirmNewEmail" }
+         );
 
             routes.MapRoute(
                 name: "Create New Password",
@@ -39,7 +57,7 @@ namespace Dcontact
 
             routes.MapRoute(
                 name: "Log in",
-                url: "login",
+                url: "Login",
                 defaults: new { controller = "Account", action = "Login" }
             );
             routes.MapRoute(
@@ -49,12 +67,12 @@ namespace Dcontact
             );
             routes.MapRoute(
                 name: "Sign up",
-                url: "signup",
+                url: "Sigup",
                 defaults: new { controller = "Account", action = "Sigup" }
             );
             routes.MapRoute(
               name: "Change Email",
-              url: "changeemail",
+              url: "ChangeEmail",
               defaults: new { controller = "Account", action = "changeEmail" }
           );
             routes.MapRoute(
@@ -64,23 +82,23 @@ namespace Dcontact
             );
             routes.MapRoute(
                 name: "Create D-Card",
-                url: "createdcard",
+                url: "CreateDcard",
                 defaults: new { controller = "DcontactAndDcrad", action = "createDCard" }
             );
             routes.MapRoute(
                 name: "Edit D-Contact",
-                url: "edit",
+                url: "Edit",
                 defaults: new { controller = "DcontactAndDcrad", action = "editDContact" }
             );
             routes.MapRoute(
                 name: "Order D-Card",
-                url: "order",
+                url: "Order",
                 defaults: new { controller = "DcontactAndDcrad", action = "oder_dcard" }
             );
 
             routes.MapRoute(
                 name: "Error",
-                url: "error",
+                url: "Error",
                 defaults: new { controller = "Shared", action = "Error" }
             );
             routes.MapRoute(
