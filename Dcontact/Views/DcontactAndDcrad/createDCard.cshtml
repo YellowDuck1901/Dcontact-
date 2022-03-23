@@ -62,7 +62,7 @@
             <span class="cropHeader">
                 <h3>CROP BACKGROUND</h3>
             </span>
-            <button class="btn btn-success btn-block btn-upload-template">Upload Image</button>
+            <button id="upload_background" class="btn btn-success btn-block btn-upload-template">Upload Image</button>
             <div id="upload-template"></div>
         </div>
 
@@ -71,9 +71,10 @@
                 <span class="cropHeader">
                     <h3>CROP AVATAR</h3>
                 </span>
-                <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
+                <button id ="upload_avatar" class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
                 <div id="upload-avatar"></div> @* Noi load anh khi chon file anh*@
             </div>
+
 
             <img id="merge-image" src="" width="128" style="display:none">
 
@@ -185,7 +186,7 @@
                 </div>
             </div>
 
-            <input type="button" id="next" class="btn-order" value="NEXT" @*onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';"*@ />
+            <input type="button" id="next" class="btn-order" value="NEXT" onclick="" />
 
         </div>
 
@@ -246,6 +247,37 @@
                 return blob;
             }
 
+            function UploadMergeImage() {
+                setTimeout(function () {
+                    var mergeImage64 = $('#merge-image').attr('src');
+                    var block = mergeImage64.split(";");
+                    var contentType = block[0].split(":")[1];
+                    var realData = block[1].split(",")[1];
+                    var image_merge = b64toBlob(realData, contentType);
+                    var favtData = new FormData();
+                    favtData.append('image', image_merge);
+                    var image_merge_url = uploadImage(favtData);
+                    RedirectOderDcard(image_merge_url);
+                }, 500);
+            }
+
+            function RedirectOderDcard(image_merge_url) {
+                    $.ajax({
+                        origin: '*',
+                        type: "post",
+                        url: "/DcontactAndDcrad/upURL",
+                        data: {
+                            image_merge: image_merge_url
+                        },
+                        success: function (msg) {
+                            window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad")?image_merge_url=' + msg;
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('body').html(jqXHR.responseText);
+                        }
+                    });
+            }
+
             function MergeImage(bgURL, avtURL) {
 
                 if ($('#rightAvt').is(':checked')) {                //right avatar
@@ -269,6 +301,7 @@
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
                 }
+                UploadMergeImage();
             }
 
             function MergeImageBg(bgURL) {
@@ -291,7 +324,11 @@
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
                 }
+                UploadMergeImage();
+
             }
+
+
 
             function getAvatar() {
                 var avatar = "";
@@ -312,11 +349,10 @@
                 return $('#cardBg').css('background-image')
             }
 
-
-            $(document).ready(function () {
-                $('#next').on('click', function () {
+            var bgURL = "";
+            $('#upload_background').on('click', function () {
+                setTimeout(function () {
                     var background = getBackground();
-                    var bgURL = "";
                     if (background != "none") {
                         background = background.replace('url(', '').replace(')', '').replace(/\"/gi, "");
                         var block = background.split(";");
@@ -327,9 +363,14 @@
                         fBgData.append('image', image_bg);
                         bgURL = uploadImage(fBgData);
                     }
+                }, 500);
 
+            });
+
+            var avtURL = "";
+            $('#upload_avatar').on('click', function () {
+                setTimeout(function () {
                     var avatar = getAvatar();
-                    var avtURL = "";
                     if (avatar != "") {
                         var block = avatar.split(";");
                         var contentType = block[0].split(":")[1];
@@ -337,18 +378,22 @@
                         var image_avt = b64toBlob(realData, contentType);
                         var favtData = new FormData();
                         favtData.append('image', image_avt);
-                        var avtURL = uploadImage(favtData);
+                        avtURL = uploadImage(favtData);
                     }
-                  
-                    console.log(bgURL + '/\\' + avtURL)
+                }, 500);
+            });
 
+            $(document).ready(function () {
+                $('#next').on('click', function () {
                     setTimeout(function () {
-                        if (avtURL == "" && bgURL != "") MergeImageBg(bgURL);
+                        if (avtURL == "" && bgURL != "")
+                            MergeImageBg(bgURL);
                         else if (bgURL != "" && avtURL != "")
-                        MergeImage(bgURL, avtURL);
-                    }, 1000);
+                            MergeImage(bgURL, avtURL);
 
+                    }, 500);
                 });
+
                 //Background button
                 $('.btn-cancel').on('click', function () {
                     $('#modal').hide();
@@ -460,6 +505,30 @@
                 });
 
             });
+
+            $('#buy').on('click', function () {
+                $.ajax({
+                    origin: '*',
+                    type: "post",
+                    url: "DcontactAndDcrad/oder_dcardForm",
+                    data: {
+                        cardBackGround: 'data'
+                    },
+                    beforeSend: function () {
+                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<center><div class="spinner"></div></center>');
+                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html("");
+                    },
+                    success: function (msg) {
+                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<h2>' + msg + '</h2>');
+                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html('<button type="button" id="close">Close</button>');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('body').html(jqXHR.responseText);
+                    }
+                });
+            });
+
+
 
 
         </script>

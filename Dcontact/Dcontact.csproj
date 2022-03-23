@@ -210,6 +210,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Account\ChangeEmail.cshtml" />
+    <Content Include="Views\Account\ComfirmLogged.cshtml" />
+    <Content Include="Views\Account\ComfirmNewEmail.cshtml" />
     <None Include="Views\DcontactAndDcrad\createDCard.cshtml" />
     <None Include="Views\Admin\admin.cshtml" />
     <None Include="Views\Account\Comfirm.cshtml" />

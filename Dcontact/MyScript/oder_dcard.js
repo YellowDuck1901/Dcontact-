@@ -232,12 +232,13 @@ $(document).ready(function () {
         }
     });
     $('#buy').on('click', function () {
+
         $.ajax({
             origin: '*',
             type: "post",
             url: "DcontactAndDcrad/oder_dcardForm",
             data: {
-                cardBackGround: 'data',
+                cardBackGround: $("#image_merge_url").attr("src"),
                 address: address.value,
                 phone: phone.value,
                 amount: stepper.value,

@@ -30,6 +30,14 @@ namespace Dcontact.Controllers
             return View();
         }
 
+        public ActionResult upURL()
+        {
+
+            string image_merge = Request.Form["image_merge"];
+            ViewBag.image_merge = image_merge;
+            return Content(image_merge);
+        }
+
         public ActionResult editDContact()
         {
             Util.DAO d = new Util.DAO();
@@ -47,8 +55,9 @@ namespace Dcontact.Controllers
             }
         }
 
-        public ActionResult oder_dcard()
+        public ActionResult oder_dcard(string image_merge_url)
         {
+            ViewBag.image_merge_url = image_merge_url;
             var user = (Bean.User)Session["user"];
             if ((user.isAdmin) || user == null)
             {

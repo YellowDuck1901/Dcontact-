@@ -115,7 +115,7 @@ namespace Util
         {
             try
             {
-                String sql = $"exec Pro_UpdateProfile @ID = '{id}', @Email = '{email}'";
+                String sql = $"exec Pro_ChangeEmail @ID = '{id}', @Email = '{email}'";
                 this.dataReader = this.DB_ExcuteQuery(sql);
                 this.dataReader.Close();
                 return true;

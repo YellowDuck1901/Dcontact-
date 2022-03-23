@@ -1,4 +1,4 @@
-@{
+﻿@{
 
 }
 <head>
@@ -11,15 +11,15 @@
 </head>
 <body>
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
-    @{ 
+    @{
 
     }
     <div class="container">
         <div class="header">
-        
-            <h2>Verification code has been sent to email</h2>
+
+            <h2>Verification code has been sent to your new email</h2>
         </div>
-        <form id="comfirmForm" class="form" action="@Url.Action("ComfirmForm", "Account")">
+        <form id="comfirmForm" class="form" action="@Url.Action("ComfirmNewEmailForm", "Account")">
             <div class="form-control">
                 <input type="text" id="vertifyCode" name="vertifyCode"
                        placeholder="vertify Code"
