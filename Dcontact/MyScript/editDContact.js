@@ -1,6 +1,6 @@
 //global
 const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`;
-var regexUrl = /^[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/;
+var urlRegex = /^[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/;
 
 function b64toBlob(b64Data, contentType, sliceSize) {
     contentType = contentType || '';
@@ -304,6 +304,14 @@ $(document).ready(function () {
         text = $('#titleUrl').val();
         $(id).children('.card--item__text').children('label').text(text);
         link = $('#linkUrl').val();
+        if (urlRegex.test(link) == false) {
+            link = "";
+            $('#linkUrl').css('color', 'red');
+        } else {
+            $('#linkUrl').css('color', '#000');
+
+        }
+        
         $(id).attr('url', link);
     }).on('focusout', function () {
         updateRow(idRow);

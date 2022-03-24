@@ -77,8 +77,8 @@
 
     <div class="edit-card">
         <span class="input-link">
-            <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
-            <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
+            <input required type="text" placeholder="Enter your DContact link" id="linkContact" />
+            <span class="error-icon"><abbr title="Enter valid link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
         </span> </br>
         <div class="toggle-area">
             <div class="toggle-switch">
@@ -485,7 +485,7 @@
                     $(this).attr('value', 'false');
                     $('.choosePosition').hide();
                     $('.cropAvatar').hide();
-
+                    $('.cmn-card img').attr('src', '');
                 }
             });
 

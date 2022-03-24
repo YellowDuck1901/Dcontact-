@@ -1,6 +1,7 @@
 ﻿var imageSrc;
 var onQR;
 var imgPosition;
+var regexURL = /^[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/;
 $(document).ready(function () {
     function imagePosition(position) {
         if (onQR == true && position == "right") {
@@ -17,7 +18,8 @@ $(document).ready(function () {
 
     //qrcode
     $("#toggleQR").on('change', function () {
-        if ($('#linkContact').val() != '') {
+        var linkcontact = $('#linkContact').val();
+        if (linkcontact != '' && regexURL.test(linkcontact) == true) {
             $('.error-icon').hide();
             if ($(this).is(':checked')) {
                 onQR = true;
@@ -38,7 +40,7 @@ $(document).ready(function () {
             }
         } else {
             $(this).prop('checked', false);
-            //$('.error-icon').show();
+            $('.error-icon').show();
             $(this).attr('value', 'false');
             $('#qr').remove();
             onQR = false;
@@ -122,6 +124,8 @@ $(document).ready(function () {
             type: 'canvas',
             size: 'viewport'
         }).then(function (img) {
+            $("#toggleBg").click();
+            $('.cropBackground').hide();
             $('.card').css('background-color', '');
             $('#cardBg').css('background-image', "url('" + img + "')");   //cho load anh
         });

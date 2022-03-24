@@ -130,12 +130,14 @@ body,
   transition: 0.25s;
 }
 
-.btn-order:hover,
-#btnRadio:hover,
-.btn-common input:hover {
-  background-color: #ff793f;
-  color: #fff;
-}
+    .btn-order:hover,
+    #btnRadio:hover,
+    .btn-common input:hover,
+    .uploadAvt__label:hover,
+    .uploadBg__label:hover {
+        background-color: #ff793f;
+        color: #fff;
+    }
 
 #uploadFile,
 .uploadAvt {
