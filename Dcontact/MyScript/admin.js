@@ -17,20 +17,20 @@
 
     $('.main-lock').on('click', '.btn-lock', function () {
         id_User = $(this).parent().attr('id');
-        if ($(this).text() === 'BLOCK') {
+        console.log($(this).children('p').text());
+        if ($(this).children('p').text() === 'BLOCK') {
             $.post("/Admin/Block_User", { id_user: id_User }).done(function (data) {
                 //$("#" + idRow).parent().remove();
                 //$(".btn-lock").html('Unblock');
-                $(this).html("UNBLOCK");
             })
+            $(this).children('p').html("UNBLOCK")
         } else {
             $.post("/Admin/Unblock_User", { id_user: id_User }).done(function (data) {
                 //$("#" + idRow).parent().remove();
                 //$(".btn-lock").html('Unblock');
-                $(this).html("BLOCK");
+
             })
+            $(this).children('p').html("BLOCK")
         }
     });
-
-
 });
