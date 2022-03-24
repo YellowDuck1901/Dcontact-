@@ -64,7 +64,7 @@ var code;
 var bdate;
 //function
 function updateRow(id) {
-    if (id != null && id != undefined && id != '') {
+    if (id != null && id != undefined && id != '' && text != "" && link != "") {
         var idr = "#" + id;
         // color = $(idr).children(".button").css("background-color");
         // color = rgb2hex(color);
@@ -307,6 +307,8 @@ $(document).ready(function () {
         if (urlRegex.test(link) == false) {
             link = "";
             $('#linkUrl').css('color', 'red');
+            $('#linkUrl').css('border-color', 'red');
+
         } else {
             $('#linkUrl').css('color', '#000');
 
