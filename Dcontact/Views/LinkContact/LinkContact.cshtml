@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.name | DContact</title>
     <link rel="stylesheet" href="~/CSS/LinkContact.css" />
+    <link rel="stylesheet" href="~/CSS/modal.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
@@ -17,9 +18,9 @@
     }
     <nav class="container__right scrollbar-hidden">
         <div class="contener">
-            <div class="card__contener" style="background-image: url(@dcontact.background);" >
-                <div class="card__contener--header"  >
-                    <img src="@dcontact.avt" alt="avatar"  />
+            <div class="card__contener" style="background-image: url(@dcontact.background);">
+                <div class="card__contener--header">
+                    <img src="@dcontact.avt" alt="avatar" />
                 </div>
                 <center style="font-family: cursive; margin: 0.75rem; font-size: 2vw;">&#64;@ViewBag.name</center>
 
@@ -27,10 +28,10 @@
                     <ul>
                         @{ foreach (Bean.Row row in dcontact.rows)
                             {
-                                <li >
+                                <li>
                                     <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                                     <div class="button"
-                                         role="button" 
+                                         role="button"
                                          id="@row.ID"
                                          style="background-color: @row.color">
                                         <i class="@row.bullet"></i>
@@ -95,12 +96,46 @@
             </div>
         </div>
     </div>
+    <div class="modal js-modal" id="gate--code">
+        <div class="modal-container">
+            <div class="modal__header">
+                <h2>Oder Confirm</h2> <i class="fa fa-close"></i>
+            </div>
+            <div class="modal__contener">
+                <div class="modal__item item__spacebetween">
+                    <span>Address: </span> <span class="confirm__value" id="address_value">Vinh long</span>
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Phone: </span> <span class="confirm__value" id="phone_value">0774835261</span>
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Number item:</span> <span class="confirm__value" id="amount_value">20</span>
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Credit number: </span><span class="confirm__value" id="credit_value">4112121212121212</span>
+
+                </div>
+                <div class="modal__item item__spacebetween">
+                    <span>Total: </span>
+                    <strong id="total">120$</strong>
+                </div>
+            </div>
+            <div class="modal_foo right__site">
+                <button type="button" id="buy">Buy</button>
+                <button type="button" id='close'>Close</button>
+            </div>
+        </div>
+    </div>
     <script src="~/MyScript/LinkContact.js">
     </script>
     <script>
         $(".button").on('click', function () {
-            $.post("/LinkContact/GetLink", { id: $(this).attr('id') }).done(function (data) {
-                window.open("http://" + data, '_blank')
+            $.post("/LinkContact/gate", { id: $(this).attr('id') }).done(function (data) {
+                if (data) {
+                    window.open("http://" + data, '_blank')
+                } else {
+                    $('#gate--code').addClass('open')
+                }
             });
         })
     </script>

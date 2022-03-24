@@ -395,6 +395,19 @@ namespace Util
                 throw;
             }
         }
+
+        public bool DB_gate(string id_row){
+            string sql = $"select [code] from dbo.[Row] where ID = '{id_row}'";
+            this.dataReader = DB_ExcuteQuery(sql);
+            if (this.dataReader.Read())
+            {
+                if (int.Parse(this.dataReader.GetValue(0).ToString()) == 0) return false;
+                this.dataReader.Close();
+                return true;
+            }
+                return false;
+        }
+
         public string DB_GetLink(string id_row)
         {
             string url="";

@@ -60,6 +60,25 @@ public class LinkContactController : Controller
            string url = d.DB_GetLink(id_row);
             return Content(url, "text/html");
         }
+        public ActionResult GetLink(string id_row)
+        {
+            DAO d = new Util.DAO();
+           string url = d.DB_GetLink(id_row);
+            return Content(url, "text/html");
+        }
+        public ActionResult gate()
+        {
+            DAO d = new Util.DAO();
+            string id_row = Request.Form["id"];
+            if (d.DB_gate(id_row))
+            {
+                return Content("", "text/html");
+            }
+            else {
+                return GetLink(id_row);
+            }
+           
+        }
 
     }
 }
