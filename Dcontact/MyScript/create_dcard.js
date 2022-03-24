@@ -87,7 +87,8 @@ $(document).ready(function () {
             size: 'viewport'
         }).then(function (img) {
             $('.cmn-card img').attr('src', '');
-            $('#modal__crop--avt').hide();
+            $('#modal__crop--avt').css('display', 'none');
+            $('.cropAvatar').hide();
             document.getElementById('avatar-result').src = "" + img;
             imageSrc = img+"";
         });

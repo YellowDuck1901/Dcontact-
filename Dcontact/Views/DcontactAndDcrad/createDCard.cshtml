@@ -487,10 +487,12 @@
             $('.closeBgModal').on('click', function () {
                 $("#toggleBg").click();
                 $('.cropBackground').hide();
+                $('#modal__crop--bg').css('display', 'none');
             })
 
             $('.closeAvtModal').on('click', function () {
                 $('.cropAvatar').hide();
+                $('#modal__crop--avt').css('display', 'none');
             })
 
                 $('#next').on('click', function () {
@@ -552,12 +554,14 @@
             $("#toggleAvt").on('change', function () {
                 if ($(this).is(':checked')) {
                     $(this).attr('value', 'true');
-                    $('#modal__crop--avt').addClass('open');
+                    //$('#modal__crop--avt').addClass('open');
+                    $('#modal__crop--avt').css('display', 'flex');
                     $('.choosePosition').show();
                     $('.cropAvatar').show();
                 }
                 else {
                     $(this).attr('value', 'false');
+                    $('#modal__crop--avt').css('display', 'none');
                     $('.choosePosition').hide();
                     $('.cropAvatar').hide();
                     $('.cmn-card img').attr('src', '');
