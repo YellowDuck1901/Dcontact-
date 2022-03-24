@@ -206,6 +206,12 @@
         var avtURL = "";
         var qrURL = "";
 
+        $(window).bind("pageshow", function (event) {
+            if (event.originalEvent.persisted) {
+                window.location.reload()
+            }
+        });
+
         function convertImgToBase64URL(url, callback, outputFormat) {
             var img = new Image();
             img.crossOrigin = 'Anonymous';
@@ -345,24 +351,24 @@
 
             if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
-                    { src: qrURL, x:8,y:8},
                     { src: bgURL },
+                    { src: qrURL },
                     { src: avtURL, x: 408, y: 8 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
             } else if ($('#centerAvt').is(':checked')) {        //center avatar
                 mergeImages([
-                    { src: qrURL, x: 408, y: 8 },
                     { src: bgURL },
+                    { src: qrURL, x: 408 },
                     { src: avtURL, x: 210, y: 90 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
                 } else {                                            //left avatar
                     mergeImages([
-                        { src: qrURL, x: 408, y: 8 },
                         { src: bgURL },
+                        { src: qrURL, x: 408 },
                         { src: avtURL, x: 8, y: 8 },
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
@@ -374,15 +380,15 @@
 
             if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
-                    { src: qrURL},
                     { src: bgURL },
+                    { src: qrURL, x: 408 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
             } else if ($('#centerAvt').is(':checked')) {        //center avatar
                 mergeImages([
-                    { src: qrURL, x: 408, y: 8 },
                     { src: bgURL },
+                    { src: qrURL, x: 408 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
@@ -498,19 +504,21 @@
                 $('#next').on('click', function () {
                     setTimeout(function () {
                         if (avtURL == "" && bgURL != "" && qrURL != "") {
-                            alert(qrURL);
                             MergeImageBg(bgURL, qrURL);
                             deleteFile(bgURL);
                             deleteFile(qrURL);
                         } else if (avtURL != "" && bgURL == "" && qrURL != "") {
-                            MergeImageAvt(avtURL, qrURL);
-                            deleteFile(avtURL);
+                            @*MergeImageAvt(avtURL, qrURL);
+                            deleteFile(avtURL);*@
+                            alert("Please Choose BackGround")
                         }
                         else if (bgURL != "" && avtURL != "" && qrURL != "") {
                             MergeImageBgAvtQr(bgURL, avtURL, qrURL);
                             deleteFile(bgURL);
                             deleteFile(avtURL);
                             deleteFile(qrURL);
+                        } else if (qrURL == "") {
+                            alert("Please Choose BackGround And QR Code")
                         }
 
                     }, 500);

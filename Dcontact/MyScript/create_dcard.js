@@ -26,7 +26,9 @@ $(document).ready(function () {
                 onQR = true;
                 $(this).attr('value', 'true');
                 var data = $('#linkContact').val();
-                var img = '<img style="margin: 0 auto" class="img-qr" id="qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
+                var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
+                var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
+                UploadQRImage(srcQR);
                 if (imgPosition === "right") {
                     imagePosition("left");
                 }
