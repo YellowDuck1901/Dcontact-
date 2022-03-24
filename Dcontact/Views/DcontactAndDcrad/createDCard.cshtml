@@ -540,11 +540,11 @@
                 if ($(this).is(':checked')) {
                     $(this).attr('value', 'true');
                     $('#modal__crop--bg').addClass('open');
-                    $('.cropBackground').show();
                 }
                 else {
                     $(this).attr('value', 'false');
-                    $('.cropBackground').hide();
+                    $('cropBakcground').hide();
+                    $('#modal__crop--bg').removeClass('open');
                 }
             });
 
@@ -583,30 +583,30 @@
                 $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
             })
 
-            //qrcode
-            $("#toggleQR").on('change', function () {
-                if ($('#linkContact').val() != '') {
-                    $('.error-icon').hide();
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                        var data = $('#linkContact').val();
-                        var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
-                        var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
-                        $('.qrcode').html(img);
-                        data = $('#linkContact').val('');
-                        UploadQRImage(srcQR);
+            ////qrcode
+            //$("#toggleQR").on('change', function () {
+            //    if ($('#linkContact').val() != '') {
+            //        $('.error-icon').hide();
+            //        if ($(this).is(':checked')) {
+            //            $(this).attr('value', 'true');
+            //            var data = $('#linkContact').val();
+            //            var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
+            //            var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
+            //            $('.qrcode').html(img);
+            //            data = $('#linkContact').val('');
+            //            UploadQRImage(srcQR);
                         
 
-                    }
-                    else {
-                        $(this).attr('value', 'false');
-                        $('.img-qr').hide();
-                    }
-                } else {
-                    $(this).prop('checked', false);
-                    $('.error-icon').show();
-                }
-            });
+            //        }
+            //        else {
+            //            $(this).attr('value', 'false');
+            //            $('.img-qr').hide();
+            //        }
+            //    } else {
+            //        $(this).prop('checked', false);
+            //        $('.error-icon').show();
+            //    }
+            //});
 
             //text
             $("#toggleText").on('change', function () {
