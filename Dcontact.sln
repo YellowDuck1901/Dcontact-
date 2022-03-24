@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bean", "Bean1\Bean.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "DAO\Util.csproj", "{CFE8A456-3DA8-493A-B504-21670F4A8E2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{FCA8AC57-AAF3-488F-8010-7E9B14AB61A3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +32,6 @@ Global
 		{CFE8A456-3DA8-493A-B504-21670F4A8E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFE8A456-3DA8-493A-B504-21670F4A8E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFE8A456-3DA8-493A-B504-21670F4A8E2A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCA8AC57-AAF3-488F-8010-7E9B14AB61A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCA8AC57-AAF3-488F-8010-7E9B14AB61A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCA8AC57-AAF3-488F-8010-7E9B14AB61A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCA8AC57-AAF3-488F-8010-7E9B14AB61A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

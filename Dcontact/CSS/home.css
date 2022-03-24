@@ -21,7 +21,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    display: flex;
+    margin-right: 0.5rem;
 }
 
 .button-3 {
@@ -134,7 +134,7 @@ body {
     padding: 2rem;
     width: 60%;
     text-align: center;
-    animation: topdown 5s infinite;
+    animation: topdown 3s ease;
 }
 
 .home-modal {
@@ -165,19 +165,11 @@ body {
 }
 
 @keyframes topdown {
-    0% {
-        top:200px;
+    from {
+        top:0;
     }
 
-    25% {
-        top: 400px;
-    }
-
-    75% {
-        top: 200px
-    }
-
-    100% {
-        top: 300px;
+    to {
+        top: 310px;
     }
 }

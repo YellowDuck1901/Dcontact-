@@ -168,7 +168,6 @@
     <Compile Include="Controllers\ImageAPIController.cs" />
     <Compile Include="Controllers\LinkContactController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -253,7 +252,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\LinkContact\LinkContact.cshtml" />
   </ItemGroup>
   <ItemGroup>

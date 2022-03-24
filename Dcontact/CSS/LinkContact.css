@@ -82,6 +82,7 @@ body {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     overflow: hidden;
     padding: 0.85em;
+    background-size: 100% 100%;
 }
 
 .card__contener--header {
@@ -92,7 +93,6 @@ body {
 }
 
     .card__contener--header img {
-        width: 25%;
         border-radius: 50%;
     }
 
@@ -129,7 +129,7 @@ body {
     height: 5vh;
     /* background: #273c75; */
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    padding: 11px 8px 11px 8px;
+    padding: 0.5rem;
     color: #f5f6fa; /*color row*/
     overflow: hidden;
 }
@@ -162,10 +162,11 @@ body {
 
 .card__contener--footer {
     position: absolute;
-    background: inherit;
-    height: 4rem;
+    height: 10vh;
     width: 100%;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo--mini {

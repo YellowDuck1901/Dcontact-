@@ -77,8 +77,8 @@
 
     <div class="edit-card">
         <span class="input-link">
-            <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
-            <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
+            <input required type="text" placeholder="Enter your DContact link" id="linkContact" />
+            <span class="error-icon"><abbr title="Enter valid link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
         </span> </br>
         <div class="toggle-area">
             <div class="toggle-switch">
@@ -134,7 +134,7 @@
 
         </div>
 
-        <input type="button" id="next" class="btn-order" value="NEXT" @*onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';"*@ />
+        <input type="button" id="next" class="btn-order" value="NEXT" />
 
     </div>
     @* MODAL CROP BACKGROUND *@
@@ -158,7 +158,7 @@
                         </span>
                     </div>
                     <div>
-                        <button class="btn btn-success btn-block btn-upload-template" id="">Upload Image</button>
+                        <button class="btn btn-success btn-block btn-upload-template" id="upload_background">Upload Image</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                         </span>
                     </div>
                     <div>
-                        <button class="btn btn-success btn-block btn-upload-avatar">Upload Image</button>
+                        <button class="btn btn-success btn-block btn-upload-avatar" id="upload_avatar">Upload Image</button>
                     </div>
                 </div>
                 <img id="merge-image" src="" width="128" style="display:none">
@@ -199,22 +199,65 @@
             </div>
      </div>
     </div>
+    
     <script>
 
-            function deleteFile(path) {
-                $.ajax({
-                    origin: '*',
-                    type: "post",
-                    url: "DcontactAndDcrad/DeleteFileFromFolder",
-                    data: {
-                        path: path
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('body').html(jqXHR.responseText);
-                    }
-                });
-            }
+        var bgURL = "";
+        var avtURL = "";
+        var qrURL = "";
 
+        function convertImgToBase64URL(url, callback, outputFormat) {
+            var img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function () {
+                var canvas = document.createElement('CANVAS'),
+                    ctx = canvas.getContext('2d'), dataURL;
+                canvas.height = img.height;
+                canvas.width = img.width;
+                ctx.drawImage(img, 0, 0);
+                dataURL = canvas.toDataURL(outputFormat);
+                callback(dataURL);
+                canvas = null;
+            };
+            img.src = url;
+        }
+
+       
+
+        function UploadQRImage(URL) {
+            convertImgToBase64URL(URL, function (base64Img) {
+                setTimeout(function () {
+                    if (base64Img != "") {
+                        var block = base64Img.split(";");
+                        var contentType = block[0].split(":")[1];
+                        var realData = block[1].split(",")[1];
+                        var image_qr = b64toBlob(realData, contentType);
+                        var fqrData = new FormData();
+                        fqrData.append('image', image_qr);
+                        qrURL = uploadImage(fqrData);
+                        console.log(qrURL);
+                    }
+                }, 500);
+            });
+
+        }
+
+
+
+
+        function deleteFile(path) {
+            $.ajax({
+                origin: '*',
+                type: "post",
+                url: "DcontactAndDcrad/DeleteFileFromFolder",
+                data: {
+                    path: path
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('body').html(jqXHR.responseText);
+                }
+            });
+        }
 
         function textPosition(position, rs) {
             position = '.' + position + '-text'
@@ -298,10 +341,11 @@
                     });
             }
 
-            function MergeImage(bgURL, avtURL) {
+        function MergeImageBgAvtQr(bgURL, avtURL, qrURL) {
 
             if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
+                    { src: qrURL, x:8,y:8},
                     { src: bgURL },
                     { src: avtURL, x: 408, y: 8 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
@@ -309,6 +353,7 @@
 
             } else if ($('#centerAvt').is(':checked')) {        //center avatar
                 mergeImages([
+                    { src: qrURL, x: 408, y: 8 },
                     { src: bgURL },
                     { src: avtURL, x: 210, y: 90 },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
@@ -316,6 +361,7 @@
 
                 } else {                                            //left avatar
                     mergeImages([
+                        { src: qrURL, x: 408, y: 8 },
                         { src: bgURL },
                         { src: avtURL, x: 8, y: 8 },
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
@@ -324,30 +370,58 @@
                 UploadMergeImage();
             }
 
-        function MergeImageBg(bgURL) {
+        function MergeImageBg(bgURL,qrURL) {
 
             if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
+                    { src: qrURL},
                     { src: bgURL },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
             } else if ($('#centerAvt').is(':checked')) {        //center avatar
                 mergeImages([
+                    { src: qrURL, x: 408, y: 8 },
                     { src: bgURL },
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                 ]).then(b64 => document.querySelector('#merge-image').src = b64);
 
                 } else {                                            //left avatar
-                    mergeImages([
-                        { src: bgURL },
-                        { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                mergeImages([
+                    { src: bgURL},
+                    { src: qrURL,x:408},
+
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
                 }
                 UploadMergeImage();
+        }
 
+        function MergeImageAvt(avtURL,qrURL) {
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
+                mergeImages([
+                    { src: qrURL, x: 8, y: 8 },
+                    { src: avtURL, x: 408, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                mergeImages([
+                    { src: qrURL, x: 408, y: 8 },
+                    { src: avtURL, x: 210, y: 90 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else {                                            //left avatar
+                mergeImages([
+                    { src: qrURL, x: 408, y: 8 },
+                    { src: avtURL, x: 8, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
             }
-
+            UploadMergeImage();
+        }
 
 
             function getAvatar() {
@@ -355,7 +429,6 @@
 
                 if ($('#rightAvt').is(':checked')) {                //right avatar
                     avatar = $('#avatar-result-right').attr('src');
-                    alert(avatar);
 
             } else if ($('#centerAvt').is(':checked')) {        //center avatar
                 avatar = $('#avatar-result-center').attr('src');
@@ -370,7 +443,6 @@
             return $('#cardBg').css('background-image')
         }
 
-            var bgURL = "";
             $('#upload_background').on('click', function () {
                 setTimeout(function () {
                     var background = getBackground();
@@ -388,7 +460,6 @@
 
             });
 
-            var avtURL = "";
             $('#upload_avatar').on('click', function () {
                 setTimeout(function () {
                     var avatar = getAvatar();
@@ -424,16 +495,20 @@
 
                 $('#next').on('click', function () {
                     setTimeout(function () {
-                        if (avtURL == "" && bgURL != "") {
-                            console.log(bgURL)
-                            MergeImageBg(bgURL);
+                        if (avtURL == "" && bgURL != "" && qrURL != "") {
+                            alert(qrURL);
+                            MergeImageBg(bgURL, qrURL);
                             deleteFile(bgURL);
+                            deleteFile(qrURL);
+                        } else if (avtURL != "" && bgURL == "" && qrURL != "") {
+                            MergeImageAvt(avtURL, qrURL);
+                            deleteFile(avtURL);
                         }
-                        else if (bgURL != "" && avtURL != "") {
-                            MergeImage(bgURL, avtURL);
+                        else if (bgURL != "" && avtURL != "" && qrURL != "") {
+                            MergeImageBgAvtQr(bgURL, avtURL, qrURL);
                             deleteFile(bgURL);
                             deleteFile(avtURL);
-
+                            deleteFile(qrURL);
                         }
 
                     }, 500);
@@ -485,7 +560,7 @@
                     $(this).attr('value', 'false');
                     $('.choosePosition').hide();
                     $('.cropAvatar').hide();
-
+                    $('.cmn-card img').attr('src', '');
                 }
             });
 
@@ -508,7 +583,30 @@
                 $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
             })
 
-          
+            //qrcode
+            $("#toggleQR").on('change', function () {
+                if ($('#linkContact').val() != '') {
+                    $('.error-icon').hide();
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
+                        var data = $('#linkContact').val();
+                        var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
+                        var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
+                        $('.qrcode').html(img);
+                        data = $('#linkContact').val('');
+                        UploadQRImage(srcQR);
+                        
+
+                    }
+                    else {
+                        $(this).attr('value', 'false');
+                        $('.img-qr').hide();
+                    }
+                } else {
+                    $(this).prop('checked', false);
+                    $('.error-icon').show();
+                }
+            });
 
             //text
             $("#toggleText").on('change', function () {
