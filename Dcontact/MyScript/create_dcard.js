@@ -21,6 +21,7 @@ $(document).ready(function () {
         var linkcontact = $('#linkContact').val();
         if (linkcontact != '' && regexURL.test(linkcontact) == true) {
             $('.error-icon').hide();
+
             if ($(this).is(':checked')) {
                 onQR = true;
                 $(this).attr('value', 'true');
@@ -36,7 +37,7 @@ $(document).ready(function () {
                 $(this).attr('value', 'false');
                 $('#qr').remove();
                 onQR = false;
-
+                $('.error-icon').hide();
             }
         } else {
             $(this).prop('checked', false);
@@ -125,7 +126,7 @@ $(document).ready(function () {
             size: 'viewport'
         }).then(function (img) {
             $("#toggleBg").click();
-            $('.cropBackground').hide();
+            $('#modal__crop--bg').removeClass('open');
             $('.card').css('background-color', '');
             $('#cardBg').css('background-image', "url('" + img + "')");   //cho load anh
         });

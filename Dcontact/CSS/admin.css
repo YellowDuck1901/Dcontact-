@@ -153,7 +153,7 @@ body {
   display: flex;
   margin-top: 12px;
 }
-.admin-container2 table {
+.main-lock table {
   text-align: left;
   position: relative;
   width: 80%;
@@ -165,6 +165,8 @@ body {
   background: white;
   box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px,
     rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+  text-align: center;
+  font-family: monospace;
 }
 .admin-container2 .caption {
   text-align: center;
@@ -185,52 +187,67 @@ body {
 }
 
 .main-lock th {
-  background: white;
-  position: sticky;
-  top: 0; /* Don't forget this, required for the stickiness */
-  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-  width: calc(100% / 4);
-  text-align: center;
+    background: white;
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    width: 30rem;
+    text-align: center;
+    color: #008080;
+    letter-spacing: 0.25rem;
+    font-family: monospace;
 }
 
 .main-report th {
-  background: white;
-  position: sticky;
-  top: 0; /* Don't forget this, required for the stickiness */
-  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-  width: calc(100% / 6);
-  text-align: center;
+    background: white;
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    width: calc(100% / 6);
+    text-align: center;
+    letter-spacing: 0.25rem;
+    font-family: monospace;
+    color: #008080;
 }
 
 .main-report .btn-report {
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
   background: white;
-  margin-left: 37px;
   border-radius: 10px;
   padding: 10px;
+  cursor: pointer;
+  transition: .5s;
+  width: 5rem;
+  border: 1px solid #000;
 }
 
-.main-report .btn-report:hover {
-  opacity: 0.7;
-  font-weight: 700;
-  cursor: pointer;
+.btn-accept:hover {
+    background: #008080;
+    color: #fff;
+    background-position: right;
+}
+
+.btn-decline:hover {
+    background: red;
+    color: #fff;
+    background-position: right;
 }
 
 .main-lock .btn-lock {
-  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-  background: white;
-  margin-left: 80px;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #404040;
-  color: red;
+    box-shadow: 0 2px 2px -1px rgb(0 0 0 / 40%);
+    background: white;
+    border-radius: 10px;
+    color: red;
+    margin: 1.5rem;
+    letter-spacing: 0.25rem;
+    border-color: red;
+    transition: 0.5s;
 }
 
 .main-lock .btn-lock:hover {
   background-color: red;
-  color: black;
+  color: #fff;
   opacity: 0.6;
-  font-weight: 700;
   cursor: pointer;
 }
 
@@ -266,4 +283,13 @@ body {
   position: absolute;
   display: none;
   float: left;
+}
+
+.main-report table {
+    text-align: left;
+    position: absolute;
+    position: a;
+    width: 70%;
+    left: 60%;
+    transform: translateX(-50%);
 }

@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.name | DContact</title>
     <link rel="stylesheet" href="~/CSS/LinkContact.css" />
-    <link rel="stylesheet" href="~/CSS/modal.css" />
+    <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
 
@@ -27,28 +29,70 @@
                 <div class="card__contener--body scrollbar-hidden">
                     <ul>
                         @{ foreach (Bean.Row row in dcontact.rows)
-                            {
-                                <li>
-                                    <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
-                                    <div class="button"
-                                         role="button"
-                                         id="@row.ID"
-                                         style="background-color: @row.color">
-                                        <i class="@row.bullet"></i>
-                                        <!-- Label -->
-                                        <div class="card--item__text">
-                                            <label style="font-family: '@row.font ;' ">@row.text</label>
-                                        </div>
-                                    </div>
-                                </li>
+                                {
+                    <li>
+                        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+                        <div class="button"
+                             role="button"
+                             id="@row.ID"
+                             style="background-color: @row.color">
+                            <i class="@row.bullet"></i>
+                            <!-- Label -->
+                            <div class="card--item__text">
+                                <label style="font-family: " @row.font ";">@row.text</label>
+                            </div>
+                        </div>
+                    </li>
+                                }
                             }
-                        }
-                    </ul>
+
+                        <!--<li>
+            </div>
+            <div class="card__contener--footer">
+                <a href="home">
+                <div class="logo--mini">
+                    <img src="resource/logo/logo_full.svg" alt="" />
                 </div>
+                </a>
+            </div>
+                        <!-- Label -->
+                        <!--<div class="card--item__text">
+                <label>Instagram</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+        <div class="button"
+             role="button"
+             style="background-color: #c23616">
+            <i class="fa fa-youtube-play"></i>-->
+                        <!-- Label -->
+                        <!--<div class="card--item__text">
+                <label>YouTube</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+        <div class="button"
+             role="button"
+             style="background-color: #40739e">
+            <i class="fa fa-phone"></i>-->
+                        <!-- Label -->
+                        <!--<div class="card--item__text">
+                <label>Phone</label>
+            </div>
+        </div>
+    </li>-->
+                    </ul>
+            </div>
                 <div class="card__contener--footer">
-                    <div class="logo--mini">
-                        <img src="resource/logo/logo_full.svg" alt="" />
-                    </div>
+                    <a href="home">
+                        <div class="logo--mini">
+                            <img src="resource/logo/logo_full.svg" alt="" />
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -86,45 +130,37 @@
                         <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet">Facebook</span></div>
                         <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet">fb.com/tuyen.danh.5249</span></div>
                         <div class="modalItem modalDesc">
-                            <span class="descTitle">Description </span><textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
+                            <span class="descTitle" id="descTitle">Description </span>
+                            <textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
                             <span class="errorReport">Please enter message to report <i class="fa fa-exclamation-circle"></i></span>
                         </div>
                     </div>
                 </div>
-                <button class="btn-sendReport" type="submit">REPORT</button>
+                <button class="btn-sendReport" id="btn-sendReport" type="submit">REPORT</button>
 
             </div>
         </div>
     </div>
-    <div class="modal js-modal" id="gate--code">
+    <div class="modal js-modal " id="gate--code">
         <div class="modal-container">
             <div class="modal__header">
-                <h2>Oder Confirm</h2> <i class="fa fa-close"></i>
+                <h2>Confirm code</h2> <i class="fa fa-close"></i>
             </div>
+           
             <div class="modal__contener">
+               
                 <div class="modal__item item__spacebetween">
-                    <span>Address: </span> <span class="confirm__value" id="address_value">Vinh long</span>
+                    <div> <span>Code</span><span class="confirm__code" id="code">
+    <input type="number" name="codeAccess" id="codeAccess"
+           min="1000" max="9999"> <i class="fas fa-exclamation-circle error-icon err-code"></i>
+</span>
                 </div>
-                <div class="modal__item item__spacebetween">
-                    <span>Phone: </span> <span class="confirm__value" id="phone_value">0774835261</span>
+                <div class="modal_foo center_site">
+                    <button type="button" id='close'>Close</button>
                 </div>
-                <div class="modal__item item__spacebetween">
-                    <span>Number item:</span> <span class="confirm__value" id="amount_value">20</span>
-                </div>
-                <div class="modal__item item__spacebetween">
-                    <span>Credit number: </span><span class="confirm__value" id="credit_value">4112121212121212</span>
-
-                </div>
-                <div class="modal__item item__spacebetween">
-                    <span>Total: </span>
-                    <strong id="total">120$</strong>
-                </div>
-            </div>
-            <div class="modal_foo right__site">
-                <button type="button" id="buy">Buy</button>
-                <button type="button" id='close'>Close</button>
             </div>
         </div>
+    </div>
     </div>
     <script src="~/MyScript/LinkContact.js">
     </script>

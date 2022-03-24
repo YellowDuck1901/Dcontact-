@@ -71,7 +71,6 @@ namespace Util
                 throw;
 
             }
-
         }
 
 
@@ -319,6 +318,157 @@ namespace Util
                 throw new Exception(ex.Message);
             }
             return admin;
+        }
+
+        public bool DB_AddReportofGuest(string id_user, string id_row, string description)
+        {
+            string sql = $"insert into dbo.Report values ('{id_user}','{id_row}','{description}',0)";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public List<ReportLink> DB_getReportforAdmin()
+        {
+            List<ReportLink> list = new List<ReportLink>();
+            ReportLink reportLink = null;
+            string sql = $"select a.username,rw.[text],rw.link, rw.ID, r.[description],u.Email,r.[status] from dbo.Report as r JOIN dbo.[User] as u on r.ID_user = u.ID JOIN dbo.[ROW] as rw on r.ID_row = rw.ID JOIN dbo.Account as a on r.ID_user = a.ID where r.[status] = 0";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                while (dataReader.Read())
+                {
+                    reportLink = new ReportLink();
+                    reportLink.username = dataReader.GetValue(0).ToString();
+                    reportLink.link = dataReader.GetValue(2).ToString();
+                    reportLink.id_row = dataReader.GetValue(3).ToString();
+                    reportLink.description = dataReader.GetValue(4).ToString();
+                    list.Add(reportLink);
+                }
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        
+
+        public bool DB_DeleteReport(string id_row)
+        {
+            string sql = $"exec Pro_delRowReport '{id_row}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_AcceptReport(string id_row)
+        {
+            string sql = $"update dbo.Report set [status] = 1 where ID_row = '{id_row}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+        public List<User> DB_getBlockforAdmin()
+        {
+            List<User> list = new List<User>();
+            string sql = $"select u.ID,a.username,u.Email, u.isBan from dbo.[User] as u join dbo.Account as a on u.ID = a.ID join dbo.Report as r on a.ID = r.ID_user  where r.[status] = 1";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                while (dataReader.Read())
+                {
+                    User user = new User();
+                    user.id = dataReader.GetValue(0).ToString();
+                    user.username = dataReader.GetValue(1).ToString();
+                    user.email = dataReader.GetValue(2).ToString();
+                    user.isban = dataReader.GetBoolean(3);
+                    list.Add(user);
+                }
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        public bool DB_BlockUser(string id_user)
+        {
+            string sql = $"update dbo.[User] set isBan = 1 where ID = '{id_user}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool DB_UnblockUser(string id_user)
+        {
+            string sql = $"update dbo.[User] set isBan = 0 where ID = '{id_user}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public List<User> DB_getUserforAdmin()
+        {
+            List<User> list = new List<User>();
+            User user = null;
+            string sql = $"select a.username, u.Email from dbo.Account as a join dbo.[User] as u on a.ID = u.ID";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                while (dataReader.Read())
+                {
+                    user = new User();
+                    user.username = dataReader.GetValue(0).ToString();
+                    user.email = dataReader.GetValue(1).ToString();
+                    list.Add(user);
+                }
+                this.dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
         }
         public bool DB_updateAvt(string id, string path)
         {

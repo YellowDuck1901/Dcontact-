@@ -200,6 +200,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="MyScript\admin.js" />
     <Content Include="MyScript\LinkContact.js" />
     <Content Include="MyScript\check.js" />
     <Content Include="MyScript\create_dcard.js" />

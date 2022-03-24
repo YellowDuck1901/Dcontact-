@@ -42,12 +42,13 @@ public class LinkContactController : Controller
                 ViewBag.name = username;
                 Util.DAO d = new Util.DAO();
                 string id = Util.MD5.CreateMD5(username);
+                Session["linkdcontact"] = id;
                 Bean.Dcontact dcontact = d.DB_GetDcontact(id);
                 ViewBag.dcontact = dcontact;
             }
             catch (Exception ex)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error", "Shared");
             }
             return View();
 
@@ -80,5 +81,21 @@ public class LinkContactController : Controller
            
         }
 
+        public ActionResult Report()
+        {
+            try
+            {
+                Util.DAO d = new Util.DAO();
+                string id_row = Request.Form["id_row"];
+                string txt_des = Request.Form["txt_Des"];
+                string iduser1 = Session["linkdcontact"].ToString();
+                d.DB_AddReportofGuest(iduser1, id_row, txt_des);
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return Content("acb");
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Dcontact.Controllers
         {
             Util.DAO d = new Util.DAO();
             var user = (Bean.User)Session["user"];
-            if ((user.isAdmin) || user == null)
+            if (user == null || user.isAdmin)
             {
                 return RedirectToAction("Home", "Home");
             }
@@ -29,7 +29,15 @@ namespace Dcontact.Controllers
         }
         public ActionResult createDCard()
         {
-            return View();
+            var user = (Bean.User)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("Home", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult upURL()
@@ -61,7 +69,7 @@ namespace Dcontact.Controllers
         {
             ViewBag.image_merge_url = image_merge_url;
             var user = (Bean.User)Session["user"];
-            if ((user.isAdmin) || user == null)
+            if (user == null || user.isAdmin)
             {
                 return RedirectToAction("Home", "Home");
             }
