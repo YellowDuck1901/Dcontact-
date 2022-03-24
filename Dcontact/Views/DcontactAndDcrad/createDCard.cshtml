@@ -508,26 +508,7 @@
                 $('.card').css('background-image', "url(" + $('#uploadFile').val() + ")");
             })
 
-            //qrcode
-            $("#toggleQR").on('change', function () {
-                if ($('#linkContact').val() != '') {
-                    $('.error-icon').hide();
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                        var data = $('#linkContact').val();
-                        var img = '<img style="margin: 0 auto" class="img-qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
-                        $('.qrcode').html(img);
-                        data = $('#linkContact').val('');
-                    }
-                    else {
-                        $(this).attr('value', 'false');
-                        $('.img-qr').hide();
-                    }
-                } else {
-                    $(this).prop('checked', false);
-                    $('.error-icon').show();
-                }
-            });
+          
 
             //text
             $("#toggleText").on('change', function () {
@@ -546,33 +527,6 @@
             });
 
             });
-
-            $('#buy').on('click', function () {
-                $.ajax({
-                    origin: '*',
-                    type: "post",
-                    url: "DcontactAndDcrad/oder_dcardForm",
-                    data: {
-                        cardBackGround: 'data'
-                    },
-                    beforeSend: function () {
-                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<center><div class="spinner"></div></center>');
-                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html("");
-                    },
-                    success: function (msg) {
-                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<h2>' + msg + '</h2>');
-                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html('<button type="button" id="close">Close</button>');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('body').html(jqXHR.responseText);
-                    }
-                });
-            });
-
-
-
-
-
     </script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
     <script src="~/MyScript/create_dcard.js"></script>
