@@ -206,6 +206,16 @@
         var avtURL = "";
         var qrURL = "";
 
+        window.addEventListener("pageshow", function (event) {
+            var historyTraversal = event.persisted ||
+                (typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+
         $(window).bind("pageshow", function (event) {
             if (event.originalEvent.persisted) {
                 window.location.reload()
@@ -247,9 +257,6 @@
             });
 
         }
-
-
-
 
         function deleteFile(path) {
             $.ajax({
@@ -507,19 +514,12 @@
                             MergeImageBg(bgURL, qrURL);
                             deleteFile(bgURL);
                             deleteFile(qrURL);
-                        } else if (avtURL != "" && bgURL == "" && qrURL != "") {
-                            @*MergeImageAvt(avtURL, qrURL);
-                            deleteFile(avtURL);*@
-                            alert("Please Choose BackGround")
-                        }
-                        else if (bgURL != "" && avtURL != "" && qrURL != "") {
+                        }else if (bgURL != "" && avtURL != "" && qrURL != "") {
                             MergeImageBgAvtQr(bgURL, avtURL, qrURL);
                             deleteFile(bgURL);
                             deleteFile(avtURL);
                             deleteFile(qrURL);
-                        } else if (qrURL == "") {
-                            alert("Please Choose BackGround And QR Code")
-                        }
+                        } 
 
                     }, 500);
                 });
