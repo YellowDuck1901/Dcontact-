@@ -154,7 +154,7 @@ namespace Dcontact.Controllers
                 //link
                 Console.WriteLine(font);
                 Util.DAO d = new Util.DAO();
-                d.DB_UpdateRow(idRow, user.id, text, font, color, link, bullet, code, bdday, code);
+                d.DB_UpdateRow(idRow, user.id, text, font, color, link, bullet, code, bdday);
                 return Content("");
             }
             catch (Exception e)

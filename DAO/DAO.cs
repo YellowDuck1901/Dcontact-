@@ -227,13 +227,13 @@ namespace Util
         }
 
         public bool DB_UpdateRow(string idRow, string idContact, string text, string font, string rowColor,
-            string link, string bullet, string code, string birth, string click)
+            string link, string bullet, string code, string birth)
         {
             try
             {
                 string sql = $"execute Pro_UpdateRow @idRow='{idRow}', @idContact='{idContact}'," +
                     $"@text='{text}',@font='{font}', @rowColor='{rowColor}', @link = '{link}', @bullet = '{bullet}'," +
-                    $"@code = {code}, @birth = '{birth}', @click = {click}";
+                    $"@code = {code}, @birth = '{birth}'";
                 this.dataReader = DB_ExcuteQuery(sql);
                 this.dataReader.Close();
             }
