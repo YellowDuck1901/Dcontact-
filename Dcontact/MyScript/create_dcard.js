@@ -4,9 +4,6 @@ var imgPosition;
 var regexURL = /^[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/;
 $(document).ready(function () {
     function imagePosition(position) {
-        if (onQR == true && position == "right") {
-            position = "left";
-        }
         if (imageSrc != null) {
             imgPosition = position;
             $('.cmn-card img').attr('src', '');
@@ -26,18 +23,23 @@ $(document).ready(function () {
                 onQR = true;
                 $(this).attr('value', 'true');
                 var data = $('#linkContact').val();
-                var img = '<img style="margin: 0 auto" class="img-qr" id="qr" src="http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' + data + '">';
+                var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
+                var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
+                UploadQRImage(srcQR);
+
                 if (imgPosition === "right") {
-                    imagePosition("left");
+                    /*imagePosition("left");*/
+                    $('.qrcode').css('left', 0);
                 }
+
                 $('.qrcode').html(img);
-                data = $('#linkContact').val('');
             }
             else {
                 $(this).attr('value', 'false');
                 $('#qr').remove();
                 onQR = false;
                 $('.error-icon').hide();
+                $('.qrcode').hide();
             }
         } else {
             $(this).prop('checked', false);
@@ -51,6 +53,20 @@ $(document).ready(function () {
     //position avatar
     $('#avtBtn').on('click', function () {
         var rdoChecked = $('input[name="positionAvt"]:checked').val();
+        if (rdoChecked === "left") {
+            imagePosition("left");
+            alert('check')
+            $('.qrcode').css('right', 0);
+            $('.qrcode').css('left', '');
+        }
+
+        if (rdoChecked === "right") {
+            imagePosition("right");
+            alert('check 2')
+            $('.qrcode').css('left', 0);
+            $('.qrcode').css('right', '');
+        }
+
         imagePosition(rdoChecked)
     })
     
@@ -87,7 +103,8 @@ $(document).ready(function () {
             size: 'viewport'
         }).then(function (img) {
             $('.cmn-card img').attr('src', '');
-            $('#modal__crop--avt').hide();
+            $('#modal__crop--avt').css('display', 'none');
+            $('.cropAvatar').hide();
             document.getElementById('avatar-result').src = "" + img;
             imageSrc = img+"";
         });
