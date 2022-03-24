@@ -33,12 +33,12 @@
             <aside class="container__left">
                 <div class="container__statistical">
                     <div class="container__statistical__header">
-                        <h2>Statistical</h2>
+                        <span>Statistical</span>
                     </div>
                     <div class="statistical__contener">
                         <div class="statistical__summary">
                             <div class="statistical__summary--item">Views: <span>@dcontact.numerView</span></div>
-                         
+
                             <div class="statistical__summary--item">Click: <span>chuatinhtong</span></div>
                         </div>
                         <div class="divider"></div>
@@ -67,7 +67,7 @@
             <!-- Right sidebar -->
             <nav class="container__right">
                 <div class="contener">
-                    <div class="card__contener"  >
+                    <div class="card__contener">
                         <div class="card__contener--header">
                             <img src="@dcontact.avt"
                                  alt="avatar">
@@ -78,26 +78,26 @@
                                 @{
                                     foreach (Bean.Row row in dcontact.rows)
                                     {
-                                                                <li>
-                                                                    <div class="button" role="button" style="background-color: @row.color" href="@row.link">
-                                                                        <i class="@row.bullet"></i>
-                                                                       
-                                                                        <div class="card--item__text">
-                                                                            <label>@row.text</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                        }
+                                        <li>
+                                            <div class="button" role="button" style="background-color: @row.color" href="@row.link">
+                                                <i class="@row.bullet"></i>
+
+                                                <div class="card--item__text">
+                                                    <label>@row.text</label>
+                                                </div>
+                                            </div>
+                                        </li>
                                     }
+                                }
                                 <!--<li>
-        <div class="button" role="button" style="background-color: #273c75">
-            <i class="fa fa-facebook-square"></i>
-                                <!-- Label -->
+                                <div class="button" role="button" style="background-color: #273c75">
+                                    <i class="fa fa-facebook-square"></i>
+                                                        <!-- Label -->
                                 <!--<div class="card--item__text">
-                <label>Facebook</label>
-            </div>
-        </div>
-    </li>-->
+                                            <label>Facebook</label>
+                                        </div>
+                                    </div>
+                                </li>-->
 
                             </ul>
                         </div>

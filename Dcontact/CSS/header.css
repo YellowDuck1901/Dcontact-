@@ -1,5 +1,6 @@
 :root {
-    --primary-color: #e67e22;
+    --primary-color: #ed7035;
+    --basic-color: #2f3542;
 }
 
 body,html {
@@ -22,6 +23,10 @@ body,html {
 .header_container--left img {
     width: 70px;
     height: 50px;
+}
+
+.header_button {
+    margin-right: 0.5rem;
 }
 
 .header_container {
@@ -67,8 +72,8 @@ header {
     /* display: flex; */
     display: none;
     z-index: 1;
-    top: 1.4em;
-    left: 0.3em;
+    top: 2.1em;
+    left: 0.4em;
 }
 
 .option_setting:hover .drop_setting {
@@ -96,7 +101,7 @@ body {
     background-image: linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
 }
 
-#email_value {
+/*#email_value {
     margin-right: 30px;
 }
 
@@ -106,7 +111,7 @@ body {
 
 #password_value {
     margin-right: 40px;
-}
+}*/
 
 .button-3 {
     background-color: var(--primary-color);
@@ -152,7 +157,7 @@ body {
 .profile-link {
     color: #fff;
     text-decoration: none;
-    background: var(--primary-color);
+    background: var(--basic-color);
     padding: 5px;
     border-radius: 6px;
     cursor: pointer;

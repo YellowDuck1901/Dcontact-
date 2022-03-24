@@ -21,7 +21,7 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 }
 
 function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0,
             v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
@@ -87,7 +87,7 @@ function updateRow(id) {
                 code_row: code,
                 bdate_row: bdate,
             },
-            success: function(msg) {
+            success: function (msg) {
                 console.log("has been update row")
                 console.log(msg)
                 console.log('<<<<<<<<<<<<<<<<<start debug>>>>>>>>>>>>>>>>>')
@@ -101,7 +101,7 @@ function updateRow(id) {
                 console.log("color: " + color)
                 console.log('<<<<<<<<<<<<<<<<<end debug>>>>>>>>>>>>>>>>>')
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('body').html(jqXHR.responseText);
             }
         });
@@ -142,7 +142,7 @@ function blindingRow() {
     $('#bgColor').val(color);
 }
 //event
-$(document).ready(function() {
+$(document).ready(function () {
     //crop avatar
     var resize_avatar = $('#upload-avatar').croppie({
         enableExif: true,
@@ -157,22 +157,22 @@ $(document).ready(function() {
             height: 300,
         }
     });
-    $('#image-avatar').on('change', function() {
+    $('#image-avatar').on('change', function () {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             resize_avatar.croppie('bind', {
                 url: e.target.result
-            }).then(function() {
+            }).then(function () {
                 console.log('jQuery bind complete');
             });
         }
         reader.readAsDataURL(this.files[0]);
     });
-    $('.btn-upload-avatar').on('click', function(ev) {
+    $('.btn-upload-avatar').on('click', function (ev) {
         resize_avatar.croppie('result', {
             type: 'canvas',
             size: 'viewport'
-        }).then(function(img) {
+        }).then(function (img) {
             document.getElementById('avatar-result').src = "" + img;
             var formData = new FormData();
             var block = img.split(";");
@@ -188,14 +188,14 @@ $(document).ready(function() {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $('#avatar-result').attr('src', response);
-                    $.post("/DcontactAndDcrad/updateImage", { piece: 'avatar', path: response }).done(function(data) {
+                    $.post("/DcontactAndDcrad/updateImage", { piece: 'avatar', path: response }).done(function (data) {
                         console.log(data + 'avt has been updated');
                     });
                     console.log(response);
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     $('body').html('error: ' + jqXHR.responseText);
                     console.log('error: ' + jqXHR.status);
                 }
@@ -209,7 +209,7 @@ $(document).ready(function() {
          // alert(parentRow)
          $('.social-list #' + parentRow).remove();
      })*/
-    $('.cmnRadio').change(function() {
+    $('.cmnRadio').change(function () {
         var radioValue = $('.cmnRadio:checked').val();
         if (radioValue == 'font') {
             $('.font-area').show();
@@ -227,7 +227,7 @@ $(document).ready(function() {
             $('.gate-area').show();
         }
     });
-    $('#toggleCode').on('change', function() {
+    $('#toggleCode').on('change', function () {
         if ($(this).is(':checked')) {
             $(this).attr('value', 'true');
             $('.code-form').show();
@@ -236,7 +236,7 @@ $(document).ready(function() {
             code = 0;
         }
     });
-    $('#toggleAge').on('change', function() {
+    $('#toggleAge').on('change', function () {
         if ($(this).is(':checked')) {
             $(this).attr('value', 'true');
             $('.age-form').show();
@@ -245,7 +245,7 @@ $(document).ready(function() {
             bdate = '';
         }
     });
-    $('.applyCode').on('click', function() {
+    $('.applyCode').on('click', function () {
         code = $('#codeAccess').val();
         if (code < 1000 || code > 9999) {
             $('.err-code').show();
@@ -257,7 +257,7 @@ $(document).ready(function() {
             updateRow(idRow);
         }
     });
-    $('.applyAge').on('click', function() {
+    $('.applyAge').on('click', function () {
         var age = $('#ageConfirm').val();
         //[ ] bday la kieu date
         if (age < 14 || age > 99) {
@@ -269,14 +269,14 @@ $(document).ready(function() {
             $('.err-age').hide();
         }
     });
-    $('.contener').on('click', function() {
+    $('.contener').on('click', function () {
         //    $('.contener').width('68.5%');
         $('.container__right--url').css('display', 'flex');
         $('.container__right--avatar').css('display', 'none');
         $('.container__right--template').css('display', 'none');
     });
     // CHANGE COLOR BACKGROUND
-    $('#bgColor').on('change', function() {
+    $('#bgColor').on('change', function () {
         // $('.newClass').css('background-color',$(this).val());
         var idOfColor = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
         $(idOfColor).css('background-color', $(this).val());
@@ -299,16 +299,16 @@ $(document).ready(function() {
        });*/
     //set color
     //change title
-    $('body > div.container > main > nav.container__right > div.right__field > div.url-area').on('keyup', function() {
+    $('body > div.container > main > nav.container__right > div.right__field > div.url-area').on('keyup', function () {
         var id = "#" + $(this).attr('target');
         text = $('#titleUrl').val();
         $(id).children('.card--item__text').children('label').text(text);
         link = $('#linkUrl').val();
         $(id).attr('url', link);
-    }).on('focusout', function() {
+    }).on('focusout', function () {
         updateRow(idRow);
     });
-    $('.card__contener--body').on('click', '.button', function() {
+    $('.card__contener--body').on('click', '.button', function () {
         resetEditpanel();
         var getID = $(this).attr('id');
         $('div.url-area').attr('target', getID);
@@ -316,80 +316,80 @@ $(document).ready(function() {
         blindingRow();
     });
     // FONT SELECTOR
-    $('#fs').on('change', function() {
-            var fontVal = $('#fs option:selected').val();
-            font = fontVal;
-            var idOfFont = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
-            $(idOfFont).children('.card--item__text').children('label').css("font-family", font);
-            updateRow(idRow)
-        })
-        // TEMPLATE
-    $('.template__detail').on('click', '.img-temp', function() {
-            var src = $(this).attr('src');
-            $('.card__contener').css('background-image', "url('" + src + "')");
-            $.post("/DcontactAndDcrad/updateImage", { piece: 'template', path: src }).done(function(data) {
-                console.log(data + 'card background has been updated');
-            });
-            //[o] post update template
-        })
-        //for (i = 1; i <= 10; i++) {
-        //    var image = "https://source.unsplash.com/random/329x531?sig=" + i + "";
-        //    $('.template__detail ul').append(' <li> <div class="inf-temp" id="template1"> <img src="' + image + '" alt="" class="img-temp" id="srcImg1" /> <p class="name-temp">Template ' + i + '</p> </div> </li>');
-        //}
-        // CROP AVATAR and TEMPLATE DISPLAY
-    $('.file__label').on('click', function() {
+    $('#fs').on('change', function () {
+        var fontVal = $('#fs option:selected').val();
+        font = fontVal;
+        var idOfFont = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
+        $(idOfFont).children('.card--item__text').children('label').css("font-family", font);
+        updateRow(idRow)
+    })
+    // TEMPLATE
+    $('.template__detail').on('click', '.img-temp', function () {
+        var src = $(this).attr('src');
+        $('.card__contener').css('background-image', "url('" + src + "')");
+        $.post("/DcontactAndDcrad/updateImage", { piece: 'updateTemplate', path: src }).done(function (data) {
+            console.log(data + 'card background has been updated');
+        });
+        //[o] post update template
+    })
+    //for (i = 1; i <= 10; i++) {
+    //    var image = "https://source.unsplash.com/random/329x531?sig=" + i + "";
+    //    $('.template__detail ul').append(' <li> <div class="inf-temp" id="template1"> <img src="' + image + '" alt="" class="img-temp" id="srcImg1" /> <p class="name-temp">Template ' + i + '</p> </div> </li>');
+    //}
+    // CROP AVATAR and TEMPLATE DISPLAY
+    $('.file__label').on('click', function () {
         $('.container__right--avatar').css('display', 'flex');
         $('.container__right--url').css('display', 'none');
         $('.container__right--template').css('display', 'none');
     });
-    $('.btn-addTemp').on('click', function() {
+    $('.btn-addTemp').on('click', function () {
         $('.container__right--avatar').css('display', 'none');
         $('.container__right--url').css('display', 'none');
         $('.container__right--template').css('display', 'flex');
         $('#image-template').click();
     })
-    $('.file__label').on('click', function() {
-            $('#image-avatar').click();
-        })
-        //AJAX FUCNTION
-        //delete row
-    $('.social-list').on('click', '.report', function() {
-            var parentRow = $(this).parent().attr('id');
-            // alert(parentRow)
-            $('.social-list #' + parentRow).remove();
-            $.ajax({
-                origin: '*',
-                type: "post",
-                url: "/DcontactAndDcrad/deleteRow",
-                data: {
-                    id: parentRow
-                },
-                success: function(msg) {
-                    var parentRow = $(this).parent().attr('id');
-                    $('.social-list #' + parentRow).remove();
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $('body').html(jqXHR.responseText);
-                }
-            });
-        })
-        //add row
-    $('#addNewUrl').on('click', function() {
+    $('.file__label').on('click', function () {
+        $('#image-avatar').click();
+    })
+    //AJAX FUCNTION
+    //delete row
+    $('.social-list').on('click', '.report', function () {
+        var parentRow = $(this).parent().attr('id');
+        // alert(parentRow)
+        $('.social-list #' + parentRow).remove();
+        $.ajax({
+            origin: '*',
+            type: "post",
+            url: "/DcontactAndDcrad/deleteRow",
+            data: {
+                id: parentRow
+            },
+            success: function (msg) {
+                var parentRow = $(this).parent().attr('id');
+                $('.social-list #' + parentRow).remove();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('body').html(jqXHR.responseText);
+            }
+        });
+    })
+    //add row
+    $('#addNewUrl').on('click', function () {
         $.ajax({
             origin: '*',
             type: "post",
             url: "/DcontactAndDcrad/addRow",
             data: {},
-            success: function(msg) {
+            success: function (msg) {
                 $('.social-list').append(msg);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('body').html(jqXHR.responseText);
             }
         });
     });
     //update bullet row
-    $('.iconSocial').on('click', function() {
+    $('.iconSocial').on('click', function () {
         var idIcon = $(this).attr('id');
         var classIcon = $(this).children('i').attr('class');
         var idOfBullet = "#" + $('body > div.container > main > nav.container__right > div.right__field > div.url-area').attr('target');
@@ -405,24 +405,51 @@ $(document).ready(function() {
         }
         updateRow(idRow);
     });
-    $('#image-template').on('change', function() { //chon file
+    $('#image-template').on('change', function () { //chon file
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             resize.croppie('bind', {
                 url: e.target.result
-            }).then(function() {
+            }).then(function () {
                 console.log('jQuery bind complete');
             });
         }
         reader.readAsDataURL(this.files[0]);
     });
-    $('.btn-upload-template').on('click', function(ev) { //button upload image
+    $('.btn-upload-template').on('click', function (ev) { //button upload image
         resize.croppie('result', {
             type: 'canvas',
             size: 'viewport'
-        }).then(function(img) {
+        }).then(function (img) {
             $('.card__contener').css('background-image', "url('" + img + "')"); //cho load anh
             //[ ] select template here
+            var formData = new FormData();
+            var block = img.split(";");
+            var contentType = block[0].split(":")[1];
+            var realData = block[1].split(",")[1];
+            var blob = b64toBlob(realData, contentType);
+            formData.append("image", blob);
+            //formData.append('image', img+"");
+            $.ajax({
+                type: "POST",
+                url: "api/ImageAPI/UploadFiles",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $('.card__contener').css('background-image', "url('" + response + "')"); //cho load anh
+                    $.post("/DcontactAndDcrad/updateImage", { piece: 'addAndUpdateTemplate', path: response }).done(function (data) {
+                        console.log(data + 'card background has been updated');
+                    });
+                    $('.template__detail ul').append(' <li> <div class="inf-temp" id="' + uuidv4 + '"> <img src="' + response + '" alt="" class="img-temp" id="srcImg1" /> <p class="name-temp">Template ' + $('li div.inf-temp').length + '</p> </div> </li>');
+                    console.log(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('body').html('error: ' + jqXHR.responseText);
+                    console.log('error: ' + jqXHR.status);
+                }
+            });
         });
     });
 });

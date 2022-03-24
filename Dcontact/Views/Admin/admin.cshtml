@@ -117,7 +117,7 @@
             </div>
 
             <div class="main-lock">
-                <table border="1">
+                <table>
                     <caption></caption>
                     <thead>
                         <tr>
@@ -127,7 +127,7 @@
                             <th>ID</th>
                             <th>USERNAME</th>
                             <th>EMAIL</th>
-                            <th><i class="fa fa-lock" style="font-size:48px;color:red"></i></th>
+                            <th>BLOCK</th>
                         </tr>
                     </thead>
                     @{
@@ -166,7 +166,7 @@
             </div>
 
             <div class="main-report">
-                <table border="1">
+                <table>
                     <thead>
                         <tr>
                             <td colspan="6" class="caption">REPORT</td>
@@ -175,8 +175,8 @@
                             <th>USERNAME</th>
                             <th>URL</th>
                             <th>DESCRIPTION</th>
-                            <th><i class="fa fa-check" style="font-size:48px;color:greenyellow"></i></th>
-                            <th><i class="fa fa-remove" style="font-size:48px;color:red"></i></th>
+                            <th>ACCEPT</th>
+                            <th>DECLINE</th>
                         </tr>
                     </thead>
                     @{
@@ -195,10 +195,10 @@
                                         @report.description
                                     </td>
                                     <td id="@report.id_row">
-                                        <button class="btn-report btn-accept" style="background-color: greenyellow;">ACCEPT</button>
+                                        <button class="btn-report btn-accept">YES</button>
                                     </td>
                                     <td id="@report.id_row">
-                                        <button class="btn-report btn-decline" style="background-color: red;">DECLINE</button>
+                                        <button class="btn-report btn-decline">NO</button>
                                     </td>
                                 </tr>
                             }

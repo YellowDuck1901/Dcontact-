@@ -1,6 +1,4 @@
-@{
-
-}
+﻿
 <head>
     <link rel="stylesheet" type="text/css" href="~/CSS/Form.css">
     <link rel="stylesheet" type="text/css" href="~/CSS/modalAccount.css">
@@ -11,15 +9,15 @@
 </head>
 <body>
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
-    @{ 
+    @{
 
     }
     <div class="container">
         <div class="header">
-        
-            <h2>Verification code has been sent to email</h2>
+
+            <h2>Verification code has been sent to your email</h2>
         </div>
-        <form id="comfirmForm" class="form" action="@Url.Action("ComfirmForm", "Account")">
+        <form id="comfirmForm" class="form" action="@Url.Action("ComfirmLoggedForm", "Account")">
             <div class="form-control">
                 <input type="text" id="vertifyCode" name="vertifyCode"
                        placeholder="vertify Code"
