@@ -21,7 +21,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    display: flex;
+    margin-right: 0.5rem;
 }
 
 .button-3 {
@@ -67,35 +67,6 @@
         cursor: default;
     }
 
-.menu {
-    text-align: left;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-    .menu span {
-        text-transform: uppercase;
-        display: block;
-    }
-
-.text1 {
-    position: relative;
-    left: 600px;
-    font-size: 100px;
-    font-weight: 300;
-    letter-spacing: 8px;
-    margin-bottom: 30px;
-    animation: text 3s 1;
-    text-align: center;
-    font-size: 40px;
-    color: -moz-linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
-    color: -webkit-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
-    color: linear-gradient(135deg, rgb(163, 255, 250), rgb(255, 160, 153));
-    margin-right: 300px;
-}
-
 @keyframes text {
     5% {
         color: rgb(15, 5, 5);
@@ -138,27 +109,67 @@
 }
 
 body {
-    background-image: -moz-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
-    background-image: -webkit-linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
-    background-image: linear-gradient( 135deg, rgb(163, 255, 250), rgb(255, 160, 153) );
+    background-image: url(https://images.unsplash.com/photo-1504270997636-07ddfbd48945?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80);
+    background-repeat: no-repeat;
+    background-size: 100%;
     padding: 0;
     margin: 0;
 }
 
 .img-home {
-    /* border: SOLID BLACK 1px; */
     position: absolute;
     top: 50%;
-    left: 20%;
+    right: 0;
     transform: translateY(-50%);
     width: 330px;
     height: 400px;
 }
 
-    .img-home img {
-        border-radius: 10px;
-        width: 290px;
-        height: 500px;
-        object-fit: cover;
-        box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #596275;
+    padding: 2rem;
+    width: 60%;
+    text-align: center;
+    animation: topdown 3s ease;
+}
+
+.home-modal {
+    position: absolute;
+    background: rgba(0,0,0,0.1);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    top: 54px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.menu span {
+    font-size: 2.5rem;
+    font-family: fantasy;
+    color: #e67e22;
+    letter-spacing: 0.5rem;
+}
+
+.menu p {
+    font-family: inherit;
+    letter-spacing: 0.2rem;
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+@keyframes topdown {
+    from {
+        top:0;
     }
+
+    to {
+        top: 310px;
+    }
+}

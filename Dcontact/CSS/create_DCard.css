@@ -130,12 +130,14 @@ body,
   transition: 0.25s;
 }
 
-.btn-order:hover,
-#btnRadio:hover,
-.btn-common input:hover {
-  background-color: #ff793f;
-  color: #fff;
-}
+    .btn-order:hover,
+    #btnRadio:hover,
+    .btn-common input:hover,
+    .uploadAvt__label:hover,
+    .uploadBg__label:hover {
+        background-color: #ff793f;
+        color: #fff;
+    }
 
 #uploadFile,
 .uploadAvt {
@@ -179,7 +181,7 @@ body,
 .qrcode {
   position: absolute;
   top: 5px;
-  right: 10px;
+  right: 0;
 }
 
 .img-qr {

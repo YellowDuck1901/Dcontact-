@@ -77,8 +77,8 @@
 
     <div class="edit-card">
         <span class="input-link">
-            <input required type="text" placeholder="Enter you D.Contact link" id="linkContact" />
-            <span class="error-icon"><abbr title="Enter your link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
+            <input required type="text" placeholder="Enter your DContact link" id="linkContact" />
+            <span class="error-icon"><abbr title="Enter valid link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
         </span> </br>
         <div class="toggle-area">
             <div class="toggle-switch">
@@ -560,7 +560,7 @@
                     $(this).attr('value', 'false');
                     $('.choosePosition').hide();
                     $('.cropAvatar').hide();
-
+                    $('.cmn-card img').attr('src', '');
                 }
             });
 
@@ -625,33 +625,6 @@
             });
 
             });
-
-            $('#buy').on('click', function () {
-                $.ajax({
-                    origin: '*',
-                    type: "post",
-                    url: "DcontactAndDcrad/oder_dcardForm",
-                    data: {
-                        cardBackGround: 'data'
-                    },
-                    beforeSend: function () {
-                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<center><div class="spinner"></div></center>');
-                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html("");
-                    },
-                    success: function (msg) {
-                        $('body > div.modal.js-modal.open > div > div.modal__contener').html('<h2>' + msg + '</h2>');
-                        $('body > div.modal.js-modal.open > div > div.modal_foo.right__site').html('<button type="button" id="close">Close</button>');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('body').html(jqXHR.responseText);
-                    }
-                });
-            });
-
-
-
-
-
     </script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js'></script>
     <script src="~/MyScript/create_dcard.js"></script>
