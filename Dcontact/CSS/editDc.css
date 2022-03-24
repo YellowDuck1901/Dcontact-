@@ -6,6 +6,7 @@ html {
     margin: 0;
     height: 100%;
     width: 100%;
+    font-size: 1vw;
 }
 
 body {
@@ -21,6 +22,7 @@ body {
 
 .container {
     height: 100%;
+    height: calc(100% - 54px);
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
@@ -35,11 +37,7 @@ body {
     /* Layout the left sidebar, main content and right sidebar */
     display: flex;
     flex-direction: row;
-    height: calc(100% - 18px);
-    overflow: auto;
-    overflow-x: hidden;
 }
-
 .container__left {
     width: 33.33%;
     height: calc(100% - 18px);
@@ -688,20 +686,6 @@ i.fas.fa-exclamation-circle {
     animation: tracking-in-expand 0.7s cubic-bezier(0.95, 0.05, 0.795, 0.035) both;
 }
 
-/* MODAL */
-.modal-container {
-    background: #fff;
-    width: 50rem;
-}
-
-.modal__header {
-    background: #fff;
-}
-
-.col-md-4 {
-    display: block;
-}
-
 .btn-upload-template,
 .btn-upload-avatar {
     margin: 10px;
@@ -759,4 +743,9 @@ i.fas.fa-exclamation-circle {
     font-size: 1.45rem;
     margin: 0;
     border-bottom: 2px solid var(--primary-color);
+}
+
+.cr-vp-square {
+    border-radius: 2rem;
+    overflow: hidden;
 }

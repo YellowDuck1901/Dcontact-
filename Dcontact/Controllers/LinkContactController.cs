@@ -1,18 +1,22 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Dcontact.Controllers
-{
-    public class LinkContactController : Controller
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Util;
+namespace Dcontact.Controllers { 
+public class LinkContactController : Controller
     {
-        // GET: LinkContact
-        public ActionResult Index()
-        {
-            return View();
-        }
+    
+
+        //}
         //public ActionResult LinkContact(string username)
         //{
         //    String mess = "";
@@ -50,12 +54,18 @@ namespace Dcontact.Controllers
 
         }
 
+        public ActionResult GetLink()
+        {
+            DAO d = new Util.DAO();
+            string id_row = Request.Form["id"];
+           string url = d.DB_GetLink(id_row);
+            return Content(url, "text/html");
+        }
+
         public ActionResult Report()
         {
             try
             {
-                // lấy giá trị của 3 trường sau đó bỏ vô là ok
-                // hiện tại 3 trường chưa đc load dữ liệu lên, đang còn dữ liệu tĩnh
                 Util.DAO d = new Util.DAO();
                 string id_row = Request.Form["id_row"];
                 string txt_des = Request.Form["txt_Des"];

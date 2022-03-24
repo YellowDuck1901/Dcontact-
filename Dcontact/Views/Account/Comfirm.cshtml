@@ -12,24 +12,14 @@
 <body>
     <script type="text/javascript" src="~/MyScript/Validation.js"></script>
     @{ 
-        string type = ViewBag.typeChange;
-        string action = "";
-        if (type == "email")
-        {
-            action = "ComfirmFormEmail";
-        }
-        else
-        {
-            action = "ComfirmForm";
-        }
 
     }
     <div class="container">
         <div class="header">
         
-            <h2>Verification code has been sent to email @ViewBag.typeChange</h2>
+            <h2>Verification code has been sent to email</h2>
         </div>
-        <form id="comfirmForm" class="form" action="@Url.Action(action, "Account")">
+        <form id="comfirmForm" class="form" action="@Url.Action("ComfirmForm", "Account")">
             <div class="form-control">
                 <input type="text" id="vertifyCode" name="vertifyCode"
                        placeholder="vertify Code"

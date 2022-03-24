@@ -12,16 +12,17 @@
 
 </head>
 <body>
+    @{
+        Bean.Dcontact dcontact = ViewBag.dcontact;
+    }
     <nav class="container__right scrollbar-hidden">
         <div class="contener">
-            <div class="card__contener">
-                <div class="card__contener--header">
-                    <img src="resource/logo/logo_full.svg" alt="avatar" />
+            <div class="card__contener" style="background-image: url(@dcontact.background);" >
+                <div class="card__contener--header"  >
+                    <img src="@dcontact.avt" alt="avatar"  />
                 </div>
-                <center style="font-family: cursive; margin: 0.75rem;">&#64;@ViewBag.name</center>
-                @{
-                    Bean.Dcontact dcontact = ViewBag.dcontact;
-                }
+                <center style="font-family: cursive; margin: 0.75rem; font-size: 2vw;">&#64;@ViewBag.name</center>
+
                 <div class="card__contener--body scrollbar-hidden">
                     <ul>
                         @{ foreach (Bean.Row row in dcontact.rows)
@@ -41,7 +42,8 @@
                     </li>
                                 }
                             }
-                    </ul>
+
+                        <!--<li>
             </div>
             <div class="card__contener--footer">
                 <a href="home">
@@ -50,6 +52,45 @@
                 </div>
                 </a>
             </div>
+                        <!-- Label -->
+                        <!--<div class="card--item__text">
+                <label>Instagram</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+        <div class="button"
+             role="button"
+             style="background-color: #c23616">
+            <i class="fa fa-youtube-play"></i>-->
+                        <!-- Label -->
+                        <!--<div class="card--item__text">
+                <label>YouTube</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+        <div class="button"
+             role="button"
+             style="background-color: #40739e">
+            <i class="fa fa-phone"></i>-->
+                        <!-- Label -->
+                        <!--<div class="card--item__text">
+                <label>Phone</label>
+            </div>
+        </div>
+    </li>-->
+                    </ul>
+            </div>
+                <div class="card__contener--footer">
+                    <a href="home">
+                        <div class="logo--mini">
+                            <img src="resource/logo/logo_full.svg" alt="" />
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -97,7 +138,14 @@
             </div>
         </div>
     </div>
-<script src="~/MyScript/LinkContact.js">
+    <script src="~/MyScript/LinkContact.js">
+    </script>
+    <script>
+        $(".button").on('click', function () {
+            $.post("/LinkContact/GetLink", { id: $(this).attr('id') }).done(function (data) {
+                window.open("http://" + data, '_blank')
+            });
+        })
     </script>
 </body>
 </html>
