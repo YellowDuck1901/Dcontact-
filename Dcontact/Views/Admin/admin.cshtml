@@ -99,92 +99,19 @@
                             <th>EMAIL</th>
                         </tr>
                     </thead>
+                    @{
+                        List<Bean.User> list_user = ViewBag.user;
+                    }
                     <tbody>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                        </tr>
-
+                        @{
+                            foreach (Bean.User user in list_user)
+                            {
+                                <tr>
+                                    <td>@user.username</td>
+                                    <td>@user.email</td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
             </div>
@@ -203,106 +130,37 @@
                             <th><i class="fa fa-lock" style="font-size:48px;color:red"></i></th>
                         </tr>
                     </thead>
+                    @{
+                        List<Bean.User> user_block = ViewBag.user_block;
+                    }
                     <tbody>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, voluptatum similique! Nostrum laborum recusandae accusantium pariatur excepturi, modi fuga aut! Aliquid inventore reprehenderit veniam tempora necessitatibus
-                                dicta, fugiat ipsam iusto?
-                            </td>
-                            <td>Quis.</td>
-                            <td>Quis.</td>
-                            <td>
-                                <button class="btn-lock">BLOCK</button>
-                            </td>
-                        </tr>
+                        @{
+                            foreach (Bean.User userblock in user_block)
+                            {
+                                <tr>
+                                    <td>
+                                        @userblock.id
+                                    </td>
+                                    <td>@userblock.username</td>
+                                    <td>@userblock.email</td>
+                                    <td id="@userblock.id">
+                                        <button class="btn-lock">
+                                            @{
+                                                if (@userblock.isban)
+                                                {
+                                                    <p>UNBLOCK</p>
+
+                                                }
+                                                else
+                                                {
+                                                    <p>BLOCK</p>
+                                                }
+                                            }
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
             </div>
@@ -322,7 +180,7 @@
                         </tr>
                     </thead>
                     @{
-                        List<Bean.ReportLink> list = ViewBag.reportList;
+                            List<Bean.ReportLink> list = ViewBag.reportList;
                     }
                     <tbody>
                         @{
@@ -332,15 +190,15 @@
                                     <td>
                                         @report.username
                                     </td>
-                                    <td>@report.link</td>
+                                    <td class="col_url">@report.link</td>
                                     <td>
                                         @report.description
                                     </td>
-                                    <td>
-                                        <button class="btn-report" style="background-color: greenyellow;">ACCEPT</button>
+                                    <td id="@report.id_row">
+                                        <button class="btn-report btn-accept" style="background-color: greenyellow;">ACCEPT</button>
                                     </td>
-                                    <td>
-                                        <button class="btn-report" style="background-color: red;">DECLINE</button>
+                                    <td id="@report.id_row">
+                                        <button class="btn-report btn-decline" style="background-color: red;">DECLINE</button>
                                     </td>
                                 </tr>
                             }
@@ -352,4 +210,5 @@
     </div>
 </body>
 <script src='~/MyScript/check.js'></script>
+<script src="~/MyScript/admin.js"></script>
 </html>

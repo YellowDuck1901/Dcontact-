@@ -149,6 +149,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DcontactAndDcradController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageAPIController.cs" />
     <Compile Include="Controllers\LinkContactController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -184,6 +185,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="MyScript\admin.js" />
     <Content Include="MyScript\LinkContact.js" />
     <Content Include="MyScript\check.js" />
     <Content Include="MyScript\create_dcard.js" />
@@ -238,6 +240,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

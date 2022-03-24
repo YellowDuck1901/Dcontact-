@@ -153,7 +153,7 @@ body {
   display: flex;
   margin-top: 12px;
 }
-.admin-container2 table {
+.main-lock table {
   text-align: left;
   position: relative;
   width: 80%;
@@ -266,4 +266,14 @@ body {
   position: absolute;
   display: none;
   float: left;
+}
+
+.main-report table {
+    text-align: left;
+    position: absolute;
+    width: 70%;
+    /* margin-left: 10%; */
+    top: 35%;
+    left: 60%;
+    transform: translate(-50%, -50%);
 }

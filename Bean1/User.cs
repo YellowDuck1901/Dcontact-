@@ -33,6 +33,19 @@ namespace Bean
             this.isAdmin = isAdmin;
         }
 
+        public User(string username, string email)
+        {
+            this.username = username;
+            this.email = email;
+        }
+
+        public User(string id, string username, string email)
+        {
+            this.id = id;
+            this.username = username;
+            this.email = email;
+        }
+
         public User()
         {
         }

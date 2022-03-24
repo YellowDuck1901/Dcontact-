@@ -170,7 +170,7 @@ namespace Dcontact.Controllers
             {
                 mess = ex.Message;
             }
-            return RedirectToAction("Login", "Account", new { msg = mess+"login" });
+            return RedirectToAction("Login", "Account", new { msg = mess});
         }
 
 

@@ -30,6 +30,7 @@
                         <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
                         <div class="button"
                              role="button"
+                             id="@row.ID"
                              style="background-color: @row.color">
                             <i class="@row.bullet"></i>
                             <!-- Label -->
@@ -85,12 +86,13 @@
                         <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet">Facebook</span></div>
                         <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet">fb.com/tuyen.danh.5249</span></div>
                         <div class="modalItem modalDesc">
-                            <span class="descTitle">Description </span><textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
+                            <span class="descTitle" id="descTitle">Description </span>
+                            <textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
                             <span class="errorReport">Please enter message to report <i class="fa fa-exclamation-circle"></i></span>
                         </div>
                     </div>
                 </div>
-                <button class="btn-sendReport" type="submit">REPORT</button>
+                <button class="btn-sendReport" id="btn-sendReport" type="submit">REPORT</button>
 
             </div>
         </div>

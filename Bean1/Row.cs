@@ -29,7 +29,7 @@ namespace Bean
             this.code = code;
             this.birth = birth;
         }
-        
+
         public Row(string id)
         {
             this.ID = id;
@@ -38,8 +38,8 @@ namespace Bean
             this.link = "";
             this.bullet = "fa fa-cube";
             this.color = "#273c75";
-            this.click = "";
-            this.code = "";
+            this.click = "0";
+            this.code = "0";
             this.birth = "";
         }
 

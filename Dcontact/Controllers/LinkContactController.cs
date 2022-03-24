@@ -38,9 +38,7 @@ namespace Dcontact.Controllers
                 ViewBag.name = username;
                 Util.DAO d = new Util.DAO();
                 string id = Util.MD5.CreateMD5(username);
-                HttpCookie cookie = new HttpCookie("iduser");
-                cookie.Value = id;
-                Response.Cookies.Add(cookie);
+                Session["linkdcontact"] = id;
                 Bean.Dcontact dcontact = d.DB_GetDcontact(id);
                 ViewBag.dcontact = dcontact;
             }
@@ -52,27 +50,23 @@ namespace Dcontact.Controllers
 
         }
 
-        public ActionResult Report(string username)
+        public ActionResult Report()
         {
             try
             {
                 // lấy giá trị của 3 trường sau đó bỏ vô là ok
                 // hiện tại 3 trường chưa đc load dữ liệu lên, đang còn dữ liệu tĩnh
-                Bean.User user = (Bean.User)Session["user"];
-                Bean.Row r = new Bean.Row(Util.UUID.getUUID());
                 Util.DAO d = new Util.DAO();
-                string idRow = Request.Form["id_row"];
-                string id = Util.MD5.CreateMD5(username);
-                d.DB_AddReportofGuest(user.id, r.ID);
-
+                string id_row = Request.Form["id_row"];
+                string txt_des = Request.Form["txt_Des"];
+                string iduser1 = Session["linkdcontact"].ToString();
+                d.DB_AddReportofGuest(iduser1, id_row, txt_des);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Error", "Shared");
+                return Content(ex.Message);
             }
-            return View();
-
+            return Content("acb");
         }
-
     }
 }

@@ -34,5 +34,13 @@ namespace Bean
             this.email = email;
             this.status = status;
         }
+
+        public ReportLink(string username, string link, string description,string id_row)
+        {
+            this.id_row = id_row;
+            this.username = username;
+            this.link = link;
+            this.description = description;
+        }
     }
 }

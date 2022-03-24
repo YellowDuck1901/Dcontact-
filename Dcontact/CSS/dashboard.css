@@ -267,7 +267,7 @@ body {
 
 .card__contener--footer {
   position: absolute;
-  background: inherit;
+  /*background: inherit;*/
   height: 4rem;
   width: 100%;
   bottom: 0;

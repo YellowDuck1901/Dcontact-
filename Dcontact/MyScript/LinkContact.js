@@ -57,8 +57,7 @@ $(document).ready(function () {
             $('.errorReport').show();
         } else {
             $('.errorReport').hide();
-            alert('successful report')
-
+            $('.modalReport').removeClass("open");
         }
     });
 
@@ -66,5 +65,14 @@ $(document).ready(function () {
         alert('successful')
     });
 
+    $('.card__contener--body').on('click', '.report', function () {
+        idRow = $(this).next().attr('id');
+    });
 
+    $('#btn-sendReport').on('click', function () {
+        var txtDes = $('#txtDesc').val();
+        $.post("/LinkContact/Report", { id_row: idRow, txt_Des: txtDes }).done(function (data) {
+            console.log(data);
+        })
+    })
 });
