@@ -577,8 +577,6 @@ namespace Util
                     this.dataReader.Close();
                     return true;
                 }
-
-
             }
             catch (Exception)
             {
@@ -603,6 +601,27 @@ namespace Util
             }
             catch { throw; }
             return url;
+        }
+
+        public Bean.User DB_CheckUserBlock(string username)
+        {
+            User user = null;
+            string sql = $"select isBan from dbo.[User] as u join dbo.Account as a on a.ID = u.ID where a.username = '{username}'";
+            try
+            {
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    user = new User();
+                    user.isban = (bool)dataReader.GetBoolean(0);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return user;
         }
 
     }

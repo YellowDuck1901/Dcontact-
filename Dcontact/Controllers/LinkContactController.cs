@@ -17,44 +17,30 @@ namespace Dcontact.Controllers
 {
     public class LinkContactController : Controller
     {
-
-
-        //}
-        //public ActionResult LinkContact(string username)
-        //{
-        //    String mess = "";
-        //    try
-        //    {
-        //        Util.DAO d = new Util.DAO();
-        //        Bean.Dcontact dcontact = d.DB_GetDcontact(Util.MD5.CreateMD5(username));   //khoi tao object user voi data từ db
-        //        ViewBag.link = dcontact;
-        //        //return RedirectToAction("LinkContact", "LinkContact");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mess = ex.Message;
-        //    }
-        //    //return RedirectToAction("LinkContact", "LinkContact", new { msg = mess });
-        //    return View();
-        //}
-
         public ActionResult LinkContact(string username)
         {
             try
             {
                 ViewBag.name = username;
                 Util.DAO d = new Util.DAO();
-                string id = Util.MD5.CreateMD5(username);
-                Session["linkdcontact"] = id;
-                Bean.Dcontact dcontact = d.DB_GetDcontact(id);
-                ViewBag.dcontact = dcontact;
+                Bean.User user = d.DB_CheckUserBlock(username);
+                if (user.isban)
+                {
+                    return RedirectToAction("Error", "Shared");
+                }
+                else
+                {
+                    string id = Util.MD5.CreateMD5(username);
+                    Session["linkdcontact"] = id;
+                    Bean.Dcontact dcontact = d.DB_GetDcontact(id);
+                    ViewBag.dcontact = dcontact;
+                }
             }
             catch (Exception ex)
             {
                 return RedirectToAction("Error", "Shared");
             }
             return View();
-
         }
 
         public ActionResult GetLink()
