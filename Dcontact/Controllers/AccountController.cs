@@ -13,27 +13,133 @@ namespace Dcontact.Controllers
         // GET: Account
         public ActionResult Comfirm(String msg)
         {
+            var typefunction = "";
+            typefunction =  (string)Session["function"];
+            if(typefunction.Equals("VertifyCodeCurrentEmail"))
+            {
+                ViewBag.Title = "Verification Code Has Been Sent to Email";
+            }else if(typefunction.Equals("VertifyCodeNewEmail"))
+            {
+                ViewBag.Title = "Verification Code Has Been Sent to New Email";
+            }
+            else
+            {
+                ViewBag.Title = "Verification Code Has Been Sent to Email";
+            }
             //co typechange
             ViewBag.msg = msg;
             return View();
+        }
+
+        public ActionResult Identifyfunction(string function)
+        {
+            Bean.User user = (Bean.User)Session["user"];
+
+            if (function.Equals("VertifyCodeCurrentEmail")){
+                var vertifyCode = RandomCode.Random_6D();
+                Session.Add("email", user.email);            //session luu tru email
+                Session.Add("" + user.email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
+                Session.Add("function", function);
+                Session.Add("VerifyCodeExpiry", true);
+
+                Mail.send(user.email, "Code to Verify Email", vertifyCode);
+                return RedirectToAction("Comfirm", "Account");
+            }
+            return RedirectToAction("Comfirm", "Account");
         }
 
         public ActionResult ComfirmForm()
         {
             String mess = "";
             string vertifyCode = "";
+            Util.DAO d = new Util.DAO();
+            Bean.User user = (Bean.User)Session["user"];
+
             vertifyCode = Request.QueryString["vertifyCode"];
             try
             {
-                if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
-                {
-                    Session.Add("AvaiableChangePassword", true);  //nhap lai email thi phai set value false
 
-                    return RedirectToAction("CreateNewPassword", "Account");
-                }
-                else
+                if ((string)Session["function"] == "RecoverPasswordNotLogin")            //recover password not login
                 {
-                    mess = "Your verification code has expired";
+                    if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
+                    {
+                        return RedirectToAction("CreateNewPassword", "Account");
+
+                    }
+                    else if(!(bool)Session["VerifyCodeExpiry"])                          //code hết hạn
+                    {
+                        mess = "Verification Code Has Expired,type your email to get a new code";
+                        return RedirectToAction("RecoverPassword", "Account", new { msg = mess });
+                    }
+                    else if(!vertifyCode.Equals((string)Session[(string)Session["email"]]))                                                     //mã nhập sai
+                    {
+                        mess = "The code is wrong !";
+                        return RedirectToAction("Comfirm", "Account", new { msg = mess });
+                    }
+                }else if ((string)Session["function"] == "VertifyCodeCurrentEmail")       //verify current email
+                {
+                    if (user != null)
+                    {
+                        if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
+                        {
+                            Session["VerifyCodeExpiry"] = false;  //remove value cho phep doi password
+                            Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
+                            Session.Remove((string)Session["email"]);
+                            return RedirectToAction("ChangeEmail", "Account");
+
+                        }
+                        else if (!(bool)Session["VerifyCodeExpiry"])                          //code hết hạn
+                        {
+                            mess = "Verification Code Has Expired";
+                            return RedirectToAction("comfirm", "Account", new { msg = mess });
+                        }
+                        else if (!vertifyCode.Equals((string)Session[(string)Session["email"]]))                                                     //mã nhập sai
+                        {
+                            mess = "The code is wrong !";
+                            return RedirectToAction("Comfirm", "Account", new { msg = mess });
+                        }
+                    }
+                    else
+                    {
+                        mess = "Please login agian !";
+                        return RedirectToAction("Login", "Account", new { msg = mess });
+
+                    }
+
+                }
+                else if ((string)Session["function"] == "VertifyCodeNewEmail")       //verify new email
+                {
+                    if(user != null)
+                    {
+                        if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
+                        {
+                            d.DB_UpdateProfile(user.id, (string)Session["email"]);
+                            user.email = (string)Session["email"];
+                            Session.Add("user", user);
+                            Session["VerifyCodeExpiry"] = false;  //remove value cho phep doi password
+                            Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
+                            Session.Remove((string)Session["email"]);
+                            return RedirectToAction("dashboard", "DcontactAndDcrad");
+
+                        }
+                        else if (!(bool)Session["VerifyCodeExpiry"])                          //code hết hạn
+                        {
+                            mess = "Verification Code Has Expired";
+                            return RedirectToAction("Comfirm", "Account", new { msg = mess });
+                        }
+                        else if (!vertifyCode.Equals((string)Session[(string)Session["email"]]))                                                     //mã nhập sai
+                        {
+                            mess = "The code is wrong !";
+                            return RedirectToAction("Comfirm", "Account", new { msg = mess });
+                        }
+                    }
+                    else
+                    {
+                        mess = "Please login agian !";
+                         return RedirectToAction("Login", "Account", new { msg = mess });
+
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -52,29 +158,32 @@ namespace Dcontact.Controllers
 
             try
             {
-                if (user.email != "")
+                if (user != null)               //logged 
                 {
                     d.DB_ChangePass(user.email, password);
+                    Session["VerifyCodeExpiry"] = false;  //remove value cho phep doi password
+                    Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
+                    Session.Remove((string)Session["email"]);
                     return RedirectToAction("dashboard", "DcontactAndDcrad");
                 }
-                else
-                if ((bool)Session["AvaiableChangePassword"])
+                else if ((bool)Session["VerifyCodeExpiry"])  //not login
                 {
                     if (d.DB_ChangePass((string)Session["email"], password))
                     {
-                        Session["AvaiableChangePassword"] = false;  //remove value cho phep doi password
+                        Session["VerifyCodeExpiry"] = false;  //remove value cho phep doi password
                         Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
                         Session.Remove((string)Session["email"]);
                         return RedirectToAction("Login", "Account");
                     }
                     else
                     {
-                        mess = "Wrong Verification Code";
+                        mess = "Some thing wrong";
                     }
                 }
                 else
                 {
                     mess = "Your Verification Code Has Expired";
+                    return RedirectToAction("RecoverPassword", "Account", new { msg = mess });
                 }
 
             }
@@ -83,8 +192,6 @@ namespace Dcontact.Controllers
                 mess = ex.Message;
             }
             return RedirectToAction("CreateNewPassword", "Account", new { msg = mess });
-
-
         }
 
         public ActionResult CreateNewPassword(String msg)
@@ -150,14 +257,15 @@ namespace Dcontact.Controllers
                     //truong hop back nhap lai email
                     Session.Add("email", email);            //session luu tru email
                     Session.Add("" + email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
-                    Session.Add("AvaiableChangePassword", false);   //nhap lai email thi set false
-                                                                    //set time out cho code 
+                    Session.Add("function", "RecoverPasswordNotLogin");   
+                    Session.Add("VerifyCodeExpiry", true);   
+
                     Mail.send(email, "Code to Change Password", vertifyCode);
                     return RedirectToAction("Comfirm", "Account");
                 }
                 else
                 {
-                    mess = "Account with this email has not be register";
+                  
                 }
 
             }
@@ -165,7 +273,8 @@ namespace Dcontact.Controllers
             {
                 mess = ex.Message;
             }
-            return RedirectToAction("Login", "Account", new { msg = mess });
+            mess = "Account with this email has not be register";
+            return RedirectToAction("RecoverPassword", "Account", new { msg = mess });
         }
 
         public ActionResult RecoverPassword(String msg)
@@ -215,35 +324,28 @@ namespace Dcontact.Controllers
             string mess = "";
             string email = Request.QueryString["email"];
             Bean.User user = (Bean.User)Session["user"];
-
-            bool avaiable = (bool)Session["AvaiableChangeEmail"];   //nhap lai email thi set false
+            Util.DAO d = new Util.DAO();
 
             try
             {
-                if (avaiable)
+              if(user != null)
                 {
-                    Session.Add("AvaiableChangeEmail", false);
-
-                    Util.DAO d = new Util.DAO();
                     var vertifyCode = RandomCode.Random_6D();
-                    Mail.send(email, "Code to Change Email", vertifyCode);
-
-                    //xoa đi email và vertifycode cũ trên session
-                    Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
-                    Session.Remove((string)Session["email"]);
-
-                    //add new email và vertifycode mới
-                    Session.Add("NewEmail", email);            //session luu tru email
+                    //truong hop back nhap lai email
+                    Session.Add("email", email);            //session luu tru email
                     Session.Add("" + email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
+                    Session.Add("function", "VertifyCodeNewEmail");
+                    Session.Add("VerifyCodeExpiry", true);
 
-                    return RedirectToAction("ComfirmNewEmail", "Account", new { msg = mess });
-
+                    Mail.send(email, "Code to Verify New Email", vertifyCode);
+                    return RedirectToAction("Comfirm", "Account");
                 }
-
                 else
                 {
-                    mess = "Your verification code has expired";
+                    mess = "Your must login agian !";
+                    return RedirectToAction("ChangeEmail", "Account", new { msg = mess });
                 }
+
             }
             catch (Exception ex)
             {
@@ -254,111 +356,9 @@ namespace Dcontact.Controllers
 
         public ActionResult ChangeEmail(String msg)
         {
+
             ViewBag.msg = msg;
             return View();
         }
-
-        public ActionResult ComfirmLogged(String msg)
-        {
-            Bean.User user = (Bean.User)Session["user"];
-            String mess = "";
-
-            //mess = username + "@" + password;
-            try
-            {
-                if ((string)Session["email"] == null)
-                {
-                    Util.DAO d = new Util.DAO();
-                    var vertifyCode = RandomCode.Random_6D();
-                    //truong hop back nhap lai email
-                    Session.Add("email", user.email);            //session luu tru email
-                    Session.Add("" + user.email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
-                    Session.Add("AvaiableChangeEmail", false);   //nhap lai email thi set false
-                    Mail.send(user.email, "Code to Change Email", vertifyCode);
-                    ViewBag.msg = msg;
-                    return View();
-                }
-            }
-            catch (Exception ex)
-            {
-                mess = ex.Message;
-            }
-            ViewBag.msg = msg;
-            return View();
-
-        }
-
-        public ActionResult ComfirmLoggedForm(String msg)
-        {
-            String mess = "";
-            string vertifyCode = "";
-            vertifyCode = Request.QueryString["vertifyCode"];
-            try
-            {
-                if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
-                {
-                    Session.Add("AvaiableChangeEmail", true);  //nhap lai email thi phai set value false
-
-                    return RedirectToAction("ChangeEmail", "Account");
-                }
-                else
-                {
-                    mess = "Your verification code has expired";
-                }
-            }
-            catch (Exception ex)
-            {
-                mess = ex.Message;
-            }
-            return RedirectToAction("ComfirmLogged", "Account", new { msg = mess });
-        }
-
-        public ActionResult ComfirmNewEmail(String msg)
-        {
-            ViewBag.msg = msg;
-            return View();
-        }
-
-        public ActionResult ComfirmNewEmailForm()
-        {
-            String mess = "";
-            string vertifyCode = "";
-            vertifyCode = Request.QueryString["vertifyCode"];
-            try
-            {
-                Util.DAO d = new Util.DAO();
-                Bean.User user = (Bean.User)Session["user"];
-
-                if (vertifyCode.Equals((string)Session[(string)Session["NewEmail"]]))
-                {
-                    if (d.DB_UpdateProfile(user.id, (string)Session["NewEmail"]))
-                    {
-                        user.email = (string)Session["NewEmail"]; //set email cho user  
-
-                        Session.Clear();
-                        Session.Add("user", user);                // add user da update profile lên session
-
-
-
-                        return RedirectToAction("dashboard", "DcontactAndDcrad");
-                    }
-                    else
-                    {
-                        mess = "You must login !";
-
-                    }
-                }
-                else
-                {
-                    mess = "Your verification code has expired";
-                }
-            }
-            catch (Exception ex)
-            {
-                mess = ex.Message;
-            }
-            return RedirectToAction("ComfirmNewEmail", "Account", new { msg = mess });
-        }
-
     }
 }

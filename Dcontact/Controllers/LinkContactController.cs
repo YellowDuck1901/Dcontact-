@@ -115,5 +115,48 @@ namespace Dcontact.Controllers
             }
             return Content("acb");
         }
+
+        public ActionResult sendCode()
+        {
+            try
+            {
+                Util.DAO d = new Util.DAO();
+                var vertifyCode = RandomCode.Random_6D();
+                string email = Request.Form["email"];
+                Mail.send(email, "Code to Verify Email", vertifyCode);
+                Session.Add("email", email);            //session luu tru email
+                Session.Add("" +email, vertifyCode);   //key la email con du lieu tren session cua email la vertifycode
+                Session.Add("VerifyCodeExpiry", true);
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return Content("");
+        }
+
+        public ActionResult Vertification()
+        {
+            try
+            {
+                string vertifyCode = Request.Form["code"];
+                if (vertifyCode.Equals((string)Session[(string)Session["email"]]))
+                {
+                    Session["VerifyCodeExpiry"] = false;  //remove value cho phep doi password
+                    Session.Remove((string)Session[(string)Session["email"]]);  //xoa cap value email
+                    Session.Remove((string)Session["email"]);
+                    return Content("equal");
+                }
+                else
+                {
+                    return Content("notEqual");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return Content("");
+        }
     }
 }

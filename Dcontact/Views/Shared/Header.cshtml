@@ -46,7 +46,7 @@
                     <div> <span>Username </span> <span class="confirm__value" id="username_value">@user.username</span></div><span></span>
                 </div>
                 <div class="modal__item item__spacebetween">
-                    <div> <span>Email</span> <span class="confirm__value" id="email_value">@user.email</span></div><span><a href="@Url.Action("ComfirmLogged", "Account")" id="changemail" class="profile-link">Change Email</a></span>
+                    <div> <span>Email</span> <span class="confirm__value" id="email_value">@user.email</span></div><span><a href="@Url.Action("Identifyfunction", "Account",new {function = "VertifyCodeCurrentEmail"})" id="changemail" class="profile-link">Change Email</a></span>
                 </div>
                 <div class="modal__item item__spacebetween">
                     <div> <span>Password</span><span class="confirm__value" id="password_value">***********</span></div><span><a href="@Url.Action("CreateNewPassword", "Account")" class="profile-link">Change PassWord</a></span>

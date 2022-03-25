@@ -38,16 +38,34 @@ $(document).ready(function () {
             $('.errorMail').show();
         }
     });
-
+    $('.errorCode').hide();
     $('.btn-verifyCode').on('click', function () {
         var regexCode = /^[0-9]{6}$/;
         var codeInput = $('#codeVerify').val();
         if (regexCode.test(codeInput)) {
-            $('.errorCode').hide();
-            $(".bodyVerify").hide();
-            $('.reportDesc').show();
-
+            $.ajax({
+                origin: '*',
+                type: "post",
+                url: "/LinkContact/Vertification",
+                data: {
+                    code: codeInput,
+                },
+                success: function (msg) {
+                   
+                    if (msg == "equal") {
+                        $('.errorCode').hide();
+                        $(".bodyVerify").hide();
+                        $('.reportDesc').show();
+                    } else if (msg == "notEqual") {
+                        $('.errorCode').show();
+                        $('#error-code').prop('title', 'Wrong Code');
+                    }
+                },
+                error: function () {
+                }
+            });
         } else {
+            $('#error-code').prop('title', 'Verify Code must be 6 number');
             $('.errorCode').show();
         }
     });
@@ -60,9 +78,53 @@ $(document).ready(function () {
             $('.modalReport').removeClass("open");
         }
     });
+    $('.errorMail').hide();
+    $('.btn-sendCode').on('click', function () {
+        var emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var email = $('#mailReport').val();
+        if (emailReg.test(email)) {
+            $.ajax({
+                origin: '*',
+                type: "post",
+                url: "/LinkContact/sendCode",
+                data: {
+                    email: email,
+                },
+                success: function (msg) {
+                    $('.errorMail').hide();
+                },
+                error: function () {
+
+                }
+            });
+        } else {
+            $('.errorMail').show();
+            $('#error-email').prop('title', 'Email is invalid');
+        }
+    });
 
     $('.btn-resendCode').on('click', function () {
-        alert('successful')
+        var emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var email = $('#mailReport').val();
+        if (emailReg.test(email)) {
+            $.ajax({
+                origin: '*',
+                type: "post",
+                url: "/LinkContact/sendCode",
+                data: {
+                    email: email,
+                },
+                success: function (msg) {
+                    $('.errorMail').hide();
+                },
+                error: function () {
+
+                }
+            });
+        } else {
+            $("#error-email").prop("title", "Email is invalid");
+            $('.errorMail').show();
+        }
     });
 
     $('.card__contener--body').on('click', '.report', function () {

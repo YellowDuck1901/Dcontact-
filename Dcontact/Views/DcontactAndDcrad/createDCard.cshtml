@@ -610,7 +610,6 @@
                                 deleteFile(avtURL);
                             } else if (avtURL == "" && bgURL != "") {
                                 console.log("5");
-
                                 MergeImageBg(bgURL);
                                 deleteFile(bgURL);
                             } else if (avtURL != "" && bgURL != "") {
@@ -618,7 +617,7 @@
                                 MergeImageBgAvt(bgURL, avtURL);
                                 deleteFile(bgURL);
                                 deleteFile(avtURL);
-                            } else {  //null avt bg, co qr
+                            } else {  //null avt bg, qr
                                 MergeImageBg('/resource/TempBackGround/White.png');
                             }
                         }
