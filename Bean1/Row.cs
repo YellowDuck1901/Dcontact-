@@ -30,12 +30,12 @@ namespace Bean
             this.birth = birth;
         }
 
-        public Row(string id)
+        public Row(string id, string username)
         {
             this.ID = id;
             this.text = "Text";
             this.font = "Cursive";
-            this.link = "";
+            this.link = $"localhost:44382/{username}";
             this.bullet = "fa fa-cube";
             this.color = "#273c75";
             this.click = "0";

@@ -110,7 +110,7 @@ namespace Dcontact.Controllers
             try
             {
                 Bean.User user = (Bean.User)Session["user"];
-                Bean.Row r = new Bean.Row(Util.UUID.getUUID());
+                Bean.Row r = new Bean.Row(Util.UUID.getUUID(), user.username);
                 Util.DAO d = new Util.DAO();
                 d.DB_AddRow(r.ID, user.id, r.text, r.font, r.color, r.link, r.bullet, r.code, "9999-1-1", "0");
                 string row = $"<li id ='{r.ID}'> <span class='report'> <abbr title = 'Click here to delete this link' > <i class='fa fa-trash-o'> </i> </abbr> </span> <div class='button'role='button' id='{@Util.UUID.getUUID()}' style='background-color: {r.color};height: 26.875px' url='{r.link}' code = '{r.code}'> <i class='{r.bullet}'></i> <div class='card--item__text'> <label style = 'font-family: '{r.font}';'>{r.text}</label> </div> </div> </li>";
