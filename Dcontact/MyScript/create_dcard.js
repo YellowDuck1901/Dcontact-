@@ -141,7 +141,7 @@ $(document).ready(function () {
             size: 'viewport'
         }).then(function (img) {
             $("#toggleBg").click();
-            $('#modal__crop--bg').removeClass('open');
+            $('#modal__crop--bg').css('display','none');
             $('.card').css('background-color', '');
             $('#cardBg').css('background-image', "url('" + img + "')");   //cho load anh
         });

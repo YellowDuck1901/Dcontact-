@@ -395,7 +395,7 @@ namespace Util
         public List<User> DB_getBlockforAdmin()
         {
             List<User> list = new List<User>();
-            string sql = $"select u.ID,a.username,u.Email, u.isBan from dbo.[User] as u join dbo.Account as a on u.ID = a.ID join dbo.Report as r on a.ID = r.ID_user  where r.[status] = 1";
+            string sql = $"select distinct u.ID,a.username,u.Email, u.isBan from dbo.[User] as u join dbo.Account as a on u.ID = a.ID join dbo.Report as r on a.ID = r.ID_user  where r.[status] = 1";
             try
             {
                 this.dataReader = this.DB_ExcuteQuery(sql);
@@ -577,8 +577,6 @@ namespace Util
                     this.dataReader.Close();
                     return true;
                 }
-
-
             }
             catch (Exception)
             {
@@ -603,6 +601,90 @@ namespace Util
             }
             catch { throw; }
             return url;
+        }
+        public void DB_addAccess()
+        {
+            string sql = $"update dbo.Statistical_System set numberAccess += 1";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public void DB_addView(string id)
+        {
+            string sql = $"exec Pro_addViewUser @id ='{id}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public void DB_addClick(string id_row)
+        {
+            string sql = $"exec Pro_addRowClick @idRow ='{id_row}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public int[] DB_getStatistical_System()
+        {
+            string sql = $"select * from dbo.[Statistical_System]";
+            int[] result = new int[4];
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                if (this.dataReader.Read())
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        result[i] = this.dataReader.GetInt32(i);
+                    }
+                }
+                this.dataReader.Close();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
+        }
+
+
+
+        public bool DB_CheckUserBlock(String id_user)
+        {
+            bool b = false;
+            try
+            {
+                string sql = $"select isBan from dbo.[User] where ID = '{id_user}'";
+                this.dataReader = this.DB_ExcuteQuery(sql);
+                if (dataReader.Read())
+                {
+                    b = (bool)dataReader.GetBoolean(0);
+                    this.dataReader.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return b;
         }
 
     }

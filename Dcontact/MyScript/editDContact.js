@@ -311,7 +311,7 @@ $(document).ready(function () {
 
         } else {
             $('#linkUrl').css('color', '#000');
-
+            $('#linkUrl').css('border-color', '#000');
         }
         
         $(id).attr('url', link);

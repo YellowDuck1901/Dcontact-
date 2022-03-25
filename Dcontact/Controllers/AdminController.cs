@@ -13,9 +13,9 @@ namespace Dcontact.Controllers
         {
             Util.DAO d = new Util.DAO();
             Bean.User admin = (Bean.User)Session["user"];
-            if(!(admin == null))
+            if (!(admin == null))
             {
-                if (!admin.isAdmin) 
+                if (!admin.isAdmin)
                 {
                     return RedirectToAction("dashboard", "DcontactAndDcrad");
                 }
@@ -25,6 +25,7 @@ namespace Dcontact.Controllers
                     ViewBag.reportList = reportList;
                     List<Bean.User> user = d.DB_getUserforAdmin();
                     ViewBag.user = user;
+                    ViewBag.statistical = d.DB_getStatistical_System().ToList();
                     List<Bean.User> user_block = d.DB_getBlockforAdmin();
                     ViewBag.user_block = user_block;
                     return View();

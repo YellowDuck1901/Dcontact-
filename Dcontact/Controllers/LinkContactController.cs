@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,27 +10,6 @@ namespace Dcontact.Controllers
 {
     public class LinkContactController : Controller
     {
-
-
-        //}
-        //public ActionResult LinkContact(string username)
-        //{
-        //    String mess = "";
-        //    try
-        //    {
-        //        Util.DAO d = new Util.DAO();
-        //        Bean.Dcontact dcontact = d.DB_GetDcontact(Util.MD5.CreateMD5(username));   //khoi tao object user voi data từ db
-        //        ViewBag.link = dcontact;
-        //        //return RedirectToAction("LinkContact", "LinkContact");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mess = ex.Message;
-        //    }
-        //    //return RedirectToAction("LinkContact", "LinkContact", new { msg = mess });
-        //    return View();
-        //}
-
         public ActionResult LinkContact(string username)
         {
             try
@@ -46,15 +18,23 @@ namespace Dcontact.Controllers
                 Util.DAO d = new Util.DAO();
                 string id = Util.MD5.CreateMD5(username);
                 Session["linkdcontact"] = id;
-                Bean.Dcontact dcontact = d.DB_GetDcontact(id);
-                ViewBag.dcontact = dcontact;
+                if (d.DB_CheckUserBlock(id))
+                {
+                    return RedirectToAction("Error", "Shared");
+                }
+                else
+                {
+                    Bean.Dcontact dcontact = d.DB_GetDcontact(id);
+                    ViewBag.dcontact = dcontact;
+                    d.DB_addView(id);
+                }
             }
             catch (Exception ex)
             {
+                TempData["ex"] = ex.Message;
                 return RedirectToAction("Error", "Shared");
             }
             return View();
-
         }
 
         public ActionResult GetLink()
@@ -62,12 +42,14 @@ namespace Dcontact.Controllers
             DAO d = new Util.DAO();
             string id_row = Request.Form["id"];
             string url = d.DB_GetLink(id_row);
+            d.DB_addClick(id_row);
             return Content(url, "text/html");
         }
         public ActionResult GetLink(string id_row)
         {
             DAO d = new Util.DAO();
             string url = d.DB_GetLink(id_row);
+            d.DB_addClick(id_row);
             return Content(url, "text/html");
         }
         public ActionResult gate()

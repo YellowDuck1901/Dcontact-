@@ -11,6 +11,8 @@ namespace Dcontact.Controllers
         // GET: Home
         public ActionResult Home()
         {
+            Util.DAO dAO = new Util.DAO();
+            dAO.DB_addAccess();
             return View();
         }
     }
