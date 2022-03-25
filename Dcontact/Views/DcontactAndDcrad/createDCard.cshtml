@@ -206,6 +206,8 @@
         var avtURL = "";
         var qrURL = "";
 
+        $('#merge-image').attr('src','');
+
         window.addEventListener("pageshow", function (event) {
             var historyTraversal = event.persisted ||
                 (typeof window.performance != "undefined" &&
@@ -334,7 +336,7 @@
                     favtData.append('image', image_merge);
                     var image_merge_url = uploadImage(favtData);
                     RedirectOderDcard(image_merge_url);
-                }, 500);
+                }, 1000);
             }
 
             function RedirectOderDcard(image_merge_url) {
@@ -379,11 +381,12 @@
                         { src: avtURL, x: 8, y: 8 },
                         { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
-                }
+            }
+            console.log("merge image success");
                 UploadMergeImage();
             }
 
-        function MergeImageBg(bgURL,qrURL) {
+        function MergeImageBgQr(bgURL,qrURL) {
 
             if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
@@ -403,14 +406,13 @@
                 mergeImages([
                     { src: bgURL},
                     { src: qrURL,x:408},
-
                     { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
                     ]).then(b64 => document.querySelector('#merge-image').src = b64);
                 }
                 UploadMergeImage();
         }
 
-        function MergeImageAvt(avtURL,qrURL) {
+        function MergeImageAvtQr(avtURL,qrURL) {
 
             if ($('#rightAvt').is(':checked')) {                //right avatar
                 mergeImages([
@@ -436,6 +438,77 @@
             UploadMergeImage();
         }
 
+        function MergeImageBgAvt(bgURL, avtURL) {
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: avtURL, x: 408, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: avtURL, x: 210, y: 90 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else {                                            //left avatar
+                mergeImages([
+                    { src: bgURL},
+                    { src: avtURL, x: 8, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            }
+            UploadMergeImage();
+        }
+
+        function MergeImageBg(bgURL) {
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else {                                            //left avatar
+                mergeImages([
+                    { src: bgURL },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            }
+            UploadMergeImage();
+        }
+
+        function MergeImageAvt(avtURL) {
+
+            if ($('#rightAvt').is(':checked')) {                //right avatar
+                mergeImages([
+                    { src: avtURL, x: 408, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else if ($('#centerAvt').is(':checked')) {        //center avatar
+                mergeImages([
+                    { src: avtURL, x: 210, y: 90 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+
+            } else {                                            //left avatar
+                mergeImages([
+                    { src: avtURL, x: 8, y: 8 },
+                    { src: '/resource/logo/rsz_logo_full.png', x: 225, y: 210 }
+                ]).then(b64 => document.querySelector('#merge-image').src = b64);
+            }
+            UploadMergeImage();
+        }
 
             function getAvatar() {
                 var avatar = "";
@@ -510,17 +583,45 @@
 
                 $('#next').on('click', function () {
                     setTimeout(function () {
-                        if (avtURL == "" && bgURL != "" && qrURL != "") {
-                            MergeImageBg(bgURL, qrURL);
-                            deleteFile(bgURL);
-                            deleteFile(qrURL);
-                        }else if (bgURL != "" && avtURL != "" && qrURL != "") {
-                            MergeImageBgAvtQr(bgURL, avtURL, qrURL);
-                            deleteFile(bgURL);
-                            deleteFile(avtURL);
-                            deleteFile(qrURL);
-                        } 
+                        if (qrURL != "") {                        //co qr
+                            if (avtURL != "" && bgURL == "") {
+                                console.log("1");
+                                MergeImageBgAvtQr('/resource/TempBackGround/White.png', avtURL, qrURL);
+                                deleteFile(avtURL);
+                                deleteFile(qrURL);
+                            } else if (avtURL == "" && bgURL != "") {
+                                console.log("2");
+                                MergeImageBgQr(bgURL, qrURL);
+                                deleteFile(bgURL);
+                                deleteFile(qrURL);
+                            } else if (avtURL != "" && bgURL != "") {
+                                console.log("3");
+                                MergeImageBgAvtQr(bgURL, avtURL, qrURL);
+                                deleteFile(bgURL);
+                                deleteFile(avtURL);
+                                deleteFile(qrURL);
+                            } else {  //null avt bg, co qr
+                                MergeImageBgQr('/resource/TempBackGround/White.png', qrURL);
+                            }
+                        } else {                                    //khong co QR
+                            if (avtURL != "" && bgURL == "") {
+                                console.log("4");
+                                MergeImageBgAvt('/resource/TempBackGround/White.png', avtURL);
+                                deleteFile(avtURL);
+                            } else if (avtURL == "" && bgURL != "") {
+                                console.log("5");
 
+                                MergeImageBg(bgURL);
+                                deleteFile(bgURL);
+                            } else if (avtURL != "" && bgURL != "") {
+                                console.log("6");
+                                MergeImageBgAvt(bgURL, avtURL);
+                                deleteFile(bgURL);
+                                deleteFile(avtURL);
+                            } else {  //null avt bg, co qr
+                                MergeImageBg('/resource/TempBackGround/White.png');
+                            }
+                        }
                     }, 500);
                 });
 
