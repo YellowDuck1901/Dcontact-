@@ -84,7 +84,7 @@ body {
   display: flex;
 }
 
-.modal_foo button[type="button"] {
+.modal_foo button {
   background-color: var(--basic-color);
   border: 2px solid #000000;
   color: #fff;

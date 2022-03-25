@@ -361,7 +361,7 @@ namespace Util
             return list;
         }
 
-        
+
 
         public bool DB_DeleteReport(string id_row)
         {
@@ -546,26 +546,56 @@ namespace Util
             }
         }
 
-        public bool DB_gate(string id_row){
+        public bool DB_gate(string id_row)
+        {
             string sql = $"select [code] from dbo.[Row] where ID = '{id_row}'";
-            this.dataReader = DB_ExcuteQuery(sql);
-            if (this.dataReader.Read())
+            try
             {
-                if (int.Parse(this.dataReader.GetValue(0).ToString()) == 0) return false;
-                this.dataReader.Close();
-                return true;
+                this.dataReader = DB_ExcuteQuery(sql);
+                if (this.dataReader.Read())
+                {
+                    if (int.Parse(this.dataReader.GetValue(0).ToString()) == 0) return false;
+                    this.dataReader.Close();
+                    return true;
+                }
             }
-                return false;
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return false;
+        }
+        public bool DB_gateCodeconfirm(string id_row, string code)
+        {
+            string sql = $"select * from dbo.[Row] where ID = '{id_row}' and code = '{code}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                if (this.dataReader.Read())
+                {
+                    this.dataReader.Close();
+                    return true;
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return false;
         }
 
         public string DB_GetLink(string id_row)
         {
-            string url="";
+            string url = "";
             string sql = $"execute Pro_GetLink @ID_Row ='{id_row}'";
             try
             {
                 this.dataReader = DB_ExcuteQuery(sql);
-            if (dataReader.Read())
+                if (dataReader.Read())
                 {
                     url = dataReader.GetValue(0).ToString();
                 }
