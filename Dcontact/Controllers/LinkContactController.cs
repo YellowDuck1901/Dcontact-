@@ -48,9 +48,11 @@ namespace Dcontact.Controllers
                 Session["linkdcontact"] = id;
                 Bean.Dcontact dcontact = d.DB_GetDcontact(id);
                 ViewBag.dcontact = dcontact;
+                d.DB_addView(id);
             }
             catch (Exception ex)
             {
+                TempData["ex"] = ex.Message;
                 return RedirectToAction("Error", "Shared");
             }
             return View();
@@ -62,12 +64,14 @@ namespace Dcontact.Controllers
             DAO d = new Util.DAO();
             string id_row = Request.Form["id"];
             string url = d.DB_GetLink(id_row);
+            d.DB_addClick(id_row);
             return Content(url, "text/html");
         }
         public ActionResult GetLink(string id_row)
         {
             DAO d = new Util.DAO();
             string url = d.DB_GetLink(id_row);
+            d.DB_addClick(id_row);
             return Content(url, "text/html");
         }
         public ActionResult gate()

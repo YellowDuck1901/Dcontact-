@@ -604,6 +604,70 @@ namespace Util
             catch { throw; }
             return url;
         }
+        public void DB_addAccess()
+        {
+            string sql = $"update dbo.Statistical_System set numberAccess += 1";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public void DB_addView(string id)
+        {
+            string sql = $"exec Pro_addViewUser @id ='{id}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public void DB_addClick(string id_row)
+        {
+            string sql = $"exec Pro_addRowClick @idRow ='{id_row}'";
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                this.dataReader.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public int[] DB_getStatistical_System()
+        {
+            string sql = $"select * from dbo.[Statistical_System]";
+            int[] result = new int[4];
+            try
+            {
+                this.dataReader = DB_ExcuteQuery(sql);
+                if (this.dataReader.Read())
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        result[i] = this.dataReader.GetInt32(i);
+                    }
+                }
+                this.dataReader.Close();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
+        }
+
+
 
     }
 }
