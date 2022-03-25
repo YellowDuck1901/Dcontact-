@@ -55,14 +55,12 @@ $(document).ready(function () {
         var rdoChecked = $('input[name="positionAvt"]:checked').val();
         if (rdoChecked === "left") {
             imagePosition("left");
-            alert('check')
             $('.qrcode').css('right', 0);
             $('.qrcode').css('left', '');
         }
 
         if (rdoChecked === "right") {
             imagePosition("right");
-            alert('check 2')
             $('.qrcode').css('left', 0);
             $('.qrcode').css('right', '');
         }
