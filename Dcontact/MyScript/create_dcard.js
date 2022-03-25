@@ -37,7 +37,6 @@ $(document).ready(function () {
             $('.qrcode').hide();
             $(this).prop('checked', false);
         }
-        cms - hccg - uup
     });
 
     //position avatar
