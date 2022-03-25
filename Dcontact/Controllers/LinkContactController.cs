@@ -26,6 +26,7 @@ namespace Dcontact.Controllers
                 {
                     Bean.Dcontact dcontact = d.DB_GetDcontact(id);
                     ViewBag.dcontact = dcontact;
+                    d.DB_addView(id);
                 }
             }
             catch (Exception ex)
