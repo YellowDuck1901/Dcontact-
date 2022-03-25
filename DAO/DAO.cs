@@ -395,7 +395,7 @@ namespace Util
         public List<User> DB_getBlockforAdmin()
         {
             List<User> list = new List<User>();
-            string sql = $"select u.ID,a.username,u.Email, u.isBan from dbo.[User] as u join dbo.Account as a on u.ID = a.ID join dbo.Report as r on a.ID = r.ID_user  where r.[status] = 1";
+            string sql = $"select distinct u.ID,a.username,u.Email, u.isBan from dbo.[User] as u join dbo.Account as a on u.ID = a.ID join dbo.Report as r on a.ID = r.ID_user  where r.[status] = 1";
             try
             {
                 this.dataReader = this.DB_ExcuteQuery(sql);
@@ -603,17 +603,16 @@ namespace Util
             return url;
         }
 
-        public Bean.User DB_CheckUserBlock(string username)
+        public bool DB_CheckUserBlock(String id_user)
         {
-            User user = null;
-            string sql = $"select isBan from dbo.[User] as u join dbo.Account as a on a.ID = u.ID where a.username = '{username}'";
+            bool b = false;
             try
             {
+                string sql = $"select isBan from dbo.[User] where ID = '{id_user}'";
                 this.dataReader = this.DB_ExcuteQuery(sql);
                 if (dataReader.Read())
                 {
-                    user = new User();
-                    user.isban = (bool)dataReader.GetBoolean(0);
+                    b = (bool)dataReader.GetBoolean(0);
                     this.dataReader.Close();
                 }
             }
@@ -621,7 +620,7 @@ namespace Util
             {
                 throw new Exception(ex.Message);
             }
-            return user;
+            return b;
         }
 
     }

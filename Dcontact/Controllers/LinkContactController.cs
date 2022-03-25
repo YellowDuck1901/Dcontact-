@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,15 +16,14 @@ namespace Dcontact.Controllers
             {
                 ViewBag.name = username;
                 Util.DAO d = new Util.DAO();
-                Bean.User user = d.DB_CheckUserBlock(username);
-                if (user.isban)
+                string id = Util.MD5.CreateMD5(username);
+                Session["linkdcontact"] = id;
+                if (d.DB_CheckUserBlock(id))
                 {
                     return RedirectToAction("Error", "Shared");
                 }
                 else
                 {
-                    string id = Util.MD5.CreateMD5(username);
-                    Session["linkdcontact"] = id;
                     Bean.Dcontact dcontact = d.DB_GetDcontact(id);
                     ViewBag.dcontact = dcontact;
                 }
