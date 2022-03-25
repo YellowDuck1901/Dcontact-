@@ -48,12 +48,18 @@ namespace Dcontact.Controllers
             String mess = "";
             string password = Request.QueryString["password"];
             Bean.User user = (Bean.User)Session["user"];
+            Util.DAO d = new Util.DAO();
 
             try
             {
+                if (user.email != "")
+                {
+                    d.DB_ChangePass(user.email, password);
+                    return RedirectToAction("dashboard", "DcontactAndDcrad");
+                }
+                else
                 if ((bool)Session["AvaiableChangePassword"])
                 {
-                    Util.DAO d = new Util.DAO();
                     if (d.DB_ChangePass((string)Session["email"], password))
                     {
                         Session["AvaiableChangePassword"] = false;  //remove value cho phep doi password

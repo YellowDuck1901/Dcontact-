@@ -11,10 +11,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Util;
-namespace Dcontact.Controllers { 
-public class LinkContactController : Controller
+using System.Web.Http;
+
+namespace Dcontact.Controllers
+{
+    public class LinkContactController : Controller
     {
-    
+
 
         //}
         //public ActionResult LinkContact(string username)
@@ -58,8 +61,42 @@ public class LinkContactController : Controller
         {
             DAO d = new Util.DAO();
             string id_row = Request.Form["id"];
-           string url = d.DB_GetLink(id_row);
+            string url = d.DB_GetLink(id_row);
             return Content(url, "text/html");
+        }
+        public ActionResult GetLink(string id_row)
+        {
+            DAO d = new Util.DAO();
+            string url = d.DB_GetLink(id_row);
+            return Content(url, "text/html");
+        }
+        public ActionResult gate()
+        {
+            DAO d = new Util.DAO();
+            string id_row = Request.Form["id"];
+            if (d.DB_gate(id_row))
+            {
+                return Content("", "text/html");
+            }
+            else
+            {
+                return GetLink(id_row);
+            }
+
+        }
+        public ActionResult gate_code([FromBody] string id_row, [FromBody] string code)
+        {
+            DAO d = new Util.DAO();
+
+            if (d.DB_gateCodeconfirm(id_row, code))
+            {
+                return GetLink(id_row);
+            }
+            else
+            {
+                return Content("", "text/html");
+            }
+
         }
 
         public ActionResult Report()

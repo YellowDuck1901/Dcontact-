@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.name | DContact</title>
     <link rel="stylesheet" href="~/CSS/LinkContact.css" />
+    <link rel="stylesheet" type="text/css" href="~/CSS/modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a0a7c0f0d8.js" crossorigin="anonymous"></script>
 
@@ -17,73 +20,73 @@
     }
     <nav class="container__right scrollbar-hidden">
         <div class="contener">
-            <div class="card__contener" style="background-image: url(@dcontact.background);" >
-                <div class="card__contener--header"  >
-                    <img src="@dcontact.avt" alt="avatar"  />
+            <div class="card__contener" style="background-image: url(@dcontact.background);">
+                <div class="card__contener--header">
+                    <img src="@dcontact.avt" alt="avatar" />
                 </div>
                 <center style="font-family: cursive; margin: 0.75rem; font-size: 2vw;">&#64;@ViewBag.name</center>
 
                 <div class="card__contener--body scrollbar-hidden">
                     <ul>
                         @{ foreach (Bean.Row row in dcontact.rows)
-                                {
-                    <li>
-                        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
-                        <div class="button"
-                             role="button"
-                             id="@row.ID"
-                             style="background-color: @row.color">
-                            <i class="@row.bullet"></i>
-                            <!-- Label -->
-                            <div class="card--item__text">
-                                <label style="font-family: " @row.font ";">@row.text</label>
-                            </div>
-                        </div>
-                    </li>
-                                }
+                            {
+                                <li>
+                                    <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+                                    <div class="button"
+                                         role="button"
+                                         id="@row.ID"
+                                         style="background-color: @row.color">
+                                        <i class="@row.bullet"></i>
+                                        <!-- Label -->
+                                        <div class="card--item__text">
+                                            <label style="font-family:@row.font;">@row.text</label>
+                                        </div>
+                                    </div>
+                                </li>
                             }
+                        }
 
                         <!--<li>
-            </div>
-            <div class="card__contener--footer">
-                <a href="home">
-                <div class="logo--mini">
-                    <img src="resource/logo/logo_full.svg" alt="" />
-                </div>
-                </a>
-            </div>
+                        </div>
+                        <div class="card__contener--footer">
+                            <a href="home">
+                            <div class="logo--mini">
+                                <img src="resource/logo/logo_full.svg" alt="" />
+                            </div>
+                            </a>
+                        </div>
+                                    <!-- Label -->
+                        <!--<div class="card--item__text">
+                                    <label>Instagram</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+                            <div class="button"
+                                 role="button"
+                                 style="background-color: #c23616">
+                                <i class="fa fa-youtube-play"></i>-->
                         <!-- Label -->
                         <!--<div class="card--item__text">
-                <label>Instagram</label>
-            </div>
-        </div>
-    </li>
-    <li>
-        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
-        <div class="button"
-             role="button"
-             style="background-color: #c23616">
-            <i class="fa fa-youtube-play"></i>-->
+                                    <label>YouTube</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
+                            <div class="button"
+                                 role="button"
+                                 style="background-color: #40739e">
+                                <i class="fa fa-phone"></i>-->
                         <!-- Label -->
                         <!--<div class="card--item__text">
-                <label>YouTube</label>
-            </div>
-        </div>
-    </li>
-    <li>
-        <span class="report"><abbr title="Click here to report this link"><i class="fa fa-exclamation-triangle"></i></abbr></span>
-        <div class="button"
-             role="button"
-             style="background-color: #40739e">
-            <i class="fa fa-phone"></i>-->
-                        <!-- Label -->
-                        <!--<div class="card--item__text">
-                <label>Phone</label>
-            </div>
-        </div>
-    </li>-->
+                                    <label>Phone</label>
+                                </div>
+                            </div>
+                        </li>-->
                     </ul>
-            </div>
+                </div>
                 <div class="card__contener--footer">
                     <a href="home">
                         <div class="logo--mini">
@@ -123,9 +126,9 @@
             <div class="reportDesc">
                 <div class="modalBody">
                     <div class="descBody">
-                        <div class="modalItem"><span class="descTitle">Username </span><span class="descContenet">tuyenmoc</span></div>
-                        <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet">Facebook</span></div>
-                        <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet">fb.com/tuyen.danh.5249</span></div>
+                        <div class="modalItem"><span class="descTitle">Username </span><span class="descContenet" id="username">@ViewBag.name</span></div>
+                        <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet" id="text"></span></div>
+                        <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet" id="url"></span></div>
                         <div class="modalItem modalDesc">
                             <span class="descTitle" id="descTitle">Description </span>
                             <textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
@@ -138,14 +141,64 @@
             </div>
         </div>
     </div>
+    <div class="modal js-modal " id="gate--code">
+        <div class="modal-container">
+            <div class="modal__header">
+                <h2>Confirm code</h2> <i class="fa fa-close"></i>
+            </div>
+
+            <div class="modal__contener">
+                <form action="@Url.Action("gate", "LinkContact" )" id="code">
+                    <p>Enter code to access this link!</p>
+                    <div class="modal__item item_spacearound">
+                        <span>Code</span>
+                        <div>
+                            <input type="number" name="codeAccess" id="codeAccess"
+                                   min="1000" max="9999" required>
+                        </div>
+                    </div>
+                    <div class="modal_foo center_site">
+                        <button type="submit">Open</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="~/MyScript/LinkContact.js">
     </script>
     <script>
-        $(".button").on('click', function () {
-            $.post("/LinkContact/GetLink", { id: $(this).attr('id') }).done(function (data) {
-                window.open("http://" + data, '_blank')
+        var id_row = "";
+
+        $(document).ready(function () {
+            $(".modal").on('click', '.fa-close, button#close', function () {
+                $('.modal').removeClass('open');
             });
-        })
+            $(".button").on('click', function () {
+                id_row = $(this).attr('id');
+                $.post("LinkContact/gate", { id: id_row }).done(function (data) {
+                    if (data) {
+                        window.open("http://" + data, '_blank')
+                    } else {
+                        $('#gate--code').addClass('open')
+                    }
+                });
+            })
+            $('.modal-container').on('submit', "form#code", function (e) {
+                e.preventDefault()
+                if (!/^\d{4}$/.test($('#codeAccess').val())) {
+                    $('#codeAccess').prepend('<i class="fas fa-exclamation-circle error"></i>');
+                } else {
+                    $.post("/LinkContact/gate_code", { id_row: id_row, code: $('#codeAccess').val() }).done(function (data) {
+                        if (data) {
+                            window.open("http://" + data, '_blank')
+                        } else {
+                            alert('The access code is invalid. 2')
+                            $('#codeAccess').append('<i class="fas fa-exclamation-circle error"></i>');
+                        }
+                    });
+                }
+            })
+        });
     </script>
 </body>
 </html>

@@ -1,7 +1,14 @@
+var idRow;
+var link;
+function bind(e) {
+    var text = $('#'+e).children('div').children('label').text()
+    $('#text').html(text)
+    $('#url').html(link);
+}
 $(document).ready(function () {
-    $('.report').on('click', function () {
-        $('.modalReport').addClass('open');
-    })
+    //$('.report').on('click', function () {
+    //    $('.modalReport').addClass('open');
+    //})
     $('.modalReport').on('click', '.fa-close', function () {
         $('.modalReport').removeClass('open');
     })
@@ -67,7 +74,33 @@ $(document).ready(function () {
 
     $('.card__contener--body').on('click', '.report', function () {
         idRow = $(this).next().attr('id');
+        $.post("LinkContact/gate", { id: idRow }).done(function (data) {
+            if (data) {
+                $('.modalReport').addClass('open');
+                link = data;
+                bind(idRow);
+            } else {
+                $('#gate--code').addClass('open')
+                $('form#code').attr('id', 'rcode')
+            }
+        });
+
     });
+    $('.modal-container').on('submit', "form#rcode", function (e) {
+        e.preventDefault()
+        $.post("/LinkContact/gate_code", { id_row: idRow, code: $('#codeAccess').val() }).done(function (data) {
+            if (data) {
+                link = data;
+                bind(idRow);
+                $('.modalReport').addClass('open');
+                $('form#rcode').attr('id', 'code')
+                $('#gate--code').removeClass('open');
+            } else {
+                alert('The access code is invalid. 1')
+            }
+        });
+    } )
+    
 
     $('#btn-sendReport').on('click', function () {
         var txtDes = $('#txtDesc').val();
@@ -75,4 +108,5 @@ $(document).ready(function () {
             console.log(data);
         })
     })
+    
 });
