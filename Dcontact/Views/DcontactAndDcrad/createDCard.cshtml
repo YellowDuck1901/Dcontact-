@@ -134,7 +134,7 @@
 
         </div>
 
-        <input type="button" id="next" class="btn-order" value="NEXT" onclick="window.location.href = '@Url.Action("oder_dcard", "DcontactAndDcrad" )';" />
+        <input type="button" id="next" class="btn-order" value="NEXT" />
 
     </div>
     @* MODAL CROP BACKGROUND *@
@@ -335,6 +335,7 @@
                     var favtData = new FormData();
                     favtData.append('image', image_merge);
                     var image_merge_url = uploadImage(favtData);
+                    alert(image_merge_url);
                     RedirectOderDcard(image_merge_url);
                 }, 1000);
             }
