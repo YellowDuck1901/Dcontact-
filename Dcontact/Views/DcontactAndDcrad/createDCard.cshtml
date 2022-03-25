@@ -572,7 +572,6 @@
 
             $('.closeBgModal').on('click', function () {
                 $("#toggleBg").click();
-                $('.cropBackground').hide();
                 $('#modal__crop--bg').css('display', 'none');
             })
 
@@ -650,12 +649,11 @@
             $("#toggleBg").on('change', function () {
                 if ($(this).is(':checked')) {
                     $(this).attr('value', 'true');
-                    $('#modal__crop--bg').addClass('open');
+                    $('#modal__crop--bg').css('display', 'flex');
                 }
                 else {
                     $(this).attr('value', 'false');
-                    $('cropBakcground').hide();
-                    $('#modal__crop--bg').removeClass('open');
+                    $('#modal__crop--bg').css('display', 'none');
                 }
             });
 
