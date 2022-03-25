@@ -24,6 +24,7 @@
 <body>
     @{
         Bean.Dcontact dcontact = ViewBag.dcontact;
+        int clicked = 0;
     }
     <div class="container">
         <header>
@@ -39,7 +40,7 @@
                         <div class="statistical__summary">
                             <div class="statistical__summary--item">Views: <span>@dcontact.numerView</span></div>
 
-                            <div class="statistical__summary--item">Click: <span>chuatinhtong</span></div>
+                            <div class="statistical__summary--item">Click: <span id="clicked">@clicked</span></div>
                         </div>
                         <div class="divider"></div>
                         <div class="statistical__detail">
@@ -52,7 +53,8 @@
                                                 <span name="title">@row.text</span> <span>@row.click</span>
                                             </div>
                                         </li>
-                                    }
+                                        clicked = clicked + int.Parse(@row.click);
+   }
 
                                 }
                             </ul>
@@ -115,8 +117,8 @@
     <script src='~/MyScript/dashboard.js'></script>
     <script src='~/MyScript/check.js'></script>
     <script>
-            $('.card__contener').css('background-image', "url('@dcontact.background')");   //cho load anh
-/**/
+        $('.card__contener').css('background-image', "url('@dcontact.background')");   //cho load anh
+/**/        $('#clicked').html('@clicked');
     </script>
 </body>
 </html>
