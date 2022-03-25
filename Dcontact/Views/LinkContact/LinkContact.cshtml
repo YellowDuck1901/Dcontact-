@@ -39,7 +39,7 @@
                                         <i class="@row.bullet"></i>
                                         <!-- Label -->
                                         <div class="card--item__text">
-                                            <label style="font-family: " @row.font ";">@row.text</label>
+                                            <label style="font-family:@row.font;">@row.text</label>
                                         </div>
                                     </div>
                                 </li>
@@ -126,9 +126,9 @@
             <div class="reportDesc">
                 <div class="modalBody">
                     <div class="descBody">
-                        <div class="modalItem"><span class="descTitle">Username </span><span class="descContenet">tuyenmoc</span></div>
-                        <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet">Facebook</span></div>
-                        <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet">fb.com/tuyen.danh.5249</span></div>
+                        <div class="modalItem"><span class="descTitle">Username </span><span class="descContenet" id="username">@ViewBag.name</span></div>
+                        <div class="modalItem"><span class="descTitle">Name of Link </span><span class="descContenet" id="text"></span></div>
+                        <div class="modalItem"><span class="descTitle">URL </span><span class="descContenet" id="url"></span></div>
                         <div class="modalItem modalDesc">
                             <span class="descTitle" id="descTitle">Description </span>
                             <textarea placeholder="Message to Report...." name="Description" id="txtDesc" cols="30" rows="10"></textarea>
@@ -167,7 +167,7 @@
     <script src="~/MyScript/LinkContact.js">
     </script>
     <script>
-            var id_row = "";
+        var id_row = "";
 
         $(document).ready(function () {
             $(".modal").on('click', '.fa-close, button#close', function () {
@@ -183,7 +183,7 @@
                     }
                 });
             })
-            $("form").on('submit', function (e) {
+            $('.modal-container').on('submit', "form#code", function (e) {
                 e.preventDefault()
                 if (!/^\d{4}$/.test($('#codeAccess').val())) {
                     $('#codeAccess').prepend('<i class="fas fa-exclamation-circle error"></i>');
@@ -192,6 +192,7 @@
                         if (data) {
                             window.open("http://" + data, '_blank')
                         } else {
+                            alert('The access code is invalid. 2')
                             $('#codeAccess').append('<i class="fas fa-exclamation-circle error"></i>');
                         }
                     });
