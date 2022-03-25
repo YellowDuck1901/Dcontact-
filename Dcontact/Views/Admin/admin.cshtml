@@ -4,7 +4,9 @@
 }
 <!DOCTYPE html>
 <html lang="en">
-
+@{
+    List<int> statistical = (List<int>)ViewBag.statistical;
+}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,14 +59,14 @@
                         <td class="analysis-item">
                             <i class="fa fa-globe icon-analysis"></i>
                             <span>
-                                <p class="number">3250</p>
+                                <p class="number">@statistical[0]</p>
                                 <p class="title">Total access website</p>
                             </span>
                         </td>
                         <td class="analysis-item">
                             <i class="fa fa-eye icon-analysis"></i>
                             <span>
-                                <p class="number">3250</p>
+                                <p class="number">@statistical[2]</p>
                                 <p class="title">Total view of DCard</p>
                             </span>
                         </td>
@@ -73,14 +75,14 @@
                         <td class="analysis-item">
                             <i class="fa fa-users icon-analysis"></i>
                             <span>
-                                <p class="number">3250</p>
+                                <p class="number">@statistical[1]</p>
                                 <p class="title">Total user of website</p>
                             </span>
                         </td>
                         <td class="analysis-item">
                             <i class="fas fa-mouse icon-analysis"></i>
                             <span>
-                                <p class="number">3250</p>
+                                <p class="number">@statistical[3]</p>
                                 <p class="title">Total clicks of system</p>
                             </span>
                         </td>
@@ -180,7 +182,7 @@
                         </tr>
                     </thead>
                     @{
-                            List<Bean.ReportLink> list = ViewBag.reportList;
+                        List<Bean.ReportLink> list = ViewBag.reportList;
                     }
                     <tbody>
                         @{
