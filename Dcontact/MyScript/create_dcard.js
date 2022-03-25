@@ -10,44 +10,34 @@ $(document).ready(function () {
             position = '.' + 'card--' + position + ' img';
             $(position).attr('src', imageSrc);
         }
-       console.log(imgPosition)
+        console.log(position)
     }
+
 
     //qrcode
     $("#toggleQR").on('change', function () {
-        var linkcontact = $('#linkContact').val();
-        if (linkcontact != '' && regexURL.test(linkcontact) == true) {
-            $('.error-icon').hide();
-
-            if ($(this).is(':checked')) {
-                onQR = true;
-                $(this).attr('value', 'true');
-                var data = $('#linkContact').val();
-                var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
-                var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
-                UploadQRImage(srcQR);
-
-                if (imgPosition === "right") {
-                    /*imagePosition("left");*/
-                    $('.qrcode').css('left', 0);
-                }
-
-                $('.qrcode').html(img);
+        if ($(this).is(':checked')) {
+            onQR = true;
+            $(this).attr('value', 'true');
+            var data = $('#linkContact').val();
+            var srcQR = "http://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=" + data;
+            var img = '<img style="margin: 0 auto" class="img-qr" src="' + srcQR + '">';
+            UploadQRImage(srcQR);
+            if (imgPosition === "right") {
+                /*imagePosition("left");*/
+                $('.qrcode').css('left', 0);
             }
-            else {
-                $(this).attr('value', 'false');
-                $('#qr').remove();
-                onQR = false;
-                $('.error-icon').hide();
-                $('.qrcode').hide();
-            }
-        } else {
-            $(this).prop('checked', false);
-            $('.error-icon').show();
+
+            $('.qrcode').html(img);
+        }
+        else {
             $(this).attr('value', 'false');
             $('#qr').remove();
             onQR = false;
+            $('.qrcode').hide();
+            $(this).prop('checked', false);
         }
+        cms - hccg - uup
     });
 
     //position avatar

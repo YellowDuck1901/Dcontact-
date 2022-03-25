@@ -90,6 +90,8 @@ body,
 }
 
 .input-link input {
+    color: black;
+    font-size: 1vw;
   padding: 14px;
   width: 90%;
   outline: none;

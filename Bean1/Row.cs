@@ -35,7 +35,7 @@ namespace Bean
             this.ID = id;
             this.text = "Text";
             this.font = "Cursive";
-            this.link = $"localhost:44382/{username}";
+            this.link = @"https://localhost:44382/"+username;
             this.bullet = "fa fa-cube";
             this.color = "#273c75";
             this.click = "0";

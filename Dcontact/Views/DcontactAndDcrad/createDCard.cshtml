@@ -72,12 +72,17 @@
 
 
     </div>
+    @{ 
+        var user = (Bean.User)Session["user"];
 
+        var root = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~/");
+
+    }
 
 
     <div class="edit-card">
         <span class="input-link">
-            <input required type="text" placeholder="Enter your DContact link" id="linkContact" />
+            <input required type="text" value = "@root@user.username" id="linkContact" disabled />
             <span class="error-icon"><abbr title="Enter valid link before Create QR Code"><i class="fas fa-exclamation-circle"></i></abbr> </span>
         </span> </br>
         <div class="toggle-area">
@@ -335,9 +340,8 @@
                     var favtData = new FormData();
                     favtData.append('image', image_merge);
                     var image_merge_url = uploadImage(favtData);
-                    alert(image_merge_url);
                     RedirectOderDcard(image_merge_url);
-                }, 1000);
+                }, 1500);
             }
 
             function RedirectOderDcard(image_merge_url) {
@@ -518,8 +522,8 @@
                     avatar = $('#avatar-result-right').attr('src');
 
             } else if ($('#centerAvt').is(':checked')) {        //center avatar
-                avatar = $('#avatar-result-center').attr('src');
-
+                    avatar = $('#avatar-result-center').attr('src');
+                    alert(avatar)
             } else {                                            //left avatar
                 avatar = $('#avatar-result').attr('src');
             }
