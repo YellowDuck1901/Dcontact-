@@ -279,6 +279,6 @@ $(document).ready(function () {
         $('#phone_value').text(phone.value);
         $('#amount_value').text(stepper.value);
         $('#credit_value').text(credit.value);
-        $('#total').text(parseInt(stepper.value) * 6);
+        $('#total').text((parseInt(stepper.value) * 6) + "$");
     }
 });
